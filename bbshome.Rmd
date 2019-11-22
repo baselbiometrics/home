@@ -1,5 +1,5 @@
 ---
-title: "BBS"
+title: "Basel Biometric Section (BBS)"
 author: "Laurent Essioux, Dominik Heinzmann, Kaspar Rufibach, Marcel Wolbers"
 date: '`r Sys.setlocale("LC_TIME", "C"); format(Sys.Date(), "%d %b %Y")`'
 output:
@@ -29,12 +29,27 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Basel Biometrics Section
 
+## Purpose
+
+The Basel Biometric Section is part of the ROeS, the [Austrian Swiss Region](https://www.ibs-roes.org/) of the [International Biometric Society](https://www.biometricsociety.org/) (IBS). BBS is an independent, non-profit organization which provides a forum for discussions of how to apply statistical methods in biological and medical science.
+
+## President
+
+Hans Ulrich Burger, F. Hoffmann-La Roche
+
+## Board
+
+Give names
 
 # Upcoming events
 
-
+- 14th February 2020: [Network meta-analysis: methods and applications](http://bbs.ceb-institute.org/?p=1423)
 
 # Past events
 
 - 1st November 2019: [Predictive modelling, machine learning, and causality](https://baselbiometrics.github.io/20191101_ML/bbs1stNov2019.html)
 
+
+# Archive of past events
+
+[Old BBS webpage](http://bbs.ceb-institute.org/)

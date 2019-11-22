@@ -1,5 +1,5 @@
 # BBS webpage
 
-* [BBS webpage](intro.md)
+* [BBS webpage](bbshome.md)
 
 Author: [Kaspar Rufibach](mailto:kaspar.rufibach@roche.com)

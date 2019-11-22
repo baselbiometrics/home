@@ -1,0 +1,40 @@
+---
+title: "BBS"
+author: "Laurent Essioux, Dominik Heinzmann, Kaspar Rufibach, Marcel Wolbers"
+date: '`r Sys.setlocale("LC_TIME", "C"); format(Sys.Date(), "%d %b %Y")`'
+output:
+  html_document:
+    keep_md: true
+    toc: yes
+    toc_float:
+      collapsed: yes
+      smooth_scroll: yes
+  github_document: 
+    toc: true
+    toc_depth: 2
+  pdf_document:
+    toc: yes
+  word_document:
+    fig_caption: yes
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+## load packages
+packs.html <- c("knitr", "pander", "reporttools", "dplyr", "readxl")
+for (i in 1:length(packs.html)){library(packs.html[i], character.only = TRUE)}
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Basel Biometrics Section
+
+
+# Upcoming events
+
+
+
+# Past events
+
+- 1st November 2019: [Predictive modelling, machine learning, and causality](https://baselbiometrics.github.io/20191101_ML/bbs1stNov2019.html)
+

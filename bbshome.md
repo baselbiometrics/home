@@ -1,7 +1,7 @@
 ---
 title: "Basel Biometric Section (BBS)"
 author: "Laurent Essioux, Dominik Heinzmann, Kaspar Rufibach, Marcel Wolbers"
-date: '22 Nov 2019'
+date: '28 Nov 2019'
 output:
   html_document:
     keep_md: true
@@ -34,6 +34,10 @@ Hans Ulrich Burger, F. Hoffmann-La Roche
 ## Board
 
 Give names
+
+## Newsletter
+
+If you would like to receive announcements of upcoming events please send an email to xxx.
 
 # Upcoming events
 

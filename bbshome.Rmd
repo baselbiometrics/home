@@ -41,6 +41,10 @@ Hans Ulrich Burger, F. Hoffmann-La Roche
 
 Give names
 
+## Newsletter
+
+If you would like to receive announcements of upcoming events please send an email to xxx.
+
 # Upcoming events
 
 - 14th February 2020: [Network meta-analysis: methods and applications](http://bbs.ceb-institute.org/?p=1423)

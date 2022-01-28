@@ -1,7 +1,7 @@
 ---
 title: "Basel Biometric Section (BBS)"
-author: "Laurent Essioux, Dominik Heinzmann, Kaspar Rufibach, Marcel Wolbers"
-date: '28 Nov 2019'
+author: ""
+date: '28 Jan 2022'
 output:
   html_document:
     keep_md: true
@@ -21,7 +21,7 @@ output:
 
 
 
-# Basel Biometrics Section
+# Basel Biometrics Society
 
 ## Purpose
 
@@ -29,7 +29,7 @@ The Basel Biometric Section is part of the ROeS, the [Austrian Swiss Region](htt
 
 ## President
 
-Hans Ulrich Burger, F. Hoffmann-La Roche
+[Hans Ulrich Burger](mailto:hans_ulrich.burger@roche.com), F. Hoffmann-La Roche, Basel.
 
 ## Board
 
@@ -37,16 +37,13 @@ Give names
 
 ## Newsletter
 
-If you would like to receive announcements of upcoming events please send an email to xxx.
+If you would like to receive announcements of upcoming events please send an email to [Bibiana Blatna](mailto:bibiana.blatna@novartis.com).
 
 # Upcoming events
 
-- 14th February 2020: [Network meta-analysis: methods and applications](http://bbs.ceb-institute.org/?p=1423)
-
 # Past events
 
-- 1st November 2019: [Predictive modelling, machine learning, and causality](https://baselbiometrics.github.io/20191101_ML/bbs1stNov2019.html)
-
+Agendas, slidedecks, and recordings (where available) of BBS events since 2009 are available [here](events.html).
 
 # Archive of past events
 

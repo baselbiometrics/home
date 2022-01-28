@@ -1,0 +1,19 @@
+```{r echo = FALSE}
+# how to do this with child documents: https://gist.github.com/rmoff/a043676a2f084b81a434
+
+i <- as.numeric('{{i}}')
+tab <- filter(talks, date == dates[i])
+meta <- tab[1,]
+```
+
+# `r paste(as.character(meta$date), ": ", meta$seminar_title, sep = "")` {-}
+
+[Program](talks/agenda.pdf)
+
+`r if (is.na(select(meta, recording)) == FALSE){paste("[Recording](", select(meta, recording)[, 1], ")", sep = "")} else {"No recording available"}`
+
+```{r echo = FALSE}
+tab2 <- data.frame(cbind(select(tab, speaker, company, title), paste("[link](talks/", select(tab, "date"), "/", select(tab, slides)[, 1], ")", sep = "")))
+colnames(tab2) <- c("Speaker", "Institution", "Title", "Download slides")
+kable(tab2)
+```

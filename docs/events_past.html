@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Past events: agendas, slidedecks, recordings</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Home</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Basel Biometric Society
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="board.html">BBS board members</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Upcoming events
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="events_upcoming.html">Announcements of upcoming events</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Past events
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="events_past.html">Agendas, slidedecks, and recordings of past BBS seminars</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Past events: agendas, slidedecks, recordings</h1>
+<h4 class="date">Last change: 28 January, 2022</h4>
+
+</div>
+
+
+<div id="joint-bbsbes-webinar-covid-19-pandemic-and-how-we-deal-with-data" class="section level1 unnumbered">
+<h1 class="unnumbered">21.07.2021: Joint BBS/BES Webinar COVID-19 pandemic and how we deal with data</h1>
+<p><a href="talks/agenda.pdf">Program</a></p>
+<p><a href="https://streamingmedia.roche.com/media/BBS+virtual+seminarA+COVID-19+pandemic+%26+how+we+deal+with+data/1_lguf3l7i">Recording</a></p>
+<table>
+<colgroup>
+<col width="9%" />
+<col width="14%" />
+<col width="35%" />
+<col width="40%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Speaker</th>
+<th align="left">Institution</th>
+<th align="left">Title</th>
+<th align="left">Download slides</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Hans Ulrich Burger</td>
+<td align="left">Roche, Basel</td>
+<td align="left">Welcome</td>
+<td align="left"><a href="talks/c(%2221.07.2021%22,%20%2221.07.2021%22,%20%2221.07.2021%22,%20%2221.07.2021%22,%20%2221.07.2021%22)/NA">link</a></td>
+</tr>
+<tr class="even">
+<td align="left">Tim Friede</td>
+<td align="left">University Medical Center Göttingen</td>
+<td align="left">Data and Statistics as a basis for decision making: A discussion of the Corona pandemic</td>
+<td align="left"><a href="talks/c(%2221.07.2021%22,%20%2221.07.2021%22,%20%2221.07.2021%22,%20%2221.07.2021%22,%20%2221.07.2021%22)/2_Friede.pdf">link</a></td>
+</tr>
+<tr class="odd">
+<td align="left">Thorsten Lehr</td>
+<td align="left">Saarland University</td>
+<td align="left">Forecasting: What do we learn?</td>
+<td align="left"><a href="talks/c(%2221.07.2021%22,%20%2221.07.2021%22,%20%2221.07.2021%22,%20%2221.07.2021%22,%20%2221.07.2021%22)/3_Lehr.pdf">link</a></td>
+</tr>
+<tr class="even">
+<td align="left">Thierry Van Effelterre</td>
+<td align="left">J&amp;J</td>
+<td align="left">Vaccination trials: What do we know about long-term efficacy measures and other questions</td>
+<td align="left"><a href="talks/c(%2221.07.2021%22,%20%2221.07.2021%22,%20%2221.07.2021%22,%20%2221.07.2021%22,%20%2221.07.2021%22)/4_Effelterre.pdf">link</a></td>
+</tr>
+<tr class="odd">
+<td align="left">Fei Chen</td>
+<td align="left">Janssen</td>
+<td align="left">Statistical Considerations Underlying a COVID-19 Vaccine phase 3 design</td>
+<td align="left"><a href="talks/c(%2221.07.2021%22,%20%2221.07.2021%22,%20%2221.07.2021%22,%20%2221.07.2021%22,%20%2221.07.2021%22)/5_Chen.pdf">link</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="joint-efspibbs-meeting-precision-innovative-medicine-and-health-technology-assessment" class="section level1 unnumbered">
+<h1 class="unnumbered">28.06.2021: Joint EFSPI/BBS Meeting Precision &amp; Innovative Medicine and Health Technology Assessment</h1>
+<p><a href="talks/agenda.pdf">Program</a></p>
+<p><a href="https://streamingmedia.roche.com/media/t/1_794su8nj">Recording</a></p>
+<table>
+<colgroup>
+<col width="13%" />
+<col width="11%" />
+<col width="34%" />
+<col width="40%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Speaker</th>
+<th align="left">Institution</th>
+<th align="left">Title</th>
+<th align="left">Download slides</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Fred Sorensen</td>
+<td align="left">Xcenda</td>
+<td align="left">Welcome</td>
+<td align="left"><a href="talks/c(%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22)/1_Sorensen.pdf">link</a></td>
+</tr>
+<tr class="even">
+<td align="left">Dan O’Connor</td>
+<td align="left">MHRA, UK</td>
+<td align="left">The UK’s Innovative Licensing and Access Pathway (ILAP) for medicines – A joint MHRA, NICE &amp; SMC initiative</td>
+<td align="left"><a href="talks/c(%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22)/2_OConnor.pdf">link</a></td>
+</tr>
+<tr class="odd">
+<td align="left">Karen Facey</td>
+<td align="left">University of Edinburgh</td>
+<td align="left">IMPACT HTA - Recommendations for Developing Rare Disease Treatments</td>
+<td align="left"><a href="talks/c(%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22)/3_Facey.pdf">link</a></td>
+</tr>
+<tr class="even">
+<td align="left">Paul Cislo, Jinma Ren and Joseph C. Cappelleri</td>
+<td align="left">Pfizer</td>
+<td align="left">Adjusting Global Survival to Make Results More Relevant and Generalizable to Local Markets</td>
+<td align="left"><a href="talks/c(%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22)/4_Cislo.pdf">link</a></td>
+</tr>
+<tr class="odd">
+<td align="left">Marc Buyse</td>
+<td align="left">IDDI and University of Hasselt, Belgium</td>
+<td align="left">Net benefit and correlation between benefit and harms</td>
+<td align="left"><a href="talks/c(%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22)/5_Buyse.pdf">link</a></td>
+</tr>
+<tr class="even">
+<td align="left">Mark Belger and Marie-Ange Paget</td>
+<td align="left">Eli Lilly UK &amp; France</td>
+<td align="left">Closing the efficacy to effectiveness gap: Generalizing from RCTs to real world populations</td>
+<td align="left"><a href="talks/c(%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22)/6_Belger.pdf">link</a></td>
+</tr>
+<tr class="odd">
+<td align="left">Kirsten Herrmann</td>
+<td align="left">Exact Sciences, Germany</td>
+<td align="left">Assessments and reimbursement of gene expression signature tests in Europe</td>
+<td align="left"><a href="talks/c(%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22)/7_Herrmann.pdf">link</a></td>
+</tr>
+<tr class="even">
+<td align="left">Janneke Boersma</td>
+<td align="left">Roche, Netherlands</td>
+<td align="left">Bridging the gap between Regulatory &amp; HTA approval for Precision Medicine therapies: a case study from the Netherlands</td>
+<td align="left"><a href="talks/c(%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22,%20%2228.06.2021%22)/8_Boersma.pdf">link</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="bbs-webinar-impact-of-the-covid-19-pandemic-on-clinical-trials" class="section level1 unnumbered">
+<h1 class="unnumbered">16.06.2021: BBS Webinar Impact of the COVID-19 Pandemic on Clinical Trials</h1>
+<p><a href="talks/agenda.pdf">Program</a></p>
+<p><a href="https://streamingmedia.roche.com/media/BBS%20Seminar_Impact%20of%20the%20COVID-19%20pandemic%20on%20clinical%20trials_16JUN2021_Recording/1_29yj4985">Recording</a></p>
+<table>
+<colgroup>
+<col width="7%" />
+<col width="17%" />
+<col width="38%" />
+<col width="36%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Speaker</th>
+<th align="left">Institution</th>
+<th align="left">Title</th>
+<th align="left">Download slides</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Anja Schiel</td>
+<td align="left">Chair Scientific Advice Working Party, EMA</td>
+<td align="left">Overview on early experience of the impact of Covid-19 pandemic on clinical trials</td>
+<td align="left"><a href="talks/c(%2216.06.2021%22,%20%2216.06.2021%22,%20%2216.06.2021%22,%20%2216.06.2021%22)/1_Schiel.pdf">link</a></td>
+</tr>
+<tr class="even">
+<td align="left">Paul Delmar</td>
+<td align="left">Roche, Basel</td>
+<td align="left">COVID-19 pandemics : Impact on Clinical Trials in a chronic progressing disease</td>
+<td align="left"><a href="talks/c(%2216.06.2021%22,%20%2216.06.2021%22,%20%2216.06.2021%22,%20%2216.06.2021%22)/2_Delmar.pdf">link</a></td>
+</tr>
+<tr class="odd">
+<td align="left">Eva Hua</td>
+<td align="left">Novartis, Basel</td>
+<td align="left">Hypothetical strategy for a case study affected by COVID-19 pandemic</td>
+<td align="left"><a href="talks/c(%2216.06.2021%22,%20%2216.06.2021%22,%20%2216.06.2021%22,%20%2216.06.2021%22)/3_Hua.pdf">link</a></td>
+</tr>
+<tr class="even">
+<td align="left">Kelly Van Lancker</td>
+<td align="left">Ghent University</td>
+<td align="left">The hypothetical estimand and its potential estimators in clinical trials impacted by COVID-19</td>
+<td align="left"><a href="talks/c(%2216.06.2021%22,%20%2216.06.2021%22,%20%2216.06.2021%22,%20%2216.06.2021%22)/4_VanLancker.pdf">link</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="bbs-webinar-statistical-challenges-in-the-clinical-development-of-car-t-cell-therapies" class="section level1 unnumbered">
+<h1 class="unnumbered">22.03.2021: BBS Webinar Statistical challenges in the clinical development of CAR T-cell therapies</h1>
+<p><a href="talks/agenda.pdf">Program</a></p>
+<p><a href="https://streamingmedia.roche.com/media/BBS%20Seminar_%20CAR-T%20Cell%20Therapies_22MAR2021_Recording/1_jl5ndejn">Recording</a></p>
+<table>
+<colgroup>
+<col width="10%" />
+<col width="8%" />
+<col width="24%" />
+<col width="57%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Speaker</th>
+<th align="left">Institution</th>
+<th align="left">Title</th>
+<th align="left">Download slides</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Roland Marion-Gallois</td>
+<td align="left">BMS, Switzerland</td>
+<td align="left">Welcome and Introduction</td>
+<td align="left"><a href="talks/c(%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22)/01_Marion-Gallois.pdf">link</a></td>
+</tr>
+<tr class="even">
+<td align="left">Caroline Aarber Bath</td>
+<td align="left">CHUV, Switzerland</td>
+<td align="left">Introduction to Cell Therapies: A Clinical Perspective</td>
+<td align="left"><a href="talks/c(%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22)/02_Arber.pdf">link</a></td>
+</tr>
+<tr class="odd">
+<td align="left">Elina Asikanius</td>
+<td align="left">FIMEA, Finland</td>
+<td align="left">Perspective from EMA</td>
+<td align="left"><a href="talks/c(%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22)/03_Asikanius.pdf">link</a></td>
+</tr>
+<tr class="even">
+<td align="left">Zhenzhen Xu</td>
+<td align="left">FDA, USA</td>
+<td align="left">Perspective from FDA</td>
+<td align="left"><a href="talks/c(%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22)/04_Xu.pdf">link</a></td>
+</tr>
+<tr class="odd">
+<td align="left">Khadija Rantell</td>
+<td align="left">MHRA, UK</td>
+<td align="left">Phase 2 / Phase 3, Treatment effect or therapeutic strategy effect?</td>
+<td align="left"><a href="talks/c(%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22)/05_Rantell.pdf">link</a></td>
+</tr>
+<tr class="even">
+<td align="left">Alessandro Previtali</td>
+<td align="left">BMS, Switzerland</td>
+<td align="left">Phase 2 / Phase 3, Estimands in the context of cell therapy development</td>
+<td align="left"><a href="talks/c(%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22)/06_Previtali.pdf">link</a></td>
+</tr>
+<tr class="odd">
+<td align="left">Nigel Yateman</td>
+<td align="left">Novartis, Switzerland</td>
+<td align="left">Challenges for new CAR-T therapies</td>
+<td align="left"><a href="talks/c(%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22)/07_Yateman.pdf">link</a></td>
+</tr>
+<tr class="even">
+<td align="left">Oriana Ciani</td>
+<td align="left">Università Bocconi, Italy</td>
+<td align="left">Introduction on Post-Approval challenges, reimbursement and HTA assessments</td>
+<td align="left"><a href="talks/c(%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22)/08_Ciani.pdf">link</a></td>
+</tr>
+<tr class="odd">
+<td align="left">Andrea Smith</td>
+<td align="left">G-BA, Germany</td>
+<td align="left">HTA-Perspective on the assessment of CAR-T-Cell Therapies</td>
+<td align="left"><a href="talks/c(%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22)/09_Smith.pdf">link</a></td>
+</tr>
+<tr class="even">
+<td align="left">Marcelo Pasquini and Zhenuan Hu</td>
+<td align="left">CIBMTR, USA</td>
+<td align="left">CAR-T cell therapy registries</td>
+<td align="left"><a href="talks/c(%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22,%20%2222.03.2021%22)/10_Pasquini.pdf">link</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="graphics-for-decision-making-in-biomedical-research-and-drug-development" class="section level1 unnumbered">
+<h1 class="unnumbered">08.03.2021: Graphics for decision-making in biomedical research and drug development</h1>
+<p><a href="talks/agenda.pdf">Program</a></p>
+<p><a href="https://streamingmedia.roche.com/media/BBS%20Seminar_%20Graphics%20for%20decision-making_08MAR2021_Recording/1_giyubkcv">Recording</a></p>
+<table style="width:100%;">
+<colgroup>
+<col width="21%" />
+<col width="5%" />
+<col width="34%" />
+<col width="38%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Speaker</th>
+<th align="left">Institution</th>
+<th align="left">Title</th>
+<th align="left">Download slides</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Dominik Heinzmann</td>
+<td align="left">Roche, Basel</td>
+<td align="left">Welcome</td>
+<td align="left"><a href="talks/c(%2208.03.2021%22,%20%2208.03.2021%22,%20%2208.03.2021%22,%20%2208.03.2021%22,%20%2208.03.2021%22,%20%2208.03.2021%22,%20%2208.03.2021%22)/NA">link</a></td>
+</tr>
+<tr class="even">
+<td align="left">Hannah Diehl and Tamara Broderick / Andy Stein and Niladri Roy Chowdhury</td>
+<td align="left">MIT and Novartis</td>
+<td align="left">The “See”-Value App: Visual Decision Making for Drug Development</td>
+<td align="left"><a href="talks/c(%2208.03.2021%22,%20%2208.03.2021%22,%20%2208.03.2021%22,%20%2208.03.2021%22,%20%2208.03.2021%22,%20%2208.03.2021%22,%20%2208.03.2021%22)/2_Diehl.pdf">link</a></td>
+</tr>
+<tr class="odd">
+<td align="left">Neil McQuarrie</td>
+<td align="left">Flatiron</td>
+<td align="left">Better understanding and reacting on impact of COVID-19 on RWD collection by combining statistics with visualization</td>
+<td align="left"><a href="talks/c(%2208.03.2021%22,%20%2208.03.2021%22,%20%2208.03.2021%22,%20%2208.03.2021%22,%20%2208.03.2021%22,%20%2208.03.2021%22,%20%2208.03.2021%22)/3_McQuarrie.pdf">link</a></td>
+</tr>
+<tr class="even">
+<td align="left">Tadeusz Lewandowski</td>
+<td align="left">Roche, Basel</td>
+<td align="left">Interactive clinical study visualisation in enabling the faster decision making</td>
+<td align="left"><a href="talks/c(%2208.03.2021%22,%20%2208.03.2021%22,%20%2208.03.2021%22,%20%2208.03.2021%22,%20%2208.03.2021%22,%20%2208.03.2021%22,%20%2208.03.2021%22)/4_Lewandowski.pdf">link</a></td>
+</tr>
+<tr class="odd">
+<td align="left">Markus Lange</td>
+<td align="left">Novartis, Basel</td>
+<td align="left">Unraveling a single number – using graphics to explain Probability of Success</td>
+<td align="left"><a href="talks/c(%2208.03.2021%22,%20%2208.03.2021%22,%20%2208.03.2021%22,%20%2208.03.2021%22,%20%2208.03.2021%22,%20%2208.03.2021%22,%20%2208.03.2021%22)/5_Lange.pdf">link</a></td>
+</tr>
+<tr class="even">
+<td align="left">Anne-Marie Meyer</td>
+<td align="left">Roche, Basel</td>
+<td align="left">Population Level Analytics for pandemic response: Predicting vaccine uptake and vaccine hesitancy</td>
+<td align="left"><a href="talks/c(%2208.03.2021%22,%20%2208.03.2021%22,%20%2208.03.2021%22,%20%2208.03.2021%22,%20%2208.03.2021%22,%20%2208.03.2021%22,%20%2208.03.2021%22)/6_Meyer.pdf">link</a></td>
+</tr>
+<tr class="odd">
+<td align="left">Giusi Moffa</td>
+<td align="left">University of Basel</td>
+<td align="left">Closure</td>
+<td align="left"><a href="talks/c(%2208.03.2021%22,%20%2208.03.2021%22,%20%2208.03.2021%22,%20%2208.03.2021%22,%20%2208.03.2021%22,%20%2208.03.2021%22,%20%2208.03.2021%22)/NA">link</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

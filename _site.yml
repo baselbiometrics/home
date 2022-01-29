@@ -12,10 +12,14 @@ navbar:
       menu:
         - text: "Announcements of upcoming events"
           href: events_upcoming.html
-    - text: "Past events"
+    - text: "Past seminars"
       menu:
         - text: "Agendas, slidedecks, and recordings of past BBS seminars"
           href: events_past.html
+    - text: "Past trainings"
+      menu:
+        - text: "Agendas, slidedecks, and recordings of past BBS training events"
+          href: trainings_past.html
   output:
   html_document:
     theme: cosmo

@@ -13,8 +13,11 @@ meta <- tab[1,]
 `r if (is.na(select(meta, recording)) == FALSE){paste("[Recording](", select(meta, recording)[, 1], ")", sep = "")} else {"No recording available"}`
 
 ```{r echo = FALSE}
-repl <- gsub(pattern = "\\.", x = select(tab, "date")[1, 1], replacement = "")
-tab2 <- data.frame(cbind(select(tab, speaker, company, title), paste("[link](talks/", repl, "/", select(tab, slides)[, 1], ")", sep = "")))
+tab2 <- data.frame(cbind(select(tab, speaker, company, title), paste("[link](talks/", rdate[i], "/", select(tab, slides)[, 1], ")", sep = "")))
 colnames(tab2) <- c("Speaker", "Institution", "Title", "Download slides")
+
+# replace empty links
+tab2[is.na(select(tab, slides)[, 1]), "Download slides"] <- "No presentation available"
+
 kable(tab2)
 ```

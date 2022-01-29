@@ -1,5 +1,5 @@
 ---
-title: "Past events: agendas, slidedecks, recordings"
+title: "Past trainings: agendas, slidedecks, recordings"
 date: "Last change: `r format(Sys.time(), '%d %B, %Y')`"
 output: 
   rmarkdown::html_document:
@@ -18,10 +18,10 @@ for (i in 1:length(packs.html)){library(packs.html[i], character.only = TRUE)}
 
 knitr::opts_chunk$set(echo = TRUE)
 
-## talks
+## trainings
 path <- getwd()
-talks <- as.data.frame(read_excel(paste(path, "/data/seminars.xlsx", sep = ""), col_types = NULL))
-dates <- unique(select(talks, date))[, 1]
+trainings <- as.data.frame(read_excel(paste(path, "/data/trainings.xlsx", sep = ""), col_types = NULL))
+dates <- unique(select(trainings, date))[, 1]
 
 # prepare date strings
 d <- substr(dates, 1, 2)
@@ -37,7 +37,7 @@ rdate <- paste(y, m, d, sep = "")
 
 out1 <- NULL
 for (i in 1:length(dates)){
-  out1 <- c(out1, knit_expand('tools/seminars1.Rmd'))
+  out1 <- c(out1, knit_expand('tools/trainings1.Rmd'))
 }
 
 # the "knit" command somehow produces unwanted output, this is why I assign its output to a and use a separate chunk to display a
@@ -47,6 +47,8 @@ a <- knit(text = unlist(paste(out1, collapse = '\n')), quiet = TRUE)
 ```{r conferences, echo = FALSE, message = FALSE, warning = FALSE, results = "asis"}
 cat(a)
 ```
+
+
 
 
 

@@ -8,7 +8,7 @@ meta <- tab[1,]
 
 # `r paste(as.character(meta$date), ": ", meta$seminar_title, sep = "")` {-}
 
-[Program](talks/agenda.pdf)
+[Program](`r paste("[link](talks/", rdate[i], "/agenda.pdf)", sep = "")`)
 
 `r if (is.na(select(meta, recording)) == FALSE){paste("[Recording](", select(meta, recording)[, 1], ")", sep = "")} else {"No recording available"}`
 

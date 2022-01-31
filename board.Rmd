@@ -12,19 +12,30 @@ output:
     toc_float: yes
 ---
 
-```{r setup, include=FALSE}
-## load packages
-packs.html <- c("knitr", "pander", "reporttools", "dplyr", "readxl")
-for (i in 1:length(packs.html)){library(packs.html[i], character.only = TRUE)}
-
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 # President
 
 [Hans Ulrich Burger](mailto:hans_ulrich.burger@roche.com), F. Hoffmann-La Roche, Basel.
 
 # Board
 
-Give names
+```{r setup, include = FALSE, echo = FALSE}
+## load packages
+packs.html <- c("knitr", "pander", "dplyr", "readxl")
+for (i in 1:length(packs.html)){library(packs.html[i], character.only = TRUE)}
+
+knitr::opts_chunk$set(echo = TRUE)
+
+## roster   
+path <- getwd()
+roster <- as.data.frame(read_excel(paste(path, "/data/roster.xlsx", sep = ""), col_types = NULL))
+roster$Name <- paste(roster$First, roster$Last, sep = " ")
+roster <- (roster %>% filter(board == 1) %>% select(Name, Function, Company) %>% arrange(Company))
+
+
+roster[is.na(roster)] <- ""
+```
+
+```{r, include=TRUE, echo=FALSE}
+kable(roster)
+```
 

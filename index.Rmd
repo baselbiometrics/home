@@ -1,5 +1,5 @@
 ---
-title: "Basel Biometric Section (BBS)"
+title: "Basel Biometric Society (BBS), a section of the Austrian-Swiss region of the international biometric society (ROeS)"
 author: ""
 date: '`r Sys.setlocale("LC_TIME", "C"); format(Sys.Date(), "%d %b %Y")`'
 output: 
@@ -22,7 +22,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Purpose
 
-The Basel Biometric Section is part of the ROeS, the [Austrian Swiss Region](https://www.ibs-roes.org/) of the [International Biometric Society](https://www.biometricsociety.org/) (IBS). BBS is an independent, non-profit organization which provides a forum for discussions of how to apply statistical methods in biological and medical science.
+The Basel Biometric Society (BBS) is a section of the ROeS, the [Austrian Swiss Region](https://www.ibs-roes.org/) of the [International Biometric Society](https://www.biometricsociety.org/) (IBS). BBS is an independent, non-profit organization which provides a forum for discussions of how to apply statistical methods in biological and medical science.
+
+[BBS statutes](data/BBS_Statutes.pdf).
 
 # President
 
@@ -31,4 +33,6 @@ The Basel Biometric Section is part of the ROeS, the [Austrian Swiss Region](htt
 # Announcements of events
 
 If you would like to receive announcements of upcoming events please send an email to [Bibiana Blatna](mailto:bibiana.blatna@novartis.com).
+
+![](bbs_logo.jpg)  
 

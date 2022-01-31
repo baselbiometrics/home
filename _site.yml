@@ -20,6 +20,8 @@ navbar:
       menu:
         - text: "Agendas, slidedecks, and recordings of past BBS training events"
           href: trainings_past.html
+    - text: "Additional documents"
+      href: additional_docs.html
   output:
   html_document:
     theme: cosmo

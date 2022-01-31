@@ -12,14 +12,6 @@ output:
     toc_float: yes
 ---
 
-```{r setup, include=FALSE}
-## load packages
-packs.html <- c("knitr", "pander", "reporttools", "dplyr", "readxl")
-for (i in 1:length(packs.html)){library(packs.html[i], character.only = TRUE)}
-
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 # Purpose
 
 The Basel Biometric Society (BBS) is a section of the ROeS, the [Austrian Swiss Region](https://www.ibs-roes.org/) of the [International Biometric Society](https://www.biometricsociety.org/) (IBS). BBS is an independent, non-profit organization which provides a forum for discussions of how to apply statistical methods in biological and medical science.
@@ -30,9 +22,32 @@ The Basel Biometric Society (BBS) is a section of the ROeS, the [Austrian Swiss 
 
 [Hans Ulrich Burger](mailto:hans_ulrich.burger@roche.com), F. Hoffmann-La Roche, Basel.
 
-# Announcements of events
+# Board
 
-If you would like to receive announcements of upcoming events please send an email to [Bibiana Blatna](mailto:bibiana.blatna@novartis.com).
+```{r setup, include = FALSE, echo = FALSE}
+## load packages
+packs.html <- c("knitr", "pander", "dplyr", "readxl")
+for (i in 1:length(packs.html)){library(packs.html[i], character.only = TRUE)}
+
+knitr::opts_chunk$set(echo = TRUE)
+
+## roster   
+path <- getwd()
+roster <- as.data.frame(read_excel(paste(path, "/data/roster.xlsx", sep = ""), col_types = NULL))
+roster$Name <- paste(roster$First, roster$Last, sep = " ")
+roster <- (roster %>% filter(board == 1) %>% select(Name, Function, Company) %>% arrange(Company))
+
+
+roster[is.na(roster)] <- ""
+```
+
+```{r, include=TRUE, echo=FALSE}
+kable(roster)
+```
+
+# E-mail announcements of events
+
+If you would like to receive e-mail announcements of upcoming events please send an email to [Bibiana Blatna](mailto:bibiana.blatna@novartis.com).
 
 ![](bbs_logo.gif)  
 

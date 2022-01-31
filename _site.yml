@@ -1,13 +1,9 @@
 name: "Basel Biometrics Society"
 output_dir: docs
 navbar:
-  title: "Home"
+  title: "About BBS"
   type: inverse
   left:
-    - text: "About BBS"
-      menu:
-        - text: "BBS board members"
-          href: board.html
     - text: "Upcoming events"
       menu:
         - text: "Announcements of upcoming events"

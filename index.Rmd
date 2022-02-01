@@ -49,5 +49,10 @@ kable(roster)
 
 If you would like to receive e-mail announcements of upcoming events please send an email to [Bibiana Blatna](mailto:bibiana.blatna@novartis.com).
 
-![](bbs_logo.gif)  
+# News on this site
+
+* 2022/02/01: Added announcement of [machine learning training](events_upcoming.html).
+
+<center>![](bbs_logo.gif)</center>
+
 

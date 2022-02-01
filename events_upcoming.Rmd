@@ -12,12 +12,24 @@ output:
     toc_float: yes
 ---
 
-```{r setup, include=FALSE}
+# Upcoming events
+
+```{r setup, include = FALSE, echo = FALSE}
 ## load packages
-packs.html <- c("knitr", "pander", "reporttools", "dplyr", "readxl")
+packs.html <- c("knitr", "pander", "dplyr", "readxl")
 for (i in 1:length(packs.html)){library(packs.html[i], character.only = TRUE)}
 
 knitr::opts_chunk$set(echo = TRUE)
+
+## upcoming   
+path <- getwd()
+upcoming <- as.data.frame(read_excel(paste(path, "/data/upcoming.xlsx", sep = ""), col_types = NULL))
+upcoming$Registration <- paste("[Recording](", select(upcoming, Registration)[, 1], ")", sep = "")
+upcoming$Agenda <- paste("[Agenda](", select(upcoming, Agenda)[, 1], ")", sep = "")
+
+upcoming[is.na(upcoming)] <- ""
 ```
 
-# Upcoming events
+```{r, include=TRUE, echo=FALSE}
+kable(upcoming)
+```

@@ -3,7 +3,7 @@
 
 i <- as.numeric('{{i}}')
 tab <- filter(talks, date == dates[i])
-meta <- tab[1,]
+meta <- tab[1, ]
 ```
 
 # `r paste(as.character(meta$date), ": ", meta$seminar_title, sep = "")` {-}
@@ -12,7 +12,7 @@ meta <- tab[1,]
 
 `r if (is.na(select(meta, recording)) == FALSE){paste("[Recording](", select(meta, recording)[, 1], ")", sep = "")} else {"No recording available"}`
 
-[Summary of the event](`r if (is.na(select(meta, summary)) == FALSE){paste("talks/", rdate[i], "/summary.html", sep = "")}`)
+`r if (is.na(select(meta, summary)) == FALSE){paste("[Summary of the event](talks/", rdate[i], "/summary.html)", sep = "")}`
 
 ```{r echo = FALSE}
 links <- paste("[link](talks/", rdate[i], "/", select(tab, slides)[, 1], ")", sep = "")
@@ -30,5 +30,5 @@ tab2[is.na(select(tab, slides)[, 1]), "Download slides"] <- "No presentation ava
 # replace other empty entries
 tab2[is.na(tab2)] <- ""
 
-kable(tab2)
+if (is.na(meta$speaker) == FALSE){kable(tab2)}
 ```

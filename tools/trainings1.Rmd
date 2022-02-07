@@ -19,5 +19,8 @@ colnames(tab2) <- c("Speaker", "Institution", "Title", "Download slides")
 # replace empty links
 tab2[is.na(select(tab, slides)[, 1]), "Download slides"] <- "No presentation available"
 
+# replace other empty entries
+tab2[is.na(tab2)] <- ""
+
 if (is.na(meta$speaker) == FALSE){kable(tab2)}
 ```

@@ -12,8 +12,16 @@ meta <- tab[1,]
 
 `r if (is.na(select(meta, recording)) == FALSE){paste("[Recording](", select(meta, recording)[, 1], ")", sep = "")} else {"No recording available"}`
 
+[Summary of the event](`r if (is.na(select(meta, summary)) == FALSE){paste("talks/", rdate[i], "/summary.html", sep = "")}`)
+
 ```{r echo = FALSE}
-tab2 <- data.frame(cbind(select(tab, speaker, company, title), paste("[link](talks/", rdate[i], "/", select(tab, slides)[, 1], ")", sep = "")))
+links <- paste("[link](talks/", rdate[i], "/", select(tab, slides)[, 1], ")", sep = "")
+
+# replace template links by external-pointing links, if available
+ind <- (is.na(select(tab, link)) == FALSE)
+links[ind] <- tab$link[ind]
+
+tab2 <- data.frame(cbind(select(tab, speaker, company, title), links))
 colnames(tab2) <- c("Speaker", "Institution", "Title", "Download slides")
 
 # replace empty links

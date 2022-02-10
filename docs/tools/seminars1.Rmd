@@ -19,13 +19,14 @@ links <- paste("[link](talks/", rdate[i], "/", select(tab, slides)[, 1], ")", se
 
 # replace template links by external-pointing links, if available
 ind <- (is.na(select(tab, link)) == FALSE)
-links[ind] <- tab$link[ind]
+links[ind] <- paste("[link](", tab$link[ind], ")", sep = "")
 
 tab2 <- data.frame(cbind(select(tab, speaker, company, title), links))
 colnames(tab2) <- c("Speaker", "Institution", "Title", "Download slides")
 
 # replace empty links
-tab2[is.na(select(tab, slides)[, 1]), "Download slides"] <- "No presentation available"
+ind <- (is.na(select(tab, slides)[, 1]) & is.na(select(tab, link)[, 1]))
+tab2[ind, "Download slides"] <- "No presentation available"
 
 # replace other empty entries
 tab2[is.na(tab2)] <- ""

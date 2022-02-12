@@ -8,7 +8,7 @@ meta <- tab[1, ]
 
 # `r paste(as.character(meta$date), ": ", meta$seminar_title, sep = "")` {-}
 
-`r if ("agenda.pdf" %in% list.files(paste("talks/", rdate[i], "/", sep = ""))){paste("[Program](talks/", rdate[i], "/agenda.pdf)", sep = "")} else {"No agenda available"}`
+`r if ("agenda.pdf" %in% list.files(paste("talks/", rdate[i], "/", sep = ""))){paste("[Agenda](talks/", rdate[i], "/agenda.pdf)", sep = "")} else {"No agenda available"}`
 
 `r if (is.na(select(meta, recording)) == FALSE){paste("[Recording](", select(meta, recording)[, 1], ")", sep = "")} else {"No recording available"}`
 
@@ -33,3 +33,5 @@ tab2[is.na(tab2)] <- ""
 
 if (is.na(meta$speaker) == FALSE){kable(tab2)}
 ```
+
+`r if (is.na(meta$speaker)){"No slides available"}`

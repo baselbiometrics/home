@@ -1,9 +1,15 @@
 name: "Basel Biometrics Society"
 output_dir: docs
 navbar:
-  title: "About BBS"
+  title: "Basel Biometrics Society"
   type: inverse
   left:
+    - text: "About BBS"
+      menu:
+        - text: "Purpose"
+          href: purpose.html
+        - text: "BBS board"
+          href: board.html
     - text: "Upcoming events"
       menu:
         - text: "Announcements of upcoming events"

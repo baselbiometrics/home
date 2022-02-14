@@ -12,38 +12,11 @@ output:
     toc_float: yes
 ---
 
-# Purpose
-
-The Basel Biometric Society (BBS) is a section of the ROeS, the [Austrian Swiss Region](https://www.ibs-roes.org/) of the [International Biometric Society](https://www.biometricsociety.org/) (IBS). BBS is an independent, non-profit organization which provides a forum for discussions of how to apply statistical methods in biological and medical science.
-
-[BBS statutes](data/BBS_Statutes.pdf).
-
 # President
 
-[Hans Ulrich Burger](mailto:hans_ulrich.burger@roche.com), F. Hoffmann-La Roche, Basel.
+Hans Ulrich Burger, F. Hoffmann-La Roche, Basel.
 
-# Board
-
-```{r setup, include = FALSE, echo = FALSE}
-## load packages
-packs.html <- c("knitr", "pander", "dplyr", "readxl")
-for (i in 1:length(packs.html)){library(packs.html[i], character.only = TRUE)}
-
-knitr::opts_chunk$set(echo = TRUE)
-
-## roster   
-path <- getwd()
-roster <- as.data.frame(read_excel(paste(path, "/data/roster.xlsx", sep = ""), col_types = NULL))
-roster$Name <- paste(roster$First, roster$Last, sep = " ")
-roster <- (roster %>% filter(board == 1) %>% select(Name, Function, Company) %>% arrange(Company))
-
-
-roster[is.na(roster)] <- ""
-```
-
-```{r, include=TRUE, echo=FALSE}
-kable(roster)
-```
+[Contact](mailto:info@bbsbasel.ch)
 
 # E-mail announcements of events
 

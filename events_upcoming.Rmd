@@ -24,8 +24,17 @@ knitr::opts_chunk$set(echo = TRUE)
 ## upcoming   
 path <- getwd()
 upcoming <- as.data.frame(read_excel(paste(path, "/data/upcoming.xlsx", sep = ""), col_types = NULL))
+
+# prepare date strings
+dates <- unique(select(upcoming, Date))[, 1]
+d <- substr(dates, 1, 2)
+m <- substr(dates, 4, 5)
+y <- substr(dates, 7, 11)
+
+rdate <- paste(y, m, d, sep = "")
+
 upcoming$Registration <- paste("[Registration](", select(upcoming, Registration)[, 1], ")", sep = "")
-upcoming$Agenda <- paste("[Agenda](", select(upcoming, Agenda)[, 1], ")", sep = "")
+upcoming$Agenda <- paste("[Agenda](talks/", rdate, "/agenda.pdf)", sep = "")
 
 upcoming[is.na(upcoming)] <- ""
 ```

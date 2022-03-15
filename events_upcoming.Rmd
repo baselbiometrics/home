@@ -1,5 +1,5 @@
 ---
-title: "Basel Biometric Section (BBS): Upcoming events"
+title: "Basel Biometric Society (BBS): Upcoming events"
 author: ""
 date: '`r Sys.setlocale("LC_TIME", "C"); format(Sys.Date(), "%d %b %Y")`'
 output: 

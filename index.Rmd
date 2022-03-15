@@ -26,6 +26,7 @@ If you would like to receive e-mail announcements of upcoming events please send
 
 # News on this site
 
+* 2022/03/15: test - juliane
 * 2022/03/15: Added announcement of [seminar on "Graphical approaches to multiple test problems"](events_upcoming.html).
 * 2022/02/28: Added new version of [statutes](data/BBS_Statutes.pdf) with minor updates.
 * 2022/02/01: Added announcement of [machine learning training](events_upcoming.html).

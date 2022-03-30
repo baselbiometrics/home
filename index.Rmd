@@ -26,9 +26,9 @@ If you would like to receive e-mail announcements of upcoming events please send
 
 # News on this site
 
-* 2022/03/30: Added recording, slidedeck of [graphical approaches to multiple test problems seminar](https://baselbiometrics.github.io/home/docs/events_past.html#29032022:_Graphical_approaches_to_multiple_test_problems).
+* 2022/03/30: Added recording, slidedeck of [graphical approaches to multiple test problems training](https://baselbiometrics.github.io/home/docs/trainings_past.html#29032022:_Graphical_approaches_to_multiple_test_problems).
 * 2022/03/21: Added announcement of [seminar on "Registry studies and health technology assessment (HTA)"](events_upcoming.html).
-* 2022/03/15: Added recording, slidedeck, exercises (incl. dataset) of [machine learning training](https://baselbiometrics.github.io/home/docs/events_past.html#21022022:_Machine_Learning_in_clinical_drug_development).
+* 2022/03/15: Added recording, slidedeck, exercises (incl. dataset) of [machine learning training](https://baselbiometrics.github.io/home/docs/trainings_past.html#21022022:_Machine_Learning_in_clinical_drug_development).
 * 2022/02/28: Added new version of [statutes](data/BBS_Statutes.pdf) with minor updates.
 
 

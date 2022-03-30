@@ -12,7 +12,7 @@ meta <- tab[1, ]
 
 `r if (is.na(select(meta, recording)) == FALSE){paste("[Recording](", select(meta, recording)[, 1], ")", sep = "")} else {"No recording available"}`
 
-`r if (is.na(select(meta, recording2)) == FALSE){paste("[Recording 2](", select(meta, recording2)[, 1], ")", sep = "")} else {"No recording available"}`
+`r if (is.na(select(meta, recording2)) == FALSE){paste("[Recording 2](", select(meta, recording2)[, 1], ")", sep = "")}`
 
 `r if (is.na(select(meta, summary)) == FALSE){paste("[Summary of the event](", rdate[i], "_summary.html)", sep = "")}`
 

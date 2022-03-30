@@ -13,19 +13,26 @@
 
 <title>Past events: agendas, slidedecks, recordings</title>
 
-<script src="site_libs/header-attrs-2.5/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -39,32 +46,7 @@
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -74,10 +56,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -94,40 +72,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -155,7 +106,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -167,7 +118,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -178,10 +129,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -193,7 +157,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -319,7 +282,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -404,12 +367,12 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
 <h1 class="title toc-ignore">Past events: agendas, slidedecks, recordings</h1>
-<h4 class="date">Last change: 30 March, 2022</h4>
+<h4 class="date">Last change: 30 März, 2022</h4>
 
 </div>
 
@@ -418,6 +381,7 @@ div.tocify {
 <h1 class="unnumbered">29.03.2022: Graphical approaches to multiple test problems</h1>
 <p><a href="talks/20220329/agenda.pdf">Agenda</a></p>
 <p><a href="https://streamingmedia.roche.com/media/BBS%20Seminar%20Graphical%20approaches%20to%20multiple%20test%20problems%2029%20Mar%202022%20-%20Part%201/1_6zf98l0r">Recording</a></p>
+<p><a href="https://streamingmedia.roche.com/media/BBS+Seminar+Graphical+approaches+to+multiple+test+problems+29+Mar+2022+-+Part+2/1_2i02bql4">Recording 2</a></p>
 <table>
 <colgroup>
 <col width="24%" />
@@ -453,6 +417,7 @@ div.tocify {
 <h1 class="unnumbered">21.02.2022: Machine Learning in clinical drug development</h1>
 <p><a href="talks/20220221/agenda.pdf">Agenda</a></p>
 <p><a href="https://streamingmedia.roche.com/media/t/1_qasjwd4f">Recording</a></p>
+<p>No recording available</p>
 <table>
 <colgroup>
 <col width="21%" />
@@ -500,6 +465,7 @@ div.tocify {
 <h1 class="unnumbered">27.07.2021: Joint BBS/BES Webinar COVID-19 pandemic and how we deal with data</h1>
 <p><a href="talks/20210727/agenda.pdf">Agenda</a></p>
 <p><a href="https://streamingmedia.roche.com/media/BBS+virtual+seminarA+COVID-19+pandemic+%26+how+we+deal+with+data/1_lguf3l7i">Recording</a></p>
+<p>No recording available</p>
 <table>
 <colgroup>
 <col width="12%" />
@@ -553,6 +519,7 @@ div.tocify {
 <h1 class="unnumbered">28.06.2021: Joint EFSPI/BBS Meeting Precision &amp; Innovative Medicine and Health Technology Assessment</h1>
 <p><a href="talks/20210628/agenda.pdf">Agenda</a></p>
 <p><a href="https://streamingmedia.roche.com/media/t/1_794su8nj">Recording</a></p>
+<p>No recording available</p>
 <table>
 <colgroup>
 <col width="19%" />
@@ -624,6 +591,7 @@ div.tocify {
 <h1 class="unnumbered">16.06.2021: BBS Webinar Impact of the COVID-19 Pandemic on Clinical Trials</h1>
 <p><a href="talks/20210616/agenda.pdf">Agenda</a></p>
 <p><a href="https://streamingmedia.roche.com/media/BBS%20Seminar_Impact%20of%20the%20COVID-19%20pandemic%20on%20clinical%20trials_16JUN2021_Recording/1_29yj4985">Recording</a></p>
+<p>No recording available</p>
 <table>
 <colgroup>
 <col width="9%" />
@@ -671,6 +639,7 @@ div.tocify {
 <h1 class="unnumbered">22.03.2021: BBS Webinar Statistical challenges in the clinical development of CAR T-cell therapies</h1>
 <p><a href="talks/20210322/agenda.pdf">Agenda</a></p>
 <p><a href="https://streamingmedia.roche.com/media/BBS%20Seminar_%20CAR-T%20Cell%20Therapies_22MAR2021_Recording/1_jl5ndejn">Recording</a></p>
+<p>No recording available</p>
 <table>
 <colgroup>
 <col width="17%" />
@@ -754,6 +723,7 @@ div.tocify {
 <h1 class="unnumbered">08.03.2021: Graphics for decision-making in biomedical research and drug development</h1>
 <p><a href="talks/20210308/agenda.pdf">Agenda</a></p>
 <p><a href="https://streamingmedia.roche.com/media/BBS%20Seminar_%20Graphics%20for%20decision-making_08MAR2021_Recording/1_giyubkcv">Recording</a></p>
+<p>No recording available</p>
 <table style="width:100%;">
 <colgroup>
 <col width="29%" />
@@ -819,6 +789,7 @@ div.tocify {
 <h1 class="unnumbered">03.11.2020: Joint EFSPI / BBS Webinar: The application of estimands from a Neuroscience perspective</h1>
 <p><a href="talks/20201103/agenda.pdf">Agenda</a></p>
 <p><a href="https://streamingmedia.roche.com/media/Joint+EFSPI+++BBS+SeminarA+%22The+application+of+estimands+from+a+Neuroscience+perspective%22-20201103+1202-1_202243567/0_4g72gvb4">Recording</a></p>
+<p>No recording available</p>
 <table>
 <colgroup>
 <col width="15%" />
@@ -890,6 +861,7 @@ div.tocify {
 <h1 class="unnumbered">07.09.2020: BBS Webinar RCTs meeting causal inference: principal stratum strategy and beyond</h1>
 <p><a href="talks/20200907/agenda.pdf">Agenda</a></p>
 <p><a href="https://streamingmedia.roche.com/media/BBS_RCTs+meeting+causal+inferenceA+principal+stratum+strategy+and+beyond-20200907+1200-1_188928352/0_gqww13rq">Recording</a></p>
+<p>No recording available</p>
 <table>
 <colgroup>
 <col width="6%" />
@@ -973,6 +945,7 @@ div.tocify {
 <h1 class="unnumbered">30.06.2020: BBS/EFSPI Webinar on HTA</h1>
 <p><a href="talks/20200630/agenda.pdf">Agenda</a></p>
 <p><a href="https://streamingmedia.roche.com/media/1_jtcj5hqp">Recording</a></p>
+<p>No recording available</p>
 <table>
 <colgroup>
 <col width="9%" />
@@ -1026,6 +999,7 @@ div.tocify {
 <h1 class="unnumbered">29.06.2020: Joint EFSPI / BBS Webinar: Estimands addendum is final: Anything new for oncology?</h1>
 <p><a href="talks/20200629/agenda.pdf">Agenda</a></p>
 <p><a href="https://streamingmedia.roche.com/media/Joint+EFSPI+++BBS+SeminarA+Estimands+addendum+is+finalA+Anything+new+for+oncologyF/1_3wavzkyv">Recording</a></p>
+<p>No recording available</p>
 <table>
 <colgroup>
 <col width="19%" />
@@ -1091,6 +1065,7 @@ div.tocify {
 <h1 class="unnumbered">03.06.2020: BBS Webinar: Aspects of COVID-19 pandemic</h1>
 <p><a href="talks/20200603/agenda.pdf">Agenda</a></p>
 <p>No recording available</p>
+<p>No recording available</p>
 <table>
 <colgroup>
 <col width="10%" />
@@ -1137,6 +1112,7 @@ div.tocify {
 <div id="bbs-virtual-seminar-impact-of-covid-19-on-clinical-trials" class="section level1 unnumbered">
 <h1 class="unnumbered">06.05.2020: BBS Virtual Seminar: Impact of COVID-19 on clinical trials</h1>
 <p><a href="talks/20200506/agenda.pdf">Agenda</a></p>
+<p>No recording available</p>
 <p>No recording available</p>
 <table>
 <colgroup>
@@ -1197,6 +1173,7 @@ div.tocify {
 <h1 class="unnumbered">04.02.2020: BBS Seminar: Network meta-analysis: methods and applications</h1>
 <p><a href="talks/20200204/agenda.pdf">Agenda</a></p>
 <p>No recording available</p>
+<p>No recording available</p>
 <table style="width:100%;">
 <colgroup>
 <col width="9%" />
@@ -1255,6 +1232,7 @@ div.tocify {
 <div id="bbs-seminar-predictive-modelling-machine-learning-and-causality" class="section level1 unnumbered">
 <h1 class="unnumbered">01.11.2019: BBS Seminar: Predictive modelling, machine learning and causality</h1>
 <p><a href="talks/20191101/agenda.pdf">Agenda</a></p>
+<p>No recording available</p>
 <p>No recording available</p>
 <p><a href="20191101_summary.html">Summary of the event</a></p>
 <table>
@@ -1334,6 +1312,7 @@ div.tocify {
 <h1 class="unnumbered">21.08.2019: BBS/BES Seminar: Causal inference in drug development: why, when, how?</h1>
 <p><a href="talks/20190821/agenda.pdf">Agenda</a></p>
 <p>No recording available</p>
+<p>No recording available</p>
 <table>
 <colgroup>
 <col width="9%" />
@@ -1363,7 +1342,7 @@ div.tocify {
 <td align="left"><a href="talks/20190821/2_Fletcher.pdf">link</a></td>
 </tr>
 <tr class="odd">
-<td align="left">Frank Pétavy</td>
+<td align="left">Frank Pe´tavy</td>
 <td align="left"></td>
 <td align="left"> A regulator’s perspective</td>
 <td align="left">No presentation available</td>
@@ -1398,6 +1377,7 @@ div.tocify {
 <div id="bbsefspi-seminar-precision-medicine-in-drug-development" class="section level1 unnumbered">
 <h1 class="unnumbered">04.06.2019: BBS/EFSPI Seminar: Precision medicine in drug development</h1>
 <p><a href="talks/20190604/agenda.pdf">Agenda</a></p>
+<p>No recording available</p>
 <p>No recording available</p>
 <table>
 <colgroup>
@@ -1469,6 +1449,7 @@ div.tocify {
 <div id="bbs-spring-seminar-synthetic-controls---what-do-we-need-and-how-far-can-we-go" class="section level1 unnumbered">
 <h1 class="unnumbered">10.05.2019: BBS Spring Seminar: Synthetic controls - what do we need and how far can we go?</h1>
 <p><a href="talks/20190510/agenda.pdf">Agenda</a></p>
+<p>No recording available</p>
 <p>No recording available</p>
 <table>
 <colgroup>
@@ -1565,6 +1546,7 @@ div.tocify {
 <h1 class="unnumbered">27.06.2018: BBS/EFSPI Seminar: Small populations and level of evidence</h1>
 <p><a href="talks/20180627/agenda.pdf">Agenda</a></p>
 <p>No recording available</p>
+<p>No recording available</p>
 <table>
 <colgroup>
 <col width="14%" />
@@ -1642,6 +1624,7 @@ div.tocify {
 <h1 class="unnumbered">26.06.2018: BBS Seminar: RCTs, personalized medicine, and surrogacy</h1>
 <p><a href="talks/20180626/agenda.pdf">Agenda</a></p>
 <p>No recording available</p>
+<p>No recording available</p>
 <table>
 <colgroup>
 <col width="12%" />
@@ -1682,6 +1665,7 @@ div.tocify {
 <div id="bbs-spring-seminar-new-developments-in-hta-adaptive-designs-and-multiplicity-in-remembrance-of-willi-maurer" class="section level1 unnumbered">
 <h1 class="unnumbered">17.04.2018: BBS Spring Seminar: New developments in HTA, adaptive designs and multiplicity – in remembrance of Willi Maurer</h1>
 <p><a href="talks/20180417/agenda.pdf">Agenda</a></p>
+<p>No recording available</p>
 <p>No recording available</p>
 <table style="width:100%;">
 <colgroup>
@@ -1736,6 +1720,7 @@ div.tocify {
 <h1 class="unnumbered">20.03.2018: BBS Seminar: Competing Risks and Multi-State Models</h1>
 <p><a href="talks/20180320/agenda.pdf">Agenda</a></p>
 <p>No recording available</p>
+<p>No recording available</p>
 <table style="width:100%;">
 <colgroup>
 <col width="17%" />
@@ -1777,6 +1762,7 @@ div.tocify {
 <h1 class="unnumbered">14.11.2017: BBS Seminar: Future of Biomedical Research: Are we ready?</h1>
 <p><a href="talks/20171114/agenda.pdf">Agenda</a></p>
 <p>No recording available</p>
+<p>No recording available</p>
 <table style="width:100%;">
 <colgroup>
 <col width="8%" />
@@ -1817,6 +1803,7 @@ div.tocify {
 <div id="bbs-seminar-emerging-topics-for-statistical-methodology-in-drug-development-estimands-and-advanced-analytics" class="section level1 unnumbered">
 <h1 class="unnumbered">11.09.2017: BBS Seminar Emerging topics for statistical methodology in drug development: Estimands and advanced analytics</h1>
 <p><a href="talks/20170911/agenda.pdf">Agenda</a></p>
+<p>No recording available</p>
 <p>No recording available</p>
 <table style="width:100%;">
 <colgroup>
@@ -1889,6 +1876,7 @@ div.tocify {
 <h1 class="unnumbered">26.06.2017: BBS Seminar Innovative model-based dose escalation designs: what next?</h1>
 <p><a href="talks/20170626/agenda.pdf">Agenda</a></p>
 <p>No recording available</p>
+<p>No recording available</p>
 <table>
 <colgroup>
 <col width="14%" />
@@ -1929,6 +1917,7 @@ div.tocify {
 <div id="bbs-psi-1-day-scientific-meeting-empower-the-immune-system-to-fight-cancer" class="section level1 unnumbered">
 <h1 class="unnumbered">15.06.2017: BBS / PSI 1-Day Scientific Meeting: Empower the immune system to fight cancer</h1>
 <p><a href="talks/20170615/agenda.pdf">Agenda</a></p>
+<p>No recording available</p>
 <p>No recording available</p>
 <table>
 <colgroup>
@@ -2007,6 +1996,7 @@ div.tocify {
 <h1 class="unnumbered">05.05.2017: BBS Spring Seminar The use of external data for decision making</h1>
 <p><a href="talks/20170505/agenda.pdf">Agenda</a></p>
 <p>No recording available</p>
+<p>No recording available</p>
 <table>
 <colgroup>
 <col width="9%" />
@@ -2066,6 +2056,7 @@ div.tocify {
 <h1 class="unnumbered">13.03.2017: BBS Seminar: Biomarker analyses</h1>
 <p><a href="talks/20170313/agenda.pdf">Agenda</a></p>
 <p>No recording available</p>
+<p>No recording available</p>
 <table>
 <colgroup>
 <col width="9%" />
@@ -2100,6 +2091,7 @@ div.tocify {
 <div id="bbs-seminar-safety-monitoring-during-the-life-cycle-of-a-drug" class="section level1 unnumbered">
 <h1 class="unnumbered">29.11.2016: BBS Seminar: Safety monitoring during the life cycle of a drug</h1>
 <p><a href="talks/20161129/agenda.pdf">Agenda</a></p>
+<p>No recording available</p>
 <p>No recording available</p>
 <table>
 <colgroup>
@@ -2154,6 +2146,7 @@ div.tocify {
 <h1 class="unnumbered">14.11.2016: BBS Seminar: Synthesis of Evidence: Observational studies and Meta-analysis</h1>
 <p><a href="talks/20161114/agenda.pdf">Agenda</a></p>
 <p>No recording available</p>
+<p>No recording available</p>
 <table style="width:100%;">
 <colgroup>
 <col width="10%" />
@@ -2201,6 +2194,7 @@ div.tocify {
 <h1 class="unnumbered">17.10.2016: BBS Seminar: Missing Data and Graphical Models</h1>
 <p><a href="talks/20161017/agenda.pdf">Agenda</a></p>
 <p>No recording available</p>
+<p>No recording available</p>
 <table>
 <colgroup>
 <col width="8%" />
@@ -2241,6 +2235,7 @@ div.tocify {
 <div id="psibbs-one-day-meeting-time-to-event-and-recurrent-event-endpoints" class="section level1 unnumbered">
 <h1 class="unnumbered">14.09.2016: PSI/BBS One Day Meeting: Time-to-Event and Recurrent Event Endpoints</h1>
 <p><a href="talks/20160914/agenda.pdf">Agenda</a></p>
+<p>No recording available</p>
 <p>No recording available</p>
 <table>
 <colgroup>
@@ -2301,6 +2296,7 @@ div.tocify {
 <h1 class="unnumbered">04.05.2016: BBS Seminar: Adaptive Designs</h1>
 <p><a href="talks/20160504/agenda.pdf">Agenda</a></p>
 <p>No recording available</p>
+<p>No recording available</p>
 <table>
 <colgroup>
 <col width="11%" />
@@ -2347,6 +2343,7 @@ div.tocify {
 <div id="bbs-spring-seminar" class="section level1 unnumbered">
 <h1 class="unnumbered">28.04.2016: BBS Spring Seminar</h1>
 <p><a href="talks/20160428/agenda.pdf">Agenda</a></p>
+<p>No recording available</p>
 <p>No recording available</p>
 <table>
 <colgroup>
@@ -2431,6 +2428,7 @@ div.tocify {
 <h1 class="unnumbered">13.01.2016: BBS Seminar: Disease and Product Registries</h1>
 <p><a href="talks/20160113/agenda.pdf">Agenda</a></p>
 <p>No recording available</p>
+<p>No recording available</p>
 <table>
 <colgroup>
 <col width="8%" />
@@ -2454,9 +2452,9 @@ div.tocify {
 <td align="left"><a href="talks/20160113/1_Friede.pdf">link</a></td>
 </tr>
 <tr class="even">
-<td align="left">Eva‐Maria Didden</td>
+<td align="left">Eva-Maria Didden</td>
 <td align="left"></td>
-<td align="left">Learning and Predicting Real‐World Treatment Effect based on Randomized Controlled Trials and Registry Data – A Case Study in Rheumatoid Arthritis</td>
+<td align="left">Learning and Predicting Real-World Treatment Effect based on Randomized Controlled Trials and Registry Data – A Case Study in Rheumatoid Arthritis</td>
 <td align="left"><a href="talks/20160113/2_Didden.pdf">link</a></td>
 </tr>
 <tr class="odd">
@@ -2480,7 +2478,7 @@ div.tocify {
 <tr class="even">
 <td align="left">Helene Karcher</td>
 <td align="left"></td>
-<td align="left">Leveraging Real‐World Registry Data to Optimize the Design of Phase 3 Studies – a Case Study in Schizophrenia</td>
+<td align="left">Leveraging Real-World Registry Data to Optimize the Design of Phase 3 Studies – a Case Study in Schizophrenia</td>
 <td align="left"><a href="talks/20160113/6_Karcher.pdf">link</a></td>
 </tr>
 </tbody>
@@ -2489,6 +2487,7 @@ div.tocify {
 <div id="bbs-seminar-prediction" class="section level1 unnumbered">
 <h1 class="unnumbered">27.10.2015: BBS Seminar: Prediction</h1>
 <p>No agenda available</p>
+<p>No recording available</p>
 <p>No recording available</p>
 <table>
 <colgroup>
@@ -2524,6 +2523,7 @@ div.tocify {
 <div id="joint-bbsefspi-seminar-health-technology-assessment" class="section level1 unnumbered">
 <h1 class="unnumbered">23.06.2015: Joint BBS/EFSPI Seminar: Health Technology Assessment</h1>
 <p><a href="talks/20150623/agenda.pdf">Agenda</a></p>
+<p>No recording available</p>
 <p>No recording available</p>
 <table>
 <colgroup>
@@ -2614,6 +2614,7 @@ div.tocify {
 <h1 class="unnumbered">13.04.2015: BBS Seminar: Bayesian Methods in Adaptive Dose-Finding Trials</h1>
 <p><a href="talks/20150413/agenda.pdf">Agenda</a></p>
 <p>No recording available</p>
+<p>No recording available</p>
 <table>
 <colgroup>
 <col width="11%" />
@@ -2654,6 +2655,7 @@ div.tocify {
 <div id="joint-bbs-efspi-seminar-data-sharing-in-clinical-development" class="section level1 unnumbered">
 <h1 class="unnumbered">13.11.2014: Joint BBS-EFSPI Seminar: Data Sharing in Clinical Development</h1>
 <p><a href="talks/20141113/agenda.pdf">Agenda</a></p>
+<p>No recording available</p>
 <p>No recording available</p>
 <table style="width:100%;">
 <colgroup>
@@ -2726,6 +2728,7 @@ div.tocify {
 <h1 class="unnumbered">02.10.2014: BBS Seminar: Meta-Analysis of Clinical Safety Data</h1>
 <p><a href="talks/20141002/agenda.pdf">Agenda</a></p>
 <p>No recording available</p>
+<p>No recording available</p>
 <table>
 <colgroup>
 <col width="9%" />
@@ -2757,7 +2760,7 @@ div.tocify {
 <tr class="odd">
 <td align="left">Michael Gaffney</td>
 <td align="left"></td>
-<td align="left"> Model Selection in Meta‐Analysis of Clinical Safety Data – Fixed or Random Study Effect</td>
+<td align="left"> Model Selection in Meta-Analysis of Clinical Safety Data – Fixed or Random Study Effect</td>
 <td align="left"><a href="talks/20141002/3_Gaffney.pdf">link</a></td>
 </tr>
 <tr class="even">
@@ -2781,7 +2784,7 @@ div.tocify {
 <tr class="odd">
 <td align="left">Mark Levenson</td>
 <td align="left"></td>
-<td align="left"> Meta‐Analysis for Safety: Context and Examples at US FDA</td>
+<td align="left"> Meta-Analysis for Safety: Context and Examples at US FDA</td>
 <td align="left"><a href="talks/20141002/7_Levenson.pdf">link</a></td>
 </tr>
 </tbody>
@@ -2790,6 +2793,7 @@ div.tocify {
 <div id="bbs-seminar-applications-for-statisticians-working-with-real-world-data" class="section level1 unnumbered">
 <h1 class="unnumbered">07.05.2014: BBS Seminar: Applications for statisticians working with “Real-World Data”</h1>
 <p><a href="talks/20140507/agenda.pdf">Agenda</a></p>
+<p>No recording available</p>
 <p>No recording available</p>
 <table>
 <colgroup>
@@ -2826,11 +2830,13 @@ div.tocify {
 <h1 class="unnumbered">04.02.2014: BBS seminar: Adaptive / Flexible Designs in early development</h1>
 <p>No agenda available</p>
 <p>No recording available</p>
+<p>No recording available</p>
 <p>No slides available</p>
 </div>
 <div id="bbs-seminar-ipd-meta-analysis-of-treatment-covariate-interaction-with-a-continuous-predictor" class="section level1 unnumbered">
 <h1 class="unnumbered">18.06.2013: BBS Seminar: IPD meta-analysis of treatment-covariate interaction with a continuous predictor</h1>
 <p>No agenda available</p>
+<p>No recording available</p>
 <p>No recording available</p>
 <table>
 <colgroup>
@@ -2872,6 +2878,7 @@ div.tocify {
 <div id="joint-bbsefspi-seminar-health-technology-assessment-1" class="section level1 unnumbered">
 <h1 class="unnumbered">04.06.2013: Joint BBS/EFSPI Seminar: Health Technology Assessment</h1>
 <p><a href="talks/20130604/agenda.pdf">Agenda</a></p>
+<p>No recording available</p>
 <p>No recording available</p>
 <table>
 <colgroup>
@@ -2980,6 +2987,7 @@ div.tocify {
 <h1 class="unnumbered">28.11.2012: BBS Seminar: Optimal Design for Non-linear Models</h1>
 <p><a href="talks/20121128/agenda.pdf">Agenda</a></p>
 <p>No recording available</p>
+<p>No recording available</p>
 <table>
 <colgroup>
 <col width="9%" />
@@ -3020,6 +3028,7 @@ div.tocify {
 <div id="bbs-seminar-benefit-risk-comparative-effectiveness" class="section level1 unnumbered">
 <h1 class="unnumbered">25.09.2012: BBS Seminar: Benefit-Risk &amp; Comparative Effectiveness</h1>
 <p><a href="talks/20120925/agenda.pdf">Agenda</a></p>
+<p>No recording available</p>
 <p>No recording available</p>
 <table>
 <colgroup>
@@ -3074,6 +3083,7 @@ div.tocify {
 <h1 class="unnumbered">09.07.2012: BBS Seminar: Emerging Topics in Pharmaceutical Statistics</h1>
 <p><a href="talks/20120709/agenda.pdf">Agenda</a></p>
 <p>No recording available</p>
+<p>No recording available</p>
 <table>
 <colgroup>
 <col width="25%" />
@@ -3121,11 +3131,13 @@ div.tocify {
 <h1 class="unnumbered">22.05.2012: BBS Seminar: Experiences in the Development and Implementation of Flexible Designs</h1>
 <p>No agenda available</p>
 <p>No recording available</p>
+<p>No recording available</p>
 <p>No slides available</p>
 </div>
 <div id="bbs-seminar" class="section level1 unnumbered">
 <h1 class="unnumbered">29.11.2011: BBS Seminar</h1>
 <p><a href="talks/20111129/agenda.pdf">Agenda</a></p>
+<p>No recording available</p>
 <p>No recording available</p>
 <table>
 <colgroup>
@@ -3161,6 +3173,7 @@ div.tocify {
 <div id="bbs-fall-conference-current-topics-in-pharmaceutical-statistics-dose-finding-and-multiregional-trials" class="section level1 unnumbered">
 <h1 class="unnumbered">16.09.2011: BBS Fall Conference: Current Topics in Pharmaceutical Statistics: Dose Finding and Multiregional Trials</h1>
 <p><a href="talks/20110916/agenda.pdf">Agenda</a></p>
+<p>No recording available</p>
 <p>No recording available</p>
 <table>
 <colgroup>
@@ -3233,6 +3246,7 @@ div.tocify {
 <h1 class="unnumbered">21.07.2011: BBS Seminar Quantitative Benefit-Risk: What Matters to Whom and How? – Getting the Values and Weights</h1>
 <p><a href="talks/20110721/agenda.pdf">Agenda</a></p>
 <p>No recording available</p>
+<p>No recording available</p>
 <table>
 <colgroup>
 <col width="11%" />
@@ -3279,6 +3293,7 @@ div.tocify {
 <div id="bbs-spring-conference-comparative-quantitative-assessments-benefit-risk-effectiveness" class="section level1 unnumbered">
 <h1 class="unnumbered">10.05.2011: BBS Spring Conference: Comparative Quantitative Assessments: Benefit-Risk &amp; Effectiveness</h1>
 <p><a href="talks/20110510/agenda.pdf">Agenda</a></p>
+<p>No recording available</p>
 <p>No recording available</p>
 <table>
 <colgroup>
@@ -3357,6 +3372,7 @@ div.tocify {
 <h1 class="unnumbered">07.05.2011: BBS Spring Seminar: Multiplicity in Clinical Trials</h1>
 <p><a href="talks/20110507/agenda.pdf">Agenda</a></p>
 <p>No recording available</p>
+<p>No recording available</p>
 <table>
 <colgroup>
 <col width="17%" />
@@ -3410,6 +3426,7 @@ div.tocify {
 <h1 class="unnumbered">13.01.2011: BBS Seminar: Statistical Challenges in Biomedical Research</h1>
 <p><a href="talks/20110113/agenda.pdf">Agenda</a></p>
 <p>No recording available</p>
+<p>No recording available</p>
 <table>
 <colgroup>
 <col width="10%" />
@@ -3445,6 +3462,7 @@ div.tocify {
 <h1 class="unnumbered">30.11.2010: BBS Seminar</h1>
 <p><a href="talks/20101130/agenda.pdf">Agenda</a></p>
 <p>No recording available</p>
+<p>No recording available</p>
 <table>
 <colgroup>
 <col width="11%" />
@@ -3479,6 +3497,7 @@ div.tocify {
 <div id="bbs-fall-conference" class="section level1 unnumbered">
 <h1 class="unnumbered">04.10.2010: BBS Fall Conference</h1>
 <p><a href="talks/20101004/agenda.pdf">Agenda</a></p>
+<p>No recording available</p>
 <p>No recording available</p>
 <table>
 <colgroup>
@@ -3569,6 +3588,7 @@ div.tocify {
 <h1 class="unnumbered">24.06.2010: BBS/EFSPI European Statistical Meeting on Oncology</h1>
 <p><a href="talks/20100624/agenda.pdf">Agenda</a></p>
 <p>No recording available</p>
+<p>No recording available</p>
 <table>
 <colgroup>
 <col width="10%" />
@@ -3634,6 +3654,7 @@ div.tocify {
 <h1 class="unnumbered">28.04.2010: BBS Seminar Epidemiology</h1>
 <p><a href="talks/20100428/agenda.pdf">Agenda</a></p>
 <p>No recording available</p>
+<p>No recording available</p>
 <table>
 <colgroup>
 <col width="11%" />
@@ -3668,6 +3689,7 @@ div.tocify {
 <div id="bbs-seminar-2" class="section level1 unnumbered">
 <h1 class="unnumbered">12.03.2010: BBS Seminar</h1>
 <p>No agenda available</p>
+<p>No recording available</p>
 <p>No recording available</p>
 <table>
 <colgroup>
@@ -3734,6 +3756,7 @@ div.tocify {
 <h1 class="unnumbered">12.01.2010: BBS Seminar: Enhanced Statistical Methodology</h1>
 <p><a href="talks/20100112/agenda.pdf">Agenda</a></p>
 <p>No recording available</p>
+<p>No recording available</p>
 <table>
 <colgroup>
 <col width="13%" />
@@ -3769,6 +3792,7 @@ div.tocify {
 <h1 class="unnumbered">07.12.2009: BBS Seminar: Challenges and Evaluation of Biomarkers</h1>
 <p><a href="talks/20091207/agenda.pdf">Agenda</a></p>
 <p>No recording available</p>
+<p>No recording available</p>
 <table>
 <colgroup>
 <col width="12%" />
@@ -3803,6 +3827,7 @@ div.tocify {
 <div id="bbs-seminar-operational-and-implementation-considerations-in-adaptive-designs" class="section level1 unnumbered">
 <h1 class="unnumbered">26.10.2009: BBS Seminar: Operational and Implementation Considerations in Adaptive Designs</h1>
 <p><a href="talks/20091026/agenda.pdf">Agenda</a></p>
+<p>No recording available</p>
 <p>No recording available</p>
 <table>
 <colgroup>
@@ -3865,7 +3890,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -3874,6 +3899,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

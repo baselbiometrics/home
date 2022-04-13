@@ -26,6 +26,7 @@ If you would like to receive e-mail announcements of upcoming events please send
 
 # News on this site
 
+* 2022/04/13: Added announcement of full-day training [advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact](events_upcoming.html).
 * 2022/04/11: Added announcement of [spring seminar on "Transforming drug development"](events_upcoming.html).
 * 2022/03/30: Added recording, slidedeck of [graphical approaches to multiple test problems training](https://baselbiometrics.github.io/home/docs/trainings_past.html#29032022:_Graphical_approaches_to_multiple_test_problems).
 * 2022/03/21: Added announcement of [seminar on "Registry studies and health technology assessment (HTA)"](events_upcoming.html).

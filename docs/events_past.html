@@ -13,26 +13,19 @@
 
 <title>Past events: agendas, slidedecks, recordings</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
-<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="site_libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<style>h1 {font-size: 34px;}
-       h1.title {font-size: 38px;}
-       h2 {font-size: 30px;}
-       h3 {font-size: 24px;}
-       h4 {font-size: 18px;}
-       h5 {font-size: 16px;}
-       h6 {font-size: 12px;}
-       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
-       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -46,7 +39,32 @@
 
 
 
-
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
 
 
 
@@ -56,6 +74,10 @@
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -72,13 +94,40 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
-pre code {
-  padding: 0;
-}
 </style>
 
 
 <style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
 .dropdown-submenu {
   position: relative;
 }
@@ -106,7 +155,7 @@ pre code {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #adb5bd;
+  border-left-color: #ffffff;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -118,7 +167,7 @@ pre code {
 }
 </style>
 
-<script type="text/javascript">
+<script>
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -129,23 +178,10 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.tab('show');
+  menuAnchor.parent().addClass('active');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
-
-  // Navbar adjustments
-  var navHeight = $(".navbar").first().height() + 15;
-  var style = document.createElement('style');
-  var pt = "padding-top: " + navHeight + "px; ";
-  var mt = "margin-top: -" + navHeight + "px; ";
-  var css = "";
-  // offset scroll position for anchor links (for fixed navbar)
-  for (var i = 1; i <= 6; i++) {
-    css += ".section h" + i + "{ " + pt + mt + "}\n";
-  }
-  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
-  document.head.appendChild(style);
 });
 </script>
 
@@ -157,6 +193,7 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
+  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -282,7 +319,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
+<div class="row-fluid">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -367,16 +404,87 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div id="header">
+<div class="fluid-row" id="header">
 
 
 
 <h1 class="title toc-ignore">Past events: agendas, slidedecks, recordings</h1>
-<h4 class="date">Last change: 19 June, 2022</h4>
+<h4 class="date">Last change: 30 June, 2022</h4>
 
 </div>
 
 
+<div id="bbs-efspi-seminar-registry-studies-and-hta" class="section level1 unnumbered">
+<h1 class="unnumbered">23.06.2022: BBS / EFSPI Seminar Registry studies and HTA</h1>
+<p><a href="talks/20220623/agenda.pdf">Agenda</a></p>
+<p>No recording available</p>
+<table style="width:100%;">
+<colgroup>
+<col width="10%" />
+<col width="19%" />
+<col width="55%" />
+<col width="13%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Speaker</th>
+<th align="left">Institution</th>
+<th align="left">Title</th>
+<th align="left">Download slides</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Fred Sorenson</td>
+<td align="left">Xcenda, Switzerland</td>
+<td align="left">Welcome</td>
+<td align="left">No presentation available</td>
+</tr>
+<tr class="even">
+<td align="left">Eric Faulkner and Omar Dabbous</td>
+<td align="left">Novartis Gene Therapies, USA</td>
+<td align="left">An open dialog on the issues faced An open dialog on the issues faced and lessons learned with respect to Novartis Gene Therapies’ Spinal Muscular Atrophy (SMA) registries</td>
+<td align="left">No presentation available</td>
+</tr>
+<tr class="odd">
+<td align="left">Entela Xoxi</td>
+<td align="left">Università Cattolica del Sacro Cuore, Italy</td>
+<td align="left">AIFA registries: past and current &amp; upcoming challenges</td>
+<td align="left"><a href="talks/20220623/3_Xoxi.pdf">link</a></td>
+</tr>
+<tr class="even">
+<td align="left">Jinma Ren and Friedhelm Leverkus</td>
+<td align="left">Pfizer, USA and Pfizer, Germany</td>
+<td align="left">Issues in the design and analysis of registry-based studies for regulatory and HTA purposes</td>
+<td align="left"><a href="talks/20220623/4_Ren_Leverkus.pdf">link</a></td>
+</tr>
+<tr class="odd">
+<td align="left">Mei Yang</td>
+<td align="left">Happy Life Technology, China &amp; USA</td>
+<td align="left">Registries in China: Guidelines, trends and new technologies</td>
+<td align="left"><a href="talks/20220623/5_Yang.pdf">link</a></td>
+</tr>
+<tr class="even">
+<td align="left">Rossella Di Bidino</td>
+<td align="left">Fondazione Policlinico Universitario Agostino Gemelli, Italy</td>
+<td align="left">Hospital Perspective on using Registry Data for HTA</td>
+<td align="left"><a href="talks/20220623/6_DiBidino.pdf">link</a></td>
+</tr>
+<tr class="odd">
+<td align="left">Kirk Geale</td>
+<td align="left">Quantify Research, Sweden</td>
+<td align="left">Case studies using Registry Data for HTA in Scandinavia</td>
+<td align="left"><a href="talks/20220623/7_Geale.pdf">link</a></td>
+</tr>
+<tr class="even">
+<td align="left">Kat Belendiuk</td>
+<td align="left">Genentech, USA</td>
+<td align="left">FlywheelMS Case Study - A complete web-based digital registry of 5,000 patients with Multiple Sclerosis in the USA</td>
+<td align="left">No presentation available</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div id="bbs-spring-seminar-transforming-drug-development-and-assembly" class="section level1 unnumbered">
 <h1 class="unnumbered">24.05.2022: BBS Spring Seminar Transforming drug development and Assembly</h1>
 <p><a href="talks/20220524/agenda.pdf">Agenda</a></p>
@@ -1363,7 +1471,7 @@ div.tocify {
 <td align="left"><a href="talks/20190821/2_Fletcher.pdf">link</a></td>
 </tr>
 <tr class="odd">
-<td align="left">Frank Pe´tavy</td>
+<td align="left">Frank Pétavy</td>
 <td align="left"></td>
 <td align="left"> A regulator’s perspective</td>
 <td align="left">No presentation available</td>
@@ -2454,9 +2562,9 @@ div.tocify {
 <td align="left"><a href="talks/20160113/1_Friede.pdf">link</a></td>
 </tr>
 <tr class="even">
-<td align="left">Eva-Maria Didden</td>
+<td align="left">Eva‐Maria Didden</td>
 <td align="left"></td>
-<td align="left">Learning and Predicting Real-World Treatment Effect based on Randomized Controlled Trials and Registry Data – A Case Study in Rheumatoid Arthritis</td>
+<td align="left">Learning and Predicting Real‐World Treatment Effect based on Randomized Controlled Trials and Registry Data – A Case Study in Rheumatoid Arthritis</td>
 <td align="left"><a href="talks/20160113/2_Didden.pdf">link</a></td>
 </tr>
 <tr class="odd">
@@ -2480,7 +2588,7 @@ div.tocify {
 <tr class="even">
 <td align="left">Helene Karcher</td>
 <td align="left"></td>
-<td align="left">Leveraging Real-World Registry Data to Optimize the Design of Phase 3 Studies – a Case Study in Schizophrenia</td>
+<td align="left">Leveraging Real‐World Registry Data to Optimize the Design of Phase 3 Studies – a Case Study in Schizophrenia</td>
 <td align="left"><a href="talks/20160113/6_Karcher.pdf">link</a></td>
 </tr>
 </tbody>
@@ -2757,7 +2865,7 @@ div.tocify {
 <tr class="odd">
 <td align="left">Michael Gaffney</td>
 <td align="left"></td>
-<td align="left"> Model Selection in Meta-Analysis of Clinical Safety Data – Fixed or Random Study Effect</td>
+<td align="left"> Model Selection in Meta‐Analysis of Clinical Safety Data – Fixed or Random Study Effect</td>
 <td align="left"><a href="talks/20141002/3_Gaffney.pdf">link</a></td>
 </tr>
 <tr class="even">
@@ -2781,7 +2889,7 @@ div.tocify {
 <tr class="odd">
 <td align="left">Mark Levenson</td>
 <td align="left"></td>
-<td align="left"> Meta-Analysis for Safety: Context and Examples at US FDA</td>
+<td align="left"> Meta‐Analysis for Safety: Context and Examples at US FDA</td>
 <td align="left"><a href="talks/20141002/7_Levenson.pdf">link</a></td>
 </tr>
 </tbody>
@@ -3865,7 +3973,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open');
+    $(this).parent().toggleClass('nav-tabs-open')
   });
 });
 </script>
@@ -3874,9 +3982,6 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

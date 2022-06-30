@@ -26,6 +26,7 @@ If you would like to receive e-mail announcements of upcoming events please send
 
 # News on this site
 
+* 2022/06/30: Added slidedecks of [seminar on "Registry studies and health technology assessment (HTA)"](events_past.html).
 * 2022/06/15: Added 1st announcement of [seminar on "On market approval and market access: Breaking the linear thinking or how to innovate in a crowded space?"](events_upcoming.html).
 * 2022/05/31: Added recording, slidedeck of [transforming drug development and BBS assembly](https://baselbiometrics.github.io/home/docs/events_past.html#24052022:_BBS_Spring_Seminar_Transforming_drug_development_and_Assembly).
 * 2022/05/21: Added 2nd announcement of [seminar on "Registry studies and HTA"](events_upcoming.html).

@@ -21,7 +21,7 @@ tab <- data.frame(matrix("", ncol = 4, nrow = 4),stringsAsFactors =F)
 colnames(tab) <- c("Title", "Slides", "Markdown", "Exercises")
 tab[1, "Title"]     <- "Efficient use of futility and efficacy interim analyses in group-sequential designs" 
 tab[1, "Slides"]    <- "[X](RufibachWolbers_efficient_interims_handout.pdf)"
-tab[1, "Markdown"]  <- "[X](RufibachWolbers_efficient_interims.Rmd)"
+tab[1, "Markdown"]  <- "[X](RufibachWolbers_efficient_interims.html)"
 tab[1, "Exercises"] <- "[X]()"
 kable(tab, align = "lccc")
 ```

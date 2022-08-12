@@ -1,0 +1,38 @@
+---
+title: "Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact: Efficient use of futility and efficacy interim analyses in group-sequential designs"
+output: 
+  rmarkdown::html_document:
+    highlight: pygments
+    toc: yes
+    toc_depth: 2
+    toc_float: yes
+--- 
+
+# Purpose of this document
+
+Materials for the BBS training [Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact](https://baselbiometrics.github.io/home/docs/trainings/20220913/agenda.pdf), held in Basel on 13th September 2022 by [Kaspar Rufibach](mailto:kaspar.rufibach@roche.com), [Marc Vandemeulebroecke](mailto:marc.vandemeulebroecke@novartis.com), [Gernot Wassmer](mailto:gernot.wassmer@rpact.com), and [Marcel Wolbers](mailto:marcel.wolbers@roche.com). 
+
+# Documents
+
+```{r, include=TRUE, echo=FALSE, message = FALSE}
+suppressWarnings(library(knitr))
+
+tab <- data.frame(matrix("", ncol = 5, nrow = 1),stringsAsFactors = FALSE)
+colnames(tab) <- c("Title", "Slides", "Markdown accompanying slides", "Exercises", "Exercises incl. solutions")
+tab[1, "Title"]                        <- "Efficient use of futility and efficacy interim analyses in group-sequential designs" 
+tab[1, "Slides"]                       <- "[X](RufibachWolbers_efficient_interims_handout.pdf)"
+tab[1, "Markdown accompanying slides"] <- "[X](RufibachWolbers_efficient_interims.html)"
+tab[1, "Exercises"]                    <- "[X](RufibachWolbers_efficient_interims_exercises.html)"
+tab[1, "Exercises incl. solutions"]    <- "[X](RufibachWolbers_efficient_interims_exercises_solutions.html)"
+kable(tab, align = "lcccc")
+```
+
+
+
+
+
+
+
+
+
+

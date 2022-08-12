@@ -11,7 +11,7 @@
 
 
 
-<title>Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact: Efficient use of futility and efficacy interim analyses in group-sequential designs</title>
+<title>Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact: Efficient use of futility and efficacy interim analyses in group-sequential designs: exercises and solutions</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1281,6 +1281,92 @@ window.buildTabsets = function(tocID) {
 };
 
 </script>
+<script>
+window.initializeCodeFolding = function(show) {
+
+  // handlers for show-all and hide all
+  $("#rmd-show-all-code").click(function() {
+    $('div.r-code-collapse').each(function() {
+      $(this).collapse('show');
+    });
+  });
+  $("#rmd-hide-all-code").click(function() {
+    $('div.r-code-collapse').each(function() {
+      $(this).collapse('hide');
+    });
+  });
+
+  // index for unique code element ids
+  var currentIndex = 1;
+
+  // select all R code blocks
+  var rCodeBlocks = $('pre.r, pre.python, pre.bash, pre.sql, pre.cpp, pre.stan, pre.julia, pre.foldable');
+  rCodeBlocks.each(function() {
+
+    // create a collapsable div to wrap the code in
+    var div = $('<div class="collapse r-code-collapse"></div>');
+    var showThis = (show || $(this).hasClass('fold-show')) && !$(this).hasClass('fold-hide');
+    var id = 'rcode-643E0F36' + currentIndex++;
+    div.attr('id', id);
+    $(this).before(div);
+    $(this).detach().appendTo(div);
+
+    // add a show code button right above
+    var showCodeText = $('<span>' + (showThis ? 'Hide' : 'Code') + '</span>');
+    var showCodeButton = $('<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm code-folding-btn pull-right float-right"></button>');
+    showCodeButton.append(showCodeText);
+    showCodeButton
+        .attr('data-toggle', 'collapse')
+        .attr('data-target', '#' + id)
+        .attr('aria-expanded', showThis)
+        .attr('aria-controls', id);
+
+    var buttonRow = $('<div class="row"></div>');
+    var buttonCol = $('<div class="col-md-12"></div>');
+
+    buttonCol.append(showCodeButton);
+    buttonRow.append(buttonCol);
+
+    div.before(buttonRow);
+
+    // show the div if necessary
+    if (showThis) div.collapse('show');
+
+    // update state of button on show/hide
+    //   * Change text
+    //   * add a class for intermediate states styling
+    div.on('hide.bs.collapse', function () {
+      showCodeText.text('Code');
+      showCodeButton.addClass('btn-collapsing');
+    });
+    div.on('hidden.bs.collapse', function () {
+      showCodeButton.removeClass('btn-collapsing');
+    });
+    div.on('show.bs.collapse', function () {
+      showCodeText.text('Hide');
+      showCodeButton.addClass('btn-expanding');
+    });
+    div.on('shown.bs.collapse', function () {
+      showCodeButton.removeClass('btn-expanding');
+    });
+
+  });
+
+}
+</script>
+<script>
+window.initializeSourceEmbed = function(filename) {
+  $("#rmd-download-source").click(function() {
+    var src = $("#rmd-source-code").html();
+    var a = document.createElement('a');
+    a.href = "data:text/x-r-markdown;base64," + src;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  });
+};
+</script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -1292,8 +1378,107 @@ window.buildTabsets = function(tocID) {
     </style>
 
 
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
+<style type="text/css">
+#rmd-source-code {
+  display: none;
+}
+</style>
 
 
 
@@ -1384,6 +1569,9 @@ pre code {
 </style>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
 
 
 
@@ -1473,63 +1661,234 @@ div.tocify {
 
 <div id="header">
 
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
 
 
-<h1 class="title toc-ignore">Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact: Efficient use of futility and efficacy interim analyses in group-sequential designs</h1>
+
+<h1 class="title toc-ignore">Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact: Efficient use of futility and efficacy interim analyses in group-sequential designs: exercises and solutions</h1>
+<h4 class="author">Kaspar Rufibach</h4>
+<address class="author_afil">
+Methods, Collaboration, and Outraech Gropu (MCO), PD Data and Statistical Sciences, Roche Basel<br><h4 class="date">Last change: 12 August, 2022</h4>
 
 </div>
 
 
-<div id="purpose-of-this-document" class="section level1">
-<h1>Purpose of this document</h1>
-<p>Materials for the BBS training <a href="https://baselbiometrics.github.io/home/docs/upcoming/20220913/agenda.pdf">Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact</a>, held in Basel on 13th September 2022 by <a href="mailto:kaspar.rufibach@roche.com">Kaspar Rufibach</a>, <a href="mailto:marc.vandemeulebroecke@novartis.com">Marc Vandemeulebroecke</a>, <a href="mailto:gernot.wassmer@rpact.com">Gernot Wassmer</a>, and <a href="mailto:marcel.wolbers@roche.com">Marcel Wolbers</a>.</p>
+<div id="purpose-of-this-document" class="section level1" number="1">
+<h1 number="1"><span class="header-section-number">1</span> Purpose of this document</h1>
+<p>This R markdown file provides the code accompanying the exercises of first theory block in the BBS course <a href="https://baselbiometrics.github.io/home/docs/trainings/20220913/agenda.pdf">Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact</a>.</p>
 </div>
-<div id="documents" class="section level1">
-<h1>Documents</h1>
-<table>
-<colgroup>
-<col width="43%" />
-<col width="27%" />
-<col width="23%" />
-<col width="5%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Title</th>
-<th align="center">Slides</th>
-<th align="center">Markdown</th>
-<th align="center">Exercises</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">Efficient use of futility and efficacy interim analyses in group-sequential designs</td>
-<td align="center"><a href="RufibachWolbers_efficient_interims_handout.pdf">X</a></td>
-<td align="center"><a href="RufibachWolbers_efficient_interims.html">X</a></td>
-<td align="center"><a href>X</a></td>
-</tr>
-<tr class="even">
-<td align="left"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr class="odd">
-<td align="left"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr class="even">
-<td align="left"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-</tbody>
-</table>
+<div id="getting-started" class="section level1" number="2">
+<h1 number="2"><span class="header-section-number">2</span> Getting started</h1>
+<ul>
+<li>Make sure that you have the latest version of <code>rpact</code> installed.</li>
+<li>Download the raw R markdown exercise file by clicking on the “code” block of the right upper corner <a href="https://baselbiometrics.github.io/home/docs/trainings/20220913/RufibachWolbers_efficient_interims_exercises.html">here</a>.</li>
+<li>Start up your local Rstudio installation. Then open the R markdown exercise file.</li>
+<li>Start answering the questions below by adding text or your own <code>R</code> code. Use the <code>rpact</code> help for guidance.</li>
+</ul>
+<p><span class="math inline">\(\Rightarrow\)</span> <strong>Good Luck!</strong></p>
+</div>
+<div id="load-rpact" class="section level1" number="3">
+<h1 number="3"><span class="header-section-number">3</span> Load <code>rpact</code></h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co"># Load bpp and rpact</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">library</span>(rpact)</span></code></pre></div>
+<pre><code>## Warning: Paket &#39;rpact&#39; wurde unter R Version 4.1.3 erstellt</code></pre>
+</div>
+<div id="trial-with-os-endpoint" class="section level1" number="4">
+<h1 number="4"><span class="header-section-number">4</span> Trial with OS endpoint</h1>
+<p>Assume we plan a phase III, randomized, multicenter, open-label, two-arm trial with a time-to-event endpoint of OS. The <strong>general assumptions for the sample size assessment</strong> are:</p>
+<ul>
+<li>2:1 randomization.</li>
+<li>The dropout rate is 5% in both arms over 12 months.</li>
+<li>The recruitment of 480 patients will take place over 10 months.</li>
+</ul>
+<p>The <strong>sample size section for OS</strong> states that the following additional assumptions were made:</p>
+<ul>
+<li>Exponentially distributed OS in the control arm with a median of 12 months.</li>
+<li>Median OS improvement vs. control of 4.9 months (medians 16.9 vs. 12 months, i.e. a HR of approximately 0.71).</li>
+<li>Log-rank test at a two-sided significance level of 0.05, power 80%.</li>
+<li>One interim analyses for efficacy (IA) and one final analysis using the O&#39;Brien-Fleming boundaries approximated using the Lan-DeMets method. The first IA will be performed after 60% of information.</li>
+</ul>
+<div id="question-1" class="section level2" number="4.1">
+<h2 number="4.1"><span class="header-section-number">4.1</span> Question 1</h2>
+<p><em>Calculate the required number of events and timing of analysis for OS using the information fraction of 60%. Use the <code>rpact</code> functions <code>getDesignGroupSequential</code> and <code>getSampleSizeSurvival</code>. </em></p>
+<p><strong>Solution:</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="co"># basic parameters</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>infofrac &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.6</span>, <span class="dv">1</span>)   <span class="co"># information fractions</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>alpha &lt;-<span class="st"> </span><span class="fl">0.05</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>beta &lt;-<span class="st"> </span><span class="fl">0.2</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>accrualTime &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">10</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>accrualIntensity &lt;-<span class="st"> </span><span class="dv">48</span>  <span class="co"># 48 pts over 10 months</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>randoratio &lt;-<span class="st"> </span><span class="dv">2</span>         <span class="co"># 2:1 randomization</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>m2 &lt;-<span class="st"> </span><span class="dv">12</span>                <span class="co"># median control</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>m1 &lt;-<span class="st"> </span><span class="fl">16.9</span>              <span class="co"># median treatment</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>do &lt;-<span class="st"> </span><span class="fl">0.05</span>              <span class="co"># dropout same in both arms</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a>doTime &lt;-<span class="st"> </span><span class="dv">12</span>            <span class="co"># time at which dropout happens</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a>maxn &lt;-<span class="st"> </span>accrualIntensity <span class="op">*</span><span class="st"> </span>accrualTime[<span class="dv">2</span>]</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a><span class="co"># Specify the group-sequential design </span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a>design1 &lt;-<span class="st"> </span><span class="kw">getDesignGroupSequential</span>(<span class="dt">sided =</span> <span class="dv">1</span>, <span class="dt">alpha =</span> alpha <span class="op">/</span><span class="st"> </span><span class="dv">2</span>, <span class="dt">beta =</span> beta,</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a>    <span class="dt">informationRates =</span> infofrac, <span class="dt">typeOfDesign =</span> <span class="st">&quot;asOF&quot;</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a><span class="co"># Calculate sample size for OS for this design</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a>sampleSizeOS1 &lt;-<span class="st"> </span><span class="kw">getSampleSizeSurvival</span>(design1,</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true"></a>    <span class="dt">allocationRatioPlanned =</span> randoratio,    </span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true"></a>    <span class="dt">lambda2 =</span> <span class="kw">getLambdaByMedian</span>(m2), <span class="dt">lambda1 =</span> <span class="kw">getLambdaByMedian</span>(m1), </span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true"></a>    <span class="dt">dropoutRate1 =</span> do, <span class="dt">dropoutRate2 =</span> do, <span class="dt">dropoutTime =</span> doTime,</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true"></a>    <span class="dt">accrualTime =</span> accrualTime, <span class="dt">accrualIntensity =</span> accrualIntensity)  </span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true"></a><span class="co"># rpact summary</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true"></a><span class="kw">summary</span>(sampleSizeOS1)</span></code></pre></div>
+<pre><code>## Sample size calculation for a survival endpoint
+## 
+## Sequential analysis with a maximum of 2 looks (group sequential design), overall 
+## significance level 2.5% (one-sided).
+## The sample size was calculated for a two-sample logrank test, 
+## H0: hazard ratio = 1, H1: treatment lambda(1) = 0.041, control lambda(2) = 0.058, 
+## planned allocation ratio = 2, accrual time = 10, accrual intensity = 48, 
+## dropout rate(1) = 0.05, dropout rate(2) = 0.05, dropout time = 12, power 80%.
+## 
+## Stage                                         1      2 
+## Information rate                            60%   100% 
+## Efficacy boundary (z-value scale)         2.669  1.981 
+## Overall power                            0.3123 0.8000 
+## Expected number of subjects               480.0 
+## Number of subjects                        480.0  480.0 
+## Cumulative number of events               182.3  303.8 
+## Analysis time                              15.8   28.7 
+## Expected study duration                    24.7 
+## Cumulative alpha spent                   0.0038 0.0250 
+## One-sided local significance level       0.0038 0.0238 
+## Efficacy boundary (t)                     0.658  0.786 
+## Exit probability for efficacy (under H0) 0.0038 
+## Exit probability for efficacy (under H1) 0.3123 
+## 
+## Legend:
+##   (t): treatment effect scale</code></pre>
+</div>
+<div id="question-2" class="section level2" number="4.2">
+<h2 number="4.2"><span class="header-section-number">4.2</span> Question 2</h2>
+<p><em>Now add an interim analysis for futility ONLY (i.e. no stopping for efficacy possible) after 30% of information where we stop the trial if the observed hazard ratio is above 1.</em></p>
+<p><em>Hint: Use significance levels from design with efficay only, add futility interim and use very small alpha there only. The argument <code>userAlphaSpending</code> in <code>getDesignGroupSequential</code> helps.</em></p>
+<p><strong>Solution:</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="co"># add the futility using the sig levels computed above and spending epsilon alpha at the futility</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a>design2 &lt;-<span class="st"> </span><span class="kw">getDesignGroupSequential</span>(<span class="dt">informationRates =</span> <span class="kw">c</span>(<span class="fl">0.3</span>, infofrac),</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a>                                    <span class="dt">sided =</span> <span class="dv">1</span>, <span class="dt">alpha =</span> alpha <span class="op">/</span><span class="st"> </span><span class="dv">2</span>, <span class="dt">beta =</span> beta,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a>                                    <span class="dt">futilityBounds =</span> <span class="kw">c</span>(<span class="kw">log</span>(<span class="dv">1</span>), <span class="dv">-6</span>),</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a>                                    <span class="dt">typeOfDesign =</span> <span class="st">&quot;asUser&quot;</span>, </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a>                                    <span class="dt">userAlphaSpending =</span> <span class="kw">c</span>(<span class="fl">0.00001</span>, design1<span class="op">$</span>alphaSpent))</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a><span class="co"># Calculate sample size for this design</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a>sampleSizeOS2 &lt;-<span class="st"> </span><span class="kw">getSampleSizeSurvival</span>(design2,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a>    <span class="dt">allocationRatioPlanned =</span> randoratio,    </span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a>    <span class="dt">lambda2 =</span> <span class="kw">getLambdaByMedian</span>(m2),<span class="dt">lambda1 =</span> <span class="kw">getLambdaByMedian</span>(m1), </span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a>    <span class="dt">dropoutRate1 =</span> do, <span class="dt">dropoutRate2 =</span> do, <span class="dt">dropoutTime =</span> doTime,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a>    <span class="dt">accrualTime =</span> accrualTime, <span class="dt">accrualIntensity =</span> accrualIntensity)  </span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true"></a><span class="co"># rpact summary</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true"></a><span class="kw">summary</span>(sampleSizeOS2)</span></code></pre></div>
+<pre><code>## Sample size calculation for a survival endpoint
+## 
+## Sequential analysis with a maximum of 3 looks (group sequential design), overall 
+## significance level 2.5% (one-sided).
+## The sample size was calculated for a two-sample logrank test, 
+## H0: hazard ratio = 1, H1: treatment lambda(1) = 0.041, control lambda(2) = 0.058, 
+## planned allocation ratio = 2, accrual time = 10, accrual intensity = 48, 
+## dropout rate(1) = 0.05, dropout rate(2) = 0.05, dropout time = 12, power 80%.
+## 
+## Stage                                          1       2       3 
+## Information rate                             30%     60%    100% 
+## Efficacy boundary (z-value scale)          4.265   2.669   1.981 
+## Futility boundary (z-value scale)          0.000  -6.000 
+## Overall power                             0.0037  0.3361  0.8000 
+## Expected number of subjects                480.0 
+## Number of subjects                         480.0   480.0   480.0 
+## Cumulative number of events                 96.9   193.7   322.9 
+## Analysis time                               10.1    16.7    31.7 
+## Expected study duration                     25.5 
+## Cumulative alpha spent                   &lt;0.0001  0.0038  0.0250 
+## One-sided local significance level       &lt;0.0001  0.0038  0.0238 
+## Efficacy boundary (t)                      0.399   0.666   0.791 
+## Futility boundary (t)                      1.000         
+## Overall exit probability (under H0)       0.5000  0.0038 
+## Overall exit probability (under H1)       0.0598  0.3324 
+## Exit probability for efficacy (under H0) &lt;0.0001  0.0038 
+## Exit probability for efficacy (under H1)  0.0037  0.3324 
+## Exit probability for futility (under H0)  0.5000       0 
+## Exit probability for futility (under H1)  0.0561       0 
+## 
+## Legend:
+##   (t): treatment effect scale</code></pre>
+<p>We see that by adding the futility interim we increase the maximal number of events from 303.827705 to 322.8717528.</p>
+</div>
+<div id="question-3" class="section level2" number="4.3">
+<h2 number="4.3"><span class="header-section-number">4.3</span> Question 3</h2>
+<p><em>How large is the power loss from adding this futility, assuming we would not increase the number of events compared to the initial design above?</em></p>
+<p>To compute the power loss of adding the futility, <em>conservatively</em> assuming it will be adhered to, we compute the power of the design <em>with</em> futility using the number of events of the design <em>without</em> futility.</p>
+<p><strong>Solution:</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="co"># power of design with fufility at the number of events without futility</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a>power &lt;-<span class="st"> </span><span class="kw">getPowerSurvival</span>(design2, <span class="dt">allocationRatioPlanned =</span> randoratio, </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a>    <span class="dt">maxNumberOfEvents =</span> <span class="kw">ceiling</span>(sampleSizeOS1<span class="op">$</span>maxNumberOfEvents),</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a>    <span class="dt">lambda2 =</span> <span class="kw">getLambdaByMedian</span>(m2),<span class="dt">lambda1 =</span> <span class="kw">getLambdaByMedian</span>(m1), </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a>    <span class="dt">dropoutRate1 =</span> do, <span class="dt">dropoutRate2 =</span> do, <span class="dt">dropoutTime =</span> doTime,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a>    <span class="dt">accrualTime =</span> accrualTime, <span class="dt">accrualIntensity =</span> accrualIntensity,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a>    <span class="dt">directionUpper =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true"></a><span class="co"># power, as compared to the specified 80%</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true"></a>power<span class="op">$</span>overallReject</span></code></pre></div>
+<pre><code>## [1] 0.7763148</code></pre>
+<p>So the power loss of adding the futility amounts to 0.0236852.</p>
+</div>
+<div id="question-4" class="section level2" number="4.4">
+<h2 number="4.4"><span class="header-section-number">4.4</span> Question 4</h2>
+<p><em>How many OS events would be expected to occur until exactly 16 and 24 months, respectively, from first patient randomized?</em></p>
+<p><em>Hint: <code>getEventProbabilities</code>.</em></p>
+<p><strong>Solution:</strong></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="co"># Probability of an event until 16 months and 24 months  </span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a>probOS &lt;-<span class="st"> </span><span class="kw">getEventProbabilities</span>(<span class="dt">time =</span> <span class="kw">c</span>(<span class="dv">16</span>, <span class="dv">24</span>), </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a>    <span class="dt">allocationRatioPlanned =</span> randoratio,    </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true"></a>    <span class="dt">lambda2 =</span> <span class="kw">getLambdaByMedian</span>(m2),<span class="dt">lambda1 =</span> <span class="kw">getLambdaByMedian</span>(m1),</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true"></a>    <span class="dt">dropoutRate1 =</span> do, <span class="dt">dropoutRate2 =</span> do, <span class="dt">dropoutTime =</span> doTime,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true"></a>    <span class="dt">accrualTime =</span> accrualTime, <span class="dt">accrualIntensity =</span> accrualIntensity)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true"></a>probOS</span></code></pre></div>
+<pre><code>## Event probabilities at given time:
+## 
+## User defined parameters:
+##   Time                                         : 16.00, 24.00 
+##   Accrual time                                 : 10.00 
+##   Accrual intensity                            : 48.0 
+##   lambda(1)                                    : 0.041 
+##   lambda(2)                                    : 0.0578 
+##   Planned allocation ratio                     : 2 
+##   Drop-out rate (1)                            : 0.050 
+##   Drop-out rate (2)                            : 0.050 
+## 
+## Default parameters:
+##   kappa                                        : 1 
+##   Drop-out time                                : 12.00 
+## 
+## Time and output:
+##   Hazard ratio                                 : 0.710 
+##   Maximum number of subjects                   : 480 
+##   Cumulative event probabilities               : 0.3847, 0.5595 
+##   Event probabilities (1)                      : 0.3506, 0.5193 
+##   Event probabilities (2)                      : 0.4529, 0.6400 
+## 
+## Legend:
+##   (i): values of treatment arm i</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="co"># Expected number of OS events </span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a>maxn <span class="op">*</span><span class="st"> </span>probOS<span class="op">$</span>overallEventProbabilities</span></code></pre></div>
+<pre><code>## [1] 184.6677 268.5770</code></pre>
+<p>Expected number of events are 185 and 269 until months 16 and 24, respecticely.</p>
+</div>
 </div>
 
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkFkdmFuY2VkIGdyb3VwLXNlcXVlbnRpYWwgYW5kIGFkYXB0aXZlIGNvbmZpcm1hdG9yeSBjbGluaWNhbCB0cmlhbCBkZXNpZ25zLCB3aXRoIFIgcHJhY3RpY2FscyB1c2luZyBycGFjdDogRWZmaWNpZW50IHVzZSBvZiBmdXRpbGl0eSBhbmQgZWZmaWNhY3kgaW50ZXJpbSBhbmFseXNlcyBpbiBncm91cC1zZXF1ZW50aWFsIGRlc2lnbnM6IGV4ZXJjaXNlcyBhbmQgc29sdXRpb25zIg0KYXV0aG9yOiANCi0gbmFtZTogIkthc3BhciBSdWZpYmFjaCINCiAgYWZmaWxpYXRpb246IE1ldGhvZHMsIENvbGxhYm9yYXRpb24sIGFuZCBPdXRyYWVjaCBHcm9wdSAoTUNPKSwgUEQgRGF0YSBhbmQgU3RhdGlzdGljYWwgU2NpZW5jZXMsIFJvY2hlIEJhc2VsDQpkYXRlOiAiTGFzdCBjaGFuZ2U6IGByIGZvcm1hdChTeXMudGltZSgpLCAnJWQgJUIsICVZJylgIg0Kb3V0cHV0OiANCiAgcm1hcmtkb3duOjpodG1sX2RvY3VtZW50Og0KICAgIGhpZ2hsaWdodDogcHlnbWVudHMNCiAgICBudW1iZXJfc2VjdGlvbnM6IHllcw0KICAgIHNlbGZfY29udGFpbmVkOiB5ZXMNCiAgICB0b2M6IHllcw0KICAgIHRvY19kZXB0aDogMw0KICAgIHRvY19mbG9hdDogeWVzDQogICAgY29kZV9kb3dubG9hZDogdHJ1ZQ0KLS0tDQoNCiMgUHVycG9zZSBvZiB0aGlzIGRvY3VtZW50DQoNClRoaXMgUiBtYXJrZG93biBmaWxlIHByb3ZpZGVzIHRoZSBjb2RlIGFjY29tcGFueWluZyB0aGUgZXhlcmNpc2VzIG9mIGZpcnN0IHRoZW9yeSBibG9jayBpbiB0aGUgQkJTIGNvdXJzZSBbQWR2YW5jZWQgZ3JvdXAtc2VxdWVudGlhbCBhbmQgYWRhcHRpdmUgY29uZmlybWF0b3J5IGNsaW5pY2FsIHRyaWFsIGRlc2lnbnMsIHdpdGggUiBwcmFjdGljYWxzIHVzaW5nIHJwYWN0XShodHRwczovL2Jhc2VsYmlvbWV0cmljcy5naXRodWIuaW8vaG9tZS9kb2NzL3RyYWluaW5ncy8yMDIyMDkxMy9hZ2VuZGEucGRmKS4NCg0KIyBHZXR0aW5nIHN0YXJ0ZWQNCg0KLSBNYWtlIHN1cmUgdGhhdCB5b3UgaGF2ZSB0aGUgbGF0ZXN0IHZlcnNpb24gb2YgYHJwYWN0YCBpbnN0YWxsZWQuDQotIERvd25sb2FkIHRoZSByYXcgUiBtYXJrZG93biBleGVyY2lzZSBmaWxlIGJ5IGNsaWNraW5nIG9uIHRoZSAiY29kZSIgYmxvY2sgb2YgdGhlIHJpZ2h0IHVwcGVyIGNvcm5lciBbaGVyZV0oaHR0cHM6Ly9iYXNlbGJpb21ldHJpY3MuZ2l0aHViLmlvL2hvbWUvZG9jcy90cmFpbmluZ3MvMjAyMjA5MTMvUnVmaWJhY2hXb2xiZXJzX2VmZmljaWVudF9pbnRlcmltc19leGVyY2lzZXMuaHRtbCkuDQotIFN0YXJ0IHVwIHlvdXIgbG9jYWwgUnN0dWRpbyBpbnN0YWxsYXRpb24uIFRoZW4gb3BlbiB0aGUgUiBtYXJrZG93biBleGVyY2lzZSBmaWxlLg0KLSBTdGFydCBhbnN3ZXJpbmcgdGhlIHF1ZXN0aW9ucyBiZWxvdyBieSBhZGRpbmcgdGV4dCBvciB5b3VyIG93biBgUmAgY29kZS4gVXNlIHRoZSBgcnBhY3RgIGhlbHAgZm9yIGd1aWRhbmNlLg0KDQokXFJpZ2h0YXJyb3ckICoqR29vZCBMdWNrISoqDQoNCiMgTG9hZCBgcnBhY3RgIA0KDQpgYGB7ciwgaW5jbHVkZT1UUlVFLCBlY2hvPVRSVUV9DQojIExvYWQgYnBwIGFuZCBycGFjdA0KbGlicmFyeShycGFjdCkNCmBgYA0KDQojIFRyaWFsIHdpdGggT1MgZW5kcG9pbnQNCg0KQXNzdW1lIHdlIHBsYW4gYSBwaGFzZSBJSUksIHJhbmRvbWl6ZWQsIG11bHRpY2VudGVyLCBvcGVuLWxhYmVsLCB0d28tYXJtIHRyaWFsIHdpdGggYSB0aW1lLXRvLWV2ZW50IGVuZHBvaW50IG9mIE9TLiBUaGUgKipnZW5lcmFsIGFzc3VtcHRpb25zIGZvciB0aGUgc2FtcGxlIHNpemUgYXNzZXNzbWVudCoqIGFyZToNCg0KLSAyOjEgcmFuZG9taXphdGlvbi4NCi0gVGhlIGRyb3BvdXQgcmF0ZSBpcyA1JSBpbiBib3RoIGFybXMgb3ZlciAxMiBtb250aHMuDQotIFRoZSByZWNydWl0bWVudCBvZiA0ODAgcGF0aWVudHMgd2lsbCB0YWtlIHBsYWNlIG92ZXIgMTAgbW9udGhzLiANCg0KVGhlICoqc2FtcGxlIHNpemUgc2VjdGlvbiBmb3IgT1MqKiBzdGF0ZXMgdGhhdCB0aGUgZm9sbG93aW5nIGFkZGl0aW9uYWwgYXNzdW1wdGlvbnMgd2VyZSBtYWRlOg0KDQotIEV4cG9uZW50aWFsbHkgZGlzdHJpYnV0ZWQgT1MgaW4gdGhlIGNvbnRyb2wgYXJtIHdpdGggYSBtZWRpYW4gb2YgMTIgbW9udGhzLg0KLSBNZWRpYW4gT1MgaW1wcm92ZW1lbnQgdnMuIGNvbnRyb2wgb2YgNC45IG1vbnRocyAobWVkaWFucyAxNi45IHZzLiAxMiBtb250aHMsIGkuZS4gYSBIUiBvZiBhcHByb3hpbWF0ZWx5IDAuNzEpLg0KLSBMb2ctcmFuayB0ZXN0IGF0IGEgdHdvLXNpZGVkIHNpZ25pZmljYW5jZSBsZXZlbCBvZiAwLjA1LCBwb3dlciA4MCUuDQotIE9uZSBpbnRlcmltIGFuYWx5c2VzIGZvciBlZmZpY2FjeSAoSUEpIGFuZCBvbmUgZmluYWwgYW5hbHlzaXMgdXNpbmcgdGhlIE9cJ0JyaWVuLUZsZW1pbmcgYm91bmRhcmllcyBhcHByb3hpbWF0ZWQgdXNpbmcgdGhlIExhbi1EZU1ldHMgbWV0aG9kLiBUaGUgZmlyc3QgSUEgd2lsbCBiZSBwZXJmb3JtZWQgYWZ0ZXIgNjAlIG9mIGluZm9ybWF0aW9uLiANCg0KIyMgUXVlc3Rpb24gMQ0KDQoqQ2FsY3VsYXRlIHRoZSByZXF1aXJlZCBudW1iZXIgb2YgZXZlbnRzIGFuZCB0aW1pbmcgb2YgYW5hbHlzaXMgZm9yIE9TIHVzaW5nIHRoZSBpbmZvcm1hdGlvbiBmcmFjdGlvbiBvZiA2MCUuIFVzZSB0aGUgYHJwYWN0YCBmdW5jdGlvbnMgYGdldERlc2lnbkdyb3VwU2VxdWVudGlhbGAgYW5kIGBnZXRTYW1wbGVTaXplU3Vydml2YWxgLiAqDQoNCioqU29sdXRpb246KioNCg0KYGBge3IsIGluY2x1ZGU9VFJVRSwgZWNobz1UUlVFfQ0KIyBiYXNpYyBwYXJhbWV0ZXJzDQppbmZvZnJhYyA8LSBjKDAuNiwgMSkgICAjIGluZm9ybWF0aW9uIGZyYWN0aW9ucw0KYWxwaGEgPC0gMC4wNQ0KYmV0YSA8LSAwLjINCmFjY3J1YWxUaW1lIDwtIGMoMCwgMTApDQphY2NydWFsSW50ZW5zaXR5IDwtIDQ4ICAjIDQ4IHB0cyBvdmVyIDEwIG1vbnRocw0KcmFuZG9yYXRpbyA8LSAyICAgICAgICAgIyAyOjEgcmFuZG9taXphdGlvbg0KbTIgPC0gMTIgICAgICAgICAgICAgICAgIyBtZWRpYW4gY29udHJvbA0KbTEgPC0gMTYuOSAgICAgICAgICAgICAgIyBtZWRpYW4gdHJlYXRtZW50DQpkbyA8LSAwLjA1ICAgICAgICAgICAgICAjIGRyb3BvdXQgc2FtZSBpbiBib3RoIGFybXMNCmRvVGltZSA8LSAxMiAgICAgICAgICAgICMgdGltZSBhdCB3aGljaCBkcm9wb3V0IGhhcHBlbnMNCg0KbWF4biA8LSBhY2NydWFsSW50ZW5zaXR5ICogYWNjcnVhbFRpbWVbMl0NCg0KIyBTcGVjaWZ5IHRoZSBncm91cC1zZXF1ZW50aWFsIGRlc2lnbiANCmRlc2lnbjEgPC0gZ2V0RGVzaWduR3JvdXBTZXF1ZW50aWFsKHNpZGVkID0gMSwgYWxwaGEgPSBhbHBoYSAvIDIsIGJldGEgPSBiZXRhLA0KICAgIGluZm9ybWF0aW9uUmF0ZXMgPSBpbmZvZnJhYywgdHlwZU9mRGVzaWduID0gImFzT0YiKQ0KDQojIENhbGN1bGF0ZSBzYW1wbGUgc2l6ZSBmb3IgT1MgZm9yIHRoaXMgZGVzaWduDQpzYW1wbGVTaXplT1MxIDwtIGdldFNhbXBsZVNpemVTdXJ2aXZhbChkZXNpZ24xLA0KICAgIGFsbG9jYXRpb25SYXRpb1BsYW5uZWQgPSByYW5kb3JhdGlvLCAgICANCiAgICBsYW1iZGEyID0gZ2V0TGFtYmRhQnlNZWRpYW4obTIpLCBsYW1iZGExID0gZ2V0TGFtYmRhQnlNZWRpYW4obTEpLCANCiAgICBkcm9wb3V0UmF0ZTEgPSBkbywgZHJvcG91dFJhdGUyID0gZG8sIGRyb3BvdXRUaW1lID0gZG9UaW1lLA0KICAgIGFjY3J1YWxUaW1lID0gYWNjcnVhbFRpbWUsIGFjY3J1YWxJbnRlbnNpdHkgPSBhY2NydWFsSW50ZW5zaXR5KSAgDQoNCiMgcnBhY3Qgc3VtbWFyeQ0Kc3VtbWFyeShzYW1wbGVTaXplT1MxKQ0KYGBgDQoNCiMjIFF1ZXN0aW9uIDINCg0KKk5vdyBhZGQgYW4gaW50ZXJpbSBhbmFseXNpcyBmb3IgZnV0aWxpdHkgT05MWSAoaS5lLiBubyBzdG9wcGluZyBmb3IgZWZmaWNhY3kgcG9zc2libGUpIGFmdGVyIDMwJSBvZiBpbmZvcm1hdGlvbiB3aGVyZSB3ZSBzdG9wIHRoZSB0cmlhbCBpZiB0aGUgb2JzZXJ2ZWQgaGF6YXJkIHJhdGlvIGlzIGFib3ZlIDEuKg0KDQoqSGludDogVXNlIHNpZ25pZmljYW5jZSBsZXZlbHMgZnJvbSBkZXNpZ24gd2l0aCBlZmZpY2F5IG9ubHksIGFkZCBmdXRpbGl0eSBpbnRlcmltIGFuZCB1c2UgdmVyeSBzbWFsbCBhbHBoYSB0aGVyZSBvbmx5LiBUaGUgYXJndW1lbnQgYHVzZXJBbHBoYVNwZW5kaW5nYCBpbiBgZ2V0RGVzaWduR3JvdXBTZXF1ZW50aWFsYCBoZWxwcy4qDQoNCioqU29sdXRpb246KioNCg0KYGBge3IsIGluY2x1ZGU9VFJVRSwgZWNobz1UUlVFfQ0KIyBhZGQgdGhlIGZ1dGlsaXR5IHVzaW5nIHRoZSBzaWcgbGV2ZWxzIGNvbXB1dGVkIGFib3ZlIGFuZCBzcGVuZGluZyBlcHNpbG9uIGFscGhhIGF0IHRoZSBmdXRpbGl0eQ0KZGVzaWduMiA8LSBnZXREZXNpZ25Hcm91cFNlcXVlbnRpYWwoaW5mb3JtYXRpb25SYXRlcyA9IGMoMC4zLCBpbmZvZnJhYyksDQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBzaWRlZCA9IDEsIGFscGhhID0gYWxwaGEgLyAyLCBiZXRhID0gYmV0YSwNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGZ1dGlsaXR5Qm91bmRzID0gYyhsb2coMSksIC02KSwNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHR5cGVPZkRlc2lnbiA9ICJhc1VzZXIiLCANCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHVzZXJBbHBoYVNwZW5kaW5nID0gYygwLjAwMDAxLCBkZXNpZ24xJGFscGhhU3BlbnQpKQ0KDQojIENhbGN1bGF0ZSBzYW1wbGUgc2l6ZSBmb3IgdGhpcyBkZXNpZ24NCnNhbXBsZVNpemVPUzIgPC0gZ2V0U2FtcGxlU2l6ZVN1cnZpdmFsKGRlc2lnbjIsDQogICAgYWxsb2NhdGlvblJhdGlvUGxhbm5lZCA9IHJhbmRvcmF0aW8sICAgIA0KICAgIGxhbWJkYTIgPSBnZXRMYW1iZGFCeU1lZGlhbihtMiksbGFtYmRhMSA9IGdldExhbWJkYUJ5TWVkaWFuKG0xKSwgDQogICAgZHJvcG91dFJhdGUxID0gZG8sIGRyb3BvdXRSYXRlMiA9IGRvLCBkcm9wb3V0VGltZSA9IGRvVGltZSwNCiAgICBhY2NydWFsVGltZSA9IGFjY3J1YWxUaW1lLCBhY2NydWFsSW50ZW5zaXR5ID0gYWNjcnVhbEludGVuc2l0eSkgIA0KDQojIHJwYWN0IHN1bW1hcnkNCnN1bW1hcnkoc2FtcGxlU2l6ZU9TMikNCmBgYA0KDQpXZSBzZWUgdGhhdCBieSBhZGRpbmcgdGhlIGZ1dGlsaXR5IGludGVyaW0gd2UgaW5jcmVhc2UgdGhlIG1heGltYWwgbnVtYmVyIG9mIGV2ZW50cyBmcm9tIGByIHNhbXBsZVNpemVPUzEkbWF4TnVtYmVyT2ZFdmVudHNgIHRvIGByIHNhbXBsZVNpemVPUzIkbWF4TnVtYmVyT2ZFdmVudHNgLiANCg0KIyMgUXVlc3Rpb24gMw0KDQoqSG93IGxhcmdlIGlzIHRoZSBwb3dlciBsb3NzIGZyb20gYWRkaW5nIHRoaXMgZnV0aWxpdHksIGFzc3VtaW5nIHdlIHdvdWxkIG5vdCBpbmNyZWFzZSB0aGUgbnVtYmVyIG9mIGV2ZW50cyBjb21wYXJlZCB0byB0aGUgaW5pdGlhbCBkZXNpZ24gYWJvdmU/Kg0KDQpUbyBjb21wdXRlIHRoZSBwb3dlciBsb3NzIG9mIGFkZGluZyB0aGUgZnV0aWxpdHksIF9jb25zZXJ2YXRpdmVseV8gYXNzdW1pbmcgaXQgd2lsbCBiZSBhZGhlcmVkIHRvLCB3ZSBjb21wdXRlIHRoZSBwb3dlciBvZiB0aGUgZGVzaWduIF93aXRoXyBmdXRpbGl0eSB1c2luZyB0aGUgbnVtYmVyIG9mIGV2ZW50cyBvZiB0aGUgZGVzaWduIF93aXRob3V0XyBmdXRpbGl0eS4NCg0KKipTb2x1dGlvbjoqKg0KDQpgYGB7ciwgaW5jbHVkZT1UUlVFLCBlY2hvPVRSVUV9DQojIHBvd2VyIG9mIGRlc2lnbiB3aXRoIGZ1ZmlsaXR5IGF0IHRoZSBudW1iZXIgb2YgZXZlbnRzIHdpdGhvdXQgZnV0aWxpdHkNCnBvd2VyIDwtIGdldFBvd2VyU3Vydml2YWwoZGVzaWduMiwgYWxsb2NhdGlvblJhdGlvUGxhbm5lZCA9IHJhbmRvcmF0aW8sIA0KICAgIG1heE51bWJlck9mRXZlbnRzID0gY2VpbGluZyhzYW1wbGVTaXplT1MxJG1heE51bWJlck9mRXZlbnRzKSwNCiAgICBsYW1iZGEyID0gZ2V0TGFtYmRhQnlNZWRpYW4obTIpLGxhbWJkYTEgPSBnZXRMYW1iZGFCeU1lZGlhbihtMSksIA0KICAgIGRyb3BvdXRSYXRlMSA9IGRvLCBkcm9wb3V0UmF0ZTIgPSBkbywgZHJvcG91dFRpbWUgPSBkb1RpbWUsDQogICAgYWNjcnVhbFRpbWUgPSBhY2NydWFsVGltZSwgYWNjcnVhbEludGVuc2l0eSA9IGFjY3J1YWxJbnRlbnNpdHksDQogICAgZGlyZWN0aW9uVXBwZXIgPSBGQUxTRSkNCg0KIyBwb3dlciwgYXMgY29tcGFyZWQgdG8gdGhlIHNwZWNpZmllZCA4MCUNCnBvd2VyJG92ZXJhbGxSZWplY3QNCmBgYA0KDQpTbyB0aGUgcG93ZXIgbG9zcyBvZiBhZGRpbmcgdGhlIGZ1dGlsaXR5IGFtb3VudHMgdG8gYHIgMSAtIGJldGEgLSBwb3dlciRvdmVyYWxsUmVqZWN0YC4NCg0KIyMgUXVlc3Rpb24gNCANCg0KKkhvdyBtYW55IE9TIGV2ZW50cyB3b3VsZCBiZSBleHBlY3RlZCB0byBvY2N1ciB1bnRpbCBleGFjdGx5IDE2IGFuZCAyNCBtb250aHMsIHJlc3BlY3RpdmVseSwgZnJvbSBmaXJzdCBwYXRpZW50IHJhbmRvbWl6ZWQ/Kg0KDQoqSGludDogYGdldEV2ZW50UHJvYmFiaWxpdGllc2AuKg0KDQoqKlNvbHV0aW9uOioqDQoNCmBgYHtyLCBpbmNsdWRlPVRSVUUsIGVjaG89VFJVRX0NCiMgUHJvYmFiaWxpdHkgb2YgYW4gZXZlbnQgdW50aWwgMTYgbW9udGhzIGFuZCAyNCBtb250aHMgIA0KcHJvYk9TIDwtIGdldEV2ZW50UHJvYmFiaWxpdGllcyh0aW1lID0gYygxNiwgMjQpLCANCiAgICBhbGxvY2F0aW9uUmF0aW9QbGFubmVkID0gcmFuZG9yYXRpbywgICAgDQogICAgbGFtYmRhMiA9IGdldExhbWJkYUJ5TWVkaWFuKG0yKSxsYW1iZGExID0gZ2V0TGFtYmRhQnlNZWRpYW4obTEpLA0KICAgIGRyb3BvdXRSYXRlMSA9IGRvLCBkcm9wb3V0UmF0ZTIgPSBkbywgZHJvcG91dFRpbWUgPSBkb1RpbWUsDQogICAgYWNjcnVhbFRpbWUgPSBhY2NydWFsVGltZSwgYWNjcnVhbEludGVuc2l0eSA9IGFjY3J1YWxJbnRlbnNpdHkpDQpwcm9iT1MNCg0KIyBFeHBlY3RlZCBudW1iZXIgb2YgT1MgZXZlbnRzIA0KbWF4biAqIHByb2JPUyRvdmVyYWxsRXZlbnRQcm9iYWJpbGl0aWVzDQpgYGANCg0KRXhwZWN0ZWQgbnVtYmVyIG9mIGV2ZW50cyBhcmUgYHIgY2VpbGluZyhtYXhuKnByb2JPUyRvdmVyYWxsRXZlbnRQcm9iYWJpbGl0aWVzWzFdKWAgYW5kIGByIGNlaWxpbmcobWF4bipwcm9iT1Mkb3ZlcmFsbEV2ZW50UHJvYmFiaWxpdGllc1syXSlgIHVudGlsIG1vbnRocyAxNiBhbmQgMjQsIHJlc3BlY3RpY2VseS4=</div>
 
 
 </div>
@@ -1565,6 +1924,11 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("RufibachWolbers_efficient_interims_exercises_solutions.Rmd");
+});
+</script>
 
 <script>
 $(document).ready(function ()  {
@@ -1579,7 +1943,7 @@ $(document).ready(function ()  {
 
     // establish options
     var options = {
-      selectors: "h1,h2",
+      selectors: "h1,h2,h3",
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {

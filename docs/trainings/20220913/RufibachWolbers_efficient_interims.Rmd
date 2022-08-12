@@ -1,6 +1,8 @@
 ---
 title: "Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact: Efficient use of futility and efficacy interim analyses in group-sequential designs"
-author: "Kaspar Rufibach"
+author: 
+- name: "Kaspar Rufibach"
+  affiliation: Methods, Collaboration, and Outraech Gropu (MCO), PD Data and Statistical Sciences, Roche Basel
 date: "Last change: `r format(Sys.time(), '%d %B, %Y')`"
 output: 
   rmarkdown::html_document:

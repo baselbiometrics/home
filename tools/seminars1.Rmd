@@ -14,7 +14,7 @@ meta <- tab[1, ]
 
 `r if (is.na(select(meta, recording2)) == FALSE){paste("[Recording 2](", select(meta, recording2)[, 1], ")", sep = "")}`
 
-`r if (is.na(select(meta, summary)) == FALSE){paste("[Summary of the event](", rdate[i], "_summary.html)", sep = "")}`
+`r if (is.na(select(meta, summary)) == FALSE){paste("[Summary of the event](", select(meta, summary), ")", sep = "")}`
 
 ```{r echo = FALSE}
 links <- paste("[link](talks/", rdate[i], "/", select(tab, slides)[, 1], ")", sep = "")

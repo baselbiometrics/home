@@ -9,9 +9,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
+<meta name="author" content="Kaspar Rufibach, Marc Vandemeulebroecke, Gernot Wassmer, Marcel Wolbers" />
 
 
-<title>Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact: Efficient use of futility and efficacy interim analyses in group-sequential designs</title>
+<title>Adaptive designs with rpact - Exercises and solutions</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1281,6 +1282,92 @@ window.buildTabsets = function(tocID) {
 };
 
 </script>
+<script>
+window.initializeCodeFolding = function(show) {
+
+  // handlers for show-all and hide all
+  $("#rmd-show-all-code").click(function() {
+    $('div.r-code-collapse').each(function() {
+      $(this).collapse('show');
+    });
+  });
+  $("#rmd-hide-all-code").click(function() {
+    $('div.r-code-collapse').each(function() {
+      $(this).collapse('hide');
+    });
+  });
+
+  // index for unique code element ids
+  var currentIndex = 1;
+
+  // select all R code blocks
+  var rCodeBlocks = $('pre.r, pre.python, pre.bash, pre.sql, pre.cpp, pre.stan, pre.julia, pre.foldable');
+  rCodeBlocks.each(function() {
+
+    // create a collapsable div to wrap the code in
+    var div = $('<div class="collapse r-code-collapse"></div>');
+    var showThis = (show || $(this).hasClass('fold-show')) && !$(this).hasClass('fold-hide');
+    var id = 'rcode-643E0F36' + currentIndex++;
+    div.attr('id', id);
+    $(this).before(div);
+    $(this).detach().appendTo(div);
+
+    // add a show code button right above
+    var showCodeText = $('<span>' + (showThis ? 'Hide' : 'Code') + '</span>');
+    var showCodeButton = $('<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm code-folding-btn pull-right float-right"></button>');
+    showCodeButton.append(showCodeText);
+    showCodeButton
+        .attr('data-toggle', 'collapse')
+        .attr('data-target', '#' + id)
+        .attr('aria-expanded', showThis)
+        .attr('aria-controls', id);
+
+    var buttonRow = $('<div class="row"></div>');
+    var buttonCol = $('<div class="col-md-12"></div>');
+
+    buttonCol.append(showCodeButton);
+    buttonRow.append(buttonCol);
+
+    div.before(buttonRow);
+
+    // show the div if necessary
+    if (showThis) div.collapse('show');
+
+    // update state of button on show/hide
+    //   * Change text
+    //   * add a class for intermediate states styling
+    div.on('hide.bs.collapse', function () {
+      showCodeText.text('Code');
+      showCodeButton.addClass('btn-collapsing');
+    });
+    div.on('hidden.bs.collapse', function () {
+      showCodeButton.removeClass('btn-collapsing');
+    });
+    div.on('show.bs.collapse', function () {
+      showCodeText.text('Hide');
+      showCodeButton.addClass('btn-expanding');
+    });
+    div.on('shown.bs.collapse', function () {
+      showCodeButton.removeClass('btn-expanding');
+    });
+
+  });
+
+}
+</script>
+<script>
+window.initializeSourceEmbed = function(filename) {
+  $("#rmd-download-source").click(function() {
+    var src = $("#rmd-source-code").html();
+    var a = document.createElement('a');
+    a.href = "data:text/x-r-markdown;base64," + src;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  });
+};
+</script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -1292,8 +1379,107 @@ window.buildTabsets = function(tocID) {
     </style>
 
 
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
+<style type="text/css">
+#rmd-source-code {
+  display: none;
+}
+</style>
 
 
 
@@ -1384,6 +1570,9 @@ pre code {
 </style>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
 
 
 
@@ -1473,84 +1662,283 @@ div.tocify {
 
 <div id="header">
 
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
 
 
-<h1 class="title toc-ignore">Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact: Efficient use of futility and efficacy interim analyses in group-sequential designs</h1>
+
+<h1 class="title toc-ignore">Adaptive designs with rpact - Exercises and solutions</h1>
+<h3 class="subtitle">BBS Training Course</h3>
+<h4 class="author">Kaspar Rufibach, Marc Vandemeulebroecke, Gernot Wassmer, Marcel Wolbers</h4>
+<h4 class="date">Basel, 13th September 2022</h4>
 
 </div>
 
 
-<div id="purpose-of-this-document" class="section level1">
-<h1>Purpose of this document</h1>
-<p>Materials for the BBS training <a href="https://baselbiometrics.github.io/home/docs/trainings/20220913/agenda.pdf">Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact</a>, held in Basel on 13th September 2022 by <a href="mailto:kaspar.rufibach@roche.com">Kaspar Rufibach</a>, <a href="mailto:marc.vandemeulebroecke@novartis.com">Marc Vandemeulebroecke</a>, <a href="mailto:gernot.wassmer@rpact.com">Gernot Wassmer</a>, and <a href="mailto:marcel.wolbers@roche.com">Marcel Wolbers</a>.</p>
+<div id="getting-started" class="section level1 unnumbered">
+<h1 class="unnumbered">Getting started</h1>
+<ul>
+<li>Make sure that you have Rstudio, R version <span class="math inline">\(\geq\)</span> 3.5 and rpact version 3.0 installed on your laptop.</li>
+<li>Load the rpact package:</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co"># Load rpact</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">library</span>(rpact)</span></code></pre></div>
+<pre><code>## Warning: Paket &#39;rpact&#39; wurde unter R Version 4.1.3 erstellt</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">packageVersion</span>(<span class="st">&quot;rpact&quot;</span>) <span class="co"># version should be version 3.0 or higher</span></span></code></pre></div>
+<pre><code>## [1] &#39;3.3.1&#39;</code></pre>
 </div>
-<div id="documents" class="section level1">
-<h1>Documents</h1>
+<div id="exercise-1-continuous-endpoint" class="section level1" number="1">
+<h1 number="1"><span class="header-section-number">1</span> Exercise 1 (Continuous endpoint)</h1>
+<p>A confirmatory, randomized and blinded study of an investigational drug against Placebo is planned in mild to moderate Alzheimer’s disease. The primary endpoint is the change from baseline in ADAS-Cog, a neuropsychological test battery measuring cognitive abilities, assessed 6 months after treatment initiation. The ADAS-Cog has a range of 0-70; we reverse its scale so that greater values are good. We consider our primary endpoint as approximately normally distributed, and for simplicity we assume a known standard deviation of 10. We believe that the improvement in the primary endpoint that can be achieved with the investigational drug is at least 4 points better than that under Placebo; and we want to have 80% chance of achieving a significant result if this is indeed the case. However, if the investigational drug is no better than Placebo, we want to have no more than 2.5% chance to claim success. This yields a sample size of approximately n=100 per treatment group for a trial with fixed sample size.</p>
+<div id="exercise-1a-the-alpha-calculus" class="section level2" number="1.1">
+<h2 number="1.1"><span class="header-section-number">1.1</span> Exercise 1a (the “alpha calculus”)</h2>
+<p>We want to build in a “sanity check” mid-way through the trial. More precisely, we implement an interim analysis using the inverse normal method, with the following characteristics (all with respect to the primary endpoint):</p>
+<ul>
+<li><p>Stop for futility if the investigational drug appears worse than Placebo</p></li>
+<li><p>Stop for efficacy if the investigational drug appears “very significantly better” than Placebo (<span class="math inline">\(p &lt; 0.0001\)</span>)</p></li>
+</ul>
+<p>Which set of <span class="math inline">\((\alpha,\alpha_0,\alpha_1,\alpha_2)\)</span> satisfies these conditions?</p>
+<p><strong>Solution:</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="co"># type solution here</span></span></code></pre></div>
+<p><strong>What regulatory issues could this raise?</strong></p>
+<p><strong>Solution</strong></p>
+</div>
+<div id="exercise-1b-early-stopping-and-sample-size-adaptation" class="section level2" number="1.2">
+<h2 number="1.2"><span class="header-section-number">1.2</span> Exercise 1b (early stopping and sample size adaptation)</h2>
+<ol style="list-style-type: decimal">
+<li>At the interim analysis after <span class="math inline">\(n_1\)</span> = 50 patients per group, we observe an average ADAS-Cog improvement of 4 points under the investigational drug and of 1 point under Placebo. Should we stop or continue the trial?</li>
+</ol>
+<p><strong>Solution</strong></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="co"># type solution here</span></span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>At the same time, there is a change in strategy, and we now want 90% power at an improvement of 4 points over placebo. Determine the sample size per treatment group for the second stage of the trial, in light of the interim results.</li>
+</ol>
+<p><strong>Solution</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="co"># type solution here</span></span></code></pre></div>
+</div>
+<div id="exercise-1c-final-inference" class="section level2" number="1.3">
+<h2 number="1.3"><span class="header-section-number">1.3</span> Exercise 1c (final inference)</h2>
+<p>In the second stage of the trial, we observe an average ADAS-Cog improvement of only <strong>3 points</strong> under the investigational drug and of 1 point under Placebo.</p>
+<ol style="list-style-type: decimal">
+<li>Can we reject the null hypothesis and claim superiority of the investigational drug over placebo?</li>
+</ol>
+<p><strong>Solution</strong></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="co"># type solution here</span></span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Compute the overall (“exact”) p-value and confidence interval for the adaptive trial.</li>
+</ol>
+<p><strong>Solution</strong></p>
+<ol start="3" style="list-style-type: decimal">
+<li>What would a “naive” z-test have concluded, based on all observations and ignoring the adaptive nature of the trial? What is your interpretation of the situation?</li>
+</ol>
+<p><strong>Solution</strong></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="co"># type solution here</span></span></code></pre></div>
+<hr />
+</div>
+</div>
+<div id="exercise-2-planning-of-survival-design" class="section level1" number="2">
+<h1 number="2"><span class="header-section-number">2</span> Exercise 2 (Planning of survival design)</h1>
+<p>A survival trial is planned to be performed with one interim stage and using an O’Brien &amp; Fleming type <span class="math inline">\(\alpha\)</span>-spending approach at <span class="math inline">\(\alpha = 0.025\)</span>. The interim is planned to be performed after half of the necessary events were observed. It is assumed that the median survival time is 18 months in the treatment group, and 12 months in the control. Assume that the drop-out rate is 5% after 1 year and the drop-out time is exponentially distributed.</p>
+<div id="exercise-2a-accrual-and-follow-up-time-given" class="section level2" number="2.1">
+<h2 number="2.1"><span class="header-section-number">2.1</span> Exercise 2a) (accrual and follow-up time given)</h2>
+<p>The patients should be recruited within 12 months assuming uniform accrual. Assume an additional follow-up time of 12 months, i.e., the study should be conducted within 2 years. Calculate the necessary number of events and patients (total and per month) in order to reach power 90% with the assumed median survival times if the survival time is exponentially distributed. Under the postulated assumption, estimate interim and final analysis time.</p>
+<p><strong>Solution</strong></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="co"># type solution here</span></span></code></pre></div>
+</div>
+<div id="exercise-2b-follow-up-time-and-absolue-intensity-given" class="section level2" number="2.2">
+<h2 number="2.2"><span class="header-section-number">2.2</span> Exercise 2b) (follow-up time and absolue intensity given)</h2>
+<p>Assume that 25 patients can be recruited each month and that there is uniform accrual. Estimate the necessary accrual time if the planned follow-up time remains unchanged.</p>
+<p><strong>Solution</strong></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="co"># type solution here</span></span></code></pre></div>
+</div>
+<div id="exercise-2c-accrual-time-and-max-number-of-patients-given" class="section level2" number="2.3">
+<h2 number="2.3"><span class="header-section-number">2.3</span> Exercise 2c) (accrual time and max number of patients given)</h2>
+<p>Assume that accrual stops after 16 months with 25 patients per month, i.e., after 400 patients were recruited. What is the estimated necessary follow-up time?</p>
+<p><strong>Solution</strong></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="co"># type solution here</span></span></code></pre></div>
+</div>
+<div id="exercise-2d-staggered-patient-entry" class="section level2" number="2.4">
+<h2 number="2.4"><span class="header-section-number">2.4</span> Exercise 2d) (staggered patient entry)</h2>
+<p>How do the results change if in the first 3 months 15 patients, in the second 3 months 20 patients, and after 6 months 25 patients per month can be accrued?</p>
+<p><strong>Solution</strong></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="co"># type solution here</span></span></code></pre></div>
+</div>
+</div>
+<div id="exercise-3-adaptive-survival-design" class="section level1" number="3">
+<h1 number="3"><span class="header-section-number">3</span> Exercise 3 (Adaptive survival design)</h1>
+<div id="exercise-3-a-verify-results-by-simulation" class="section level2" number="3.1">
+<h2 number="3.1"><span class="header-section-number">3.1</span> Exercise 3 a) (verify results by simulation)</h2>
+<p>Assume that the study from Example 2 is planned with 257 events and 400 patients under the assumptions that accrual stops after 16 months with 25 patients per month. Verify by simulation the correctness of the results obtained by the analytical formulae.</p>
+<p><strong>Solution</strong></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a><span class="co"># type solution here</span></span></code></pre></div>
+</div>
+<div id="exercise-3-b-assess-adaptive-survival-design" class="section level2" number="3.2">
+<h2 number="3.2"><span class="header-section-number">3.2</span> Exercise 3 b) (assess adaptive survival design)</h2>
+<p>Assume now that a sample size increase up to a ten-fold of the originally planned number of events is foreseen. Conditional power 90% <em>based on the observed hazard ratios</em> is used to increase the number of events. Assess by simulation the magnitute of power increase when using the appropriate method.</p>
+<pre><code>Simulate the Type I error rate when using </code></pre>
+<ul>
+<li><p>the group sequential method</p></li>
+<li><p>the inverse normal method</p></li>
+</ul>
+<p>Hint: Make sure that enough subjects are used in the simulation (set maxNumberOfSubjects = 3000 and no drop-outs)</p>
+<p><strong>Solution</strong></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a><span class="co"># type solution here</span></span></code></pre></div>
+<hr />
+</div>
+</div>
+<div id="exercise-4-sample-size-calculation-for-testing-rates" class="section level1" number="4">
+<h1 number="4"><span class="header-section-number">4</span> Exercise 4 (Sample size calculation for testing rates)</h1>
+<p>Suppose a trial should be conducted in 3 stages where at the first stage 50%, at the second stage 75%, and at the final stage 100% of the information should be observed. O’Brien | Fleming boundaries should be used with one-sided <span class="math inline">\(\alpha = 0.025\)</span> and non-binding futility bounds 0 and 0.5 for the first and the second stage, respectively, on the z-value scale.</p>
+<p>The endpoints are binary (failure rates) and should be compared in a parallel group design, i.e., the null hypothesis to be tested is <span class="math inline">\(H_0:\pi_1 - \pi_2 = 0\,,\)</span> which is tested against the alternative <span class="math inline">\(H_1: \pi_1 - \pi_2 &lt; 0\,.\)</span></p>
+<div id="exercise-4-a-sample-size-calculation" class="section level2" number="4.1">
+<h2 number="4.1"><span class="header-section-number">4.1</span> Exercise 4 a) (sample size calculation)</h2>
+<p>What is the necessary sample size to achieve 90% power if the failure rates are assumed to be <span class="math inline">\(\pi_1 = 0.40\)</span> and <span class="math inline">\(\pi_2 = 0.60\)</span>? What is the optimum allocation ratio?</p>
+<p><strong>Solution</strong></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true"></a><span class="co"># type solution here</span></span></code></pre></div>
+</div>
+<div id="exercise-4-b-boundary-plots" class="section level2" number="4.2">
+<h2 number="4.2"><span class="header-section-number">4.2</span> Exercise 4 b) (boundary plots)</h2>
+<p>Illustrate the decision boundaries on different scales.</p>
+<p><strong>Solution</strong></p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true"></a><span class="co"># type solution here</span></span></code></pre></div>
+</div>
+<div id="exercise-4-c-power-assessment" class="section level2" number="4.3">
+<h2 number="4.3"><span class="header-section-number">4.3</span> Exercise 4 c) (power assessment)</h2>
+<p>Suppose that <span class="math inline">\(N = 280\)</span> subjects were planned for the study. What is the power if the failure rate in the active treatment group is <span class="math inline">\(\pi_1 = 0.50\)</span>?</p>
+<p><strong>Solution</strong></p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true"></a><span class="co"># type solution here</span></span></code></pre></div>
+</div>
+<div id="exercise-4-d-power-illustration" class="section level2" number="4.4">
+<h2 number="4.4"><span class="header-section-number">4.4</span> Exercise 4 d) (power illustration)</h2>
+<p>Illustrate power, expected sample size, and early/futility stop for a range of alternative values.</p>
+<p><strong>Solution</strong></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true"></a><span class="co"># type solution here</span></span></code></pre></div>
+<hr />
+</div>
+</div>
+<div id="exercise-5-sample-size-reassessment-for-testing-rates" class="section level1" number="5">
+<h1 number="5"><span class="header-section-number">5</span> Exercise 5 (Sample size reassessment for testing rates)</h1>
+<p>Using an adaptive design, the sample size from Example 4 in the last interim can be increased up to a 4-fold of the originally planned sample size for the last stage. Conditional power 90% <em>based on the observed effect sizes (failure rates)</em> is used to increase the sample size.</p>
+<div id="exercise-5-a-assess-power" class="section level2" number="5.1">
+<h2 number="5.1"><span class="header-section-number">5.1</span> Exercise 5 a) (assess power)</h2>
+<p>Use the inverse normal method to allow for the sample size increase and compare the test characteristics with the group sequential design from Example 4.</p>
+<p><strong>Solution</strong></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true"></a><span class="co"># type solution here</span></span></code></pre></div>
+</div>
+<div id="exercise-5-b-illustrate-power-difference" class="section level2" number="5.2">
+<h2 number="5.2"><span class="header-section-number">5.2</span> Exercise 5 b) (illustrate power difference)</h2>
+<p>Illustrate the gain in power when using the adaptive sample size recalculation.</p>
+<p><strong>Solution</strong></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true"></a><span class="co"># type solution here</span></span></code></pre></div>
+</div>
+<div id="exercise-5-c-histogram-of-sample-sizes" class="section level2" number="5.3">
+<h2 number="5.3"><span class="header-section-number">5.3</span> Exercise 5 c) (histogram of sample sizes)</h2>
+<p>Create a histogram for the attained sample size of the study when using the adaptive sample size recalculation. How often will the maximum sample size be achieved?</p>
+<p><strong>Solution</strong></p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true"></a><span class="co"># type solution here</span></span></code></pre></div>
+<hr />
+</div>
+</div>
+<div id="exercise-6-multi-armed-design-with-continuous-endpoint" class="section level1" number="6">
+<h1 number="6"><span class="header-section-number">6</span> Exercise 6 (Multi-armed design with continuous endpoint)</h1>
+<p>Suppose a trial is conducted with three active treatment arms (+ one control arm). An adaptive design using the equally weighted inverse normal method with two interim analyses using O’Brien &amp; Fleming boundaries is chosen where in both interim analyses a selection of treatment arms is foreseen (<span class="math inline">\(\alpha = 0.025\)</span> one-sided). It is decided to test the intersection tests in the closed system of hypotheses with Dunnett’s test. In the designing stage, it was decided to conduct the study with 20 patients per treatment arm and stage where at interim the sample size can be redefined.</p>
+<div id="exercise-6-a-first-stage-and-conditional-power" class="section level2" number="6.1">
+<h2 number="6.1"><span class="header-section-number">6.1</span> Exercise 6 a) (First stage and conditional power)</h2>
+<p>Suppose, at the first stage, the following results were obtained:</p>
 <table>
-<colgroup>
-<col width="7%" />
-<col width="26%" />
-<col width="16%" />
-<col width="14%" />
-<col width="24%" />
-<col width="9%" />
-</colgroup>
 <thead>
 <tr class="header">
-<th align="left">Presenter</th>
-<th align="center">Title</th>
-<th align="center">Slides</th>
-<th align="center">Markdown accompanying slides</th>
-<th align="center">Exercises</th>
-<th align="left">Exercises incl. solutions</th>
+<th>arm</th>
+<th>n</th>
+<th>mean</th>
+<th>std</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Kaspar Rufibach</td>
-<td align="center">Efficient use of futility and efficacy interim analyses in group-sequential designs</td>
-<td align="center"><a href="RufibachWolbers_efficient_interims_handout.pdf">X</a></td>
-<td align="center"><a href="RufibachWolbers_efficient_interims.html">X</a></td>
-<td align="center"><a href="RufibachWolbers_efficient_interims_exercises.html">X</a></td>
-<td align="left">will be added after the course</td>
+<td>1</td>
+<td>19</td>
+<td>3.11</td>
+<td>1.77</td>
 </tr>
 <tr class="even">
-<td align="left">Marc Vandemeulebroecke</td>
-<td align="center">Introduction adaptive trials &amp; sample size re-calculation</td>
-<td align="center"><a href>X</a></td>
-<td align="center"><a href>X</a></td>
-<td align="center"><a href>X</a></td>
-<td align="left">will be added after the course</td>
+<td>2</td>
+<td>23</td>
+<td>3.87</td>
+<td>1.23</td>
 </tr>
 <tr class="odd">
-<td align="left">Gernot Wassmer</td>
-<td align="center">Introduction to rpact</td>
-<td align="center"><a href="WassmerIntroduction%20to%20rpact.pdf">X</a></td>
-<td align="center"></td>
-<td align="center"><a href="WassmerrpactExercises.pdf">PDF</a> and <a href="WassmerrpactExercises.html">markdown</a></td>
-<td align="left">will be added after the course</td>
+<td>3</td>
+<td>21</td>
+<td>4.12</td>
+<td>1.64</td>
 </tr>
 <tr class="even">
-<td align="left">Gernot Wassmer</td>
-<td align="center">Closed testing principle in adaptive trials</td>
-<td align="center"><a href="WassmerClosedTestingPrinciple.pdf">X</a></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">Marcel Wolbers</td>
-<td align="center">Multi-arm multi-stage designs</td>
-<td align="center"><a href>X</a></td>
-<td align="center"><a href>X</a></td>
-<td align="center"><a href>X</a></td>
-<td align="left">will be added after the course</td>
+<td>control</td>
+<td>21</td>
+<td>3.02</td>
+<td>1.72</td>
 </tr>
 </tbody>
 </table>
-<p><a href="BBS_adaptive.zip">Download all files as .zip file</a>.</p>
+<p>Perform the closed test and assess the conditional power in order to decide which treatment arm(s) should be selected and if the sample size should be redefined.</p>
+<p><strong>Solution</strong></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true"></a><span class="co"># type solution here</span></span></code></pre></div>
+</div>
+<div id="exercise-6-b-second-stage" class="section level2" number="6.2">
+<h2 number="6.2"><span class="header-section-number">6.2</span> Exercise 6 b) (Second stage)</h2>
+<p>Suppose it was decided to drop treatment arm 1 for stage 2 and leave the sample size for the remaining arms unchanged. For the second stage, the following results were obtained:</p>
+<table>
+<thead>
+<tr class="header">
+<th>arm</th>
+<th>n</th>
+<th>mean</th>
+<th>std</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2</td>
+<td>23</td>
+<td>3.66</td>
+<td>1.11</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>19</td>
+<td>3.98</td>
+<td>1.21</td>
+</tr>
+<tr class="odd">
+<td>control</td>
+<td>22</td>
+<td>2.99</td>
+<td>1.82</td>
+</tr>
+</tbody>
+</table>
+<p>Perform the closed test and discuss whether or not to stop the study and determine overall <span class="math inline">\(p\,\)</span>-values and confidence intervals.</p>
+<p><strong>Solution</strong></p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true"></a><span class="co"># type solution here</span></span></code></pre></div>
+</div>
+<div id="exercise-6-c-intersection-tests" class="section level2" number="6.3">
+<h2 number="6.3"><span class="header-section-number">6.3</span> Exercise 6 c) (Intersection tests)</h2>
+<p>Does the Bonferroni and the Simes test provide the same results?</p>
+<p><strong>Solution</strong></p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true"></a><span class="co"># type solution here</span></span></code></pre></div>
+<hr />
+<p>System: rpact 3.3.1, R version 4.1.1 (2021-08-10), platform: x86_64-w64-mingw32</p>
+<p>To cite package ‘rpact’ in publications use:</p>
+<p>Gernot Wassmer and Friedrich Pahlke (2022). rpact: Confirmatory Adaptive Clinical Trial Design and Analysis. R package version 3.3.1. <a href="https://CRAN.R-project.org/package=rpact" class="uri">https://CRAN.R-project.org/package=rpact</a></p>
+</div>
 </div>
 
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkFkYXB0aXZlIGRlc2lnbnMgd2l0aCBycGFjdCAtIEV4ZXJjaXNlcyBhbmQgc29sdXRpb25zIg0KYXV0aG9yOiAiS2FzcGFyIFJ1ZmliYWNoLCBNYXJjIFZhbmRlbWV1bGVicm9lY2tlLCBHZXJub3QgV2Fzc21lciwgTWFyY2VsIFdvbGJlcnMiDQpkYXRlOiAiQmFzZWwsIDEzdGggU2VwdGVtYmVyIDIwMjIiDQpvdXRwdXQ6DQogIHJtYXJrZG93bjo6aHRtbF9kb2N1bWVudDoNCiAgICBoaWdobGlnaHQ6IHB5Z21lbnRzDQogICAgbnVtYmVyX3NlY3Rpb25zOiB5ZXMNCiAgICBzZWxmX2NvbnRhaW5lZDogeWVzDQogICAgdG9jOiB5ZXMNCiAgICB0b2NfZGVwdGg6IDMNCiAgICB0b2NfZmxvYXQ6IHllcw0KICAgIGNvZGVfZG93bmxvYWQ6IHRydWUNCnN1YnRpdGxlOiBCQlMgVHJhaW5pbmcgQ291cnNlDQotLS0NCg0KDQojIEdldHRpbmcgc3RhcnRlZHstfQ0KDQotIE1ha2Ugc3VyZSB0aGF0IHlvdSBoYXZlIFJzdHVkaW8sIFIgdmVyc2lvbiAkXGdlcSQgMy41IGFuZCBycGFjdCB2ZXJzaW9uIDMuMCBpbnN0YWxsZWQgb24geW91ciBsYXB0b3AuDQotIExvYWQgdGhlIHJwYWN0IHBhY2thZ2U6DQoNCmBgYHtyLCBpbmNsdWRlPVRSVUUsIGVjaG89VFJVRX0NCiMgTG9hZCBycGFjdA0KbGlicmFyeShycGFjdCkNCnBhY2thZ2VWZXJzaW9uKCJycGFjdCIpICMgdmVyc2lvbiBzaG91bGQgYmUgdmVyc2lvbiAzLjAgb3IgaGlnaGVyDQoNCmBgYA0KYGBge3IsIGVjaG8gPSBGQUxTRSwgcmVzdWx0cyA9ICdoaWRlJ30NCnNldExvZ0xldmVsKCJESVNBQkxFRCIpDQpgYGANCg0KIyBFeGVyY2lzZSAxIChDb250aW51b3VzIGVuZHBvaW50KQ0KDQpBIGNvbmZpcm1hdG9yeSwgcmFuZG9taXplZCBhbmQgYmxpbmRlZCBzdHVkeSBvZiBhbiBpbnZlc3RpZ2F0aW9uYWwgZHJ1ZyBhZ2FpbnN0IFBsYWNlYm8gaXMgcGxhbm5lZCBpbiBtaWxkIHRvIG1vZGVyYXRlIEFsemhlaW1lcidzIGRpc2Vhc2UuDQpUaGUgcHJpbWFyeSBlbmRwb2ludCBpcyB0aGUgY2hhbmdlIGZyb20gYmFzZWxpbmUgaW4gQURBUy1Db2csIGEgbmV1cm9wc3ljaG9sb2dpY2FsIHRlc3QgYmF0dGVyeSBtZWFzdXJpbmcgY29nbml0aXZlIGFiaWxpdGllcywgYXNzZXNzZWQgNiBtb250aHMgYWZ0ZXIgdHJlYXRtZW50IGluaXRpYXRpb24uDQpUaGUgQURBUy1Db2cgaGFzIGEgcmFuZ2Ugb2YgMC03MDsgd2UgcmV2ZXJzZSBpdHMgc2NhbGUgc28gdGhhdCBncmVhdGVyIHZhbHVlcyBhcmUgZ29vZC4NCldlIGNvbnNpZGVyIG91ciBwcmltYXJ5IGVuZHBvaW50IGFzIGFwcHJveGltYXRlbHkgbm9ybWFsbHkgZGlzdHJpYnV0ZWQsIGFuZCBmb3Igc2ltcGxpY2l0eSB3ZSBhc3N1bWUgYSBrbm93biBzdGFuZGFyZCBkZXZpYXRpb24gb2YgMTAuDQpXZSBiZWxpZXZlIHRoYXQgdGhlIGltcHJvdmVtZW50IGluIHRoZSBwcmltYXJ5IGVuZHBvaW50IHRoYXQgY2FuIGJlIGFjaGlldmVkIHdpdGggdGhlIGludmVzdGlnYXRpb25hbCBkcnVnIGlzIGF0IGxlYXN0IDQgcG9pbnRzIGJldHRlciB0aGFuIHRoYXQgdW5kZXIgUGxhY2VibzsgYW5kIHdlIHdhbnQgdG8gaGF2ZSA4MCUgY2hhbmNlIG9mIGFjaGlldmluZyBhIHNpZ25pZmljYW50IHJlc3VsdCBpZiB0aGlzIGlzIGluZGVlZCB0aGUgY2FzZS4NCkhvd2V2ZXIsIGlmIHRoZSBpbnZlc3RpZ2F0aW9uYWwgZHJ1ZyBpcyBubyBiZXR0ZXIgdGhhbiBQbGFjZWJvLCB3ZSB3YW50IHRvIGhhdmUgbm8gbW9yZSB0aGFuIDIuNSUgY2hhbmNlIHRvIGNsYWltIHN1Y2Nlc3MuDQpUaGlzIHlpZWxkcyBhIHNhbXBsZSBzaXplIG9mIGFwcHJveGltYXRlbHkgIG49MTAwICBwZXIgdHJlYXRtZW50IGdyb3VwIGZvciBhIHRyaWFsIHdpdGggZml4ZWQgc2FtcGxlIHNpemUuDQoNCg0KIyMgRXhlcmNpc2UgMWEgKHRoZSAiYWxwaGEgY2FsY3VsdXMiKQ0KDQpXZSB3YW50IHRvIGJ1aWxkIGluIGEgInNhbml0eSBjaGVjayIgbWlkLXdheSB0aHJvdWdoIHRoZSB0cmlhbC4gTW9yZSBwcmVjaXNlbHksIHdlIGltcGxlbWVudCBhbiBpbnRlcmltIGFuYWx5c2lzIHVzaW5nIHRoZSBpbnZlcnNlIG5vcm1hbCBtZXRob2QsIHdpdGggdGhlIGZvbGxvd2luZyBjaGFyYWN0ZXJpc3RpY3MgKGFsbCB3aXRoIHJlc3BlY3QgdG8gdGhlIHByaW1hcnkgZW5kcG9pbnQpOg0KDQotIFN0b3AgZm9yIGZ1dGlsaXR5IGlmIHRoZSBpbnZlc3RpZ2F0aW9uYWwgZHJ1ZyBhcHBlYXJzIHdvcnNlIHRoYW4gUGxhY2Vibw0KDQotIFN0b3AgZm9yIGVmZmljYWN5IGlmIHRoZSBpbnZlc3RpZ2F0aW9uYWwgZHJ1ZyBhcHBlYXJzICJ2ZXJ5IHNpZ25pZmljYW50bHkgYmV0dGVyIiB0aGFuIFBsYWNlYm8gKCRwIDwgMC4wMDAxJCkNCg0KV2hpY2ggc2V0IG9mICQoXGFscGhhLFxhbHBoYV8wLFxhbHBoYV8xLFxhbHBoYV8yKSQgc2F0aXNmaWVzIHRoZXNlIGNvbmRpdGlvbnM/DQoNCg0KKipTb2x1dGlvbjoqKiANCg0KYGBge3IsIGluY2x1ZGU9VFJVRSwgZWNobz1UUlVFfQ0KIyB0eXBlIHNvbHV0aW9uIGhlcmUNCmBgYA0KDQoNCioqV2hhdCByZWd1bGF0b3J5IGlzc3VlcyBjb3VsZCB0aGlzIHJhaXNlPyoqDQoNCioqU29sdXRpb24qKg0KDQoNCiMjIEV4ZXJjaXNlIDFiIChlYXJseSBzdG9wcGluZyBhbmQgc2FtcGxlIHNpemUgYWRhcHRhdGlvbikNCg0KIDEuIEF0IHRoZSBpbnRlcmltIGFuYWx5c2lzIGFmdGVyICRuXzEkID0gNTAgcGF0aWVudHMgcGVyIGdyb3VwLCB3ZSBvYnNlcnZlIGFuIGF2ZXJhZ2UgQURBUy1Db2cgaW1wcm92ZW1lbnQgb2YgNCBwb2ludHMgdW5kZXIgdGhlIGludmVzdGlnYXRpb25hbCBkcnVnIGFuZCBvZiAxIHBvaW50IHVuZGVyIFBsYWNlYm8uIFNob3VsZCB3ZSBzdG9wIG9yIGNvbnRpbnVlIHRoZSB0cmlhbD8NCg0KDQoqKlNvbHV0aW9uKioNCg0KDQoNCmBgYHtyIGVjaG89VFJVRSwgd2FybmluZz1GQUxTRSwgaW5jbHVkZT1UUlVFfQ0KIyB0eXBlIHNvbHV0aW9uIGhlcmUNCmBgYA0KDQoNCiAyLiBBdCB0aGUgc2FtZSB0aW1lLCB0aGVyZSBpcyBhIGNoYW5nZSBpbiBzdHJhdGVneSwgYW5kIHdlIG5vdyB3YW50IDkwJSBwb3dlciBhdCBhbiBpbXByb3ZlbWVudCBvZiA0IHBvaW50cyBvdmVyIHBsYWNlYm8uIERldGVybWluZSB0aGUgc2FtcGxlIHNpemUgcGVyIHRyZWF0bWVudCBncm91cCBmb3IgdGhlIHNlY29uZCBzdGFnZSBvZiB0aGUgdHJpYWwsIGluIGxpZ2h0IG9mIHRoZSBpbnRlcmltIHJlc3VsdHMuDQoNCioqU29sdXRpb24qKg0KDQpgYGB7ciBlY2hvPVRSVUUsIHdhcm5pbmc9RkFMU0UsIGluY2x1ZGU9VFJVRX0NCiMgdHlwZSBzb2x1dGlvbiBoZXJlDQpgYGANCg0KDQoNCiMjIEV4ZXJjaXNlIDFjIChmaW5hbCBpbmZlcmVuY2UpDQoNCkluIHRoZSBzZWNvbmQgc3RhZ2Ugb2YgdGhlIHRyaWFsLCB3ZSBvYnNlcnZlIGFuIGF2ZXJhZ2UgQURBUy1Db2cgaW1wcm92ZW1lbnQgb2Ygb25seSAqKjMgcG9pbnRzKiogdW5kZXIgdGhlIGludmVzdGlnYXRpb25hbCBkcnVnIGFuZCBvZiAxIHBvaW50IHVuZGVyIFBsYWNlYm8uDQoNCiAxLiBDYW4gd2UgcmVqZWN0IHRoZSBudWxsIGh5cG90aGVzaXMgYW5kIGNsYWltIHN1cGVyaW9yaXR5IG9mIHRoZSBpbnZlc3RpZ2F0aW9uYWwgZHJ1ZyBvdmVyIHBsYWNlYm8/DQoNCioqU29sdXRpb24qKg0KDQoNCmBgYHtyIGVjaG89VFJVRSwgd2FybmluZz1GQUxTRSwgaW5jbHVkZT1UUlVFfQ0KIyB0eXBlIHNvbHV0aW9uIGhlcmUNCmBgYA0KDQoNCiAyLiBDb21wdXRlIHRoZSBvdmVyYWxsICgiZXhhY3QiKSBwLXZhbHVlIGFuZCBjb25maWRlbmNlIGludGVydmFsIGZvciB0aGUgYWRhcHRpdmUgdHJpYWwuDQoNCioqU29sdXRpb24qKg0KDQoNCiAzLiBXaGF0IHdvdWxkIGEgIm5haXZlIiB6LXRlc3QgaGF2ZSBjb25jbHVkZWQsIGJhc2VkIG9uIGFsbCBvYnNlcnZhdGlvbnMgYW5kIGlnbm9yaW5nIHRoZSBhZGFwdGl2ZSBuYXR1cmUgb2YgdGhlIHRyaWFsPyBXaGF0IGlzIHlvdXIgaW50ZXJwcmV0YXRpb24gb2YgdGhlIHNpdHVhdGlvbj8NCg0KKipTb2x1dGlvbioqDQoNCmBgYHtyIGVjaG89VFJVRSwgd2FybmluZz1GQUxTRSwgaW5jbHVkZT1UUlVFfQ0KIyB0eXBlIHNvbHV0aW9uIGhlcmUNCmBgYA0KDQoNCg0KKioqDQoNCiMgRXhlcmNpc2UgMiAoUGxhbm5pbmcgb2Ygc3Vydml2YWwgZGVzaWduKQ0KDQpBIHN1cnZpdmFsIHRyaWFsIGlzIHBsYW5uZWQgdG8gYmUgcGVyZm9ybWVkIHdpdGggb25lIGludGVyaW0gc3RhZ2UgYW5kIHVzaW5nIGFuIE8nQnJpZW4gJiBGbGVtaW5nIHR5cGUgJFxhbHBoYSQtc3BlbmRpbmcgYXBwcm9hY2ggYXQgJFxhbHBoYSA9IDAuMDI1JC4gVGhlIGludGVyaW0gaXMgcGxhbm5lZCB0byBiZSBwZXJmb3JtZWQgYWZ0ZXIgaGFsZiBvZiB0aGUgbmVjZXNzYXJ5IGV2ZW50cyB3ZXJlIG9ic2VydmVkLiBJdCBpcyBhc3N1bWVkIHRoYXQgdGhlIG1lZGlhbiBzdXJ2aXZhbCB0aW1lIGlzIDE4IG1vbnRocyBpbiB0aGUgdHJlYXRtZW50IGdyb3VwLCBhbmQgMTIgbW9udGhzIGluIHRoZSBjb250cm9sLiAgQXNzdW1lIHRoYXQgdGhlIGRyb3Atb3V0IHJhdGUgaXMgNSUgYWZ0ZXIgMSB5ZWFyIGFuZCB0aGUgZHJvcC1vdXQgdGltZSBpcyBleHBvbmVudGlhbGx5IGRpc3RyaWJ1dGVkLg0KDQojIyBFeGVyY2lzZSAyYSkgKGFjY3J1YWwgYW5kIGZvbGxvdy11cCB0aW1lIGdpdmVuKQ0KDQpUaGUgcGF0aWVudHMgc2hvdWxkIGJlIHJlY3J1aXRlZCB3aXRoaW4gMTIgbW9udGhzIGFzc3VtaW5nIHVuaWZvcm0gYWNjcnVhbC4gQXNzdW1lIGFuIGFkZGl0aW9uYWwgZm9sbG93LXVwIHRpbWUgb2YgMTIgbW9udGhzLCBpLmUuLCB0aGUgc3R1ZHkgc2hvdWxkIGJlIGNvbmR1Y3RlZCB3aXRoaW4gMiB5ZWFycy4gQ2FsY3VsYXRlIHRoZSBuZWNlc3NhcnkgbnVtYmVyIG9mIGV2ZW50cyBhbmQgcGF0aWVudHMgKHRvdGFsIGFuZCBwZXIgbW9udGgpIGluIG9yZGVyIHRvIHJlYWNoIHBvd2VyIDkwJSB3aXRoIHRoZSBhc3N1bWVkIG1lZGlhbiBzdXJ2aXZhbCB0aW1lcyBpZiB0aGUgc3Vydml2YWwgdGltZSBpcyBleHBvbmVudGlhbGx5IGRpc3RyaWJ1dGVkLiBVbmRlciB0aGUgcG9zdHVsYXRlZCBhc3N1bXB0aW9uLCBlc3RpbWF0ZSBpbnRlcmltIGFuZCBmaW5hbCBhbmFseXNpcyB0aW1lLg0KDQoqKlNvbHV0aW9uKioNCg0KDQoNCmBgYHtyLCBpbmNsdWRlPVRSVUUsIGVjaG89VFJVRX0NCiMgdHlwZSBzb2x1dGlvbiBoZXJlDQpgYGANCg0KDQojIyBFeGVyY2lzZSAyYikgKGZvbGxvdy11cCB0aW1lIGFuZCBhYnNvbHVlIGludGVuc2l0eSBnaXZlbikNCg0KQXNzdW1lIHRoYXQgMjUgcGF0aWVudHMgY2FuIGJlIHJlY3J1aXRlZCBlYWNoIG1vbnRoIGFuZCB0aGF0IHRoZXJlIGlzIHVuaWZvcm0gYWNjcnVhbC4gRXN0aW1hdGUgdGhlIG5lY2Vzc2FyeSBhY2NydWFsIHRpbWUgaWYgdGhlIHBsYW5uZWQgZm9sbG93LXVwIHRpbWUgcmVtYWlucyB1bmNoYW5nZWQuDQoNCioqU29sdXRpb24qKg0KDQoNCmBgYHtyLCBpbmNsdWRlPVRSVUUsIGVjaG89VFJVRX0NCiMgdHlwZSBzb2x1dGlvbiBoZXJlDQpgYGANCg0KDQojIyBFeGVyY2lzZSAyYykgKGFjY3J1YWwgdGltZSBhbmQgbWF4IG51bWJlciBvZiBwYXRpZW50cyBnaXZlbikNCg0KQXNzdW1lIHRoYXQgYWNjcnVhbCBzdG9wcyBhZnRlciAxNiBtb250aHMgd2l0aCAyNSBwYXRpZW50cyBwZXIgbW9udGgsIGkuZS4sIGFmdGVyIDQwMCBwYXRpZW50cyB3ZXJlIHJlY3J1aXRlZC4gV2hhdCBpcyB0aGUgZXN0aW1hdGVkIG5lY2Vzc2FyeSBmb2xsb3ctdXAgdGltZT8NCg0KKipTb2x1dGlvbioqDQoNCg0KYGBge3IsIGluY2x1ZGU9VFJVRSwgZWNobz1UUlVFfQ0KIyB0eXBlIHNvbHV0aW9uIGhlcmUNCmBgYA0KDQoNCiMjIEV4ZXJjaXNlIDJkKSAoc3RhZ2dlcmVkIHBhdGllbnQgZW50cnkpDQoNCkhvdyBkbyB0aGUgcmVzdWx0cyBjaGFuZ2UgaWYgaW4gdGhlIGZpcnN0IDMgbW9udGhzIDE1IHBhdGllbnRzLCBpbiB0aGUgc2Vjb25kIDMgbW9udGhzIDIwIHBhdGllbnRzLCBhbmQgYWZ0ZXIgNiBtb250aHMgMjUgcGF0aWVudHMgcGVyIG1vbnRoIGNhbiBiZSBhY2NydWVkPw0KDQoqKlNvbHV0aW9uKioNCg0KDQpgYGB7ciwgaW5jbHVkZT1UUlVFLCBlY2hvPVRSVUV9DQojIHR5cGUgc29sdXRpb24gaGVyZQ0KYGBgDQoNCg0KIyBFeGVyY2lzZSAzIChBZGFwdGl2ZSBzdXJ2aXZhbCBkZXNpZ24pDQoNCiMjIEV4ZXJjaXNlIDMgYSkgKHZlcmlmeSByZXN1bHRzIGJ5IHNpbXVsYXRpb24pDQoNCkFzc3VtZSB0aGF0IHRoZSBzdHVkeSBmcm9tIEV4YW1wbGUgMiBpcyBwbGFubmVkIHdpdGggMjU3IGV2ZW50cyBhbmQgNDAwIHBhdGllbnRzIHVuZGVyIHRoZSBhc3N1bXB0aW9ucyB0aGF0IGFjY3J1YWwgc3RvcHMgYWZ0ZXIgMTYgbW9udGhzIHdpdGggMjUgcGF0aWVudHMgcGVyIG1vbnRoLiBWZXJpZnkgYnkgc2ltdWxhdGlvbiB0aGUgY29ycmVjdG5lc3Mgb2YgdGhlIHJlc3VsdHMgb2J0YWluZWQgYnkgdGhlIGFuYWx5dGljYWwgZm9ybXVsYWUuDQoNCioqU29sdXRpb24qKg0KDQoNCmBgYHtyLCBpbmNsdWRlPVRSVUUsIGVjaG89VFJVRX0NCiMgdHlwZSBzb2x1dGlvbiBoZXJlDQpgYGANCg0KDQojIyBFeGVyY2lzZSAzIGIpIChhc3Nlc3MgYWRhcHRpdmUgc3Vydml2YWwgZGVzaWduKQ0KDQpBc3N1bWUgbm93IHRoYXQgYSBzYW1wbGUgc2l6ZSBpbmNyZWFzZSB1cCB0byBhIHRlbi1mb2xkIG9mIHRoZSBvcmlnaW5hbGx5IHBsYW5uZWQgbnVtYmVyIG9mIGV2ZW50cyBpcyBmb3Jlc2Vlbi4gDQpDb25kaXRpb25hbCBwb3dlciA5MCUgKmJhc2VkIG9uIHRoZSBvYnNlcnZlZCBoYXphcmQgcmF0aW9zKiBpcyB1c2VkIHRvIGluY3JlYXNlIHRoZSBudW1iZXIgb2YgZXZlbnRzLiANCkFzc2VzcyBieSBzaW11bGF0aW9uIHRoZSBtYWduaXR1dGUgb2YgcG93ZXIgaW5jcmVhc2Ugd2hlbiB1c2luZyB0aGUgYXBwcm9wcmlhdGUgbWV0aG9kLg0KDQogICAgU2ltdWxhdGUgdGhlIFR5cGUgSSBlcnJvciByYXRlIHdoZW4gdXNpbmcgDQoNCi0gdGhlIGdyb3VwIHNlcXVlbnRpYWwgbWV0aG9kDQoNCi0gdGhlIGludmVyc2Ugbm9ybWFsIG1ldGhvZA0KDQpIaW50OiBNYWtlIHN1cmUgdGhhdCBlbm91Z2ggc3ViamVjdHMgYXJlIHVzZWQgaW4gdGhlIHNpbXVsYXRpb24gKHNldCBtYXhOdW1iZXJPZlN1YmplY3RzID0gMzAwMCBhbmQgbm8gZHJvcC1vdXRzKQ0KDQoqKlNvbHV0aW9uKioNCg0KDQpgYGB7ciwgaW5jbHVkZT1UUlVFLCBlY2hvPVRSVUV9DQojIHR5cGUgc29sdXRpb24gaGVyZQ0KYGBgDQoNCg0KDQoNCg0KKioqDQoNCiMgRXhlcmNpc2UgNCAoU2FtcGxlIHNpemUgY2FsY3VsYXRpb24gZm9yIHRlc3RpbmcgcmF0ZXMpDQoNClN1cHBvc2UgYSB0cmlhbCBzaG91bGQgYmUgY29uZHVjdGVkIGluIDMgc3RhZ2VzIHdoZXJlIGF0IHRoZSBmaXJzdCBzdGFnZSA1MCUsIGF0IHRoZSBzZWNvbmQgc3RhZ2UgNzUlLCBhbmQgYXQgdGhlIGZpbmFsIHN0YWdlIDEwMCUgb2YgdGhlIGluZm9ybWF0aW9uIHNob3VsZCBiZSBvYnNlcnZlZC4gTydCcmllbiB8IEZsZW1pbmcgYm91bmRhcmllcyBzaG91bGQgYmUgdXNlZCB3aXRoIG9uZS1zaWRlZCAkXGFscGhhID0gMC4wMjUkIGFuZCBub24tYmluZGluZyBmdXRpbGl0eSBib3VuZHMgMCBhbmQgMC41IGZvciB0aGUgZmlyc3QgYW5kIHRoZSBzZWNvbmQgc3RhZ2UsIHJlc3BlY3RpdmVseSwgb24gdGhlIHotdmFsdWUgc2NhbGUuDQoNClRoZSBlbmRwb2ludHMgYXJlIGJpbmFyeSAoZmFpbHVyZSByYXRlcykgYW5kIHNob3VsZCBiZSBjb21wYXJlZCBpbiBhIHBhcmFsbGVsIGdyb3VwIGRlc2lnbiwgaS5lLiwgdGhlIG51bGwgaHlwb3RoZXNpcyB0byBiZSB0ZXN0ZWQgaXMNCiRIXzA6XHBpXzEgLSBccGlfMiA9IDBcLCwkIHdoaWNoIGlzIHRlc3RlZCBhZ2FpbnN0IHRoZSBhbHRlcm5hdGl2ZSAkSF8xOiBccGlfMSAtIFxwaV8yIDwgMFwsLiQNCg0KIyMgRXhlcmNpc2UgNCBhKSAoc2FtcGxlIHNpemUgY2FsY3VsYXRpb24pDQoNCldoYXQgaXMgdGhlIG5lY2Vzc2FyeSBzYW1wbGUgc2l6ZSB0byBhY2hpZXZlIDkwJSBwb3dlciBpZiB0aGUgZmFpbHVyZSByYXRlcyBhcmUgYXNzdW1lZCB0byBiZSAkXHBpXzEgPSAwLjQwJCBhbmQgJFxwaV8yID0gMC42MCQ/IFdoYXQgaXMgdGhlIG9wdGltdW0gYWxsb2NhdGlvbiByYXRpbz8NCg0KKipTb2x1dGlvbioqDQoNCg0KYGBge3IsIGluY2x1ZGU9VFJVRSwgZWNobz1UUlVFfQ0KIyB0eXBlIHNvbHV0aW9uIGhlcmUNCmBgYA0KDQoNCiMjIEV4ZXJjaXNlIDQgYikgKGJvdW5kYXJ5IHBsb3RzKQ0KDQpJbGx1c3RyYXRlIHRoZSBkZWNpc2lvbiBib3VuZGFyaWVzIG9uIGRpZmZlcmVudCBzY2FsZXMuDQoNCioqU29sdXRpb24qKg0KDQpgYGB7ciwgaW5jbHVkZT1UUlVFLCBlY2hvPVRSVUV9DQojIHR5cGUgc29sdXRpb24gaGVyZQ0KYGBgDQoNCg0KIyMgRXhlcmNpc2UgNCBjKSAocG93ZXIgYXNzZXNzbWVudCkNCg0KU3VwcG9zZSB0aGF0ICROID0gMjgwJCBzdWJqZWN0cyB3ZXJlIHBsYW5uZWQgZm9yIHRoZSBzdHVkeS4gV2hhdCBpcyB0aGUgcG93ZXIgaWYgdGhlIGZhaWx1cmUgcmF0ZSBpbiB0aGUgYWN0aXZlIHRyZWF0bWVudCBncm91cCBpcyAkXHBpXzEgPSAwLjUwJD8NCg0KKipTb2x1dGlvbioqDQoNCg0KYGBge3IsIGluY2x1ZGU9VFJVRSwgZWNobz1UUlVFfQ0KIyB0eXBlIHNvbHV0aW9uIGhlcmUNCmBgYA0KDQojIyBFeGVyY2lzZSA0IGQpIChwb3dlciBpbGx1c3RyYXRpb24pDQoNCklsbHVzdHJhdGUgcG93ZXIsIGV4cGVjdGVkIHNhbXBsZSBzaXplLCBhbmQgZWFybHkvZnV0aWxpdHkgc3RvcCBmb3IgYSByYW5nZSBvZiBhbHRlcm5hdGl2ZSB2YWx1ZXMuDQoNCioqU29sdXRpb24qKg0KDQoNCmBgYHtyLCBpbmNsdWRlPVRSVUUsIGVjaG89VFJVRX0NCiMgdHlwZSBzb2x1dGlvbiBoZXJlDQpgYGANCg0KDQoqKioNCg0KIyBFeGVyY2lzZSA1IChTYW1wbGUgc2l6ZSByZWFzc2Vzc21lbnQgZm9yIHRlc3RpbmcgcmF0ZXMpDQoNClVzaW5nIGFuIGFkYXB0aXZlIGRlc2lnbiwgdGhlIHNhbXBsZSBzaXplIGZyb20gRXhhbXBsZSA0IGluIHRoZSBsYXN0IGludGVyaW0gY2FuIGJlIGluY3JlYXNlZCB1cCB0byBhIDQtZm9sZCBvZiB0aGUgb3JpZ2luYWxseSBwbGFubmVkIHNhbXBsZSBzaXplIGZvciB0aGUgbGFzdCBzdGFnZS4gQ29uZGl0aW9uYWwgcG93ZXIgOTAlICpiYXNlZCBvbiB0aGUgb2JzZXJ2ZWQgZWZmZWN0IHNpemVzIChmYWlsdXJlIHJhdGVzKSogaXMgdXNlZCB0byBpbmNyZWFzZSB0aGUgc2FtcGxlIHNpemUuDQoNCiMjIEV4ZXJjaXNlIDUgYSkgKGFzc2VzcyBwb3dlcikNCg0KVXNlIHRoZSBpbnZlcnNlIG5vcm1hbCBtZXRob2QgdG8gYWxsb3cgZm9yIHRoZSBzYW1wbGUgc2l6ZSBpbmNyZWFzZSBhbmQgY29tcGFyZSB0aGUgdGVzdCBjaGFyYWN0ZXJpc3RpY3Mgd2l0aCB0aGUgZ3JvdXAgc2VxdWVudGlhbCBkZXNpZ24gZnJvbSBFeGFtcGxlIDQuDQoNCioqU29sdXRpb24qKg0KDQpgYGB7ciwgaW5jbHVkZT1UUlVFLCBlY2hvPVRSVUV9DQojIHR5cGUgc29sdXRpb24gaGVyZQ0KYGBgDQoNCg0KIyMgRXhlcmNpc2UgNSBiKSAoaWxsdXN0cmF0ZSBwb3dlciBkaWZmZXJlbmNlKQ0KDQpJbGx1c3RyYXRlIHRoZSBnYWluIGluIHBvd2VyIHdoZW4gdXNpbmcgdGhlIGFkYXB0aXZlIHNhbXBsZSBzaXplIHJlY2FsY3VsYXRpb24uDQoNCioqU29sdXRpb24qKg0KDQoNCmBgYHtyLCBpbmNsdWRlPVRSVUUsIGVjaG89VFJVRX0NCiMgdHlwZSBzb2x1dGlvbiBoZXJlDQpgYGANCg0KDQoNCiMjIEV4ZXJjaXNlIDUgYykgKGhpc3RvZ3JhbSBvZiBzYW1wbGUgc2l6ZXMpDQoNCkNyZWF0ZSBhIGhpc3RvZ3JhbSBmb3IgdGhlIGF0dGFpbmVkIHNhbXBsZSBzaXplIG9mIHRoZSBzdHVkeSB3aGVuIHVzaW5nIHRoZSBhZGFwdGl2ZSBzYW1wbGUgc2l6ZSByZWNhbGN1bGF0aW9uLiBIb3cgb2Z0ZW4gd2lsbCB0aGUgbWF4aW11bSBzYW1wbGUgc2l6ZSBiZSBhY2hpZXZlZD8NCg0KDQoqKlNvbHV0aW9uKioNCg0KDQpgYGB7ciwgaW5jbHVkZT1UUlVFLCBlY2hvPVRSVUV9DQojIHR5cGUgc29sdXRpb24gaGVyZQ0KYGBgDQoNCg0KDQoqKioNCg0KIyBFeGVyY2lzZSA2IChNdWx0aS1hcm1lZCBkZXNpZ24gd2l0aCBjb250aW51b3VzIGVuZHBvaW50KQ0KDQpTdXBwb3NlIGEgdHJpYWwgaXMgY29uZHVjdGVkIHdpdGggdGhyZWUgYWN0aXZlIHRyZWF0bWVudCBhcm1zICgrIG9uZSBjb250cm9sIGFybSkuDQpBbiBhZGFwdGl2ZSBkZXNpZ24gdXNpbmcgdGhlIGVxdWFsbHkgd2VpZ2h0ZWQgaW52ZXJzZSBub3JtYWwgbWV0aG9kIHdpdGggdHdvIGludGVyaW0gYW5hbHlzZXMgdXNpbmcgTydCcmllbiAmIEZsZW1pbmcgYm91bmRhcmllcyBpcyBjaG9zZW4gd2hlcmUgaW4gYm90aCBpbnRlcmltIGFuYWx5c2VzIGEgc2VsZWN0aW9uIG9mIHRyZWF0bWVudCBhcm1zIGlzIGZvcmVzZWVuICgkXGFscGhhID0gMC4wMjUkIG9uZS1zaWRlZCkuDQpJdCBpcyBkZWNpZGVkIHRvIHRlc3QgdGhlIGludGVyc2VjdGlvbiB0ZXN0cyBpbiB0aGUgY2xvc2VkIHN5c3RlbSBvZiBoeXBvdGhlc2VzIHdpdGggRHVubmV0dCdzIHRlc3QuIEluIHRoZSBkZXNpZ25pbmcgc3RhZ2UsIGl0IHdhcyBkZWNpZGVkIHRvIGNvbmR1Y3QgdGhlIHN0dWR5IHdpdGggMjAgcGF0aWVudHMgcGVyIHRyZWF0bWVudCBhcm0gYW5kIHN0YWdlIHdoZXJlIGF0DQppbnRlcmltIHRoZSBzYW1wbGUgc2l6ZSBjYW4gYmUgcmVkZWZpbmVkLg0KDQojIyBFeGVyY2lzZSA2IGEpIChGaXJzdCBzdGFnZSBhbmQgY29uZGl0aW9uYWwgcG93ZXIpDQoNCg0KU3VwcG9zZSwgYXQgdGhlIGZpcnN0IHN0YWdlLCB0aGUgZm9sbG93aW5nIHJlc3VsdHMgd2VyZSBvYnRhaW5lZDoNCg0KfCBhcm0gfCBuIHwgbWVhbiB8IHN0ZCB8DQp8IC0tLS0tIHwgLS0tLS0gfCAtLS0tLSB8IC0tLS0tIHwNCnwgMSB8IDE5IHwgMy4xMSB8IDEuNzcgfA0KfCAyIHwgMjMgfCAzLjg3IHwgMS4yMyB8DQp8IDMgfCAyMSB8IDQuMTIgfCAxLjY0IHwNCnwgY29udHJvbCB8IDIxIHwgMy4wMiB8IDEuNzIgfA0KICAgIA0KUGVyZm9ybSB0aGUgY2xvc2VkIHRlc3QgYW5kIGFzc2VzcyB0aGUgY29uZGl0aW9uYWwgcG93ZXIgaW4gb3JkZXIgdG8gZGVjaWRlIHdoaWNoIHRyZWF0bWVudCBhcm0ocykgc2hvdWxkIGJlIHNlbGVjdGVkIGFuZCBpZiB0aGUgc2FtcGxlIHNpemUgc2hvdWxkIGJlIHJlZGVmaW5lZC4NCg0KKipTb2x1dGlvbioqDQoNCmBgYHtyLCBpbmNsdWRlPVRSVUUsIGVjaG89VFJVRX0NCiMgdHlwZSBzb2x1dGlvbiBoZXJlDQpgYGANCg0KDQojIyBFeGVyY2lzZSA2IGIpIChTZWNvbmQgc3RhZ2UpDQoNClN1cHBvc2UgaXQgd2FzIGRlY2lkZWQgdG8gZHJvcCB0cmVhdG1lbnQgYXJtIDEgZm9yIHN0YWdlIDIgYW5kIGxlYXZlIHRoZSBzYW1wbGUgc2l6ZSBmb3IgdGhlIHJlbWFpbmluZyBhcm1zIHVuY2hhbmdlZC4gRm9yIHRoZSBzZWNvbmQgc3RhZ2UsIHRoZSBmb2xsb3dpbmcgcmVzdWx0cyB3ZXJlIG9idGFpbmVkOg0KDQp8IGFybSB8IG4gfCBtZWFuIHwgc3RkIHwNCnwgLS0tLS0gfCAtLS0tLSB8IC0tLS0tIHwgLS0tLS0gfA0KfCAyIHwgMjMgfCAzLjY2IHwgMS4xMSB8DQp8IDMgfCAxOSB8IDMuOTggfCAxLjIxIHwNCnwgY29udHJvbCB8IDIyIHwgMi45OSB8IDEuODIgfA0KDQpQZXJmb3JtIHRoZSBjbG9zZWQgdGVzdCBhbmQgZGlzY3VzcyB3aGV0aGVyIG9yIG5vdCB0byBzdG9wIHRoZSBzdHVkeSBhbmQgZGV0ZXJtaW5lIG92ZXJhbGwgJHBcLCQtdmFsdWVzIGFuZCBjb25maWRlbmNlIGludGVydmFscy4NCg0KKipTb2x1dGlvbioqDQoNCmBgYHtyLCBpbmNsdWRlPVRSVUUsIGVjaG89VFJVRX0NCiMgdHlwZSBzb2x1dGlvbiBoZXJlDQpgYGANCg0KDQojIyBFeGVyY2lzZSA2IGMpIChJbnRlcnNlY3Rpb24gdGVzdHMpDQoNCkRvZXMgdGhlIEJvbmZlcnJvbmkgYW5kIHRoZSBTaW1lcyB0ZXN0IHByb3ZpZGUgdGhlIHNhbWUgcmVzdWx0cz8NCg0KKipTb2x1dGlvbioqDQoNCmBgYHtyLCBpbmNsdWRlPVRSVUUsIGVjaG89VFJVRX0NCiMgdHlwZSBzb2x1dGlvbiBoZXJlDQpgYGANCg0KDQoqKioNCg0KU3lzdGVtOiBycGFjdCBgciAgcGFja2FnZVZlcnNpb24oInJwYWN0IilgLCBgciBSLnZlcnNpb24uc3RyaW5nYCwgcGxhdGZvcm06IGByIFIudmVyc2lvbiRwbGF0Zm9ybWANCg0KYGBge3IsIGluY2x1ZGU9VFJVRSwgZWNobz1GQUxTRSwgcmVzdWx0cz0nYXNpcyd9DQpwcmludChjaXRhdGlvbigicnBhY3QiKSwgYmlidGV4ID0gRkFMU0UpDQpgYGANCg0KDQo=</div>
 
 
 </div>
@@ -1586,6 +1974,11 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("WassmerrpactExercises.Rmd");
+});
+</script>
 
 <script>
 $(document).ready(function ()  {
@@ -1600,7 +1993,7 @@ $(document).ready(function ()  {
 
     // establish options
     var options = {
-      selectors: "h1,h2",
+      selectors: "h1,h2,h3",
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {

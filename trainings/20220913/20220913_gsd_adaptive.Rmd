@@ -57,7 +57,7 @@ tab[5, "Exercises incl. solutions"]    <- "will be added after the course"
 kable(tab, align = "lcccc")
 ```
 
-[Download all files as .zip file]().
+[Download all files as .zip file](BBS_adaptive.zip).
 
 
 

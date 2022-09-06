@@ -17,7 +17,7 @@ Materials for the BBS training [Advanced group-sequential and adaptive confirmat
 ```{r, include=TRUE, echo=FALSE, message = FALSE}
 suppressWarnings(library(knitr))
 
-tab <- data.frame(matrix("", ncol = 6, nrow = 1),stringsAsFactors = FALSE)
+tab <- data.frame(matrix("", ncol = 4, nrow = 1),stringsAsFactors = FALSE)
 colnames(tab) <- c("Presenter", "Title", "Slides", "Markdown accompanying slides")
 tab[1, "Presenter"]                    <- "Kaspar Rufibach"
 tab[1, "Title"]                        <- "Efficient use of futility and efficacy interim analyses in group-sequential designs" 

@@ -17,47 +17,39 @@ Materials for the BBS training [Advanced group-sequential and adaptive confirmat
 ```{r, include=TRUE, echo=FALSE, message = FALSE}
 suppressWarnings(library(knitr))
 
-tab <- data.frame(matrix("", ncol = 6, nrow = 1),stringsAsFactors = FALSE)
-colnames(tab) <- c("Presenter", "Title", "Slides", "Markdown accompanying slides", "Exercises", "Exercises incl. solutions")
+tab <- data.frame(matrix("", ncol = 4, nrow = 1),stringsAsFactors = FALSE)
+colnames(tab) <- c("Presenter", "Title", "Slides", "Markdown accompanying slides")
 tab[1, "Presenter"]                    <- "Kaspar Rufibach"
 tab[1, "Title"]                        <- "Efficient use of futility and efficacy interim analyses in group-sequential designs" 
 tab[1, "Slides"]                       <- "[X](RufibachWolbers_efficient_interims_handout.pdf)"
 tab[1, "Markdown accompanying slides"] <- "[X](RufibachWolbers_efficient_interims.html)"
-tab[1, "Exercises"]                    <- "[X](RufibachWolbers_efficient_interims_exercises.html)"
-tab[1, "Exercises incl. solutions"]    <- "will be added after the course"
 
 tab[2, "Presenter"]                    <- "Marc Vandemeulebroecke"
 tab[2, "Title"]                        <- "Introduction adaptive trials & sample size re-calculation" 
-tab[2, "Slides"]                       <- "[X]()"
-tab[2, "Markdown accompanying slides"] <- "[X]()"
-tab[2, "Exercises"]                    <- "[X]()"
-tab[2, "Exercises incl. solutions"]    <- "will be added after the course"
+tab[2, "Slides"]                       <- "[X](VandemeulebroeckeToolbox_AD_MethodsIntro.pdf)"
+tab[2, "Markdown accompanying slides"] <- ""
 
 tab[3, "Presenter"]                    <- "Gernot Wassmer"
 tab[3, "Title"]                        <- "Introduction to rpact" 
 tab[3, "Slides"]                       <- "[X](WassmerIntroduction to rpact.pdf)"
 tab[3, "Markdown accompanying slides"] <- ""
-tab[3, "Exercises"]                    <- "[PDF](WassmerrpactExercises.pdf) and [markdown](WassmerrpactExercises.html)"
-tab[3, "Exercises incl. solutions"]    <- "will be added after the course"
 
 tab[4, "Presenter"]                    <- "Gernot Wassmer"
 tab[4, "Title"]                        <- "Closed testing principle in adaptive trials" 
 tab[4, "Slides"]                       <- "[X](WassmerClosedTestingPrinciple.pdf)"
 tab[4, "Markdown accompanying slides"] <- ""
-tab[4, "Exercises"]                    <- ""
-tab[4, "Exercises incl. solutions"]    <- ""
 
 tab[5, "Presenter"]                    <- "Marcel Wolbers"
 tab[5, "Title"]                        <- "Multi-arm multi-stage designs" 
-tab[5, "Slides"]                       <- "[X]()"
-tab[5, "Markdown accompanying slides"] <- "[X]()"
-tab[5, "Exercises"]                    <- "[X]()"
-tab[5, "Exercises incl. solutions"]    <- "will be added after the course"
+tab[5, "Slides"]                       <- ""
+tab[5, "Markdown accompanying slides"] <- ""
 
 kable(tab, align = "lcccc")
 ```
 
-[Download all files as .zip file](BBS_adaptive.zip).
+* [Exercises for the entire course](BBSadaptiveCourse13Sep2022_exercises.html). Solutions will be added **after the course**.
+
+* [Download all files as .zip file](BBS_adaptive.zip).
 
 
 

@@ -41,7 +41,7 @@ tab[4, "Markdown accompanying slides"] <- ""
 
 tab[5, "Presenter"]                    <- "Marcel Wolbers"
 tab[5, "Title"]                        <- "Multi-arm multi-stage designs" 
-tab[5, "Slides"]                       <- ""
+tab[5, "Slides"]                       <- "[X](Wolbers_RufibachMAMS.pdf)"
 tab[5, "Markdown accompanying slides"] <- ""
 
 kable(tab, align = "lcccc")

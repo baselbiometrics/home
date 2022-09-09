@@ -51,11 +51,12 @@ The **sample size section for OS** states that the following additional assumpti
 Calculate the required number of events and timing of analysis for OS using the information fraction of 60%. Use the `rpact` functions `getDesignGroupSequential` and `getSampleSizeSurvival`. 
 
 **Solution:**
+We perform that calculations at a one-sided significance level of 2.5% which gives the same sample size but is more compatible with the futility interim added in part b. 
 
 ```{r, include=TRUE, echo=TRUE}
 # basic parameters
 infofrac <- c(0.6, 1)   # information fractions
-alpha <- 0.05
+alpha <- 0.05/2         # one-sided
 beta <- 0.2
 accrualTime <- c(0, 10)
 accrualIntensity <- 48  # 48 pts over 10 months
@@ -68,13 +69,13 @@ doTime <- 12            # time at which dropout happens
 maxn <- accrualIntensity * accrualTime[2]
 
 # Specify the group-sequential design 
-design1 <- getDesignGroupSequential(sided = 1, alpha = alpha / 2, beta = beta,
+design1 <- getDesignGroupSequential(sided = 1, alpha = alpha, beta = beta,
     informationRates = infofrac, typeOfDesign = "asOF")
 
 # Calculate sample size for OS for this design
 sampleSizeOS1 <- getSampleSizeSurvival(design1,
     allocationRatioPlanned = randoratio,    
-    lambda2 = getLambdaByMedian(m2), lambda1 = getLambdaByMedian(m1), 
+    median2 = m2, median1 = m1, 
     dropoutRate1 = do, dropoutRate2 = do, dropoutTime = doTime,
     accrualTime = accrualTime, accrualIntensity = accrualIntensity)  
 
@@ -90,18 +91,21 @@ Hint: Use significance levels from design with efficacy only, add futility inter
 
 **Solution:**
 
+We spend a minimal alpha of 0.00001 at the futility interim analysis and use the alpha-spending from the O'Brien-Fleming-type alpha-spending function for the efficacy interim and the final analysis. In rpact, the `futilityBounds` are specified on the $Z$-scale and an observed hazard ratio 1 at the futility interim corresponds to a $Z$-score of 0. This leads to the following code:
+
 ```{r, include=TRUE, echo=TRUE}
 # add the futility using the sig levels computed above and spending epsilon alpha at the futility
 design2 <- getDesignGroupSequential(informationRates = c(0.3, infofrac),
-                                    sided = 1, alpha = alpha / 2, beta = beta,
-                                    futilityBounds = c(log(1), -6),
+                                    sided = 1, alpha = alpha, beta = beta,
                                     typeOfDesign = "asUser", 
-                                    userAlphaSpending = c(0.00001, design1$alphaSpent))
+                                    userAlphaSpending = c(0.00001, design1$alphaSpent),
+                                    futilityBounds = c(0, -6),
+                                    bindingFutility = FALSE)
 
 # Calculate sample size for this design
 sampleSizeOS2 <- getSampleSizeSurvival(design2,
     allocationRatioPlanned = randoratio,    
-    lambda2 = getLambdaByMedian(m2),lambda1 = getLambdaByMedian(m1), 
+    median2 = m2, median1 = m1, 
     dropoutRate1 = do, dropoutRate2 = do, dropoutTime = doTime,
     accrualTime = accrualTime, accrualIntensity = accrualIntensity)  
 
@@ -123,7 +127,7 @@ To compute the power loss of adding the futility, _conservatively_ assuming it w
 # power of design with fufility at the number of events without futility
 power <- getPowerSurvival(design2, allocationRatioPlanned = randoratio, 
     maxNumberOfEvents = ceiling(sampleSizeOS1$maxNumberOfEvents),
-    lambda2 = getLambdaByMedian(m2),lambda1 = getLambdaByMedian(m1), 
+    median2 = m2, median1 = m1, 
     dropoutRate1 = do, dropoutRate2 = do, dropoutTime = doTime,
     accrualTime = accrualTime, accrualIntensity = accrualIntensity,
     directionUpper = FALSE)

@@ -1,5 +1,5 @@
 ---
-title: "Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact: Efficient use of futility and efficacy interim analyses in group-sequential designs"
+title: "Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact"
 output: 
   rmarkdown::html_document:
     highlight: pygments

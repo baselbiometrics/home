@@ -51,7 +51,7 @@ The **sample size section for OS** states that the following additional assumpti
 Calculate the required number of events and timing of analysis for OS using the information fraction of 60%. Use the `rpact` functions `getDesignGroupSequential` and `getSampleSizeSurvival`. 
 
 **Solution:**
-We perform that calculations at a one-sided significance level of 2.5% which gives the same sample size but is more compatible with the futility interim added in part b. 
+We perform calculations at a one-sided significance level of 2.5% which gives the same sample size but is more compatible with the futility interim added in Part 1b. 
 
 ```{r, include=TRUE, echo=TRUE}
 # basic parameters
@@ -98,8 +98,8 @@ We spend a minimal alpha of 0.00001 at the futility interim analysis and use the
 design2 <- getDesignGroupSequential(informationRates = c(0.3, infofrac),
                                     sided = 1, alpha = alpha, beta = beta,
                                     typeOfDesign = "asUser", 
-                                    userAlphaSpending = c(0.00001, design1$alphaSpent),
-                                    futilityBounds = c(0, -6),
+                                    userAlphaSpending = c(0, design1$alphaSpent),
+                                    futilityBounds = c(0, -Inf),
                                     bindingFutility = FALSE)
 
 # Calculate sample size for this design
@@ -124,7 +124,7 @@ To compute the power loss of adding the futility, _conservatively_ assuming it w
 **Solution:**
 
 ```{r, include=TRUE, echo=TRUE}
-# power of design with fufility at the number of events without futility
+# power of design with futility at the number of events without futility
 power <- getPowerSurvival(design2, allocationRatioPlanned = randoratio, 
     maxNumberOfEvents = ceiling(sampleSizeOS1$maxNumberOfEvents),
     median2 = m2, median1 = m1, 

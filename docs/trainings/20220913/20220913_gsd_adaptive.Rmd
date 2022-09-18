@@ -44,6 +44,11 @@ tab[5, "Title"]                        <- "Multi-arm multi-stage designs"
 tab[5, "Slides"]                       <- "[X](Wolbers_RufibachMAMS.pdf)"
 tab[5, "Markdown accompanying slides"] <- ""
 
+tab[6, "Presenter"]                    <- "Frank Bretz and Uli Burger"
+tab[6, "Title"]                        <- "Adaptive trials: Some general considerations" 
+tab[6, "Slides"]                       <- "[X](BretzBurgerGeneralConsiderations.pdf)"
+tab[6, "Markdown accompanying slides"] <- ""
+
 kable(tab, align = "lcccc")
 ```
 

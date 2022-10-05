@@ -26,7 +26,7 @@ If you would like to receive e-mail announcements of upcoming events please send
 
 # News on this site
 
-* 2022/10/04: Added announcement of [two EFSPI & BBS virtual events (Dec 8 & 15) on "Addressing intercurrent events: Treatment policy and hypothetical strategies"](events_upcoming.html).
+* 2022/10/04: Added 1st announcement of [two EFSPI & BBS virtual events (Dec 8 & 15) on "Addressing intercurrent events: Treatment policy and hypothetical strategies"](events_upcoming.html).
 * 2022/09/19: Added final version of material of BBS course [Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact](trainings/20220913/20220913_gsd_adaptive.html).
 * 2022/07/20: Added recording and slide decks of seminar ["On market approval and market access: Breaking the linear thinking or how to innovate in a crowded space?""](https://baselbiometrics.github.io/home/docs/events_past.html#15072022:_On_market_approval_and_market_access:_Breaking_the_linear_thinking_or_how_to_innovate_in_a_crowded_space).
 * 2022/07/01: Added recording, slide decks of [seminar on "Registry studies and health technology assessment (HTA)"](events_past.html#23062022:_BBS__EFSPI_Seminar_Registry_studies_and_HTA).

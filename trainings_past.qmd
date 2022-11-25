@@ -1,0 +1,54 @@
+---
+title: "Past trainings: agendas, slidedecks, recordings"
+date: "Last change: `r format(Sys.time(), '%d %B, %Y')`"
+output: 
+  rmarkdown::html_document:
+    highlight: pygments
+    number_sections: yes
+    self_contained: yes
+    toc: yes
+    toc_depth: 2
+    toc_float: yes
+---
+
+```{r setup, include = FALSE, echo = FALSE}
+## load packages
+packs.html <- c("knitr", "pander", "reporttools", "dplyr", "readxl")
+for (k in 1:length(packs.html)){library(packs.html[k], character.only = TRUE)}
+
+knitr::opts_chunk$set(echo = TRUE)
+
+## trainings
+path <- getwd()
+trainings <- as.data.frame(read_excel(paste(path, "/data/trainings.xlsx", sep = ""), col_types = NULL))
+dates <- unique(select(trainings, date))[, 1]
+
+# prepare date strings
+d <- substr(dates, 1, 2)
+m <- substr(dates, 4, 5)
+y <- substr(dates, 7, 11)
+
+rdate <- paste(y, m, d, sep = "")
+```
+
+```{r echo = FALSE, message = FALSE, warning = FALSE, include = FALSE}
+
+# how to do this with child documents: https://gist.github.com/rmoff/a043676a2f084b81a434
+
+out1 <- NULL
+for (i in 1:length(dates)){
+  out1 <- c(out1, knit_expand('tools/trainings1.Rmd'))
+}
+
+# the "knit" command somehow produces unwanted output, this is why I assign its output to a and use a separate chunk to display a
+a <- knit(text = unlist(paste(out1, collapse = '\n')), quiet = TRUE)
+```
+
+```{r conferences, echo = FALSE, message = FALSE, warning = FALSE, results = "asis"}
+cat(a)
+```
+
+
+
+
+

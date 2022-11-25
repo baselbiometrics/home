@@ -1,0 +1,49 @@
+project:
+  type: website
+  output-dir: docs
+  render:
+    - additional_docs.qmd
+    - board.qmd
+    - events_past.qmd
+    - events_upcoming.qmd
+    - index.qmd
+    - purpose.qmd
+    - trainings_past.qmd
+    - trainings/20220913
+    - talks/20191101
+    
+website:
+  title: "Basel Biometrics Society"
+  navbar:
+    background: info
+    left:
+    - text: "About BBS"
+      menu:
+        - text: "Purpose"
+          href: purpose.html
+        - text: "BBS board"
+          href: board.html
+    - text: "Upcoming events"
+      menu:
+        - text: "Announcements of upcoming events"
+          href: events_upcoming.html
+    - text: "Past seminars"
+      menu:
+        - text: "Agendas, slidedecks, and recordings of past BBS seminars"
+          href: events_past.html
+    - text: "Past trainings"
+      menu:
+        - text: "Agendas, slidedecks, and recordings of past BBS training events"
+          href: trainings_past.html
+    - text: "Additional documents"
+      href: additional_docs.html
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+editor: source
+
+

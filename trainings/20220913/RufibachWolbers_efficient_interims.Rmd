@@ -4,6 +4,8 @@ author:
 - name: "Kaspar Rufibach"
   affiliation: Methods, Collaboration, and Outraech Gropu (MCO), PD Data and Statistical Sciences, Roche Basel
 date: "Last change: `r format(Sys.time(), '%d %B, %Y')`"
+execute:
+  freeze: auto  # re-render only when source changes
 output: 
   rmarkdown::html_document:
     highlight: pygments

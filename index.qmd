@@ -25,6 +25,7 @@ If you would like to receive e-mail announcements of upcoming events please send
 
 # News on this site
 
+* 2022/12/14: Added recording of [Next Generation Networking Seminar](https://baselbiometrics.github.io/home/docs/events_past.html#next-generation-networking-seminar).
 * 2022/12/09: Added recording and slide decks of [joint EFSPI & BBS virtual event on "Addressing intercurrent events: Treatment policy and hypothetical strategies"](events_past.html).
 * 2022/11/25: Moved this page to [quarto](https://quarto.org/) implying a slightly different look.
 * 2022/09/19: Added final version of material of BBS course [Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact](trainings/20220913/20220913_gsd_adaptive.html).

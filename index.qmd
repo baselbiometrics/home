@@ -25,7 +25,6 @@ If you would like to receive e-mail announcements of upcoming events please send
 
 # News on this site
 
-* 2022/12/16: TEST
 * 2022/12/16: Added recording and slide decks of [joint EFSPI & BBS virtual event on "Addressing intercurrent events: Treatment policy and hypothetical strategies (Day 2)"](events_past.html#joint-efspi-bbs-virtual-event---addressing-intercurrent-events-treatment-policy-and-hypothetical-strategies-day-2).
 * 2022/12/14: Added recording of [Next Generation Networking Seminar](https://baselbiometrics.github.io/home/docs/events_past.html#next-generation-networking-seminar).
 * 2022/12/09: Added recording and slide decks of [joint EFSPI & BBS virtual event on "Addressing intercurrent events: Treatment policy and hypothetical strategies (Day 1)"](events_past.html#joint-efspi-bbs-virtual-event---addressing-intercurrent-events-treatment-policy-and-hypothetical-strategies-day-1).

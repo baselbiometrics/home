@@ -1,6 +1,6 @@
 ---
 title: "Past events: agendas, slidedecks, recordings"
-date: "Last change: `r format(Sys.time(), '%d %B, %Y')`"
+date: '`r Sys.setlocale("LC_TIME", "C"); format(Sys.Date(), "%d %b %Y")`'
 output: 
   rmarkdown::html_document:
     highlight: pygments

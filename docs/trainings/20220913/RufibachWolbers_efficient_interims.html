@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Kaspar Rufibach">
-<meta name="dcterms.date" content="2022-11-28">
+<meta name="dcterms.date" content="2022-12-22">
 
 <title>Basel Biometrics Society - Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact: Efficient use of futility and efficacy interim analyses in group-sequential designs</title>
 <style>
@@ -148,7 +148,7 @@ div.csl-indent {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -216,43 +216,45 @@ div.csl-indent {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#purpose-of-this-document" id="toc-purpose-of-this-document" class="nav-link active" data-scroll-target="#purpose-of-this-document">Purpose of this document</a></li>
-  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
-  <li><a href="#specify-details-of-example-trial" id="toc-specify-details-of-example-trial" class="nav-link" data-scroll-target="#specify-details-of-example-trial">Specify details of example trial</a></li>
-  <li><a href="#how-much-do-we-gain-with-interim-analyses" id="toc-how-much-do-we-gain-with-interim-analyses" class="nav-link" data-scroll-target="#how-much-do-we-gain-with-interim-analyses">How much do we gain with interim analyses?</a></li>
-  <li><a href="#optimal-use-and-timing-of-interim-analyses" id="toc-optimal-use-and-timing-of-interim-analyses" class="nav-link" data-scroll-target="#optimal-use-and-timing-of-interim-analyses">Optimal use and timing of interim analyses</a>
+  <li><a href="#purpose-of-this-document" id="toc-purpose-of-this-document" class="nav-link active" data-scroll-target="#purpose-of-this-document"><span class="toc-section-number">1</span>  Purpose of this document</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"><span class="toc-section-number">2</span>  Setup</a></li>
+  <li><a href="#specify-details-of-example-trial" id="toc-specify-details-of-example-trial" class="nav-link" data-scroll-target="#specify-details-of-example-trial"><span class="toc-section-number">3</span>  Specify details of example trial</a></li>
+  <li><a href="#how-much-do-we-gain-with-interim-analyses" id="toc-how-much-do-we-gain-with-interim-analyses" class="nav-link" data-scroll-target="#how-much-do-we-gain-with-interim-analyses"><span class="toc-section-number">4</span>  How much do we gain with interim analyses?</a></li>
+  <li><a href="#optimal-use-and-timing-of-interim-analyses" id="toc-optimal-use-and-timing-of-interim-analyses" class="nav-link" data-scroll-target="#optimal-use-and-timing-of-interim-analyses"><span class="toc-section-number">5</span>  Optimal use and timing of interim analyses</a>
   <ul class="collapse">
-  <li><a href="#efficacy" id="toc-efficacy" class="nav-link" data-scroll-target="#efficacy">Efficacy</a>
+  <li><a href="#efficacy" id="toc-efficacy" class="nav-link" data-scroll-target="#efficacy"><span class="toc-section-number">5.1</span>  Efficacy</a>
   <ul class="collapse">
-  <li><a href="#bias" id="toc-bias" class="nav-link" data-scroll-target="#bias">Bias</a></li>
-  <li><a href="#adding-a-late-efficacy-interim" id="toc-adding-a-late-efficacy-interim" class="nav-link" data-scroll-target="#adding-a-late-efficacy-interim">Adding a late efficacy interim</a></li>
+  <li><a href="#bias" id="toc-bias" class="nav-link" data-scroll-target="#bias"><span class="toc-section-number">5.1.1</span>  Bias</a></li>
+  <li><a href="#adding-a-late-efficacy-interim" id="toc-adding-a-late-efficacy-interim" class="nav-link" data-scroll-target="#adding-a-late-efficacy-interim"><span class="toc-section-number">5.1.2</span>  Adding a late efficacy interim</a></li>
   </ul></li>
-  <li><a href="#futility" id="toc-futility" class="nav-link" data-scroll-target="#futility">Futility</a></li>
+  <li><a href="#futility" id="toc-futility" class="nav-link" data-scroll-target="#futility"><span class="toc-section-number">5.2</span>  Futility</a></li>
   </ul></li>
-  <li><a href="#backup" id="toc-backup" class="nav-link" data-scroll-target="#backup">Backup</a>
+  <li><a href="#backup" id="toc-backup" class="nav-link" data-scroll-target="#backup"><span class="toc-section-number">6</span>  Backup</a>
   <ul class="collapse">
-  <li><a href="#efficacy-1" id="toc-efficacy-1" class="nav-link" data-scroll-target="#efficacy-1">Efficacy</a>
+  <li><a href="#efficacy-1" id="toc-efficacy-1" class="nav-link" data-scroll-target="#efficacy-1"><span class="toc-section-number">6.1</span>  Efficacy</a>
   <ul class="collapse">
-  <li><a href="#mdd" id="toc-mdd" class="nav-link" data-scroll-target="#mdd">MDD</a></li>
+  <li><a href="#mdd" id="toc-mdd" class="nav-link" data-scroll-target="#mdd"><span class="toc-section-number">6.1.1</span>  MDD</a></li>
   </ul></li>
-  <li><a href="#futility-1" id="toc-futility-1" class="nav-link" data-scroll-target="#futility-1">Futility</a>
+  <li><a href="#futility-1" id="toc-futility-1" class="nav-link" data-scroll-target="#futility-1"><span class="toc-section-number">6.2</span>  Futility</a>
   <ul class="collapse">
-  <li><a href="#conditional-power" id="toc-conditional-power" class="nav-link" data-scroll-target="#conditional-power">Conditional power</a></li>
-  <li><a href="#stopping-probabilities" id="toc-stopping-probabilities" class="nav-link" data-scroll-target="#stopping-probabilities">Stopping probabilities</a></li>
-  <li><a href="#beta-spending" id="toc-beta-spending" class="nav-link" data-scroll-target="#beta-spending"><span class="math inline">\(\beta\)</span>-spending</a></li>
-  <li><a href="#power-loss" id="toc-power-loss" class="nav-link" data-scroll-target="#power-loss">Power loss</a></li>
+  <li><a href="#conditional-power" id="toc-conditional-power" class="nav-link" data-scroll-target="#conditional-power"><span class="toc-section-number">6.2.1</span>  Conditional power</a></li>
+  <li><a href="#stopping-probabilities" id="toc-stopping-probabilities" class="nav-link" data-scroll-target="#stopping-probabilities"><span class="toc-section-number">6.2.2</span>  Stopping probabilities</a></li>
+  <li><a href="#beta-spending" id="toc-beta-spending" class="nav-link" data-scroll-target="#beta-spending"><span class="toc-section-number">6.2.3</span>  <span class="math inline">\(\beta\)</span>-spending</a></li>
+  <li><a href="#power-loss" id="toc-power-loss" class="nav-link" data-scroll-target="#power-loss"><span class="toc-section-number">6.2.4</span>  Power loss</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#mirros" id="toc-mirros" class="nav-link" data-scroll-target="#mirros">MIRROS</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#mirros" id="toc-mirros" class="nav-link" data-scroll-target="#mirros"><span class="toc-section-number">7</span>  MIRROS</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="toc-section-number">8</span>  References</a></li>
   </ul>
 </nav>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -283,7 +285,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 28, 2022</p>
+      <p class="date">December 22, 2022</p>
     </div>
   </div>
     
@@ -292,12 +294,12 @@ div.csl-indent {
 
 </header>
 
-<section id="purpose-of-this-document" class="level1">
-<h1>Purpose of this document</h1>
+<section id="purpose-of-this-document" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Purpose of this document</h1>
 <p>This R markdown file provides the code accompanying the first theory block in the BBS course <a href="https://baselbiometrics.github.io/home/docs/upcoming/20220913/agenda.pdf">Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact</a>.</p>
 </section>
-<section id="setup" class="level1">
-<h1>Setup</h1>
+<section id="setup" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Setup</h1>
 <p>Load rpact and further packages and define shortcut for sample size function.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load rpact</span></span>
@@ -323,8 +325,8 @@ Attache Paket: 'knitr'</code></pre>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="specify-details-of-example-trial" class="level1">
-<h1>Specify details of example trial</h1>
+<section id="specify-details-of-example-trial" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Specify details of example trial</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># design parameters</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
@@ -350,8 +352,8 @@ Attache Paket: 'knitr'</code></pre>
 <span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>inform_bound <span class="ot">&lt;-</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="how-much-do-we-gain-with-interim-analyses" class="level1">
-<h1>How much do we gain with interim analyses?</h1>
+<section id="how-much-do-we-gain-with-interim-analyses" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> How much do we gain with interim analyses?</h1>
 <p>The following code allows to compute all the numbers that appear in the first section of the slide deck. We do not show all the numbers here and invite everyone to get them out of the corresponding objects.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Required events without interim</span></span>
@@ -485,17 +487,17 @@ Attache Paket: 'knitr'</code></pre>
 </div>
 </div>
 </section>
-<section id="optimal-use-and-timing-of-interim-analyses" class="level1">
-<h1>Optimal use and timing of interim analyses</h1>
-<section id="efficacy" class="level2">
-<h2 class="anchored" data-anchor-id="efficacy">Efficacy</h2>
-<section id="bias" class="level3">
-<h3 class="anchored" data-anchor-id="bias">Bias</h3>
+<section id="optimal-use-and-timing-of-interim-analyses" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Optimal use and timing of interim analyses</h1>
+<section id="efficacy" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="efficacy"><span class="header-section-number">5.1</span> Efficacy</h2>
+<section id="bias" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="bias"><span class="header-section-number">5.1.1</span> Bias</h3>
 <p>For code and recommendationas how to handle bias in group-sequential designs we refer to <a href="https://www.rpact.com/vignettes/rpact_analysis_examples">Vignette #7</a> on the <a href="https://www.rpact.com/vignettes">rpact vignettes webpage</a>.</p>
 <p>The standard rpact output provides a <em>median unbiased estimate</em>. For details on the various types of biases in group-sequential designs and approaches we refer to <span class="citation" data-cites="wassmer_16_book">Wassmer and Brannath (<a href="#ref-wassmer_16_book" role="doc-biblioref">2016</a>)</span>.</p>
 </section>
-<section id="adding-a-late-efficacy-interim" class="level3">
-<h3 class="anchored" data-anchor-id="adding-a-late-efficacy-interim">Adding a late efficacy interim</h3>
+<section id="adding-a-late-efficacy-interim" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="adding-a-late-efficacy-interim"><span class="header-section-number">5.1.2</span> Adding a late efficacy interim</h3>
 <p>In what follows, we generate the table used in the slide deck to illustrate addition of a late efficacy interim analysis.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># illustrate effect of late efficacy on MDD and local significance level</span></span>
@@ -577,17 +579,17 @@ Attache Paket: 'knitr'</code></pre>
 </div>
 </section>
 </section>
-<section id="futility" class="level2">
-<h2 class="anchored" data-anchor-id="futility">Futility</h2>
+<section id="futility" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="futility"><span class="header-section-number">5.2</span> Futility</h2>
 <p>See backup of this file for the table from the slides.</p>
 </section>
 </section>
-<section id="backup" class="level1">
-<h1>Backup</h1>
-<section id="efficacy-1" class="level2">
-<h2 class="anchored" data-anchor-id="efficacy-1">Efficacy</h2>
-<section id="mdd" class="level3">
-<h3 class="anchored" data-anchor-id="mdd">MDD</h3>
+<section id="backup" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Backup</h1>
+<section id="efficacy-1" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="efficacy-1"><span class="header-section-number">6.1</span> Efficacy</h2>
+<section id="mdd" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="mdd"><span class="header-section-number">6.1.1</span> MDD</h3>
 <p>Minimal detectable differences can easily be extracted from <code>getSampleSizeSurvival</code> objects:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>hrMDD <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(samplesize<span class="sc">$</span>criticalValuesEffectScale)</span>
@@ -598,10 +600,10 @@ Attache Paket: 'knitr'</code></pre>
 </div>
 </section>
 </section>
-<section id="futility-1" class="level2">
-<h2 class="anchored" data-anchor-id="futility-1">Futility</h2>
-<section id="conditional-power" class="level3">
-<h3 class="anchored" data-anchor-id="conditional-power">Conditional power</h3>
+<section id="futility-1" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="futility-1"><span class="header-section-number">6.2</span> Futility</h2>
+<section id="conditional-power" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="conditional-power"><span class="header-section-number">6.2.1</span> Conditional power</h3>
 <p>As a first approach to determine an interim boundary for futility we reproduce the conditional power plot.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate condition power for interim HR ranging from 0.6 to 1.5</span></span>
@@ -679,8 +681,8 @@ Attache Paket: 'knitr'</code></pre>
 </div>
 </div>
 </section>
-<section id="stopping-probabilities" class="level3">
-<h3 class="anchored" data-anchor-id="stopping-probabilities">Stopping probabilities</h3>
+<section id="stopping-probabilities" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="stopping-probabilities"><span class="header-section-number">6.2.2</span> Stopping probabilities</h3>
 <p>An alternative way of defining an interim boundary for futility, especially when we use the pivotal Phase 3 with futility interim for the LIP, is to find a <strong>sweet spot</strong> by trading off false-decision probabilities at the interim. To this end, assume <span class="math display">\[
   \hat \theta \sim N(\theta, \sqrt{4 / d_1}).
 \]</span> We are then interested in the probability of continuation (or stopping, simply one minus) computed as: <span class="math display">\[
@@ -732,8 +734,8 @@ Attache Paket: 'knitr'</code></pre>
 </div>
 </div>
 </section>
-<section id="beta-spending" class="level3">
-<h3 class="anchored" data-anchor-id="beta-spending"><span class="math inline">\(\beta\)</span>-spending</h3>
+<section id="beta-spending" class="level3" data-number="6.2.3">
+<h3 data-number="6.2.3" class="anchored" data-anchor-id="beta-spending"><span class="header-section-number">6.2.3</span> <span class="math inline">\(\beta\)</span>-spending</h3>
 <p>Finally, we illustrate how <span class="math inline">\(\beta-\)</span>-spending can be specified.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compare designs with no futility vs. a design with beta-spending</span></span>
@@ -862,8 +864,8 @@ Attache Paket: 'knitr'</code></pre>
 </div>
 </div>
 </section>
-<section id="power-loss" class="level3">
-<h3 class="anchored" data-anchor-id="power-loss">Power loss</h3>
+<section id="power-loss" class="level3" data-number="6.2.4">
+<h3 data-number="6.2.4" class="anchored" data-anchor-id="power-loss"><span class="header-section-number">6.2.4</span> Power loss</h3>
 <p>Finally, we specify the power loss of adding the various futility boundaries. To this, we proceed as follows:</p>
 <ol type="1">
 <li><p>Generate a set of trials with hazard ratio at interim and final, without any interim analysis stopping. The nice thing about rpact is that we can still add <code>informationRates</code>, i.e.&nbsp;we get a set of datasets that simulate trials until the prespecified maximal number of events, and these simulation datasets contain the hazard ratio estimates at the time when we have reached <code>informationRates</code>% of events.</p></li>
@@ -967,19 +969,19 @@ Attache Paket: 'knitr'</code></pre>
 </section>
 </section>
 </section>
-<section id="mirros" class="level1">
-<h1>MIRROS</h1>
+<section id="mirros" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> MIRROS</h1>
 <p>The original MIRROS publication is available <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/pst.1969">here</a>. The accompanying code is available on github <a href="https://github.com/numbersman77/integratePhase2">here</a>.</p>
 <p>The Bayesian predictive power computations after not stopping at an interim based on point or interval knowledge are described <a href="https://www.tandfonline.com/doi/full/10.1080/10543406.2014.972508">in this publication</a>. The corresponding R package is <a href="https://cran.r-project.org/package=bpp">bpp</a>, available on <a href="https://cran.r-project.org/">CRAN</a>.</p>
 </section>
-<section id="references" class="level1">
+<section id="references" class="level1" data-number="8">
 
 
 
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">8 References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-wassmer_16_book" class="csl-entry" role="doc-biblioentry">
 Wassmer, G., and W. Brannath. 2016. <em>Group Sequential and Confirmatory Adaptive Designs in Clinical Trials</em>. Springer.
 </div>

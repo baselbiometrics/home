@@ -3,17 +3,17 @@ title: "Advanced group-sequential and adaptive confirmatory clinical trial desig
 author: 
 - name: "Kaspar Rufibach"
   affiliation: Methods, Collaboration, and Outraech Gropu (MCO), PD Data and Statistical Sciences, Roche Basel
-date: "Last change: `r format(Sys.time(), '%d %B, %Y')`"
+date: 'Last modification: `r Sys.setlocale("LC_TIME", "C"); format(Sys.Date(), "%d %b %Y")`'
 execute:
   freeze: auto  # re-render only when source changes
-output: 
-  rmarkdown::html_document:
-    highlight: pygments
-    number_sections: yes
-    self_contained: yes
-    toc: yes
-    toc_depth: 3
-    toc_float: yes
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    toc-title: Contents
+    toc-location: left
+    number-sections: true
+    number-depth: 3
     code_download: true
 bibliography: biblio.bib
 ---

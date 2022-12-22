@@ -1,11 +1,13 @@
 ---
 title: "Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact"
-output: 
-  rmarkdown::html_document:
-    highlight: pygments
-    toc: yes
-    toc_depth: 2
-    toc_float: yes
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-title: Contents
+    toc-location: left
+    number-sections: true
+    number-depth: 2
 --- 
 
 # Purpose of this document

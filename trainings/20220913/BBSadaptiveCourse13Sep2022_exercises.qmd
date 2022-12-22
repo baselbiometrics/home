@@ -1,17 +1,17 @@
 ---
 title: "Exercises for the BBS course 'Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact' on 13Sep2022"
 author: "Kaspar Rufibach (Roche), Marc Vandemeulebroecke (Novartis), Gernot Wassmer (rpact), Marcel Wolbers (Roche)"
-date: "Last change: `r format(Sys.time(), '%d %B, %Y')`"
+date: 'Last modification: `r Sys.setlocale("LC_TIME", "C"); format(Sys.Date(), "%d %b %Y")`'
 execute:
   freeze: auto  # re-render only when source changes
-output: 
-  rmarkdown::html_document:
-    highlight: pygments
-    number_sections: yes
-    self_contained: yes
-    toc: yes
-    toc_depth: 3
-    toc_float: yes
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-title: Contents
+    toc-location: left
+    number-sections: true
+    number-depth: 2
     code_download: true
 ---
 

@@ -2,14 +2,14 @@
 title: "BBS seminar 1st November 2019: Predictive modelling, machine learning, and causality"
 author: "Laurent Essioux, Dominik Heinzmann, Kaspar Rufibach, Marcel Wolbers"
 date: '`r Sys.setlocale("LC_TIME", "C"); format(Sys.Date(), "%d %b %Y")`'
-output:
-  rmarkdown::html_document:
-    highlight: pygments
-    number_sections: yes
-    self_contained: yes
-    toc: yes
-    toc_depth: 2
-    toc_float: yes
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-title: Contents
+    toc-location: left
+    number-sections: true
+    number-depth: 2
 ---
 
 ```{r setup, include=FALSE}

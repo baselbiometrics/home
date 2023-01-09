@@ -1,6 +1,5 @@
 ---
 title: "BBS board"
-date: '`r Sys.setlocale("LC_TIME", "C"); format(Sys.Date(), "%d %b %Y")`'
 output: 
   rmarkdown::html_document:
     highlight: pygments

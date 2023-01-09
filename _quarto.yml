@@ -9,6 +9,7 @@ project:
     - index.qmd
     - purpose.qmd
     - trainings_past.qmd
+    - updates.qmd
     - trainings/20220913
     - talks/20191101
     
@@ -23,6 +24,8 @@ website:
           href: purpose.html
         - text: "BBS board"
           href: board.html
+        - text: "Updates on this page"
+          href: updates.html
     - text: "Upcoming events"
       menu:
         - text: "Announcements of upcoming events"

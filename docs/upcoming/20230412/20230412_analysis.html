@@ -9,7 +9,7 @@
 <meta name="author" content="Kaspar Rufibach">
 <meta name="dcterms.date" content="2023-01-10">
 
-<title>BBS seminar risk quantification: analysis of registrations</title>
+<title>Basel Biometrics Society - BBS seminar risk quantification: analysis of registrations</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,24 +25,136 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="20230412_analysis_files/libs/clipboard/clipboard.min.js"></script>
-<script src="20230412_analysis_files/libs/quarto-html/quarto.js"></script>
-<script src="20230412_analysis_files/libs/quarto-html/popper.min.js"></script>
-<script src="20230412_analysis_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="20230412_analysis_files/libs/quarto-html/anchor.min.js"></script>
-<link href="20230412_analysis_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="20230412_analysis_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="20230412_analysis_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="20230412_analysis_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="20230412_analysis_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
 
 
+<link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="fullcontent">
+<body class="nav-fixed">
 
-<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Basel Biometrics Society</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about-bbs" role="button" data-bs-toggle="dropdown" aria-expanded="false">About BBS</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about-bbs">    
+        <li>
+    <a class="dropdown-item" href="../../purpose.html">
+ <span class="dropdown-text">Purpose</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../board.html">
+ <span class="dropdown-text">BBS board</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../updates.html">
+ <span class="dropdown-text">Updates on this page</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-upcoming-events" role="button" data-bs-toggle="dropdown" aria-expanded="false">Upcoming events</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-upcoming-events">    
+        <li>
+    <a class="dropdown-item" href="../../events_upcoming.html">
+ <span class="dropdown-text">Announcements of upcoming events</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-past-seminars" role="button" data-bs-toggle="dropdown" aria-expanded="false">Past seminars</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-past-seminars">    
+        <li>
+    <a class="dropdown-item" href="../../events_past.html">
+ <span class="dropdown-text">Agendas, slidedecks, and recordings of past BBS seminars</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-past-trainings" role="button" data-bs-toggle="dropdown" aria-expanded="false">Past trainings</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-past-trainings">    
+        <li>
+    <a class="dropdown-item" href="../../trainings_past.html">
+ <span class="dropdown-text">Agendas, slidedecks, and recordings of past BBS training events</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../additional_docs.html">Additional documents</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#data-status" id="toc-data-status" class="nav-link active" data-scroll-target="#data-status">Data status</a></li>
+  <li><a href="#registrations-by-type-of-institution" id="toc-registrations-by-type-of-institution" class="nav-link" data-scroll-target="#registrations-by-type-of-institution">Registrations by type of institution</a></li>
+  <li><a href="#registrations-by-background" id="toc-registrations-by-background" class="nav-link" data-scroll-target="#registrations-by-background">Registrations by background</a></li>
+  <li><a href="#registrations-by-institution" id="toc-registrations-by-institution" class="nav-link" data-scroll-target="#registrations-by-institution">Registrations by institution</a></li>
+  <li><a href="#registrations-of-regulatory-colleagues" id="toc-registrations-of-regulatory-colleagues" class="nav-link" data-scroll-target="#registrations-of-regulatory-colleagues">Registrations of regulatory colleagues</a></li>
+  <li><a href="#registrations-by-countries" id="toc-registrations-by-countries" class="nav-link" data-scroll-target="#registrations-by-countries">Registrations by countries</a></li>
+  <li><a href="#registrations-by-countries---map" id="toc-registrations-by-countries---map" class="nav-link" data-scroll-target="#registrations-by-countries---map">Registrations by countries - map</a></li>
+  <li><a href="#registrations-by-mode-of-attendance" id="toc-registrations-by-mode-of-attendance" class="nav-link" data-scroll-target="#registrations-by-mode-of-attendance">Registrations by mode of attendance</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
@@ -75,7 +187,7 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="data-status" class="level1">
 <h1>Data status</h1>
-<p>Data as of 2023-01-10 at 15:54:43.</p>
+<p>Data as of 2023-01-10 at 16:06:08.</p>
 </section>
 <section id="registrations-by-type-of-institution" class="level1">
 <h1>Registrations by type of institution</h1>
@@ -160,10 +272,11 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
+
+
 </section>
 
-</main>
-<!-- /main column -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

@@ -80,6 +80,7 @@ text(x = xx, y = t2, label = paste(t2, " (", round(100 * t2 / sum(t2)), "%)", se
 # Registrations by institution
 
 ```{r, echo = FALSE, fig.cap = "", fig.align = "center", fig.width = 7, fig.height = 10}
+cut <- 2
 t2 <- with(reg2, table(inst2))
 t2 <- prepTable(t2 = t2, cut = cut)
 
@@ -92,6 +93,7 @@ text(x = xx, y = t2, label = paste(t2, " (", round(100 * t2 / sum(t2)), "%)", se
 # Registrations of regulatory colleagues
 
 ```{r, echo = FALSE, fig.cap = "", fig.align = "center", fig.width = 7, fig.height = 6}
+cut <- 0
 t2 <- with(filter(reg2, type == "Regulator"), table(inst2))
 t2 <- prepTable(t2 = t2, cut = cut)
 

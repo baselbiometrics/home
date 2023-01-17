@@ -10,6 +10,7 @@ output:
     toc_float: yes
 ---
 
+* 2023/01/17: Added announcement of workshop [Adaptive Designs and Multiple Testing Procedures Workshop](https://baselbiometrics.github.io/home/docs/events_upcoming.html).
 * 2023/01/09: Added announcement of seminar [Quantification of risk: ask the right questions or
 time to apply the estimand framework to safety!](https://baselbiometrics.github.io/home/docs/events_upcoming.html).
 * 2022/12/16: Added recording and slide decks of [joint EFSPI & BBS virtual event on "Addressing intercurrent events: Treatment policy and hypothetical strategies (Day 2)"](events_past.html#joint-efspi-bbs-virtual-event---addressing-intercurrent-events-treatment-policy-and-hypothetical-strategies-day-2).

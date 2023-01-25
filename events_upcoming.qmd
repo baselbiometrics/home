@@ -33,6 +33,7 @@ rdate <- paste(y, m, d, sep = "")
 
 upcoming$Registration <- ifelse(is.na(select(upcoming, registration)[, 1]), "", paste("[Registration](", select(upcoming, registration)[, 1], ")", sep = ""))
 upcoming$Agenda <- paste("[Agenda](upcoming/", rdate, "/agenda.pdf)", sep = "")
+upcoming[upcoming$date == "03.09.2023", "Agenda"] <- "[Agenda](https://cen2023.github.io/home/)"
 
 upcoming[is.na(upcoming)] <- ""
 

@@ -20,5 +20,9 @@ Hans Ulrich Burger, F. Hoffmann-La Roche, Basel.
 
 If you would like to receive e-mail announcements of upcoming events please send an email to [Bibiana Blatna](mailto:bibiana.blatna@novartis.com).
 
+# Partner organizations
+
+[Basel Epidemiology Seminar](https://baselepiseminar.github.io/home/index.html)
+
 <center>![](bbs_logo.gif)</center>
 

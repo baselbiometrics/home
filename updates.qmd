@@ -10,11 +10,11 @@ output:
     toc_float: yes
 ---
 
+* 2023/10/02: Added announcement of seminar [Joint BES / BBS seminar "Real-World Data Quality – Assessing data quality and demonstrating fitness-for-purpose"](https://baselbiometrics.github.io/home/docs/events_upcoming.html).
 * 2023/10/02: Added materials of an amazing training [Good Software Engineering
 Practice for R Packages](https://kkmann.github.io/workshop-r-swe/).
 * 2023/01/17: Added announcement of workshop [Adaptive Designs and Multiple Testing Procedures Workshop](https://baselbiometrics.github.io/home/docs/events_upcoming.html).
-* 2023/01/09: Added announcement of seminar [Quantification of risk: ask the right questions or
-time to apply the estimand framework to safety!](https://baselbiometrics.github.io/home/docs/events_upcoming.html).
+* 2023/01/09: Added announcement of seminar [Quantification of risk: ask the right questions or time to apply the estimand framework to safety!](https://baselbiometrics.github.io/home/docs/events_upcoming.html).
 * 2022/12/16: Added recording and slide decks of [joint EFSPI & BBS virtual event on "Addressing intercurrent events: Treatment policy and hypothetical strategies (Day 2)"](events_past.html#joint-efspi-bbs-virtual-event---addressing-intercurrent-events-treatment-policy-and-hypothetical-strategies-day-2).
 * 2022/12/14: Added recording of [Next Generation Networking Seminar](https://baselbiometrics.github.io/home/docs/events_past.html#next-generation-networking-seminar).
 * 2022/12/09: Added recording and slide decks of [joint EFSPI & BBS virtual event on "Addressing intercurrent events: Treatment policy and hypothetical strategies (Day 1)"](events_past.html#joint-efspi-bbs-virtual-event---addressing-intercurrent-events-treatment-policy-and-hypothetical-strategies-day-1).

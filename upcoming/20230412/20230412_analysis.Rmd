@@ -1,7 +1,7 @@
 ---
 title: "BBS seminar risk quantification: analysis of registrations"
 author: "Kaspar Rufibach"
-date: "Last change: `r format(Sys.time(), '%d %B, %Y')`"
+date: last-modified
 output: 
   rmarkdown::html_document:
     highlight: pygments

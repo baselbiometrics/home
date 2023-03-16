@@ -10,6 +10,7 @@ output:
     toc_float: yes
 ---
 
+* 2023/03/15: Uploaded link to recording for [Joint BES / BBS seminar "Real-World Data Quality – Assessing data quality and demonstrating fitness-for-purpose"](events_past.html#joint-besbbs-webinar-real-world-data-quality).
 * 2023/03/08: First announcement of seminar [Next Generation event on soft-skills, professional development, and networking](https://baselbiometrics.github.io/home/docs/events_upcoming.html).
 * 2023/10/02: Added announcement of seminar [Joint BES / BBS seminar "Real-World Data Quality – Assessing data quality and demonstrating fitness-for-purpose"](https://baselbiometrics.github.io/home/docs/events_upcoming.html).
 * 2023/10/02: Added materials of an amazing training [Good Software Engineering

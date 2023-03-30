@@ -16,7 +16,7 @@ output:
 ## load packages
 packs.html <- c("knitr", "pander", "reporttools", "dplyr", "readxl")
 for (i in 1:length(packs.html)){library(packs.html[i], character.only = TRUE)}
- 
+  
 knitr::opts_chunk$set(echo = TRUE)
 
 path <- paste(getwd(), "/", sep = "")

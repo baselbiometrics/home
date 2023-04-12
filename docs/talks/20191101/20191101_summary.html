@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.189">
+<meta name="generator" content="quarto-1.2.335">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Laurent Essioux, Dominik Heinzmann, Kaspar Rufibach, Marcel Wolbers">
-<meta name="dcterms.date" content="2023-04-04">
+<meta name="dcterms.date" content="2023-04-12">
 
 <title>Basel Biometrics Society - BBS seminar 1st November 2019: Predictive modelling, machine learning, and causality</title>
 <style>
@@ -83,7 +83,9 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about-bbs" role="button" data-bs-toggle="dropdown" aria-expanded="false">About BBS</a>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about-bbs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About BBS</span>
+    </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-about-bbs">    
         <li>
     <a class="dropdown-item" href="../../purpose.html">
@@ -100,7 +102,9 @@ ul.task-list li input[type="checkbox"] {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-upcoming-events" role="button" data-bs-toggle="dropdown" aria-expanded="false">Upcoming events</a>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-upcoming-events" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Upcoming events</span>
+    </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-upcoming-events">    
         <li>
     <a class="dropdown-item" href="../../events_upcoming.html">
@@ -109,7 +113,9 @@ ul.task-list li input[type="checkbox"] {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-past-seminars" role="button" data-bs-toggle="dropdown" aria-expanded="false">Past seminars</a>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-past-seminars" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Past seminars</span>
+    </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-past-seminars">    
         <li>
     <a class="dropdown-item" href="../../events_past.html">
@@ -118,7 +124,9 @@ ul.task-list li input[type="checkbox"] {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-past-trainings" role="button" data-bs-toggle="dropdown" aria-expanded="false">Past trainings</a>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-past-trainings" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Past trainings</span>
+    </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-past-trainings">    
         <li>
     <a class="dropdown-item" href="../../trainings_past.html">
@@ -127,7 +135,8 @@ ul.task-list li input[type="checkbox"] {
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="../../additional_docs.html">Additional documents</a>
+    <a class="nav-link" href="../../additional_docs.html">
+ <span class="menu-text">Additional documents</span></a>
   </li>  
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
@@ -181,9 +190,10 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 4, 2023</p>
+      <p class="date">April 12, 2023</p>
     </div>
   </div>
+  
     
   </div>
   
@@ -224,7 +234,7 @@ ul.task-list li input[type="checkbox"] {
 <li><p><a href="7_Mattiello.pdf">Mattiello</a></p></li>
 <li><p><a href="8_Baillie.pdf">Baillie</a></p></li>
 <li><p><a href="9_Harbron.pdf">Harbron</a></p></li>
-<li><p><a href="20191101%20BBS%20all%20slide%20decks.zip">all decks as zip file</a></p></li>
+<li><p><a href="20191101 BBS all slide decks.zip">all decks as zip file</a></p></li>
 </ul>
 </section>
 <section id="registrations" class="level1" data-number="4">
@@ -409,7 +419,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -445,24 +472,42 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>

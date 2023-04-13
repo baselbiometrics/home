@@ -28,7 +28,7 @@ colnames(tab2) <- c("Speaker", "Institution", "Title", "Download slides")
 
 # replace empty links
 ind <- (is.na(select(tab, slides)[, 1]) & is.na(select(tab, link)[, 1]))
-tab2[ind, "Download slides"] <- "No presentation available"
+tab2[ind, "Download slides"] <- "No presentation available (may be added later for recent events, after having received speaker approval)"
 
 # replace other empty entries
 tab2[is.na(tab2)] <- ""

@@ -12,8 +12,7 @@ project:
     - updates.qmd
     - trainings/20220913
     - talks/20191101
-    - upcoming/20230412
-    
+
 website:
   title: "Basel Biometrics Society"
   navbar:

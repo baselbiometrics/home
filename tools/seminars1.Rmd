@@ -33,3 +33,6 @@ tab2[is.na(tab2)] <- ""
 `r if (is.na(select(meta, summary)) == FALSE){paste("[Summary of the event](", select(meta, summary), ")", sep = "")} else {""}` 
 
 `r if (is.na(meta$speaker) == FALSE){kable(tab2)} else {"No slides available"}`
+
+
+

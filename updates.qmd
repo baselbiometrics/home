@@ -10,7 +10,7 @@ output:
     toc_float: yes
 ---
 
-* 2023/07/05: Uploaded agenda and registration link for webinar [Pre-approval and Post-approval Challenges in the Clinical Development and Reimbursement of CAR-T Cell Therapies](https://baselbiometrics.github.io/home/docs/events_upcoming.html).
+* 2023/07/05: Uploaded 1st announcement and registration link for (free) webinar [Pre-approval and Post-approval Challenges in the Clinical Development and Reimbursement of CAR-T Cell Therapies](https://baselbiometrics.github.io/home/docs/events_upcoming.html).
 * 2023/05/23: Uploaded agenda and registration link for workshop [Estimands in Early Development (ED) across Therapeutic Areas](https://baselbiometrics.github.io/home/docs/events_upcoming.html).
 * 2023/05/08: Added title talk Justine Rochon at seminar [Next Generation event on soft-skills, professional development, and networking](https://baselbiometrics.github.io/home/docs/events_upcoming.html).
 * 2023/05/02: Uploaded agenda and registration link for seminar [Next Generation event on soft-skills, professional development, and networking](https://baselbiometrics.github.io/home/docs/events_upcoming.html).

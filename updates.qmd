@@ -10,9 +10,9 @@ output:
     toc_float: yes
 ---
 
+* 2023/07/21: Added further slidedecks to [NextGen seminar](https://baselbiometrics.github.io/home/docs/events_past.html#next-generation-event-on-soft-skills-professional-development-and-networking).
 * 2023/07/05: Uploaded 1st announcement and registration link for (free) webinar [Pre-approval and Post-approval Challenges in the Clinical Development and Reimbursement of CAR-T Cell Therapies](https://baselbiometrics.github.io/home/docs/events_upcoming.html). Added Kaspar Rufibach's slidedeck to [NextGen seminar](https://baselbiometrics.github.io/home/docs/events_past.html#next-generation-event-on-soft-skills-professional-development-and-networking).
-* 2023/05/23: Uploaded agenda and registration link for workshop [Estimands in Early Development (ED) across Therapeutic Areas](https://baselbiometrics.github.io/home/docs/events_upcoming.html).
-* 2023/05/08: Added title talk Justine Rochon at seminar [Next Generation event on soft-skills, professional development, and networking](https://baselbiometrics.github.io/home/docs/events_upcoming.html).
+* 2023/05/23: Uploaded agenda and registration link for workshop [Estimands in Early Development (ED) across Therapeutic Areas](https://baselbiometrics.github.io/home/docs/events_past.html#next-generation-event-on-soft-skills-professional-development-and-networking).
 * 2023/05/02: Uploaded agenda and registration link for seminar [Next Generation event on soft-skills, professional development, and networking](https://baselbiometrics.github.io/home/docs/events_upcoming.html).
 * 2023/04/13: Uploaded slides and recordings for [BBS seminar "Quantification of risk: ask the right questions or time to apply the estimand framework to safety!"](events_past.html#quantification-of-risk-ask-the-right-questions-or-time-to-apply-the-estimand-framework-to-safety).
 * 2023/03/21: Uploaded slides and added time stamps to recording for [Joint BES / BBS seminar "Real-World Data Quality – Assessing data quality and demonstrating fitness-for-purpose"](events_past.html#joint-besbbs-webinar-real-world-data-quality).

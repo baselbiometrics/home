@@ -24,8 +24,6 @@ website:
           href: purpose.html
         - text: "BBS board"
           href: board.html
-        - text: "Updates on this page"
-          href: updates.html
     - text: "Upcoming events"
       menu:
         - text: "Announcements of upcoming events"
@@ -40,6 +38,8 @@ website:
           href: trainings_past.html
     - text: "Additional documents"
       href: additional_docs.html
+    - text: "Updates on this page"
+      href: updates.html
 
 format:
   html:

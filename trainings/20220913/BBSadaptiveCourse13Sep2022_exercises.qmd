@@ -109,7 +109,7 @@ Hint: `getEventProbabilities`.
 
 **Solution:**
 
-```{r, include=TRUE, echo=TRUE}
+```{r, include = TRUE, echo=TRUE}
 # provide your solution here
 ```
 

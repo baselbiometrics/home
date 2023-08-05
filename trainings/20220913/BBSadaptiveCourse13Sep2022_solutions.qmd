@@ -95,7 +95,7 @@ Hint: Use significance levels from design with efficacy only, add futility inter
 
 We spend a minimal alpha of 0.00001 at the futility interim analysis and use the alpha-spending from the O'Brien-Fleming-type alpha-spending function for the efficacy interim and the final analysis. In rpact, the `futilityBounds` are specified on the $Z$-scale and an observed hazard ratio 1 at the futility interim corresponds to a $Z$-score of 0. This leads to the following code:
 
-```{r, include=TRUE, echo=TRUE}
+```{r, include = TRUE, echo=TRUE}
 # add the futility using the sig levels computed above and spending epsilon alpha at the futility
 design2 <- getDesignGroupSequential(informationRates = c(0.3, infofrac),
                                     sided = 1, alpha = alpha, beta = beta,

@@ -11,7 +11,7 @@ format:
 --- 
 
 # Purpose of this document
-
+ 
 Materials for the BBS training [Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact](https://baselbiometrics.github.io/home/docs/trainings/20220913/agenda.pdf), held in Basel on 13th September 2022 by [Kaspar Rufibach](mailto:kaspar.rufibach@roche.com), [Marc Vandemeulebroecke](mailto:marc.vandemeulebroecke@novartis.com), [Gernot Wassmer](mailto:gernot.wassmer@rpact.com), and [Marcel Wolbers](mailto:marcel.wolbers@roche.com). 
 
 # Documents

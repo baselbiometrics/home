@@ -1,0 +1,57 @@
+---
+title: "Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact"
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-title: Contents
+    toc-location: left
+    number-sections: true
+    number-depth: 2
+--- 
+
+# Purpose of this document
+
+Materials for the [CEN 2023](https://cen2023.github.io/home/index.html) pre-conference course [Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact](https://cen2023.github.io/home/courses.html#Advanced_group-sequential_and_adaptive_confirmatory_clinical_trial_designs,_with_R_practicals_using_rpact), held in Basel on 3rd September 2023 by [Kaspar Rufibach](mailto:kaspar.rufibach@roche.com), [Marc Vandemeulebroecke](mailto:marc.vandemeulebroecke@novartis.com), [Gernot Wassmer](mailto:gernot.wassmer@rpact.com), and [Marcel Wolbers](mailto:marcel.wolbers@roche.com). 
+
+# Documents
+
+```{r, include=TRUE, echo=FALSE, message = FALSE}
+suppressWarnings(library(knitr))
+
+tab <- data.frame(matrix("", ncol = 4, nrow = 1),stringsAsFactors = FALSE)
+colnames(tab) <- c("Presenter", "Title", "Slides", "Markdown accompanying slides")
+tab[1, "Presenter"]                    <- "Kaspar Rufibach"
+tab[1, "Title"]                        <- "Efficient use of futility and efficacy interim analyses in group-sequential designs" 
+tab[1, "Slides"]                       <- "[X](RufibachWolbers_efficient_interims_handout.pdf)"
+tab[1, "Markdown accompanying slides"] <- "[X](RufibachWolbers_efficient_interims.html)"
+
+tab[2, "Presenter"]                    <- "Marc Vandemeulebroecke"
+tab[2, "Title"]                        <- "Introduction adaptive trials & sample size re-calculation" 
+tab[2, "Slides"]                       <- ""
+tab[2, "Markdown accompanying slides"] <- ""
+
+tab[3, "Presenter"]                    <- "Marcel Wolbers & Kaspar Rufibach"
+tab[3, "Title"]                        <- "Multi-arm multi-stage designs (MAMS)" 
+tab[3, "Slides"]                       <- ""
+tab[3, "Markdown accompanying slides"] <- ""
+
+tab[4, "Presenter"]                    <- "Frank Bretz and Uli Burger"
+tab[4, "Title"]                        <- "Adaptive trials: Some general considerations" 
+tab[4, "Slides"]                       <- ""
+tab[4, "Markdown accompanying slides"] <- ""
+
+kable(tab, align = "llcc")
+```
+
+* [Exercises](BBSadaptiveCourse03Sep2023_exercises.html) and solutions (follow later) for the entire course. 
+
+* Download all files as .zip file.
+
+
+
+
+
+
+
+

@@ -11,6 +11,7 @@ project:
     - trainings_past.qmd
     - updates.qmd
     - trainings/20220913
+    - trainings/20230903
     - talks/20191101
 
 website:

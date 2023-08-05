@@ -20,7 +20,7 @@ bibliography: biblio.bib
 
 # Purpose of this document
 
-This R markdown file provides the code accompanying the first theory block in the BBS course [Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact](https://baselbiometrics.github.io/home/docs/upcoming/20220913/agenda.pdf).
+This R markdown file provides the code accompanying the first theory block in the [CEN 2023](https://cen2023.github.io/home/index.html) pre-conference course [Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact](https://cen2023.github.io/home/courses.html#Advanced_group-sequential_and_adaptive_confirmatory_clinical_trial_designs,_with_R_practicals_using_rpact).
 
 # Setup
 

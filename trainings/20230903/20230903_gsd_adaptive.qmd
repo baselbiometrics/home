@@ -33,7 +33,7 @@ tab[2, "Markdown accompanying slides"] <- ""
 
 tab[3, "Presenter"]                    <- "Marcel Wolbers & Kaspar Rufibach"
 tab[3, "Title"]                        <- "Multi-arm multi-stage designs (MAMS)" 
-tab[3, "Slides"]                       <- ""
+tab[3, "Slides"]                       <- "[X](CEN2023_MAMSsection_Wolbers_Rufibach_handout.pdf)"
 tab[3, "Markdown accompanying slides"] <- ""
 
 tab[4, "Presenter"]                    <- "Frank Bretz and Uli Burger"

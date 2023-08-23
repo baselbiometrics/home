@@ -16,18 +16,18 @@ Materials for the [CEN 2023](https://cen2023.github.io/home/index.html) pre-conf
 
 # Agenda of the event
 
-| 09:00-09:10: Welcome                                                                  	|
-| 09:10-09:50: Theory: Efficient use of interim analyses (Kaspar)                       	|
-| 09:50-10:30: Introduction to rpact, part 1 (Gernot), exercises (Kaspar & all, ex 1)   	|
-| 10:30-11:00: Coffee break                                                             	|
-| 11:00-11:40: Theory: Introduction adaptive trials & sample size re-calculation (Marc) 	|
-| 11:40-12:30: Introduction rpact, part 2 (Gernot), exercises (Marc & all, ex 2-4)      	|
-| 12:30-14:00: Lunch                                                                    	|
-| 14:00-15:30: Theory: Multi-arm multi-stage designs (Marcel & Kaspar)                  	|
-| 15:30-16:00: Coffee break                                                             	|
-| 16:00-17:00: Introduction rpact, part 3 (Gernot), exercises (Gernot & all, ex 5)      	|
-| 17:00-17:15: Teaser: What can we expect from ICH E20? (Uli & Frank)                   	|
-| 17:15-17:30: Final Q&A                                                                	|                                 	
+| 09:00-09:10: Welcome                                                                  	
+| 09:10-09:50: Theory: Efficient use of interim analyses (Kaspar)                       	
+| 09:50-10:30: Introduction to rpact, part 1 (Gernot), exercises (Kaspar & all, ex 1)   	
+| 10:30-11:00: Coffee break                                                             	
+| 11:00-11:40: Theory: Introduction adaptive trials & sample size re-calculation (Marc) 	
+| 11:40-12:30: Introduction rpact, part 2 (Gernot), exercises (Marc & all, ex 2-4)      	
+| 12:30-14:00: Lunch                                                                    	
+| 14:00-15:30: Theory: Multi-arm multi-stage designs (Marcel & Kaspar)                  	
+| 15:30-16:00: Coffee break                                                             	
+| 16:00-17:00: Introduction rpact, part 3 (Gernot), exercises (Gernot & all, ex 5)      	
+| 17:00-17:15: Teaser: What can we expect from ICH E20? (Uli & Frank)                   	
+| 17:15-17:30: Final Q&A                                                                	                                 	
 
 # Preparation prior to the event
 

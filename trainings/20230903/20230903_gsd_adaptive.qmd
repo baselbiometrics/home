@@ -72,7 +72,7 @@ kable(tab, align = "llcc")
 
 * [Exercises](BBSadaptiveCourse03Sep2023_exercises.html) and solutions (follow later) for the entire course. 
 
-* Download all files as .zip file.
+* Download all files as [.zip file](BBS_adaptive.zip).
 
 
 

@@ -195,6 +195,9 @@ In the second stage of the trial, we observe an average ADAS-Cog improvement of 
 
 **Solution**
 
+```{r, include=TRUE, echo=TRUE}
+# type solution here
+```
 
  3. What would a "naive" z-test have concluded, based on all observations and ignoring the adaptive nature of the trial? What is your interpretation of the situation?
 

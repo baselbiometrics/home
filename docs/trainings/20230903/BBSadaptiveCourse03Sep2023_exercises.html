@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Kaspar Rufibach (Roche), Marc Vandemeulebroecke (Novartis), Gernot Wassmer (rpact), Marcel Wolbers (Roche)">
-<meta name="dcterms.date" content="2023-08-06">
+<meta name="dcterms.date" content="2023-08-23">
 
 <title>Basel Biometrics Society - Exercises for the CEN 2023 pre-conference course ‘Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact’ on 3Sep2023</title>
 <style>
@@ -266,7 +266,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 6, 2023</p>
+      <p class="date">August 23, 2023</p>
     </div>
   </div>
   
@@ -298,7 +298,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rpact)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">"rpact"</span>) <span class="co"># version should be version 3.0 or higher</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] '3.3.1'</code></pre>
+<pre><code>[1] '3.4.0'</code></pre>
 </div>
 </div>
 </section>
@@ -418,12 +418,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Compute the overall (“exact”) p-value and confidence interval for the adaptive trial.</li>
 </ol>
 <p><strong>Solution</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <ol start="3" type="1">
 <li>What would a “naive” z-test have concluded, based on all observations and ignoring the adaptive nature of the trial? What is your interpretation of the situation?</li>
 </ol>
 <p><strong>Solution</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <hr>
 </section>
@@ -437,7 +440,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>What is the necessary sample size to achieve 90% power if the failure rates are assumed to be <span class="math inline">\(\pi_1 = 0.40\)</span> and <span class="math inline">\(\pi_2 = 0.60\)</span>? What is the optimum allocation ratio?</p>
 <p><strong>Solution</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="exercise-3b-boundary-plots" class="level2 unnumbered">
@@ -445,7 +448,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Illustrate the decision boundaries on different scales.</p>
 <p><strong>Solution</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="exercise-3c-power-assessment" class="level2 unnumbered">
@@ -453,7 +456,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Suppose that <span class="math inline">\(N = 280\)</span> subjects were planned for the study. What is the power if the failure rate in the active treatment group is <span class="math inline">\(\pi_1 = 0.50\)</span>?</p>
 <p><strong>Solution</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="exercise-3d-power-illustration" class="level2 unnumbered">
@@ -461,7 +464,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Illustrate power, expected sample size, and early/futility stop for a range of alternative values.</p>
 <p><strong>Solution</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <hr>
 </section>
@@ -474,7 +477,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Use the inverse normal method to allow for the sample size increase and compare the test characteristics with the group sequential design from Example 3.</p>
 <p><strong>Solution</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="exercise-4b-illustrate-power-difference" class="level2 unnumbered">
@@ -482,7 +485,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Illustrate the gain in power when using the adaptive sample size recalculation.</p>
 <p><strong>Solution</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="exercise-4c-histogram-of-sample-sizes" class="level2 unnumbered">
@@ -490,7 +493,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Create a histogram for the attained sample size of the study when using the adaptive sample size recalculation. How often will the maximum sample size be achieved?</p>
 <p><strong>Solution</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <hr>
 </section>
@@ -540,31 +543,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Perform the closed test and assess the conditional power in order to decide which treatment arm(s) should be selected and if the sample size should be redefined.</p>
 <p><strong>Solution</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define input data (in rpact, the *last* group refers to control) and other parameters</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>dataExample <span class="ot">&lt;-</span> <span class="fu">getDataset</span>(</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">n1      =</span> <span class="fu">c</span>(<span class="dv">19</span>),</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">n2      =</span> <span class="fu">c</span>(<span class="dv">22</span>),</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">n3      =</span> <span class="fu">c</span>(<span class="dv">23</span>),</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">n4      =</span> <span class="fu">c</span>(<span class="dv">21</span>),</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">means1  =</span> <span class="fu">c</span>(<span class="fl">3.11</span>),</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">means2  =</span> <span class="fu">c</span>(<span class="fl">3.87</span>),</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">means3  =</span> <span class="fu">c</span>(<span class="fl">4.12</span>),</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">means4  =</span> <span class="fu">c</span>(<span class="fl">3.02</span>),</span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">stDevs1 =</span> <span class="fu">c</span>(<span class="fl">1.77</span>),</span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">stDevs2 =</span> <span class="fu">c</span>(<span class="fl">1.23</span>),</span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">stDevs3 =</span> <span class="fu">c</span>(<span class="fl">1.64</span>),</span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">stDevs4 =</span> <span class="fu">c</span>(<span class="fl">1.72</span>)</span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.025</span></span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>intersectionTest <span class="ot">&lt;-</span> <span class="st">"Dunnett"</span></span>
-<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>varianceOption <span class="ot">&lt;-</span> <span class="st">"overallPooled"</span></span>
-<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>normalApproximation <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
-<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Now define the design via getDesignInverseNormal,</span></span>
-<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a><span class="co"># then analyse the data using getAnalysisResults</span></span>
-<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a><span class="co"># type solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define input data (in rpact, the *last* group refers to control) and other parameters</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>dataExample <span class="ot">&lt;-</span> <span class="fu">getDataset</span>(</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">n1      =</span> <span class="fu">c</span>(<span class="dv">19</span>),</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">n2      =</span> <span class="fu">c</span>(<span class="dv">22</span>),</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">n3      =</span> <span class="fu">c</span>(<span class="dv">23</span>),</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">n4      =</span> <span class="fu">c</span>(<span class="dv">21</span>),</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">means1  =</span> <span class="fu">c</span>(<span class="fl">3.11</span>),</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">means2  =</span> <span class="fu">c</span>(<span class="fl">3.87</span>),</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">means3  =</span> <span class="fu">c</span>(<span class="fl">4.12</span>),</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">means4  =</span> <span class="fu">c</span>(<span class="fl">3.02</span>),</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">stDevs1 =</span> <span class="fu">c</span>(<span class="fl">1.77</span>),</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">stDevs2 =</span> <span class="fu">c</span>(<span class="fl">1.23</span>),</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">stDevs3 =</span> <span class="fu">c</span>(<span class="fl">1.64</span>),</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">stDevs4 =</span> <span class="fu">c</span>(<span class="fl">1.72</span>)</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.025</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>intersectionTest <span class="ot">&lt;-</span> <span class="st">"Dunnett"</span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>varianceOption <span class="ot">&lt;-</span> <span class="st">"overallPooled"</span></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>normalApproximation <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Now define the design via getDesignInverseNormal,</span></span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a><span class="co"># then analyse the data using getAnalysisResults</span></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a><span class="co"># type solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="exercise-5b-second-stage" class="level2 unnumbered">
@@ -603,24 +606,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Perform the closed test and discuss whether or not to stop the study and determine overall <span class="math inline">\(p\,\)</span>-values and confidence intervals.</p>
 <p><strong>Solution</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>dataExample <span class="ot">&lt;-</span> <span class="fu">getDataset</span>(</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">n1      =</span> <span class="fu">c</span>(<span class="dv">19</span>, <span class="cn">NA</span>),</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">n2      =</span> <span class="fu">c</span>(<span class="dv">22</span>, <span class="dv">23</span>),</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">n3      =</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">19</span>),</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">n4      =</span> <span class="fu">c</span>(<span class="dv">21</span>, <span class="dv">22</span>),</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">means1  =</span> <span class="fu">c</span>(<span class="fl">3.11</span>, <span class="cn">NA</span>),</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">means2  =</span> <span class="fu">c</span>(<span class="fl">3.87</span>, <span class="fl">3.66</span>),</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">means3  =</span> <span class="fu">c</span>(<span class="fl">4.12</span>, <span class="fl">3.98</span>),</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">means4  =</span> <span class="fu">c</span>(<span class="fl">3.02</span>, <span class="fl">2.99</span>),</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">stDevs1 =</span> <span class="fu">c</span>(<span class="fl">1.77</span>, <span class="cn">NA</span>),</span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">stDevs2 =</span> <span class="fu">c</span>(<span class="fl">1.23</span>, <span class="fl">1.11</span>),</span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">stDevs3 =</span> <span class="fu">c</span>(<span class="fl">1.64</span>, <span class="fl">1.21</span>),</span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">stDevs4 =</span> <span class="fu">c</span>(<span class="fl">1.72</span>, <span class="fl">1.82</span>)</span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Now analyse the data using getAnalysisResults</span></span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="co"># type solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>dataExample <span class="ot">&lt;-</span> <span class="fu">getDataset</span>(</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">n1      =</span> <span class="fu">c</span>(<span class="dv">19</span>, <span class="cn">NA</span>),</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">n2      =</span> <span class="fu">c</span>(<span class="dv">22</span>, <span class="dv">23</span>),</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">n3      =</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">19</span>),</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">n4      =</span> <span class="fu">c</span>(<span class="dv">21</span>, <span class="dv">22</span>),</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">means1  =</span> <span class="fu">c</span>(<span class="fl">3.11</span>, <span class="cn">NA</span>),</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">means2  =</span> <span class="fu">c</span>(<span class="fl">3.87</span>, <span class="fl">3.66</span>),</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">means3  =</span> <span class="fu">c</span>(<span class="fl">4.12</span>, <span class="fl">3.98</span>),</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">means4  =</span> <span class="fu">c</span>(<span class="fl">3.02</span>, <span class="fl">2.99</span>),</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">stDevs1 =</span> <span class="fu">c</span>(<span class="fl">1.77</span>, <span class="cn">NA</span>),</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">stDevs2 =</span> <span class="fu">c</span>(<span class="fl">1.23</span>, <span class="fl">1.11</span>),</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">stDevs3 =</span> <span class="fu">c</span>(<span class="fl">1.64</span>, <span class="fl">1.21</span>),</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">stDevs4 =</span> <span class="fu">c</span>(<span class="fl">1.72</span>, <span class="fl">1.82</span>)</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Now analyse the data using getAnalysisResults</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a><span class="co"># type solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="exercise-5c-intersection-tests" class="level2 unnumbered">
@@ -628,7 +631,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Would the Bonferroni and the Simes test intersection tests provide the same results?</p>
 <p><strong>Solution</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <hr>
 </section>
@@ -641,7 +644,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The patients should be recruited within 12 months assuming uniform accrual. Assume an additional follow-up time of 12 months, i.e., the study should be conducted within 2 years. Calculate the necessary number of events and patients (total and per month) in order to reach power 90% with the assumed median survival times if the survival time is exponentially distributed. Under the postulated assumption, estimate interim and final analysis time.</p>
 <p><strong>Solution</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="exercise-6b-follow-up-time-and-absolue-intensity-given" class="level2 unnumbered">
@@ -649,7 +652,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Assume that 25 patients can be recruited each month and that there is uniform accrual. Estimate the necessary accrual time if the planned follow-up time remains unchanged.</p>
 <p><strong>Solution</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="exercise-6c-accrual-time-and-max-number-of-patients-given" class="level2 unnumbered">
@@ -657,7 +660,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Assume that accrual stops after 16 months with 25 patients per month, i.e., after 400 patients were recruited. What is the estimated necessary follow-up time?</p>
 <p><strong>Solution</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="exercise-6d-staggered-patient-entry" class="level2 unnumbered">
@@ -665,7 +668,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>How do the results change if in the first 3 months 15 patients, in the second 3 months 20 patients, and after 6 months 25 patients per month can be accrued?</p>
 <p><strong>Solution</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <hr>
 </section>
@@ -677,7 +680,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Assume that the study from Example 6 is planned with 257 events and 400 patients under the assumptions that accrual stops after 16 months with 25 patients per month. Verify by simulation the correctness of the results obtained by the analytical formulae.</p>
 <p><strong>Solution</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="exercise-7b-assess-adaptive-survival-design" class="level2 unnumbered">
@@ -691,12 +694,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Hint: Make sure that enough subjects are used in the simulation (set <code>maxNumberOfSubjects = 3000</code> and no drop-outs)</p>
 <p><strong>Solution</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <hr>
-<p>System: rpact 3.3.1, R version 4.2.3 (2023-03-15 ucrt), platform: x86_64-w64-mingw32</p>
+<p>System: rpact 3.4.0, R version 4.2.3 (2023-03-15 ucrt), platform: x86_64-w64-mingw32</p>
 <p>Um Paket ‘rpact’ in Publikationen zu zitieren, nutzen Sie bitte:</p>
-<p>Wassmer G, Pahlke F (2022). <em>rpact: Confirmatory Adaptive Clinical Trial Design and Analysis</em>. R package version 3.3.1, <a href="https://CRAN.R-project.org/package=rpact" class="uri">https://CRAN.R-project.org/package=rpact</a>.</p>
+<p>Wassmer G, Pahlke F (2023). <em>rpact: Confirmatory Adaptive Clinical Trial Design and Analysis</em>. R package version 3.4.0, <a href="https://CRAN.R-project.org/package=rpact" class="uri">https://CRAN.R-project.org/package=rpact</a>.</p>
 
 
 </section>

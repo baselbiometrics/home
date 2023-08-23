@@ -17,7 +17,6 @@ Materials for the [CEN 2023](https://cen2023.github.io/home/index.html) pre-conf
 # Agenda of the event
 
 | 09:00-09:10: Welcome                                                                  	|
-|---------------------------------------------------------------------------------------	|
 | 09:10-09:50: Theory: Efficient use of interim analyses (Kaspar)                       	|
 | 09:50-10:30: Introduction to rpact, part 1 (Gernot), exercises (Kaspar & all, ex 1)   	|
 | 10:30-11:00: Coffee break                                                             	|

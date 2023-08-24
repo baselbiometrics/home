@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Kaspar Rufibach (Roche), Marc Vandemeulebroecke (Novartis), Gernot Wassmer (rpact), Marcel Wolbers (Roche)">
-<meta name="dcterms.date" content="2023-08-23">
+<meta name="dcterms.date" content="2023-08-24">
 
 <title>Basel Biometrics Society - Exercises for the CEN 2023 pre-conference course ‘Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact’ on 3Sep2023</title>
 <style>
@@ -265,7 +265,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 23, 2023</p>
+      <p class="date">August 24, 2023</p>
     </div>
   </div>
   
@@ -521,7 +521,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>design2 <span class="ot">&lt;-</span> <span class="fu">getDesignGroupSequential</span>(<span class="at">informationRates =</span> <span class="fu">c</span>(<span class="fl">0.3</span>, infofrac),</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">sided =</span> <span class="dv">1</span>, <span class="at">alpha =</span> alpha, <span class="at">beta =</span> beta,</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">typeOfDesign =</span> <span class="st">"asUser"</span>, </span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">userAlphaSpending =</span> <span class="fu">c</span>(<span class="dv">0</span>, design1<span class="sc">$</span>alphaSpent),</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">userAlphaSpending =</span> <span class="fu">c</span>(<span class="fl">0.0001</span>, design1<span class="sc">$</span>alphaSpent),</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">futilityBounds =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="sc">-</span><span class="cn">Inf</span>),</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">bindingFutility =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
@@ -539,6 +539,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="0.3" class="anchored" data-anchor-id="sample-size-calculation-for-a-survival-endpoint-1"><span class="header-section-number">0.3</span> Sample size calculation for a survival endpoint</h2>
 <p>Sequential analysis with a maximum of 3 looks (group sequential design), overall significance level 2.5% (one-sided). The sample size was calculated for a two-sample logrank test, H0: hazard ratio = 1, H1: treatment median(1) = 16.9, control median(2) = 12, planned allocation ratio = 2, accrual time = 10, accrual intensity = 48, dropout rate(1) = 0.05, dropout rate(2) = 0.05, dropout time = 12, power 80%.</p>
 <table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
 <thead>
 <tr class="header">
 <th>Stage</th>
@@ -556,8 +562,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>Efficacy boundary (z-value scale)</td>
-<td>Inf</td>
-<td>2.669</td>
+<td>3.719</td>
+<td>2.672</td>
 <td>1.981</td>
 </tr>
 <tr class="odd">
@@ -568,8 +574,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>Overall power</td>
-<td>0</td>
-<td>0.3361</td>
+<td>0.0166</td>
+<td>0.3354</td>
 <td>0.8000</td>
 </tr>
 <tr class="odd">
@@ -598,26 +604,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>Expected study duration</td>
-<td>25.5</td>
+<td>25.4</td>
 <td></td>
 <td></td>
 </tr>
 <tr class="even">
 <td>Cumulative alpha spent</td>
-<td>0</td>
+<td>&lt;0.0001</td>
 <td>0.0038</td>
 <td>0.0250</td>
 </tr>
 <tr class="odd">
 <td>One-sided local significance level</td>
-<td>0</td>
+<td>&lt;0.0001</td>
 <td>0.0038</td>
 <td>0.0238</td>
 </tr>
 <tr class="even">
 <td>Efficacy boundary (t)</td>
-<td>0</td>
-<td>0.666</td>
+<td>0.449</td>
+<td>0.665</td>
 <td>0.791</td>
 </tr>
 <tr class="odd">
@@ -628,26 +634,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>Overall exit probability (under H0)</td>
-<td>0.5000</td>
-<td>0.0038</td>
+<td>0.5001</td>
+<td>0.0037</td>
 <td></td>
 </tr>
 <tr class="odd">
 <td>Overall exit probability (under H1)</td>
-<td>0.0561</td>
-<td>0.3361</td>
+<td>0.0726</td>
+<td>0.3188</td>
 <td></td>
 </tr>
 <tr class="even">
 <td>Exit probability for efficacy (under H0)</td>
-<td>0</td>
-<td>0.0038</td>
+<td>&lt;0.0001</td>
+<td>0.0037</td>
 <td></td>
 </tr>
 <tr class="odd">
 <td>Exit probability for efficacy (under H1)</td>
-<td>0</td>
-<td>0.3361</td>
+<td>0.0166</td>
+<td>0.3188</td>
 <td></td>
 </tr>
 <tr class="even">
@@ -676,10 +682,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="design-parameters-1">Design parameters</h3>
 <ul>
 <li><em>Information rates</em>: 0.300, 0.600, 1.000</li>
-<li><em>Critical values</em>: Inf, 2.669, 1.981</li>
+<li><em>Critical values</em>: 3.719, 2.672, 1.981</li>
 <li><em>Futility bounds (non-binding)</em>: 0.000, -Inf</li>
-<li><em>Cumulative alpha spending</em>: 0.000000, 0.003808, 0.025000</li>
-<li><em>Local one-sided significance levels</em>: 0.000000, 0.003808, 0.023798</li>
+<li><em>Cumulative alpha spending</em>: 0.000100, 0.003808, 0.025000</li>
+<li><em>Local one-sided significance levels</em>: 0.000100, 0.003765, 0.023787</li>
 <li><em>Significance level</em>: 0.0250</li>
 <li><em>Type II error rate</em>: 0.2000</li>
 <li><em>Test</em>: one-sided</li>
@@ -718,24 +724,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><em>Maximum number of subjects (2)</em>: 160</li>
 <li><em>Maximum number of events</em>: 322.9</li>
 <li><em>Follow up time</em>: 21.74</li>
-<li><em>Reject per stage [1]</em>: 0.0000</li>
-<li><em>Reject per stage [2]</em>: 0.3361</li>
-<li><em>Reject per stage [3]</em>: 0.4639</li>
-<li><em>Overall futility stop</em>: 0.05608</li>
-<li><em>Futility stop per stage [1]</em>: 0.05608</li>
+<li><em>Reject per stage [1]</em>: 0.01657</li>
+<li><em>Reject per stage [2]</em>: 0.31880</li>
+<li><em>Reject per stage [3]</em>: 0.46463</li>
+<li><em>Overall futility stop</em>: 0.05607</li>
+<li><em>Futility stop per stage [1]</em>: 0.05607</li>
 <li><em>Futility stop per stage [2]</em>: 0.00000</li>
-<li><em>Early stop</em>: 0.3922</li>
+<li><em>Early stop</em>: 0.3914</li>
 <li><em>Analysis times [1]</em>: 10.12</li>
 <li><em>Analysis times [2]</em>: 16.72</li>
 <li><em>Analysis times [3]</em>: 31.74</li>
-<li><em>Expected study duration</em>: 25.48</li>
+<li><em>Expected study duration</em>: 25.38</li>
 <li><em>Maximal study duration</em>: 31.74</li>
 <li><em>Number of events per stage [1]</em>: 96.9</li>
 <li><em>Number of events per stage [2]</em>: 193.7</li>
 <li><em>Number of events per stage [3]</em>: 322.9</li>
 <li><em>Expected number of events under H0</em>: 209.4</li>
-<li><em>Expected number of events under H0/H1</em>: 266.7</li>
-<li><em>Expected number of events under H1</em>: 266.8</li>
+<li><em>Expected number of events under H0/H1</em>: 266.6</li>
+<li><em>Expected number of events under H1</em>: 265.3</li>
 <li><em>Number of subjects [1]</em>: 480</li>
 <li><em>Number of subjects [2]</em>: 480</li>
 <li><em>Number of subjects [3]</em>: 480</li>
@@ -746,8 +752,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><em>Number of subjects (2) [2]</em>: 160</li>
 <li><em>Number of subjects (2) [3]</em>: 160</li>
 <li><em>Expected number of subjects under H1</em>: 480</li>
-<li><em>Critical values (treatment effect scale) [1]</em>: 0.000</li>
-<li><em>Critical values (treatment effect scale) [2]</em>: 0.666</li>
+<li><em>Critical values (treatment effect scale) [1]</em>: 0.449</li>
+<li><em>Critical values (treatment effect scale) [2]</em>: 0.665</li>
 <li><em>Critical values (treatment effect scale) [3]</em>: 0.791</li>
 <li><em>Futility bounds (treatment effect scale) [1]</em>: 1.000</li>
 <li><em>Futility bounds (treatment effect scale) [2]</em>: NA</li>
@@ -765,7 +771,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </div>
 </div>
-<p>We see that by adding the futility interim we increase the maximal number of events from 303.827705 to 322.8702626.</p>
+<p>We see that by adding the futility interim we increase the maximal number of events from 303.827705 to 322.9028532.</p>
 </section>
 <section id="exercise-1c-power-loss-associated-with-the-futility-interim-analysis" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="exercise-1c-power-loss-associated-with-the-futility-interim-analysis">Exercise 1c (Power loss associated with the futility interim analysis)</h2>
@@ -784,10 +790,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># power, as compared to the specified 80%</span></span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>power<span class="sc">$</span>overallReject</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.7763167</code></pre>
+<pre><code>[1] 0.776275</code></pre>
 </div>
 </div>
-<p>So the power loss of adding the futility amounts to 0.0236833.</p>
+<p>So the power loss of adding the futility amounts to 0.023725.</p>
 </section>
 <section id="bonus-exercise-1d-timing-of-os-events" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="bonus-exercise-1d-timing-of-os-events">Bonus Exercise 1d (Timing of OS events)</h2>
@@ -2015,7 +2021,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>overallSampleSizes <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span>maxiter, <span class="cf">function</span>(i) <span class="fu">sum</span>(simPart[simPart<span class="sc">$</span>iterationNumber<span class="sc">==</span>i,]<span class="sc">$</span>numberOfSubjects))</span>
 <span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">toc</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.29 sec elapsed</code></pre>
+<pre><code>0.23 sec elapsed</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tic()</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># overallSampleSizes &lt;- numeric(maxiter)</span></span>

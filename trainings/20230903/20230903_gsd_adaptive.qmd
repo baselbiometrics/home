@@ -21,11 +21,11 @@ Materials for the [CEN 2023](https://cen2023.github.io/home/index.html) pre-conf
 | 09:50-10:30: Introduction to rpact, part 1 (Gernot), exercises (Kaspar & all, ex 1)   	
 | 10:30-11:00: Coffee break                                                             	
 | 11:00-11:40: Theory: Introduction adaptive trials & sample size re-calculation (Marc) 	
-| 11:40-12:30: Introduction rpact, part 2 (Gernot), exercises (Marc & all, ex 2-4)      	
+| 11:40-12:30: Introduction rpact, part 2 (Gernot), exercises (Marc & all, ex 2)      	
 | 12:30-14:00: Lunch                                                                    	
 | 14:00-15:30: Theory: Multi-arm multi-stage designs (Marcel & Kaspar)                  	
 | 15:30-16:00: Coffee break                                                             	
-| 16:00-17:00: Introduction rpact, part 3 (Gernot), exercises (Gernot & all, ex 5)      	
+| 16:00-17:00: Introduction rpact, part 3 (Gernot), exercises (Gernot & all, ex 3-5)      	
 | 17:00-17:15: Teaser: What can we expect from ICH E20? (Uli & Frank)                   	
 | 17:15-17:30: Final Q&A                                                                	                                 	
 
@@ -56,21 +56,26 @@ tab[2, "Title"]                        <- "Introduction adaptive trials & sample
 tab[2, "Slides"]                       <- ""
 tab[2, "Markdown accompanying slides"] <- ""
 
-tab[3, "Presenter"]                    <- "Marcel Wolbers & Kaspar Rufibach"
-tab[3, "Title"]                        <- "Multi-arm multi-stage designs (MAMS)" 
-tab[3, "Slides"]                       <- "[X](CEN2023_MAMSsection_Wolbers_Rufibach_handout.pdf)"
+tab[3, "Presenter"]                    <- "Gernot Wassmer"
+tab[3, "Title"]                        <- "Introduction to rpact" 
+tab[3, "Slides"]                       <- "[X](Wassmer_intro_rpact.pdf)"
 tab[3, "Markdown accompanying slides"] <- ""
 
-tab[4, "Presenter"]                    <- "Frank Bretz and Uli Burger"
-tab[4, "Title"]                        <- "Adaptive trials: Some general considerations" 
-tab[4, "Slides"]                       <- ""
+tab[4, "Presenter"]                    <- "Marcel Wolbers & Kaspar Rufibach"
+tab[4, "Title"]                        <- "Multi-arm multi-stage designs (MAMS)" 
+tab[4, "Slides"]                       <- "[X](CEN2023_MAMSsection_Wolbers_Rufibach_handout.pdf)"
 tab[4, "Markdown accompanying slides"] <- ""
+
+tab[5, "Presenter"]                    <- "Frank Bretz and Uli Burger"
+tab[5, "Title"]                        <- "Adaptive trials: Some general considerations" 
+tab[5, "Slides"]                       <- ""
+tab[5, "Markdown accompanying slides"] <- ""
 
 kable(tab, align = "llcc")
 ```
 
-* [Exercises](BBSadaptiveCourse03Sep2023_exercises.html) and solutions (follow later) for the entire course. 
-
+* Exercises: [markdown as zip file](BBSadaptiveCourse03Sep2023_exercises.zip) | [html](BBSadaptiveCourse03Sep2023_exercises.html).
+* Solutions: follow after the course. 
 * Download all files as [.zip file](BBS_adaptive.zip).
 
 

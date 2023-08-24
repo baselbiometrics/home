@@ -100,7 +100,7 @@ We spend a minimal alpha of 0.00001 at the futility interim analysis and use the
 design2 <- getDesignGroupSequential(informationRates = c(0.3, infofrac),
                                     sided = 1, alpha = alpha, beta = beta,
                                     typeOfDesign = "asUser", 
-                                    userAlphaSpending = c(0, design1$alphaSpent),
+                                    userAlphaSpending = c(0.0001, design1$alphaSpent),
                                     futilityBounds = c(0, -Inf),
                                     bindingFutility = FALSE)
 

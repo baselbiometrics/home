@@ -53,7 +53,7 @@ tab[1, "Markdown accompanying slides"] <- "[X](RufibachWolbers_efficient_interim
 
 tab[2, "Presenter"]                    <- "Marc Vandemeulebroecke"
 tab[2, "Title"]                        <- "Introduction adaptive trials & sample size re-calculation" 
-tab[2, "Slides"]                       <- ""
+tab[2, "Slides"]                       <- "[X](Vandemeulebroecke_intro_adaptive.pdf)"
 tab[2, "Markdown accompanying slides"] <- ""
 
 tab[3, "Presenter"]                    <- "Gernot Wassmer"

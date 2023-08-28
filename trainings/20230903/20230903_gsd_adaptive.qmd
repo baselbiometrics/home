@@ -68,7 +68,7 @@ tab[4, "Markdown accompanying slides"] <- ""
 
 tab[5, "Presenter"]                    <- "Frank Bretz and Uli Burger"
 tab[5, "Title"]                        <- "Adaptive trials: Some general considerations" 
-tab[5, "Slides"]                       <- ""
+tab[5, "Slides"]                       <- "[X](Bretz_Burger CEN.pdf)"
 tab[5, "Markdown accompanying slides"] <- ""
 
 kable(tab, align = "llcc")

@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Kaspar Rufibach (Roche), Marc Vandemeulebroecke (Novartis), Gernot Wassmer (rpact), Marcel Wolbers (Roche)">
-<meta name="dcterms.date" content="2023-08-24">
+<meta name="dcterms.date" content="2023-09-03">
 
-<title>Basel Biometrics Society - Exercises for the CEN 2023 pre-conference course ‘Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact’ on 3Sep2023</title>
+<title>Basel Biometrics Society - Solutions to the exercises for the CEN 2023 pre-conference course ‘Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact’ on 3Sep2023</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -248,7 +248,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Exercises for the CEN 2023 pre-conference course ‘Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact’ on 3Sep2023</h1>
+<h1 class="title">Solutions to the exercises for the CEN 2023 pre-conference course ‘Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact’ on 3Sep2023</h1>
 </div>
 
 
@@ -265,10 +265,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 24, 2023</p>
+      <p class="date">September 3, 2023</p>
     </div>
   </div>
   
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">September 3, 2023</p>
+    </div>
+  </div>
     
   </div>
   
@@ -307,7 +313,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Exponentially distributed OS in the control arm with a median of 12 months.</li>
 <li>Median OS improvement vs.&nbsp;control of 4.9 months (medians 16.9 vs.&nbsp;12 months, i.e.&nbsp;a HR of approximately 0.71).</li>
-<li>Log-rank test at a two-sided significance level of 0.05, power 80%.</li>
+<li>Log-rank test at a one-sided significance level of 0.025, power 80%.</li>
 <li>One interim analyses for efficacy (IA) and one final analysis using the O'Brien-Fleming boundaries approximated using the Lan-DeMets method. The first IA will be performed after 60% of information.</li>
 </ul>
 <section id="exercise-1a-sample-size-calculation" class="level2 unnumbered">
@@ -317,7 +323,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># basic parameters</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>infofrac <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.6</span>, <span class="dv">1</span>)   <span class="co"># information fractions</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>         <span class="co"># one-sided</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span> <span class="sc">/</span> <span class="dv">2</span>       <span class="co"># one-sided</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fl">0.2</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>accrualTime <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">10</span>)</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>accrualIntensity <span class="ot">&lt;-</span> <span class="dv">48</span>  <span class="co"># 48 pts over 10 months</span></span>
@@ -517,23 +523,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Solution:</strong></p>
 <p>We spend a minimal alpha of 0.00001 at the futility interim analysis and use the alpha-spending from the O’Brien-Fleming-type alpha-spending function for the efficacy interim and the final analysis. In rpact, the <code>futilityBounds</code> are specified on the <span class="math inline">\(Z\)</span>-scale and an observed hazard ratio 1 at the futility interim corresponds to a <span class="math inline">\(Z\)</span>-score of 0. This leads to the following code:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add the futility using the sig levels computed above and spending epsilon alpha at the futility</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>design2 <span class="ot">&lt;-</span> <span class="fu">getDesignGroupSequential</span>(<span class="at">informationRates =</span> <span class="fu">c</span>(<span class="fl">0.3</span>, infofrac),</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">sided =</span> <span class="dv">1</span>, <span class="at">alpha =</span> alpha, <span class="at">beta =</span> beta,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">typeOfDesign =</span> <span class="st">"asUser"</span>, </span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">userAlphaSpending =</span> <span class="fu">c</span>(<span class="fl">0.0001</span>, design1<span class="sc">$</span>alphaSpent),</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">futilityBounds =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="sc">-</span><span class="cn">Inf</span>),</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">bindingFutility =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate sample size for this design</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>sampleSizeOS2 <span class="ot">&lt;-</span> <span class="fu">getSampleSizeSurvival</span>(design2,</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">allocationRatioPlanned =</span> randoratio,    </span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">median2 =</span> m2, <span class="at">median1 =</span> m1, </span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">dropoutRate1 =</span> do, <span class="at">dropoutRate2 =</span> do, <span class="at">dropoutTime =</span> doTime,</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">accrualTime =</span> accrualTime, <span class="at">accrualIntensity =</span> accrualIntensity)  </span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co"># rpact summary</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sampleSizeOS2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add the futility using the sig levels computed above and </span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># spending epsilon alpha at the futility</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>design2 <span class="ot">&lt;-</span> <span class="fu">getDesignGroupSequential</span>(<span class="at">informationRates =</span> <span class="fu">c</span>(<span class="fl">0.3</span>, infofrac),</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">sided =</span> <span class="dv">1</span>, <span class="at">alpha =</span> alpha, <span class="at">beta =</span> beta,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">typeOfDesign =</span> <span class="st">"asUser"</span>, </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">userAlphaSpending =</span> <span class="fu">c</span>(<span class="fl">0.0001</span>, design1<span class="sc">$</span>alphaSpent),</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">futilityBounds =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="sc">-</span><span class="cn">Inf</span>),</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">bindingFutility =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate sample size for this design</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>sampleSizeOS2 <span class="ot">&lt;-</span> <span class="fu">getSampleSizeSurvival</span>(design2,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">allocationRatioPlanned =</span> randoratio,    </span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">median2 =</span> m2, <span class="at">median1 =</span> m1, </span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">dropoutRate1 =</span> do, <span class="at">dropoutRate2 =</span> do, <span class="at">dropoutTime =</span> doTime,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">accrualTime =</span> accrualTime, <span class="at">accrualIntensity =</span> accrualIntensity)  </span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co"># rpact summary</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sampleSizeOS2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <section id="sample-size-calculation-for-a-survival-endpoint-1" class="level2" data-number="0.3">
 <h2 data-number="0.3" class="anchored" data-anchor-id="sample-size-calculation-for-a-survival-endpoint-1"><span class="header-section-number">0.3</span> Sample size calculation for a survival endpoint</h2>
@@ -2021,7 +2028,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>overallSampleSizes <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span>maxiter, <span class="cf">function</span>(i) <span class="fu">sum</span>(simPart[simPart<span class="sc">$</span>iterationNumber<span class="sc">==</span>i,]<span class="sc">$</span>numberOfSubjects))</span>
 <span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">toc</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.23 sec elapsed</code></pre>
+<pre><code>0.2 sec elapsed</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tic()</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># overallSampleSizes &lt;- numeric(maxiter)</span></span>

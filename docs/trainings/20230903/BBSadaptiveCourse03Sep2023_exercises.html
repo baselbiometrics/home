@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Kaspar Rufibach (Roche), Marc Vandemeulebroecke (Novartis), Gernot Wassmer (rpact), Marcel Wolbers (Roche)">
-<meta name="dcterms.date" content="2023-08-24">
+<meta name="dcterms.date" content="2023-09-03">
 
 <title>Basel Biometrics Society - Exercises for the CEN 2023 pre-conference course ‘Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact’ on 3Sep2023</title>
 <style>
@@ -266,10 +266,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 24, 2023</p>
+      <p class="date">September 3, 2023</p>
     </div>
   </div>
   
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">September 3, 2023</p>
+    </div>
+  </div>
     
   </div>
   
@@ -314,7 +320,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Exponentially distributed OS in the control arm with a median of 12 months.</li>
 <li>Median OS improvement vs.&nbsp;control of 4.9 months (medians 16.9 vs.&nbsp;12 months, i.e.&nbsp;a HR of approximately 0.71).</li>
-<li>Log-rank test at a two-sided significance level of 0.05, power 80%.</li>
+<li>Log-rank test at a one-sided significance level of 0.025, power 80%.</li>
 <li>One interim analyses for efficacy (IA) and one final analysis using the O'Brien-Fleming boundaries approximated using the Lan-DeMets method. The first IA will be performed after 60% of information.</li>
 </ul>
 <section id="exercise-1a-sample-size-calculation" class="level2 unnumbered">
@@ -322,19 +328,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Calculate the required number of events and timing of analysis for OS using the information fraction of 60%. Use the <code>rpact</code> functions <code>getDesignGroupSequential</code> and <code>getSampleSizeSurvival</code>.</p>
 <p><strong>Solution:</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># basic parameters</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>infofrac <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.6</span>, <span class="dv">1</span>)   <span class="co"># information fractions</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fl">0.2</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>accrualTime <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">10</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>accrualIntensity <span class="ot">&lt;-</span> <span class="dv">48</span>  <span class="co"># 48 pts over 10 months</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>randoratio <span class="ot">&lt;-</span> <span class="dv">2</span>         <span class="co"># 2:1 randomization</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="dv">12</span>                <span class="co"># median control</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fl">16.9</span>              <span class="co"># median treatment</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>do <span class="ot">&lt;-</span> <span class="fl">0.05</span>              <span class="co"># dropout same in both arms</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>doTime <span class="ot">&lt;-</span> <span class="dv">12</span>            <span class="co"># time at which dropout happens</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># provide your solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>infofrac <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.6</span>, <span class="dv">1</span>)   <span class="co"># information fractions</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span> <span class="sc">/</span> <span class="dv">2</span>       <span class="co"># one-sided</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fl">0.2</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>accrualTime <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">10</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>accrualIntensity <span class="ot">&lt;-</span> <span class="dv">48</span>  <span class="co"># 48 pts over 10 months</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>randoratio <span class="ot">&lt;-</span> <span class="dv">2</span>         <span class="co"># 2:1 randomization</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="dv">12</span>                <span class="co"># median control</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fl">16.9</span>              <span class="co"># median treatment</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>do <span class="ot">&lt;-</span> <span class="fl">0.05</span>              <span class="co"># dropout same in both arms</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>doTime <span class="ot">&lt;-</span> <span class="dv">12</span>            <span class="co"># time at which dropout happens</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># provide your solution here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="exercise-1b-addition-of-a-futility-interim-analysis" class="level2 unnumbered">

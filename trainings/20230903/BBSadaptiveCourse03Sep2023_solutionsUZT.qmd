@@ -1,7 +1,8 @@
 ---
-title: "Exercises for the CEN 2023 pre-conference course 'Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact' on 3Sep2023"
+title: "Solutions to the exercises for the CEN 2023 pre-conference course 'Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact' on 3Sep2023"
 author: "Kaspar Rufibach (Roche), Marc Vandemeulebroecke (Novartis), Gernot Wassmer (rpact), Marcel Wolbers (Roche)"
-date: 'Last modification: `r Sys.setlocale("LC_TIME", "C"); format(Sys.Date(), "%d %b %Y")`'
+date: 2023-09-03
+date-modified: last-modified
 execute:
   freeze: auto  # re-render only when source changes
 format:
@@ -45,7 +46,7 @@ The **sample size section for OS** states that the following additional assumpti
 
 - Exponentially distributed OS in the control arm with a median of 12 months.
 - Median OS improvement vs. control of 4.9 months (medians 16.9 vs. 12 months, i.e. a HR of approximately 0.71).
-- Log-rank test at a two-sided significance level of 0.05, power 80%.
+- Log-rank test at a one-sided significance level of 0.025, power 80%.
 - One interim analyses for efficacy (IA) and one final analysis using the O\'Brien-Fleming boundaries approximated using the Lan-DeMets method. The first IA will be performed after 60% of information. 
 
 ## Exercise 1a (Sample size calculation) {-}
@@ -58,7 +59,7 @@ We perform calculations at a one-sided significance level of 2.5% which gives th
 ```{r, include=TRUE, echo=TRUE}
 # basic parameters
 infofrac <- c(0.6, 1)   # information fractions
-alpha <- 0.05/2         # one-sided
+alpha <- 0.05 / 2       # one-sided
 beta <- 0.2
 accrualTime <- c(0, 10)
 accrualIntensity <- 48  # 48 pts over 10 months
@@ -96,7 +97,8 @@ Hint: Use significance levels from design with efficacy only, add futility inter
 We spend a minimal alpha of 0.00001 at the futility interim analysis and use the alpha-spending from the O'Brien-Fleming-type alpha-spending function for the efficacy interim and the final analysis. In rpact, the `futilityBounds` are specified on the $Z$-scale and an observed hazard ratio 1 at the futility interim corresponds to a $Z$-score of 0. This leads to the following code:
 
 ```{r, include = TRUE, echo=TRUE}
-# add the futility using the sig levels computed above and spending epsilon alpha at the futility
+# add the futility using the sig levels computed above and 
+# spending epsilon alpha at the futility
 design2 <- getDesignGroupSequential(informationRates = c(0.3, infofrac),
                                     sided = 1, alpha = alpha, beta = beta,
                                     typeOfDesign = "asUser", 

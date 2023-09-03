@@ -1,7 +1,8 @@
 ---
 title: "Exercises for the CEN 2023 pre-conference course 'Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact' on 3Sep2023"
 author: "Kaspar Rufibach (Roche), Marc Vandemeulebroecke (Novartis), Gernot Wassmer (rpact), Marcel Wolbers (Roche)"
-date: 'Last modification: `r Sys.setlocale("LC_TIME", "C"); format(Sys.Date(), "%d %b %Y")`'
+date: 2023-09-03
+date-modified: last-modified
 execute:
   freeze: auto  # re-render only when source changes
 format:
@@ -50,7 +51,7 @@ The **sample size section for OS** states that the following additional assumpti
 
 - Exponentially distributed OS in the control arm with a median of 12 months.
 - Median OS improvement vs. control of 4.9 months (medians 16.9 vs. 12 months, i.e. a HR of approximately 0.71).
-- Log-rank test at a two-sided significance level of 0.05, power 80%.
+- Log-rank test at a one-sided significance level of 0.025, power 80%.
 - One interim analyses for efficacy (IA) and one final analysis using the O\'Brien-Fleming boundaries approximated using the Lan-DeMets method. The first IA will be performed after 60% of information. 
 
 ## Exercise 1a (Sample size calculation) {-}
@@ -60,9 +61,8 @@ Calculate the required number of events and timing of analysis for OS using the 
 **Solution:**
 
 ```{r, include=TRUE, echo=TRUE}
-# basic parameters
 infofrac <- c(0.6, 1)   # information fractions
-alpha <- 0.05
+alpha <- 0.05 / 2       # one-sided
 beta <- 0.2
 accrualTime <- c(0, 10)
 accrualIntensity <- 48  # 48 pts over 10 months

@@ -1,0 +1,821 @@
+---
+title: "Solutions to the exercises for the CEN 2023 pre-conference course 'Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact' on 3Sep2023"
+author: "Kaspar Rufibach (Roche), Marc Vandemeulebroecke (Novartis), Gernot Wassmer (rpact), Marcel Wolbers (Roche)"
+date: 2023-09-03
+date-modified: last-modified
+execute:
+  freeze: auto  # re-render only when source changes
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-title: Contents
+    toc-location: left
+    number-sections: true
+    number-depth: 2
+    code_download: true
+---
+
+# Purpose of this document {-}
+
+This R markdown file contains the solutions to the exercises of the [CEN 2023](https://cen2023.github.io/home/index.html) pre-conference course [Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact](https://cen2023.github.io/home/courses.html#Advanced_group-sequential_and_adaptive_confirmatory_clinical_trial_designs,_with_R_practicals_using_rpact).  
+
+All materials related to this course are available on the [BBS](http://www.bbsbasel.ch) webpage at this [link](https://baselbiometrics.github.io/home/docs/trainings/20230903/20230903_gsd_adaptive.html). Solutions to the exercises will also be available through that webpage after the course. 
+
+# Load `rpact` {-}
+
+```{r, include=TRUE, echo=TRUE}
+# Load rpact
+library(rpact)
+packageVersion("rpact") # version should be version 3.0 or higher
+setLogLevel("DISABLED") # disable progress messages from e.g. getAnalysisResults 
+
+# Also load tictoc for timing of the simulations
+library(tictoc)
+```
+
+# Exercise 1 (Group-sequential survival trial with efficacy and futility interim analyses) {-}
+
+Assume we plan a phase III, randomized, multicenter, open-label, two-arm trial with a time-to-event endpoint of OS. The **general assumptions for the sample size assessment** are:
+
+- 2:1 randomization.
+- Uniform recruitment of 480 patients over 10 months (48 per month). 
+- The dropout rate is 5% in both arms over 12 months.
+
+The **sample size section for OS** states that the following additional assumptions were made:
+
+- Exponentially distributed OS in the control arm with a median of 12 months.
+- Median OS improvement vs. control of 4.9 months (medians 16.9 vs. 12 months, i.e. a HR of approximately 0.71).
+- Log-rank test at a one-sided significance level of 0.025, power 80%.
+- One interim analyses for efficacy (IA) and one final analysis using the O\'Brien-Fleming boundaries approximated using the Lan-DeMets method. The first IA will be performed after 60% of information. 
+
+## Exercise 1a (Sample size calculation) {-}
+
+Calculate the required number of events and timing of analysis for OS using the information fraction of 60%. Use the `rpact` functions `getDesignGroupSequential` and `getSampleSizeSurvival`. 
+
+**Solution:**
+We perform calculations at a one-sided significance level of 2.5% which gives the same sample size but is more compatible with the futility interim added in Part 1b. 
+
+```{r, include=TRUE, echo=TRUE}
+# basic parameters
+infofrac <- c(0.6, 1)   # information fractions
+alpha <- 0.05 / 2       # one-sided
+beta <- 0.2
+accrualTime <- c(0, 10)
+accrualIntensity <- 48  # 48 pts over 10 months
+randoratio <- 2         # 2:1 randomization
+m2 <- 12                # median control
+m1 <- 16.9              # median treatment
+do <- 0.05              # dropout same in both arms
+doTime <- 12            # time at which dropout happens
+
+maxn <- accrualIntensity * accrualTime[2]
+
+# Specify the group-sequential design 
+design1 <- getDesignGroupSequential(sided = 1, alpha = alpha, beta = beta,
+    informationRates = infofrac, typeOfDesign = "asOF")
+
+# Calculate sample size for OS for this design
+sampleSizeOS1 <- getSampleSizeSurvival(design1,
+    allocationRatioPlanned = randoratio,    
+    median2 = m2, median1 = m1, 
+    dropoutRate1 = do, dropoutRate2 = do, dropoutTime = doTime,
+    accrualTime = accrualTime, accrualIntensity = accrualIntensity)  
+
+# rpact summary
+summary(sampleSizeOS1)
+```
+
+## Exercise 1b (Addition of a futility interim analysis) {-}
+
+Now add an interim analysis for futility ONLY (i.e. no stopping for efficacy possible) after 30% of information where we stop the trial if the observed hazard ratio is above 1.
+
+Hint: Use significance levels from design with efficacy only, add futility interim with minimal alpha-spending. The argument `userAlphaSpending` in `getDesignGroupSequential` helps.
+
+**Solution:**
+
+We spend a minimal alpha of 0.00001 at the futility interim analysis and use the alpha-spending from the O'Brien-Fleming-type alpha-spending function for the efficacy interim and the final analysis. In rpact, the `futilityBounds` are specified on the $Z$-scale and an observed hazard ratio 1 at the futility interim corresponds to a $Z$-score of 0. This leads to the following code:
+
+```{r, include = TRUE, echo=TRUE}
+# add the futility using the sig levels computed above and 
+# spending epsilon alpha at the futility
+design2 <- getDesignGroupSequential(informationRates = c(0.3, infofrac),
+                                    sided = 1, alpha = alpha, beta = beta,
+                                    typeOfDesign = "asUser", 
+                                    userAlphaSpending = c(0.0001, design1$alphaSpent),
+                                    futilityBounds = c(0, -Inf),
+                                    bindingFutility = FALSE)
+
+# Calculate sample size for this design
+sampleSizeOS2 <- getSampleSizeSurvival(design2,
+    allocationRatioPlanned = randoratio,    
+    median2 = m2, median1 = m1, 
+    dropoutRate1 = do, dropoutRate2 = do, dropoutTime = doTime,
+    accrualTime = accrualTime, accrualIntensity = accrualIntensity)  
+
+# rpact summary
+summary(sampleSizeOS2)
+```
+
+We see that by adding the futility interim we increase the maximal number of events from `r sampleSizeOS1$maxNumberOfEvents` to `r sampleSizeOS2$maxNumberOfEvents`. 
+
+## Exercise 1c (Power loss associated with the futility interim analysis) {-}
+
+How large is the power loss from adding this futility interim analysis, assuming we would not increase the number of events compared to the initial design above?
+
+To compute the power loss of adding the futility, _conservatively_ assuming it will be adhered to, i.e. we compute the power of the design _with_ futility using the number of events of the design _without_ futility.
+
+**Solution:**
+
+```{r, include=TRUE, echo=TRUE}
+# power of design with futility at the number of events without futility
+power <- getPowerSurvival(design2, allocationRatioPlanned = randoratio, 
+    maxNumberOfEvents = ceiling(sampleSizeOS1$maxNumberOfEvents),
+    median2 = m2, median1 = m1, 
+    dropoutRate1 = do, dropoutRate2 = do, dropoutTime = doTime,
+    accrualTime = accrualTime, accrualIntensity = accrualIntensity,
+    directionUpper = FALSE)
+
+# power, as compared to the specified 80%
+power$overallReject
+```
+
+So the power loss of adding the futility amounts to `r 1 - beta - power$overallReject`.
+
+## Bonus Exercise 1d (Timing of OS events)  {-}
+
+How many OS events would be expected to occur until exactly 16 and 24 months, respectively, from first patient randomized?
+
+Hint: `getEventProbabilities`.
+
+**Solution:**
+
+```{r, include=TRUE, echo=TRUE}
+# Probability of an event until 16 months and 24 months  
+probOS <- getEventProbabilities(time = c(16, 24), 
+    allocationRatioPlanned = randoratio,    
+    lambda2 = getLambdaByMedian(m2),lambda1 = getLambdaByMedian(m1),
+    dropoutRate1 = do, dropoutRate2 = do, dropoutTime = doTime,
+    accrualTime = accrualTime, accrualIntensity = accrualIntensity)
+probOS
+
+# Expected number of OS events 
+maxn * probOS$overallEventProbabilities
+```
+
+Expected number of events are `r ceiling(maxn*probOS$overallEventProbabilities[1])` and `r ceiling(maxn*probOS$overallEventProbabilities[2])` until months 16 and 24, respecticely.
+
+***
+
+# Exercise 2 (Adaptive trial with a continuous endpoint) {-}
+
+A confirmatory, randomized and blinded study of an investigational drug against Placebo is planned in mild to moderate Alzheimer's disease.
+The primary endpoint is the change from baseline in ADAS-Cog, a neuropsychological test battery measuring cognitive abilities, assessed 6 months after treatment initiation.
+The ADAS-Cog has a range of 0-70; we reverse its scale so that greater values are good.
+We consider our primary endpoint as approximately normally distributed, and for simplicity we assume a known standard deviation of 10.
+We believe that the improvement in the primary endpoint that can be achieved with the investigational drug is at least 4 points better than that under Placebo; and we want to have 80% chance of achieving a significant result if this is indeed the case.
+However, if the investigational drug is no better than Placebo, we want to have no more than 2.5% chance to claim success.
+This yields a sample size of approximately  n=100  per treatment group for a trial with fixed sample size.
+
+
+## Exercise 2a (the "alpha calculus") {-}
+
+We want to build in a "sanity check" mid-way through the trial. More precisely, we implement an interim analysis using the inverse normal method, with the following characteristics (all with respect to the primary endpoint):
+
+- Stop for futility if the investigational drug appears worse than Placebo
+
+- Stop for efficacy if the investigational drug appears "very significantly better" than Placebo ($p < 0.0001$)
+
+Which set of $(\alpha,\alpha_0,\alpha_1,\alpha_2)$ satisfies these conditions?
+
+Hint: Use `getDesignInverseNormal` with a user-defined alpha-spending function and a binding futility boundary.
+
+**Solution:** 
+
+The exercise specifies alpha=0.025, alpha0=0.5 (equivalent to a binding futility boundary at a $Z$-score of 0), and alpha1=0.0001. We compute alpha2 as follows.
+
+```{r, include=TRUE, echo=TRUE}
+d <- getDesignInverseNormal(typeOfDesign = "asUser", userAlphaSpending = c(0.0001,0.025), 
+  futilityBounds = 0, bindingFutility = TRUE)
+d
+```
+
+This yields $\alpha_2$ = d\$stageLevels[2] = `r formatC(d$stageLevels[2],digits=4,format="f")`.
+
+**What regulatory issues could this raise?**
+
+**Solution**
+The Regulator may not like that the final test is performed at a greater level ($\alpha_2$) than the overall level ($\alpha$). This is caused by cutting off a greater rejection region by the futility stop (right of $\alpha_0$) than adding to it by the efficacy stop (left of $\alpha_1$), and by compensating for this imbalance through a higher conditional error function ($\alpha_2 > \alpha$; so-called “buy-back alpha” from the futility stop).
+
+## Exercise 2b (early stopping and sample size adaptation) {-}
+
+ 1. At the interim analysis after $n_1$ = 50 patients per group, we observe an average ADAS-Cog improvement of 4 points under the investigational drug and of 1 point under Placebo. Should we stop or continue the trial?
+
+Hint: `getDataset` to define the input dataset and `getAnalysisResults` to analyse it.
+
+**Solution**
+
+We should continue the trial, since our drug is neither worse nor very significantly better than Placebo:
+
+
+```{r echo=TRUE, warning=FALSE, include=TRUE}
+dat <- getDataset(means1 = 4, means2 = 1, 
+                  stDev1 = 10, stDev2 = 10, 
+                  n1 = 50, n2 = 50)
+
+result1 <- getAnalysisResults(design = d, dataInput = dat, nPlanned = 100,normalApproximation = TRUE)
+
+summary(result1)
+```
+
+$\rightarrow$   $p_1=0.0668$, and $\alpha_1=0.0001<0.0668<0.5=\alpha_0$.
+
+
+ 2. At the same time, there is a change in strategy, and we now want 90% power at an improvement of 4 points over placebo. Determine the sample size per treatment group for the second stage of the trial, in light of the interim results.
+
+Hint: Calculate second stage sample size using `getSampleSizeMeans` with type I error equal to the conditional rejection probability from the previous part.
+
+**Solution**
+
+We compute the sample size necessary for 90% conditional power; we round up and check:
+
+```{r echo=TRUE, warning=FALSE, include=TRUE}
+getSampleSizeMeans(alpha=result1$conditionalRejectionProbabilities[1], beta = 0.1, 
+  alternative = 4, stDev = 10, normalApproximation = TRUE)$nFixed
+
+result2 <- getAnalysisResults(design = d, dataInput = dat, nPlanned = 164, thetaH1 = 4,
+  assumedStDev = 10, normalApproximation = TRUE)
+
+summary(result2)
+```
+
+$\rightarrow$ $n_2=82$ per treatment group
+
+## Exercise 2c (final inference) {-}
+
+In the second stage of the trial, we observe an average ADAS-Cog improvement of only **3 points** under the investigational drug and of 1 point under Placebo.
+
+1. Can we reject the null hypothesis and claim superiority of the investigational drug over placebo?
+
+**Solution**
+
+Using the inverse normal method as planned, we can reject the null hypothesis and claim superiority of the investigational drug over placebo.
+More precisely, the combination test statistic after the second stage is 1.966, exceeding the critical value $u_{0.0253}=1.955$ (where $u_\alpha$     is the $(1-\alpha)$-quantile of $N(0,1)$).
+Note that we test at the local level $\alpha_2=0.0253$.
+
+```{r echo=TRUE, warning=FALSE, include=TRUE}
+dat2 <- getDataset(means1 = c(4,3), means2 = c(1,1), 
+                   stDev1 = c(10,10), stDev2 = c(10,10),
+                   n1 = c(50,82), n2 = c(50,82))
+
+summary(getAnalysisResults(design = d, dataInput = dat2, normalApproximation = TRUE))
+```
+
+
+ 2. Compute the overall ("exact") p-value and confidence interval for the adaptive trial.
+
+**Solution**
+
+From the commands above we also obtain: $p=0.02435; \; CI=(0.014,4.93)$
+
+ 3. What would a "naive" z-test have concluded, based on all observations and ignoring the adaptive nature of the trial? What is your interpretation of the situation?
+
+**Solution**
+
+A "naive" z-test would not have been able to reject the null hypothesis:
+    
+$$z = \sqrt{\frac{n_1 + n_2}{2}}\frac{\bar x - \bar y}{\sigma} = \sqrt{\frac{132}{2}} \frac{\frac{50\cdot 4 + 82 \cdot 3}{132}- 1}{10} = 1.9325 < 1.960 = u_{0.025}$$
+    
+In rpact, use the following commands:
+    
+```{r echo=TRUE, warning=FALSE, include=TRUE}
+dGS <- getDesignGroupSequential(typeOfDesign = "asUser", userAlphaSpending = c(0.0001,0.025),
+  futilityBounds = 0, bindingFutility = TRUE)
+
+dat3 <- getDataset(cumulativeMeans1 = c(4,(50*4+82*3)/132), cumulativeMeans2 = c(1,1),
+  cumulativeStDev1 = c(10,10), cumulativeStDev2 = c(10,10), 
+  cumulativeN1 = c(50,132), cumulativeN2 = c(50,132))
+
+summary(getAnalysisResults(design = dGS, dataInput = dat3, normalApproximation = TRUE))
+```
+
+Note that the definition of dat3 with the "cumulative" commands is necessary because otherwise always a "global" variance (accounting for the mean difference in the stages) is calculated. 
+
+Here we ignore the adaptive nature of the trial: we lump all data together (ignoring the sample size adaptation), and we test at the nominal level $\alpha =0.025$ (ignoring the possibility of early stopping). The second stage of the trial, showing less of a treatment effect, carries greater weight in this "naive" (that is, incorrect) version of the test. Note that it can go both ways: in other examples, the adaptive (correct) version of the test may be the one that fails to reject the null hypothesis. In less borderline situations, both tests will lead to the same conclusion. Proposals have been made in the literature for dealing with borderline situations.
+
+***
+
+# Exercise 3 (Sample size calculation for testing proportions) {-}
+
+Suppose a trial should be conducted in 3 stages where at the first stage 50%, at the second stage 75%, and at the final stage 100% of the information should be observed. O'Brien-Fleming boundaries should be used with one-sided $\alpha = 0.025$ and non-binding futility bounds 0 and 0.5 for the first and the second stage, respectively, on the z-value scale.
+
+The endpoints are binary (failure rates) and should be compared in a parallel group design, i.e., the null hypothesis to be tested is
+$H_0:\pi_1 - \pi_2 = 0\,,$ which is tested against the alternative $H_1: \pi_1 - \pi_2 < 0\,.$
+
+## Exercise 3a (sample size calculation) {-}
+
+What is the necessary sample size to achieve 90% power if the failure rates are assumed to be $\pi_1 = 0.40$ and $\pi_2 = 0.60$? What is the optimum allocation ratio?
+
+**Solution**
+
+The summary command provides a table for the study design parameters: 
+
+```{r, include=TRUE, echo=TRUE}
+dGS <- getDesignGroupSequential(informationRates = c(0.5,0.75,1), alpha = 0.025, beta = 0.1,
+    typeOfDesign = "OF", futilityBounds = c(0,0.5))
+r <- getSampleSizeRates(dGS, pi1 = 0.4, pi2 = 0.6)
+
+summary(r)
+```
+
+The optimum allocation ratio is 1 in this case but calculated numerically, therefore slightly unequal 1:
+
+```{r, include=TRUE, echo=TRUE}
+r <- getSampleSizeRates(dGS, pi1 = 0.4, pi2 = 0.6, allocationRatioPlanned = 0)
+r$allocationRatioPlanned
+round(r$allocationRatioPlanned,5)
+```
+
+## Exercise 3b (boundary plots) {-}
+
+Illustrate the decision boundaries on different scales.
+
+**Solution**
+
+```{r, include=TRUE, echo=TRUE}
+plot(r, type = 1)
+plot(r, type = 2)
+plot(r, type = 3)
+```
+
+## Exercise 3c (power assessment) {-}
+
+Suppose that $N = 280$ subjects were planned for the study. What is the power if the failure rate in the active treatment group is $\pi_1 = 0.50$?
+
+**Solution**
+
+The power is much reduced as compared to the case pi1 = 0.4 (where it exceeds 90%):
+  
+
+```{r, include=TRUE, echo=TRUE}
+power <- getPowerRates(dGS, maxNumberOfSubjects = 280, pi1 = c(0.4, 0.5), pi2 = 0.6, 
+      directionUpper = FALSE)
+
+power$overallReject
+
+```
+
+## Exercise 3d (power illustration) {-}
+
+Illustrate power, expected sample size, and early/futility stop for a range of alternative values.
+
+**Solution**
+
+Specifying pi1 = c(0.3,0.6) provides a range of power and ANS values:
+
+```{r, include=TRUE, echo=TRUE}
+power <- getPowerRates(dGS, maxNumberOfSubjects = 280, pi1 = c(0.3,0.6), pi2 = 0.6,
+     directionUpper = FALSE)
+
+plot(power, type = 6)
+```
+
+***
+
+# Exercise 4 (Sample size reassessment for testing proportions) {-}
+
+Using an adaptive design, the sample size from Example 3 in the last interim can be increased up to a 4-fold of the originally planned sample size for the last stage. Conditional power 90% *based on the observed effect sizes (failure rates)* is used to increase the sample size.
+
+## Exercise 4a (assess power) {-}
+
+Use the inverse normal method to allow for the sample size increase and compare the test characteristics with the group sequential design from Example 3.
+
+**Solution**
+
+Define the inverse normal design and perform two simulations, one without and one with SSR:
+
+```{r, include=TRUE, echo=TRUE}
+dIN <- getDesignInverseNormal(informationRates = c(0.5,0.75,1), alpha = 0.025, beta = 0.1,
+    futilityBounds = c(0,0.5))
+
+maxiter <- 1000
+
+sim1 <- getSimulationRates(dIN, plannedSubjects = c(140,210,280), pi1 = seq(0.4,0.5,0.01), pi2 = 0.6,
+  directionUpper = FALSE, maxNumberOfIterations = maxiter, conditionalPower = 0.9,
+  minNumberOfSubjectsPerStage = c(140,70,70), maxNumberOfSubjectsPerStage = c(140,70,70),
+  seed = 1234)
+
+sim2 <- getSimulationRates(dIN, plannedSubjects = c(140,210,280), pi1 = seq(0.4,0.5,0.01), pi2 = 0.6,
+  directionUpper = FALSE, maxNumberOfIterations = maxiter, conditionalPower = 0.9, 
+  minNumberOfSubjectsPerStage = c(NA,70,70), maxNumberOfSubjectsPerStage = c(NA,70,4*70),
+  seed = 5678)
+```
+
+Note that the sample sizes will be calculated under the assumption that the *conditional power for the subsequent stage* is 90%. If the resulting sample size is larger, the upper bound (4*70 = 280) is used. 
+
+## Exercise 4b (illustrate power difference) {-}
+
+Illustrate the gain in power when using the adaptive sample size recalculation.
+
+**Solution**
+
+We use ggplot2 for doing this. First, a data set df is defined with the additional variable SSR. Using mytheme and the following ggplots commands, the difference in power and ASN of the two strategies is illustrated. It shows that at least for effect difference > 0.15 an overall power of more than around 85% can be achieved with the proposed sample size recalculation strategy.
+
+```{r, include=TRUE, echo=TRUE}
+
+library(ggplot2)
+
+dataSim1 <- as.data.frame(sim1, niceColumnNamesEnabled = FALSE)
+dataSim2 <- as.data.frame(sim2, niceColumnNamesEnabled = FALSE)
+
+dataSim1$SSR <- rep("no SSR", nrow(dataSim1))
+dataSim2$SSR <- rep("SSR", nrow(dataSim2))
+df <- rbind(dataSim1, dataSim2)
+
+myTheme = theme(
+  axis.title.x = element_text(size = 12), axis.text.x = element_text(size = 12),
+  axis.title.y = element_text(size = 12), axis.text.y = element_text(size = 12),
+  plot.title = element_text(size = 14,hjust = 0.5), 
+    plot.subtitle = element_text(size = 12,hjust = 0.5))
+
+p <- ggplot(data = df,aes(x = effect,y = overallReject, group = SSR, color = SSR)) +
+  geom_line(size = 1.1) +
+  geom_line(aes(x = effect,y = expectedNumberOfSubjects/400, group = SSR, color = SSR), size = 1.1, 
+    linetype = "dashed") +
+  scale_y_continuous( "Power",  sec.axis = sec_axis(~ . * 400, name = "ASN"), limits = c(0.2,1)) +
+  theme_classic() +  xlab("effect") +  ggtitle("Power and ASN","Power solid, ASN dashed") +
+  geom_hline(size = 0.5, yintercept = 0.8, linetype = "dotted") +
+  geom_hline(size = 0.5, yintercept = 0.9, linetype = "dotted") +
+  geom_vline(size = 0.5, xintercept = c(-0.2, -0.15), linetype = "dashed") +
+  myTheme
+
+plot(p)
+
+# Note: for saving the plot, you could e.g. use the commented code below
+# ggplot2::ggsave(filename = "C:/yourdirectory/comparison.png",
+#        plot = ggplot2::last_plot(), device = NULL, path = NULL,
+#        scale = 1.2, width = 20, height = 12, units = "cm", dpi = 600, limitsize = TRUE)
+```
+
+
+## Exercise 4c (histogram of sample sizes) {-}
+
+Create a histogram for the attained sample size of the study when using the adaptive sample size recalculation. How often will the maximum sample size be achieved?
+
+
+**Solution**
+
+With the getData command the simulation results are obtained. Depending on pi1, you can create the histogram of the simulated total sample size 
+
+```{r, include=TRUE, echo=TRUE}
+
+library(tictoc)
+
+simdata<- getData(sim2)
+str(simdata)
+simPart <- simdata[simdata$pi1 == 0.5,] 
+tic()
+overallSampleSizes <- sapply(1:maxiter, function(i) sum(simPart[simPart$iterationNumber==i,]$numberOfSubjects))
+toc()
+
+# tic()
+# overallSampleSizes <- numeric(maxiter)
+# for (i in 1:maxiter) overallSampleSizes[i] <- sum(simPart[simPart$iterationNumber==i,]$numberOfSubjects)
+# toc()
+
+hist(overallSampleSizes)
+
+```
+
+How often the maximum sample size is reached can be obtained as follows:
+
+```{r, include=TRUE, echo=TRUE}
+
+simdata<- getData(sim2)
+
+simdataPart <- simdata[simdata$pi1 == 0.5,] 
+
+subjectsRange <- cut(simdataPart$numberOfSubjects, c(69, 70, 139, 140, 210, 279, 280))
+
+round(prop.table(table(simdataPart$stageNumber,subjectsRange), margin = 1)*100,1)
+
+```
+
+***
+
+# Exercise 5 (Multi-armed design with continuous endpoint) {-}
+
+Suppose a trial is conducted with three active treatment arms (+ one control arm).
+An adaptive design using the equally weighted inverse normal method with two interim analyses using O'Brien & Fleming boundaries is chosen where in both interim analyses a selection of treatment arms is foreseen (overall $\alpha = 0.025$ one-sided).
+It is decided to test the intersection tests in the closed system of hypotheses with Dunnett's test. In the designing stage, it was decided to conduct the study with 20 patients per treatment arm and stage where at
+interim the sample size can be redefined.
+
+## Exercise 5a (First stage and conditional power) {-}
+
+
+Suppose, at the first stage, the following results were obtained:
+
+| arm | n | mean | std |
+| ----- | ----- | ----- | ----- |
+| 1 | 19 | 3.11 | 1.77 |
+| 2 | 22 | 3.87 | 1.23 |
+| 3 | 23 | 4.12 | 1.64 |
+| control | 21 | 3.02 | 1.72 |
+
+Perform the closed test and assess the conditional power in order to decide which treatment arm(s) should be selected and if the sample size should be redefined.
+
+**Solution**
+
+```{r, include=TRUE, echo=TRUE}
+dataExample <- getDataset(
+  n1      = c(19),
+  n2      = c(22),
+  n3      = c(23),
+  n4      = c(21),
+  means1  = c(3.11),
+  means2  = c(3.87),
+  means3  = c(4.12),
+  means4  = c(3.02),
+  stDevs1 = c(1.77),
+  stDevs2 = c(1.23),
+  stDevs3 = c(1.64),
+  stDevs4 = c(1.72)
+)
+
+alpha <- 0.025
+intersectionTest <- "Dunnett"
+varianceOption <- "overallPooled"
+normalApproximation <- FALSE
+
+design <- getDesignInverseNormal(kMax = 3, alpha = alpha, typeOfDesign = "OF")
+
+stageResults <- getAnalysisResults(design = design,
+  dataInput = dataExample, thetaH0 = 0, stage = 1,
+  directionUpper = TRUE, normalApproximation = normalApproximation,
+  intersectionTest = intersectionTest, varianceOption = varianceOption,
+  nPlanned = c(40, 40))
+
+summary(stageResults)
+```
+
+
+## Exercise 5b (Second stage) {-}
+
+Suppose it was decided to drop treatment arm 1 for stage 2 and leave the sample size for the remaining arms unchanged. For the second stage, the following results were obtained:
+
+| arm | n | mean | std |
+| ----- | ----- | ----- | ----- |
+| 2 | 23 | 3.66 | 1.11 |
+| 3 | 19 | 3.98 | 1.21 |
+| control | 22 | 2.99 | 1.82 |
+
+Perform the closed test and discuss whether or not to stop the study and determine overall $p\,$-values and confidence intervals.
+
+**Solution**
+
+```{r, include=TRUE, echo=TRUE}
+dataExample <- getDataset(
+  n1      = c(19, NA),
+  n2      = c(22, 23),
+  n3      = c(23, 19),
+  n4      = c(21, 22),
+  means1  = c(3.11, NA),
+  means2  = c(3.87, 3.66),
+  means3  = c(4.12, 3.98),
+  means4  = c(3.02, 2.99),
+  stDevs1 = c(1.77, NA),
+  stDevs2 = c(1.23, 1.11),
+  stDevs3 = c(1.64, 1.21),
+  stDevs4 = c(1.72, 1.82)
+)
+
+stageResults <- getAnalysisResults(design = design,
+  dataInput = dataExample, thetaH0 = 0, stage = 2,
+  directionUpper = TRUE, normalApproximation = normalApproximation,
+  intersectionTest = intersectionTest, varianceOption = varianceOption)
+
+summary(stageResults)
+```
+
+## Exercise 5c (Intersection tests) {-}
+
+Would the Bonferroni and the Simes test intersection tests provide the same results?
+
+**Solution**
+
+```{r, include=TRUE, echo=TRUE}
+stageResults <- getAnalysisResults(design = design,
+  dataInput = dataExample, thetaH0 = 0, stage = 2,
+  directionUpper = TRUE, normalApproximation = normalApproximation,
+  intersectionTest = "Bonferroni", varianceOption = varianceOption)
+summary(stageResults)
+
+
+stageResults <- getAnalysisResults(design = design,
+  dataInput = dataExample, thetaH0 = 0, stage = 2,
+  directionUpper = TRUE, normalApproximation = normalApproximation,
+  intersectionTest = "Simes", varianceOption = varianceOption)
+summary(stageResults)
+```
+
+***
+
+# Bonus Exercise 6 (Planning of survival design) {-}
+
+A survival trial is planned to be performed with one interim stage and using an O'Brien & Fleming type $\alpha$-spending approach at $\alpha = 0.025$. The interim is planned to be performed after half of the necessary events were observed. It is assumed that the median survival time is 18 months in the treatment group, and 12 months in the control.  Assume that the drop-out rate is 5% after 1 year and the drop-out time is exponentially distributed.
+
+## Exercise 6a (accrual and follow-up time given) {-}
+
+The patients should be recruited within 12 months assuming uniform accrual. Assume an additional follow-up time of 12 months, i.e., the study should be conducted within 2 years. Calculate the necessary number of events and patients (total and per month) in order to reach power 90% with the assumed median survival times if the survival time is exponentially distributed. Under the postulated assumption, estimate interim and final analysis time.
+
+**Solution**
+
+In this simplest example, accrual and follow-up time needs to be specified. The effect size is defined in terms of lambda1 and lambda2 (you can also specify lambda2 and hazardRatio). 
+
+
+```{r, include=TRUE, echo=TRUE}
+dGS <- getDesignGroupSequential(kMax = 2, typeOfDesign = "asOF", beta = 0.1)
+
+x1 <- getSampleSizeSurvival(dGS, lambda1 = getLambdaByMedian(18), lambda2 = log(2)/12,
+  dropoutRate1 = 0.05, dropoutRate2 = 0.05, dropoutTime = 12,
+  accrualTime = 12, followUpTime = 12)
+
+summary(x1)
+
+ceiling(x1$maxNumberOfEvents)
+ceiling(x1$maxNumberOfSubjects)
+ceiling(x1$maxNumberOfSubjects)/12
+x1$analysisTime
+```
+
+
+## Exercise 6b (follow-up time and absolue intensity given) {-}
+
+Assume that 25 patients can be recruited each month and that there is uniform accrual. Estimate the necessary accrual time if the planned follow-up time remains unchanged.
+
+**Solution**
+
+Here the end of accrual and the number of patients is calculated at given follow-up time and absolute accrual intensity:
+
+```{r, include=TRUE, echo=TRUE}
+x2 <- getSampleSizeSurvival(dGS, hazardRatio = 2/3, lambda2 = log(2)/12,
+  dropoutRate1 = 0.05, dropoutRate2 = 0.05, dropoutTime = 12,
+  accrualTime = 0, accrualIntensity = 25, followUpTime = 12)
+
+ceiling(x2$maxNumberOfSubjects)
+x2$accrualTime
+x2$analysisTime
+```
+
+## Exercise 6c (accrual time and max number of patients given) {-}
+
+Assume that accrual stops after 16 months with 25 patients per month, i.e., after 400 patients were recruited. What is the estimated necessary follow-up time?
+
+**Solution**
+
+At given accrual time and number of patients, the follow-up time is calculated:
+
+```{r, include=TRUE, echo=TRUE}
+x3 <- getSampleSizeSurvival(dGS, lambda1 = log(2)/18, lambda2 = log(2)/12,
+  dropoutRate1 = 0.05, dropoutRate2 = 0.05, dropoutTime = 12,
+  accrualTime = c(0, 16), accrualIntensity = 25)
+
+ceiling(x3$maxNumberOfSubjects)
+x3$followUpTime
+x3$analysisTime
+```
+
+## Exercise 6d (staggered patient entry) {-}
+
+How do the results change if in the first 3 months 15 patients, in the second 3 months 20 patients, and after 6 months 25 patients per month can be accrued?
+
+**Solution**
+
+This is the result from b), where the end of accrual is calculated:
+
+```{r, include=TRUE, echo=TRUE}
+x4 <- getSampleSizeSurvival(dGS, lambda1 = log(2)/18, lambda2 = log(2)/12,
+  dropoutRate1 = 0.05, dropoutRate2 = 0.05, dropoutTime = 12,
+  accrualTime = c(0, 3, 6), accrualIntensity = c(15, 20, 25), followUpTime = 12)
+    
+ceiling(x4$maxNumberOfSubjects)
+x4$accrualTime
+x4$analysisTime
+```
+
+This is the result from c), where the follow-up time is calculated:
+
+```{r, include=TRUE, echo=TRUE}
+x5 <- getSampleSizeSurvival(dGS, lambda1 = log(2)/18, lambda2 = log(2)/12,
+  dropoutRate1 = 0.05, dropoutRate2 = 0.05, dropoutTime = 12,
+  accrualTime = c(0, 3, 6, 16), accrualIntensity = c(15, 20, 25))
+
+ceiling(x5$maxNumberOfSubjects)
+x5$followUpTime
+x5$analysisTime
+```
+
+***
+
+# Bonus Exercise 7 (Adaptive survival design) {-}
+
+## Exercise 7a (verify results by simulation) {-}
+
+Assume that the study from Example 6 is planned with 257 events and 400 patients under the assumptions that accrual stops after 16 months with 25 patients per month. Verify by simulation the correctness of the results obtained by the analytical formulae.
+
+**Solution**
+
+We first calculate the analysis times by the analytical formulas and verify that the power is indeed exceeding 90%:
+
+```{r, include=TRUE, echo=TRUE}
+y3 <- getPowerSurvival(dGS, lambda1 = log(2)/18, lambda2 = log(2)/12,
+  dropoutRate1 = 0.05, dropoutRate2 = 0.05, dropoutTime = 12,
+  accrualTime = c(0, 3, 6, 16), accrualIntensity = c(15, 20, 25),
+  maxNumberOfEvents = 257, directionUpper = FALSE)
+
+y3$analysisTime
+y3$overallReject  
+```
+
+Practically the same result is obtained with the simulation tool: 
+
+```{r, include=TRUE, echo=TRUE}
+maxiter <- 1000
+
+z3 <- getSimulationSurvival(dGS, lambda1 = log(2)/18, lambda2 = log(2)/12,
+  dropoutRate1 = 0.05, dropoutRate2 = 0.05, dropoutTime = 12, maxNumberOfIterations = maxiter,
+  accrualTime = c(0, 3, 6, 16), accrualIntensity = c(15, 20, 25),
+  plannedEvents = c(129, 257), directionUpper = FALSE)
+
+z3$analysisTime
+z3$overallReject  
+
+```
+
+
+## Exercise 7b (assess adaptive survival design) {-}
+
+Assume now that a sample size increase up to a ten-fold of the originally planned number of events is foreseen. 
+Conditional power 90% *based on the observed hazard ratios* is used to increase the number of events. 
+Assess by simulation the magnitude of power increase when using the appropriate method.
+
+Simulate the Type I error rate when using 
+
+- the group sequential method
+
+- the inverse normal method
+
+Hint: Make sure that enough subjects are used in the simulation (set `maxNumberOfSubjects = 3000` and no drop-outs)
+
+**Solution**
+
+First define an inverse normal design with the same parameters as the original group sequential design:
+
+```{r, include=TRUE, echo=TRUE}
+dIN <- getDesignGroupSequential(kMax = 2, typeOfDesign = "asOF", beta = 0.1)
+```
+
+
+```{r, include=TRUE, echo=TRUE}
+z4 <- getSimulationSurvival(dIN, lambda1 = log(2)/18, lambda2 = log(2)/12,
+  maxNumberOfIterations = maxiter,
+  accrualTime = c(0,16), maxNumberOfSubjects = 3000, plannedEvents = c(129, 257), 
+  directionUpper = FALSE, conditionalPower = 0.9, 
+  minNumberOfEventsPerStage = c(NA,128), maxNumberOfEventsPerStage = 10*c(NA,128))
+
+z4$analysisTime
+z4$overallReject  
+```
+
+The following simulation compares the Type I error rate of the inverse normal method with the type I error rate of the (illegal) use of the group-sequential method:
+
+```{r, include=TRUE, echo=TRUE}
+
+maxiter <- 10000
+
+dGS <- getDesignGroupSequential(kMax = 2, typeOfDesign = "asOF")
+dIN <- getDesignInverseNormal(kMax = 2, typeOfDesign = "asOF")
+
+IN <- getSimulationSurvival(dIN, hazardRatio = 1,
+  maxNumberOfIterations = maxiter,
+  accrualTime = c(0,16), maxNumberOfSubjects = 3000, plannedEvents = c(129, 257), 
+  directionUpper = FALSE, conditionalPower = 0.9, 
+  minNumberOfEventsPerStage = c(NA,128), maxNumberOfEventsPerStage = 10*c(NA,128))
+
+GS <- getSimulationSurvival(dGS, hazardRatio = 1,
+  maxNumberOfIterations = maxiter,
+  accrualTime = c(0,16), maxNumberOfSubjects = 3000, plannedEvents = c(129, 257), 
+  directionUpper = FALSE, conditionalPower = 0.9, minNumberOfEventsPerStage = c(NA,128), 
+  maxNumberOfEventsPerStage = 10*c(NA,128))
+  
+IN$overallReject  
+GS$overallReject  
+```
+
+
+***
+
+System: rpact `r  packageVersion("rpact")`, `r R.version.string`, platform: `r R.version$platform`
+
+```{r, include=TRUE, echo=FALSE, results='asis'}
+print(citation("rpact"), bibtex = FALSE)

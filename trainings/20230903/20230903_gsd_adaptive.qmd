@@ -76,8 +76,8 @@ tab[5, "Markdown accompanying slides"] <- ""
 kable(tab, align = "llcc")
 ```
 
-* Exercises: [markdown as zip file](BBSadaptiveCourse03Sep2023_exercises.zip) | [html](BBSadaptiveCourse03Sep2023_exercises.html).
-* Solutions: follow after the course. 
+* Exercises: [exercise markdown as zip file](BBSadaptiveCourse03Sep2023_exercises.zip) | [html](BBSadaptiveCourse03Sep2023_exercises.html).
+* Solutions: [solution markdown as zip file](BBSadaptiveCourse03Sep2023_solutions.zip) | [html](BBSadaptiveCourse03Sep2023_solutions.html). 
 * Download all files as [.zip file](BBS_adaptive.zip).
 
 

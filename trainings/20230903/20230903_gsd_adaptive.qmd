@@ -1,5 +1,6 @@
 ---
 title: "Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact"
+date: 2023-09-03
 format:
   html:
     toc: true

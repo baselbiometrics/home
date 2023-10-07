@@ -24,6 +24,8 @@ tab2[is.na(tab2)] <- ""
 
 # `r paste(as.character(meta$date), ": ", meta$seminar_title, sep = "")` {-} 
 
+`r if (is.na(select(meta, link)) == FALSE){paste("[link to event](", select(meta, link)[, 1], ")", sep = "")} else {""}`
+
 `r if ("agenda.pdf" %in% list.files(paste("talks/", rdate[i], "/", sep = ""))){paste("[Agenda](talks/", rdate[i], "/agenda.pdf)", sep = "")} else {"No agenda available"}`
 
 `r if (is.na(select(meta, recording)) == FALSE){paste("[Recording](", select(meta, recording)[, 1], ")", sep = "")} else {"No recording available"}`

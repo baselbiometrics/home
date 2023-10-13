@@ -10,7 +10,7 @@ output:
     toc_float: yes
 ---
 
-* 2023/10/13: Uploaded final agenda/announcement for [BBS Annual Meeting: Federated learning and new data modalities](https://baselbiometrics.github.io/home/docs/events_upcoming.html).
+* 2023/10/13: Added slidedecks to webinar [Pre-approval and Post-approval Challenges in the Clinical Development and Reimbursement of CAR-T Cell Therapies](https://baselbiometrics.github.io/home/docs/events_past.html#pre-approval-and-post-approval-challenges-in-the-clinical-development-and-reimbursement-of-car-t-cell-therapies). Uploaded final agenda/announcement for [BBS Annual Meeting: Federated learning and new data modalities](https://baselbiometrics.github.io/home/docs/events_upcoming.html).
 * 2023/10/10: Uploaded agenda/first announcement for [Next Generation BBS Training Day](https://baselbiometrics.github.io/home/docs/events_upcoming.html).
 * 2023/09/28: Uploaded final agenda for webinar [Pre-approval and Post-approval Challenges in the Clinical Development and Reimbursement of CAR-T Cell Therapies](https://baselbiometrics.github.io/home/docs/events_upcoming.html).
 * 2023/09/03: Uploaded link to materials of [Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact](https://baselbiometrics.github.io/home/docs/trainings/20230903/20230903_gsd_adaptive.html).

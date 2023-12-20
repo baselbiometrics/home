@@ -10,7 +10,7 @@ output:
     toc_float: yes
 ---
 
-* 2023/12/20: Uploaded first announcement for [BBS Training: Causal thinking in clinical trials](events_upcoming.html).
+* 2023/12/20: Uploaded final announcement for [BBS Training: Causal thinking in clinical trials](events_upcoming.html).
 * 2023/12/07: Uploaded slides for [Next Generation BBS Training Day](trainings_past.html#next-generation-bbs-training-day).
 * 2023/11/06: Uploaded slides and recordings for [BBS Annual Meeting: Federated learning and new data modalities](events_past.html#federated-learning-and-new-data-modalities).
 * 2023/11/01: Added registration link for [Next Generation BBS Training Day](events_upcoming.html).

@@ -10,6 +10,7 @@ output:
     toc_float: yes
 ---
 
+* 2024/01/08: Congratulations to Lilla di Scala for being the new BBS president! And we welcome two new board members, Dominic Magirr (Novartis) and Andreas Ziegler (Cardio-CARE, Medizincampus Davos), see [board](board.html).
 * 2023/12/20: Uploaded final announcement for [BBS Training: Causal thinking in clinical trials](events_upcoming.html).
 * 2023/12/07: Uploaded slides for [Next Generation BBS Training Day](trainings_past.html#next-generation-bbs-training-day).
 * 2023/11/06: Uploaded slides and recordings for [BBS Annual Meeting: Federated learning and new data modalities](events_past.html#federated-learning-and-new-data-modalities).

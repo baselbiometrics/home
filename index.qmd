@@ -11,8 +11,8 @@ output:
 ---
 
 # President
-
-Hans Ulrich Burger, F. Hoffmann-La Roche, Basel.
+ 
+Lilla di Scala, Johnson & Johnson Innovative Medicine, Basel.
 
 [Contact](mailto:info@bbsbasel.ch)
 

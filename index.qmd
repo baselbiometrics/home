@@ -12,7 +12,7 @@ output:
 
 # President
  
-Lilla di Scala, Johnson & Johnson Innovative Medicine, Basel.
+Lilla Di Scala, Johnson & Johnson Innovative Medicine, Basel.
 
 [Contact](mailto:info@bbsbasel.ch)
 

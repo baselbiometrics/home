@@ -12,7 +12,7 @@ output:
 
 # Board
 
-The BBS board coordinates events organized by the BBS. Expectations for BBS members are summarized [here](data/BBS_Council_Members_Expectations.pdf).
+The BBS board coordinates events organized by the BBS. Expectations for BBS board members are summarized [here](data/BBS_Council_Members_Expectations.pdf).
 
 ```{r setup, include = FALSE, echo = FALSE}
 ## load packages

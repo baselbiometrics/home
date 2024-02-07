@@ -10,6 +10,7 @@ output:
     toc_float: yes
 ---
 
+* 2024/02/07: Uploaded first announcement for [Reproducibility in biomedical research](events_upcoming.html).
 * 2024/01/30: Uploaded slides for [Estimands in Early Development (ED) Across Therapeutic Areas](events_past.html#estimands-in-early-development-ed-across-therapeutic-areas).
 * 2024/01/29: Added summary of [expectations for BBS board members](data/BBS_Council_Members_Expectations.pdf).
 * 2024/01/08: Congratulations to Lilla di Scala for being the new BBS president! And we welcome two new board members, Dominic Magirr (Novartis) and Andreas Ziegler (Cardio-CARE, Medizincampus Davos), see [board](board.html).

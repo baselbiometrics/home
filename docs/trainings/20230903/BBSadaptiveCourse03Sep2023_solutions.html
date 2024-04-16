@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -24,7 +24,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -81,7 +81,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -90,6 +96,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -99,6 +106,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -106,9 +140,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Basel Biometrics Society</span>
     </a>
@@ -120,72 +154,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about-bbs" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about-bbs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">About BBS</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-about-bbs">    
         <li>
-    <a class="dropdown-item" href="../../purpose.html" rel="" target="">
+    <a class="dropdown-item" href="../../purpose.html">
  <span class="dropdown-text">Purpose</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../board.html" rel="" target="">
+    <a class="dropdown-item" href="../../board.html">
  <span class="dropdown-text">BBS board</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-upcoming-events" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-upcoming-events" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Upcoming events</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-upcoming-events">    
         <li>
-    <a class="dropdown-item" href="../../events_upcoming.html" rel="" target="">
+    <a class="dropdown-item" href="../../events_upcoming.html">
  <span class="dropdown-text">Announcements of upcoming events</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-past-seminars" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-past-seminars" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Past seminars</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-past-seminars">    
         <li>
-    <a class="dropdown-item" href="../../events_past.html" rel="" target="">
+    <a class="dropdown-item" href="../../events_past.html">
  <span class="dropdown-text">Agendas, slidedecks, and recordings of past BBS seminars</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-past-trainings" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-past-trainings" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Past trainings</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-past-trainings">    
         <li>
-    <a class="dropdown-item" href="../../trainings_past.html" rel="" target="">
+    <a class="dropdown-item" href="../../trainings_past.html">
  <span class="dropdown-text">Agendas, slidedecks, and recordings of past BBS training events</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="../../additional_docs.html" rel="" target="">
- <span class="menu-text">Additional documents</span></a>
+    <a class="nav-link" href="../../additional_docs.html"> 
+<span class="menu-text">Additional documents</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../updates.html" rel="" target="">
- <span class="menu-text">Updates on this page</span></a>
+    <a class="nav-link" href="../../updates.html"> 
+<span class="menu-text">Updates on this page</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools ms-auto">
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Contents</h2>
    
@@ -239,7 +273,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul>
 </nav>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
     </div>
@@ -272,14 +306,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">September 3, 2023</p>
+      <p class="date-modified">April 15, 2024</p>
     </div>
   </div>
     
   </div>
   
 
+
 </header>
+
 
 <section id="purpose-of-this-document" class="level1 unnumbered">
 <h1 class="unnumbered">Purpose of this document</h1>
@@ -293,7 +329,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rpact)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">"rpact"</span>) <span class="co"># version should be version 3.0 or higher</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] '3.4.0'</code></pre>
+<pre><code>[1] '3.5.1'</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setLogLevel</span>(<span class="st">"DISABLED"</span>) <span class="co"># disable progress messages from e.g. getAnalysisResults </span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -348,10 +384,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="co"># rpact summary</span></span>
 <span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sampleSizeOS1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<section id="sample-size-calculation-for-a-survival-endpoint" class="level2" data-number="0.1">
+<section id="sample-size-calculation-for-a-survival-endpoint" class="level2 cell-output-display" data-number="0.1">
 <h2 data-number="0.1" class="anchored" data-anchor-id="sample-size-calculation-for-a-survival-endpoint"><span class="header-section-number">0.1</span> Sample size calculation for a survival endpoint</h2>
-<p>Sequential analysis with a maximum of 2 looks (group sequential design), overall significance level 2.5% (one-sided). The sample size was calculated for a two-sample logrank test, H0: hazard ratio = 1, H1: treatment median(1) = 16.9, control median(2) = 12, planned allocation ratio = 2, accrual time = 10, accrual intensity = 48, dropout rate(1) = 0.05, dropout rate(2) = 0.05, dropout time = 12, power 80%.</p>
+<p>Sequential analysis with a maximum of 2 looks (group sequential design), overall significance level 2.5% (one-sided). The results were calculated for a two-sample logrank test, H0: hazard ratio = 1, H1: treatment median(1) = 16.9, control median(2) = 12, planned allocation ratio = 2, accrual time = 10, accrual intensity = 48, dropout rate(1) = 0.05, dropout rate(2) = 0.05, dropout time = 12, power 80%.</p>
 <table class="table table-sm table-striped small">
 <thead>
 <tr class="header">
@@ -377,14 +412,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>0.8000</td>
 </tr>
 <tr class="even">
-<td>Expected number of subjects</td>
-<td>480.0</td>
-<td></td>
-</tr>
-<tr class="odd">
 <td>Number of subjects</td>
 <td>480.0</td>
 <td>480.0</td>
+</tr>
+<tr class="odd">
+<td>Expected number of subjects under H1</td>
+<td>480.0</td>
+<td></td>
 </tr>
 <tr class="even">
 <td>Cumulative number of events</td>
@@ -393,8 +428,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>Analysis time</td>
-<td>15.8</td>
-<td>28.7</td>
+<td>15.815</td>
+<td>28.666</td>
 </tr>
 <tr class="even">
 <td>Expected study duration</td>
@@ -432,88 +467,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><em>(t)</em>: treatment effect scale</li>
 </ul>
-<hr>
 </section>
-<section id="design-plan-parameters-and-output-for-survival-data" class="level2" data-number="0.2">
-<h2 data-number="0.2" class="anchored" data-anchor-id="design-plan-parameters-and-output-for-survival-data"><span class="header-section-number">0.2</span> Design plan parameters and output for survival data</h2>
-<section id="design-parameters" class="level3">
-<h3 class="anchored" data-anchor-id="design-parameters">Design parameters</h3>
-<ul>
-<li><em>Information rates</em>: 0.600, 1.000</li>
-<li><em>Critical values</em>: 2.669, 1.981</li>
-<li><em>Futility bounds (non-binding)</em>: -Inf</li>
-<li><em>Cumulative alpha spending</em>: 0.003808, 0.025000</li>
-<li><em>Local one-sided significance levels</em>: 0.003808, 0.023798</li>
-<li><em>Significance level</em>: 0.0250</li>
-<li><em>Type II error rate</em>: 0.2000</li>
-<li><em>Test</em>: one-sided</li>
-</ul>
-</section>
-<section id="user-defined-parameters" class="level3">
-<h3 class="anchored" data-anchor-id="user-defined-parameters">User defined parameters</h3>
-<ul>
-<li><em>median(1)</em>: 16.9</li>
-<li><em>median(2)</em>: 12.0</li>
-<li><em>Planned allocation ratio</em>: 2</li>
-<li><em>Accrual time</em>: 10.00</li>
-<li><em>Accrual intensity</em>: 48.0</li>
-<li><em>Drop-out rate (1)</em>: 0.050</li>
-<li><em>Drop-out rate (2)</em>: 0.050</li>
-</ul>
-</section>
-<section id="default-parameters" class="level3">
-<h3 class="anchored" data-anchor-id="default-parameters">Default parameters</h3>
-<ul>
-<li><em>Theta H0</em>: 1</li>
-<li><em>Type of computation</em>: Schoenfeld</li>
-<li><em>kappa</em>: 1</li>
-<li><em>Drop-out time</em>: 12.00</li>
-</ul>
-</section>
-<section id="sample-size-and-output" class="level3">
-<h3 class="anchored" data-anchor-id="sample-size-and-output">Sample size and output</h3>
-<ul>
-<li><em>Direction upper</em>: FALSE</li>
-<li><em>lambda(1)</em>: 0.041</li>
-<li><em>lambda(2)</em>: 0.0578</li>
-<li><em>Hazard ratio</em>: 0.710</li>
-<li><em>Maximum number of subjects</em>: 480</li>
-<li><em>Maximum number of subjects (1)</em>: 320</li>
-<li><em>Maximum number of subjects (2)</em>: 160</li>
-<li><em>Maximum number of events</em>: 303.8</li>
-<li><em>Follow up time</em>: 18.67</li>
-<li><em>Reject per stage [1]</em>: 0.3123</li>
-<li><em>Reject per stage [2]</em>: 0.4877</li>
-<li><em>Early stop</em>: 0.3123</li>
-<li><em>Analysis times [1]</em>: 15.82</li>
-<li><em>Analysis times [2]</em>: 28.67</li>
-<li><em>Expected study duration</em>: 24.65</li>
-<li><em>Maximal study duration</em>: 28.67</li>
-<li><em>Number of events per stage [1]</em>: 182.3</li>
-<li><em>Number of events per stage [2]</em>: 303.8</li>
-<li><em>Expected number of events under H0</em>: 303.4</li>
-<li><em>Expected number of events under H0/H1</em>: 296.9</li>
-<li><em>Expected number of events under H1</em>: 265.9</li>
-<li><em>Number of subjects [1]</em>: 480</li>
-<li><em>Number of subjects [2]</em>: 480</li>
-<li><em>Number of subjects (1) [1]</em>: 320</li>
-<li><em>Number of subjects (1) [2]</em>: 320</li>
-<li><em>Number of subjects (2) [1]</em>: 160</li>
-<li><em>Number of subjects (2) [2]</em>: 160</li>
-<li><em>Expected number of subjects under H1</em>: 480</li>
-<li><em>Critical values (treatment effect scale) [1]</em>: 0.658</li>
-<li><em>Critical values (treatment effect scale) [2]</em>: 0.786</li>
-</ul>
-</section>
-<section id="legend" class="level3">
-<h3 class="anchored" data-anchor-id="legend">Legend</h3>
-<ul>
-<li><em>(i)</em>: values of treatment arm i</li>
-<li><em>[k]</em>: values at stage k</li>
-</ul>
-</section>
-</section>
-</div>
 </div>
 </section>
 <section id="exercise-1b-addition-of-a-futility-interim-analysis" class="level2 unnumbered">
@@ -541,10 +495,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co"># rpact summary</span></span>
 <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sampleSizeOS2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<section id="sample-size-calculation-for-a-survival-endpoint-1" class="level2" data-number="0.3">
-<h2 data-number="0.3" class="anchored" data-anchor-id="sample-size-calculation-for-a-survival-endpoint-1"><span class="header-section-number">0.3</span> Sample size calculation for a survival endpoint</h2>
-<p>Sequential analysis with a maximum of 3 looks (group sequential design), overall significance level 2.5% (one-sided). The sample size was calculated for a two-sample logrank test, H0: hazard ratio = 1, H1: treatment median(1) = 16.9, control median(2) = 12, planned allocation ratio = 2, accrual time = 10, accrual intensity = 48, dropout rate(1) = 0.05, dropout rate(2) = 0.05, dropout time = 12, power 80%.</p>
+<section id="sample-size-calculation-for-a-survival-endpoint-1" class="level2 cell-output-display" data-number="0.2">
+<h2 data-number="0.2" class="anchored" data-anchor-id="sample-size-calculation-for-a-survival-endpoint-1"><span class="header-section-number">0.2</span> Sample size calculation for a survival endpoint</h2>
+<p>Sequential analysis with a maximum of 3 looks (group sequential design), overall significance level 2.5% (one-sided). The results were calculated for a two-sample logrank test, H0: hazard ratio = 1, H1: treatment median(1) = 16.9, control median(2) = 12, planned allocation ratio = 2, accrual time = 10, accrual intensity = 48, dropout rate(1) = 0.05, dropout rate(2) = 0.05, dropout time = 12, power 80%.</p>
 <table class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 25%">
@@ -586,16 +539,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>0.8000</td>
 </tr>
 <tr class="odd">
-<td>Expected number of subjects</td>
-<td>480.0</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
 <td>Number of subjects</td>
 <td>480.0</td>
 <td>480.0</td>
 <td>480.0</td>
+</tr>
+<tr class="even">
+<td>Expected number of subjects under H1</td>
+<td>480.0</td>
+<td></td>
+<td></td>
 </tr>
 <tr class="odd">
 <td>Cumulative number of events</td>
@@ -605,9 +558,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>Analysis time</td>
-<td>10.1</td>
-<td>16.7</td>
-<td>31.7</td>
+<td>10.124</td>
+<td>16.723</td>
+<td>31.742</td>
 </tr>
 <tr class="odd">
 <td>Expected study duration</td>
@@ -681,102 +634,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><em>(t)</em>: treatment effect scale</li>
 </ul>
-<hr>
 </section>
-<section id="design-plan-parameters-and-output-for-survival-data-1" class="level2" data-number="0.4">
-<h2 data-number="0.4" class="anchored" data-anchor-id="design-plan-parameters-and-output-for-survival-data-1"><span class="header-section-number">0.4</span> Design plan parameters and output for survival data</h2>
-<section id="design-parameters-1" class="level3">
-<h3 class="anchored" data-anchor-id="design-parameters-1">Design parameters</h3>
-<ul>
-<li><em>Information rates</em>: 0.300, 0.600, 1.000</li>
-<li><em>Critical values</em>: 3.719, 2.672, 1.981</li>
-<li><em>Futility bounds (non-binding)</em>: 0.000, -Inf</li>
-<li><em>Cumulative alpha spending</em>: 0.000100, 0.003808, 0.025000</li>
-<li><em>Local one-sided significance levels</em>: 0.000100, 0.003765, 0.023787</li>
-<li><em>Significance level</em>: 0.0250</li>
-<li><em>Type II error rate</em>: 0.2000</li>
-<li><em>Test</em>: one-sided</li>
-</ul>
-</section>
-<section id="user-defined-parameters-1" class="level3">
-<h3 class="anchored" data-anchor-id="user-defined-parameters-1">User defined parameters</h3>
-<ul>
-<li><em>median(1)</em>: 16.9</li>
-<li><em>median(2)</em>: 12.0</li>
-<li><em>Planned allocation ratio</em>: 2</li>
-<li><em>Accrual time</em>: 10.00</li>
-<li><em>Accrual intensity</em>: 48.0</li>
-<li><em>Drop-out rate (1)</em>: 0.050</li>
-<li><em>Drop-out rate (2)</em>: 0.050</li>
-</ul>
-</section>
-<section id="default-parameters-1" class="level3">
-<h3 class="anchored" data-anchor-id="default-parameters-1">Default parameters</h3>
-<ul>
-<li><em>Theta H0</em>: 1</li>
-<li><em>Type of computation</em>: Schoenfeld</li>
-<li><em>kappa</em>: 1</li>
-<li><em>Drop-out time</em>: 12.00</li>
-</ul>
-</section>
-<section id="sample-size-and-output-1" class="level3">
-<h3 class="anchored" data-anchor-id="sample-size-and-output-1">Sample size and output</h3>
-<ul>
-<li><em>Direction upper</em>: FALSE</li>
-<li><em>lambda(1)</em>: 0.041</li>
-<li><em>lambda(2)</em>: 0.0578</li>
-<li><em>Hazard ratio</em>: 0.710</li>
-<li><em>Maximum number of subjects</em>: 480</li>
-<li><em>Maximum number of subjects (1)</em>: 320</li>
-<li><em>Maximum number of subjects (2)</em>: 160</li>
-<li><em>Maximum number of events</em>: 322.9</li>
-<li><em>Follow up time</em>: 21.74</li>
-<li><em>Reject per stage [1]</em>: 0.01657</li>
-<li><em>Reject per stage [2]</em>: 0.31880</li>
-<li><em>Reject per stage [3]</em>: 0.46463</li>
-<li><em>Overall futility stop</em>: 0.05607</li>
-<li><em>Futility stop per stage [1]</em>: 0.05607</li>
-<li><em>Futility stop per stage [2]</em>: 0.00000</li>
-<li><em>Early stop</em>: 0.3914</li>
-<li><em>Analysis times [1]</em>: 10.12</li>
-<li><em>Analysis times [2]</em>: 16.72</li>
-<li><em>Analysis times [3]</em>: 31.74</li>
-<li><em>Expected study duration</em>: 25.38</li>
-<li><em>Maximal study duration</em>: 31.74</li>
-<li><em>Number of events per stage [1]</em>: 96.9</li>
-<li><em>Number of events per stage [2]</em>: 193.7</li>
-<li><em>Number of events per stage [3]</em>: 322.9</li>
-<li><em>Expected number of events under H0</em>: 209.4</li>
-<li><em>Expected number of events under H0/H1</em>: 266.6</li>
-<li><em>Expected number of events under H1</em>: 265.3</li>
-<li><em>Number of subjects [1]</em>: 480</li>
-<li><em>Number of subjects [2]</em>: 480</li>
-<li><em>Number of subjects [3]</em>: 480</li>
-<li><em>Number of subjects (1) [1]</em>: 320</li>
-<li><em>Number of subjects (1) [2]</em>: 320</li>
-<li><em>Number of subjects (1) [3]</em>: 320</li>
-<li><em>Number of subjects (2) [1]</em>: 160</li>
-<li><em>Number of subjects (2) [2]</em>: 160</li>
-<li><em>Number of subjects (2) [3]</em>: 160</li>
-<li><em>Expected number of subjects under H1</em>: 480</li>
-<li><em>Critical values (treatment effect scale) [1]</em>: 0.449</li>
-<li><em>Critical values (treatment effect scale) [2]</em>: 0.665</li>
-<li><em>Critical values (treatment effect scale) [3]</em>: 0.791</li>
-<li><em>Futility bounds (treatment effect scale) [1]</em>: 1.000</li>
-<li><em>Futility bounds (treatment effect scale) [2]</em>: NA</li>
-<li><em>Futility bounds (one-sided p-value scale) [1]</em>: 0.5000</li>
-<li><em>Futility bounds (one-sided p-value scale) [2]</em>: 1.0000</li>
-</ul>
-</section>
-<section id="legend-1" class="level3">
-<h3 class="anchored" data-anchor-id="legend-1">Legend</h3>
-<ul>
-<li><em>(i)</em>: values of treatment arm i</li>
-<li><em>[k]</em>: values at stage k</li>
-</ul>
-</section>
-</section>
-</div>
 </div>
 <p>We see that by adding the futility interim we increase the maximal number of events from 303.827705 to 322.9028532.</p>
 </section>
@@ -815,10 +673,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">dropoutRate1 =</span> do, <span class="at">dropoutRate2 =</span> do, <span class="at">dropoutTime =</span> doTime,</span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">accrualTime =</span> accrualTime, <span class="at">accrualIntensity =</span> accrualIntensity)</span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>probOS</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="event-probabilities-at-given-time" class="level2 cell-output-display" data-number="0.5">
-<h2 data-number="0.5" class="anchored" data-anchor-id="event-probabilities-at-given-time"><span class="header-section-number">0.5</span> Event probabilities at given time</h2>
-<section id="user-defined-parameters-2" class="level3">
-<h3 class="anchored" data-anchor-id="user-defined-parameters-2">User defined parameters</h3>
+<section id="event-probabilities-at-given-time" class="level2 cell-output-display" data-number="0.3">
+<h2 data-number="0.3" class="anchored" data-anchor-id="event-probabilities-at-given-time"><span class="header-section-number">0.3</span> Event probabilities at given time</h2>
+<section id="user-defined-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="user-defined-parameters">User defined parameters</h3>
 <ul>
 <li><em>Time</em>: 16.00, 24.00</li>
 <li><em>Accrual time</em>: 10.00</li>
@@ -830,8 +688,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><em>Drop-out rate (2)</em>: 0.050</li>
 </ul>
 </section>
-<section id="default-parameters-2" class="level3">
-<h3 class="anchored" data-anchor-id="default-parameters-2">Default parameters</h3>
+<section id="default-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="default-parameters">Default parameters</h3>
 <ul>
 <li><em>kappa</em>: 1</li>
 <li><em>Drop-out time</em>: 12.00</li>
@@ -847,8 +705,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><em>Event probabilities (2)</em>: 0.4529, 0.6400</li>
 </ul>
 </section>
-<section id="legend-2" class="level3">
-<h3 class="anchored" data-anchor-id="legend-2">Legend</h3>
+<section id="legend" class="level3">
+<h3 class="anchored" data-anchor-id="legend">Legend</h3>
 <ul>
 <li><em>(i)</em>: values of treatment arm i</li>
 </ul>
@@ -882,10 +740,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">getDesignInverseNormal</span>(<span class="at">typeOfDesign =</span> <span class="st">"asUser"</span>, <span class="at">userAlphaSpending =</span> <span class="fu">c</span>(<span class="fl">0.0001</span>,<span class="fl">0.025</span>), </span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">futilityBounds =</span> <span class="dv">0</span>, <span class="at">bindingFutility =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="design-parameters-and-output-of-inverse-normal-combination-test-design" class="level2 cell-output-display" data-number="0.6">
-<h2 data-number="0.6" class="anchored" data-anchor-id="design-parameters-and-output-of-inverse-normal-combination-test-design"><span class="header-section-number">0.6</span> Design parameters and output of inverse normal combination test design</h2>
-<section id="user-defined-parameters-3" class="level3">
-<h3 class="anchored" data-anchor-id="user-defined-parameters-3">User defined parameters</h3>
+<section id="design-parameters-and-output-of-inverse-normal-combination-test-design" class="level2 cell-output-display" data-number="0.4">
+<h2 data-number="0.4" class="anchored" data-anchor-id="design-parameters-and-output-of-inverse-normal-combination-test-design"><span class="header-section-number">0.4</span> Design parameters and output of inverse normal combination test design</h2>
+<section id="user-defined-parameters-1" class="level3">
+<h3 class="anchored" data-anchor-id="user-defined-parameters-1">User defined parameters</h3>
 <ul>
 <li><em>Type of design</em>: User defined alpha spending</li>
 <li><em>Futility bounds (binding)</em>: 0.000</li>
@@ -901,8 +759,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><em>Information rates</em>: 0.500, 1.000</li>
 </ul>
 </section>
-<section id="default-parameters-3" class="level3">
-<h3 class="anchored" data-anchor-id="default-parameters-3">Default parameters</h3>
+<section id="default-parameters-1" class="level3">
+<h3 class="anchored" data-anchor-id="default-parameters-1">Default parameters</h3>
 <ul>
 <li><em>Significance level</em>: 0.0250</li>
 <li><em>Type II error rate</em>: 0.2000</li>
@@ -942,9 +800,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>result1 <span class="ot">&lt;-</span> <span class="fu">getAnalysisResults</span>(<span class="at">design =</span> d, <span class="at">dataInput =</span> dat, <span class="at">nPlanned =</span> <span class="dv">100</span>,<span class="at">normalApproximation =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(result1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<section id="analysis-results-for-a-continuous-endpoint" class="level2" data-number="0.7">
-<h2 data-number="0.7" class="anchored" data-anchor-id="analysis-results-for-a-continuous-endpoint"><span class="header-section-number">0.7</span> Analysis results for a continuous endpoint</h2>
+<section id="analysis-results-for-a-continuous-endpoint" class="level2 cell-output-display" data-number="0.5">
+<h2 data-number="0.5" class="anchored" data-anchor-id="analysis-results-for-a-continuous-endpoint"><span class="header-section-number">0.5</span> Analysis results for a continuous endpoint</h2>
 <p>Sequential analysis with 2 looks (inverse normal combination test design). The results were calculated using a two-sample t-test (one-sided, alpha = 0.025), normal approximation test, equal variances option. H0: mu(1) - mu(2) = 0 against H1: mu(1) - mu(2) &gt; 0. The conditional power calculation with planned sample size is based on overall effect = 3 and overall standard deviation = 10.</p>
 <table class="table table-sm table-striped small">
 <colgroup>
@@ -1042,67 +899,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<hr>
 </section>
-<section id="analysis-results-means-of-2-groups-inverse-normal-combination-test-design" class="level2" data-number="0.8">
-<h2 data-number="0.8" class="anchored" data-anchor-id="analysis-results-means-of-2-groups-inverse-normal-combination-test-design"><span class="header-section-number">0.8</span> Analysis results (means of 2 groups, inverse normal combination test design)</h2>
-<section id="design-parameters-2" class="level3">
-<h3 class="anchored" data-anchor-id="design-parameters-2">Design parameters</h3>
-<ul>
-<li><em>Fixed weights</em>: 0.707, 0.707</li>
-<li><em>Critical values</em>: 3.719, 1.955</li>
-<li><em>Futility bounds (binding)</em>: 0.000</li>
-<li><em>Cumulative alpha spending</em>: 0.0001, 0.0250</li>
-<li><em>Local one-sided significance levels</em>: 0.00010, 0.02531</li>
-<li><em>Significance level</em>: 0.0250</li>
-<li><em>Test</em>: one-sided</li>
-</ul>
-</section>
-<section id="user-defined-parameters-4" class="level3">
-<h3 class="anchored" data-anchor-id="user-defined-parameters-4">User defined parameters</h3>
-<ul>
-<li><em>Normal approximation</em>: TRUE</li>
-<li><em>Planned sample size</em>: NA, 100</li>
-</ul>
-</section>
-<section id="default-parameters-4" class="level3">
-<h3 class="anchored" data-anchor-id="default-parameters-4">Default parameters</h3>
-<ul>
-<li><em>Direction upper</em>: TRUE</li>
-<li><em>Theta H0</em>: 0</li>
-<li><em>Planned allocation ratio</em>: 1</li>
-<li><em>Equal variances</em>: TRUE</li>
-</ul>
-</section>
-<section id="stage-results" class="level3">
-<h3 class="anchored" data-anchor-id="stage-results">Stage results</h3>
-<ul>
-<li><em>Cumulative effect sizes</em>: 3, NA</li>
-<li><em>Cumulative (pooled) standard deviations</em>: 10, NA</li>
-<li><em>Stage-wise test statistics</em>: 1.500, NA</li>
-<li><em>Stage-wise p-values</em>: 0.06681, NA</li>
-<li><em>Combination test statistics</em>: 1.500, NA</li>
-</ul>
-</section>
-<section id="analysis-results" class="level3">
-<h3 class="anchored" data-anchor-id="analysis-results">Analysis results</h3>
-<ul>
-<li><em>Assumed standard deviation</em>: 10</li>
-<li><em>Actions</em>: continue, NA</li>
-<li><em>Conditional rejection probability</em>: 0.1030, NA</li>
-<li><em>Conditional power</em>: NA, 0.5931</li>
-<li><em>Repeated confidence intervals (lower)</em>: -4.438, NA</li>
-<li><em>Repeated confidence intervals (upper)</em>: 10.44, NA</li>
-<li><em>Repeated p-values</em>: NA, NA</li>
-<li><em>Final stage</em>: NA</li>
-<li><em>Final p-value</em>: NA, NA</li>
-<li><em>Final CIs (lower)</em>: NA, NA</li>
-<li><em>Final CIs (upper)</em>: NA, NA</li>
-<li><em>Median unbiased estimate</em>: NA, NA</li>
-</ul>
-</section>
-</section>
-</div>
 </div>
 <p><span class="math inline">\(\rightarrow\)</span> <span class="math inline">\(p_1=0.0668\)</span>, and <span class="math inline">\(\alpha_1=0.0001&lt;0.0668&lt;0.5=\alpha_0\)</span>.</p>
 <ol start="2" type="1">
@@ -1121,9 +918,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">assumedStDev =</span> <span class="dv">10</span>, <span class="at">normalApproximation =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(result2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<section id="analysis-results-for-a-continuous-endpoint-1" class="level2" data-number="0.9">
-<h2 data-number="0.9" class="anchored" data-anchor-id="analysis-results-for-a-continuous-endpoint-1"><span class="header-section-number">0.9</span> Analysis results for a continuous endpoint</h2>
+<section id="analysis-results-for-a-continuous-endpoint-1" class="level2 cell-output-display" data-number="0.6">
+<h2 data-number="0.6" class="anchored" data-anchor-id="analysis-results-for-a-continuous-endpoint-1"><span class="header-section-number">0.6</span> Analysis results for a continuous endpoint</h2>
 <p>Sequential analysis with 2 looks (inverse normal combination test design). The results were calculated using a two-sample t-test (one-sided, alpha = 0.025), normal approximation test, equal variances option. H0: mu(1) - mu(2) = 0 against H1: mu(1) - mu(2) &gt; 0. The conditional power calculation with planned sample size is based on assumed effect = 4 and assumed standard deviation = 10.</p>
 <table class="table table-sm table-striped small">
 <colgroup>
@@ -1221,68 +1017,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<hr>
 </section>
-<section id="analysis-results-means-of-2-groups-inverse-normal-combination-test-design-1" class="level2" data-number="0.10">
-<h2 data-number="0.10" class="anchored" data-anchor-id="analysis-results-means-of-2-groups-inverse-normal-combination-test-design-1"><span class="header-section-number">0.10</span> Analysis results (means of 2 groups, inverse normal combination test design)</h2>
-<section id="design-parameters-3" class="level3">
-<h3 class="anchored" data-anchor-id="design-parameters-3">Design parameters</h3>
-<ul>
-<li><em>Fixed weights</em>: 0.707, 0.707</li>
-<li><em>Critical values</em>: 3.719, 1.955</li>
-<li><em>Futility bounds (binding)</em>: 0.000</li>
-<li><em>Cumulative alpha spending</em>: 0.0001, 0.0250</li>
-<li><em>Local one-sided significance levels</em>: 0.00010, 0.02531</li>
-<li><em>Significance level</em>: 0.0250</li>
-<li><em>Test</em>: one-sided</li>
-</ul>
-</section>
-<section id="user-defined-parameters-5" class="level3">
-<h3 class="anchored" data-anchor-id="user-defined-parameters-5">User defined parameters</h3>
-<ul>
-<li><em>Normal approximation</em>: TRUE</li>
-<li><em>Planned sample size</em>: NA, 164</li>
-<li><em>Assumed effect under alternative</em>: 4</li>
-<li><em>Assumed standard deviation</em>: 10</li>
-</ul>
-</section>
-<section id="default-parameters-5" class="level3">
-<h3 class="anchored" data-anchor-id="default-parameters-5">Default parameters</h3>
-<ul>
-<li><em>Direction upper</em>: TRUE</li>
-<li><em>Theta H0</em>: 0</li>
-<li><em>Planned allocation ratio</em>: 1</li>
-<li><em>Equal variances</em>: TRUE</li>
-</ul>
-</section>
-<section id="stage-results-1" class="level3">
-<h3 class="anchored" data-anchor-id="stage-results-1">Stage results</h3>
-<ul>
-<li><em>Cumulative effect sizes</em>: 3, NA</li>
-<li><em>Cumulative (pooled) standard deviations</em>: 10, NA</li>
-<li><em>Stage-wise test statistics</em>: 1.500, NA</li>
-<li><em>Stage-wise p-values</em>: 0.06681, NA</li>
-<li><em>Combination test statistics</em>: 1.500, NA</li>
-</ul>
-</section>
-<section id="analysis-results-1" class="level3">
-<h3 class="anchored" data-anchor-id="analysis-results-1">Analysis results</h3>
-<ul>
-<li><em>Actions</em>: continue, NA</li>
-<li><em>Conditional rejection probability</em>: 0.1030, NA</li>
-<li><em>Conditional power</em>: NA, 0.9027</li>
-<li><em>Repeated confidence intervals (lower)</em>: -4.438, NA</li>
-<li><em>Repeated confidence intervals (upper)</em>: 10.44, NA</li>
-<li><em>Repeated p-values</em>: NA, NA</li>
-<li><em>Final stage</em>: NA</li>
-<li><em>Final p-value</em>: NA, NA</li>
-<li><em>Final CIs (lower)</em>: NA, NA</li>
-<li><em>Final CIs (upper)</em>: NA, NA</li>
-<li><em>Median unbiased estimate</em>: NA, NA</li>
-</ul>
-</section>
-</section>
-</div>
 </div>
 <p><span class="math inline">\(\rightarrow\)</span> <span class="math inline">\(n_2=82\)</span> per treatment group</p>
 </section>
@@ -1300,9 +1035,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">n1 =</span> <span class="fu">c</span>(<span class="dv">50</span>,<span class="dv">82</span>), <span class="at">n2 =</span> <span class="fu">c</span>(<span class="dv">50</span>,<span class="dv">82</span>))</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">getAnalysisResults</span>(<span class="at">design =</span> d, <span class="at">dataInput =</span> dat2, <span class="at">normalApproximation =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<section id="analysis-results-for-a-continuous-endpoint-2" class="level2" data-number="0.11">
-<h2 data-number="0.11" class="anchored" data-anchor-id="analysis-results-for-a-continuous-endpoint-2"><span class="header-section-number">0.11</span> Analysis results for a continuous endpoint</h2>
+<section id="analysis-results-for-a-continuous-endpoint-2" class="level2 cell-output-display" data-number="0.7">
+<h2 data-number="0.7" class="anchored" data-anchor-id="analysis-results-for-a-continuous-endpoint-2"><span class="header-section-number">0.7</span> Analysis results for a continuous endpoint</h2>
 <p>Sequential analysis with 2 looks (inverse normal combination test design). The results were calculated using a two-sample t-test (one-sided, alpha = 0.025), normal approximation test, equal variances option. H0: mu(1) - mu(2) = 0 against H1: mu(1) - mu(2) &gt; 0.</p>
 <table class="table table-sm table-striped small">
 <colgroup>
@@ -1405,65 +1139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<hr>
 </section>
-<section id="analysis-results-means-of-2-groups-inverse-normal-combination-test-design-2" class="level2" data-number="0.12">
-<h2 data-number="0.12" class="anchored" data-anchor-id="analysis-results-means-of-2-groups-inverse-normal-combination-test-design-2"><span class="header-section-number">0.12</span> Analysis results (means of 2 groups, inverse normal combination test design)</h2>
-<section id="design-parameters-4" class="level3">
-<h3 class="anchored" data-anchor-id="design-parameters-4">Design parameters</h3>
-<ul>
-<li><em>Fixed weights</em>: 0.707, 0.707</li>
-<li><em>Critical values</em>: 3.719, 1.955</li>
-<li><em>Futility bounds (binding)</em>: 0.000</li>
-<li><em>Cumulative alpha spending</em>: 0.0001, 0.0250</li>
-<li><em>Local one-sided significance levels</em>: 0.00010, 0.02531</li>
-<li><em>Significance level</em>: 0.0250</li>
-<li><em>Test</em>: one-sided</li>
-</ul>
-</section>
-<section id="user-defined-parameters-6" class="level3">
-<h3 class="anchored" data-anchor-id="user-defined-parameters-6">User defined parameters</h3>
-<ul>
-<li><em>Normal approximation</em>: TRUE</li>
-</ul>
-</section>
-<section id="default-parameters-6" class="level3">
-<h3 class="anchored" data-anchor-id="default-parameters-6">Default parameters</h3>
-<ul>
-<li><em>Direction upper</em>: TRUE</li>
-<li><em>Theta H0</em>: 0</li>
-<li><em>Equal variances</em>: TRUE</li>
-</ul>
-</section>
-<section id="stage-results-2" class="level3">
-<h3 class="anchored" data-anchor-id="stage-results-2">Stage results</h3>
-<ul>
-<li><em>Cumulative effect sizes</em>: 3.000, 2.379</li>
-<li><em>Cumulative (pooled) standard deviations</em>: 10.000, 9.968</li>
-<li><em>Stage-wise test statistics</em>: 1.500, 1.281</li>
-<li><em>Stage-wise p-values</em>: 0.06681, 0.10016</li>
-<li><em>Combination test statistics</em>: 1.500, 1.966</li>
-</ul>
-</section>
-<section id="analysis-results-2" class="level3">
-<h3 class="anchored" data-anchor-id="analysis-results-2">Analysis results</h3>
-<ul>
-<li><em>Assumed standard deviation</em>: 9.968</li>
-<li><em>Actions</em>: continue, reject</li>
-<li><em>Conditional rejection probability</em>: 0.1030, NA</li>
-<li><em>Conditional power</em>: NA, NA</li>
-<li><em>Repeated confidence intervals (lower)</em>: -4.43803, 0.01424</li>
-<li><em>Repeated confidence intervals (upper)</em>: 10.438, 4.863</li>
-<li><em>Repeated p-values</em>: NA, NA</li>
-<li><em>Final stage</em>: 2</li>
-<li><em>Final p-value</em>: NA, 0.02435</li>
-<li><em>Final CIs (lower)</em>: NA, 0.01401</li>
-<li><em>Final CIs (upper)</em>: NA, 4.933</li>
-<li><em>Median unbiased estimate</em>: NA, 2.45</li>
-</ul>
-</section>
-</section>
-</div>
 </div>
 <ol start="2" type="1">
 <li>Compute the overall (“exact”) p-value and confidence interval for the adaptive trial.</li>
@@ -1486,9 +1162,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">cumulativeN1 =</span> <span class="fu">c</span>(<span class="dv">50</span>,<span class="dv">132</span>), <span class="at">cumulativeN2 =</span> <span class="fu">c</span>(<span class="dv">50</span>,<span class="dv">132</span>))</span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">getAnalysisResults</span>(<span class="at">design =</span> dGS, <span class="at">dataInput =</span> dat3, <span class="at">normalApproximation =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<section id="analysis-results-for-a-continuous-endpoint-3" class="level2" data-number="0.13">
-<h2 data-number="0.13" class="anchored" data-anchor-id="analysis-results-for-a-continuous-endpoint-3"><span class="header-section-number">0.13</span> Analysis results for a continuous endpoint</h2>
+<section id="analysis-results-for-a-continuous-endpoint-3" class="level2 cell-output-display" data-number="0.8">
+<h2 data-number="0.8" class="anchored" data-anchor-id="analysis-results-for-a-continuous-endpoint-3"><span class="header-section-number">0.8</span> Analysis results for a continuous endpoint</h2>
 <p>Sequential analysis with 2 looks (group sequential design). The results were calculated using a two-sample t-test (one-sided, alpha = 0.025), normal approximation test, equal variances option. H0: mu(1) - mu(2) = 0 against H1: mu(1) - mu(2) &gt; 0.</p>
 <table class="table table-sm table-striped small">
 <colgroup>
@@ -1586,66 +1261,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<hr>
 </section>
-<section id="analysis-results-means-of-2-groups-group-sequential-design" class="level2" data-number="0.14">
-<h2 data-number="0.14" class="anchored" data-anchor-id="analysis-results-means-of-2-groups-group-sequential-design"><span class="header-section-number">0.14</span> Analysis results (means of 2 groups, group sequential design)</h2>
-<section id="design-parameters-5" class="level3">
-<h3 class="anchored" data-anchor-id="design-parameters-5">Design parameters</h3>
-<ul>
-<li><em>Information rates</em>: 0.500, 1.000</li>
-<li><em>Critical values</em>: 3.719, 1.955</li>
-<li><em>Futility bounds (binding)</em>: 0.000</li>
-<li><em>Cumulative alpha spending</em>: 0.0001, 0.0250</li>
-<li><em>Local one-sided significance levels</em>: 0.00010, 0.02531</li>
-<li><em>Significance level</em>: 0.0250</li>
-<li><em>Test</em>: one-sided</li>
-</ul>
-</section>
-<section id="user-defined-parameters-7" class="level3">
-<h3 class="anchored" data-anchor-id="user-defined-parameters-7">User defined parameters</h3>
-<ul>
-<li><em>Normal approximation</em>: TRUE</li>
-</ul>
-</section>
-<section id="default-parameters-7" class="level3">
-<h3 class="anchored" data-anchor-id="default-parameters-7">Default parameters</h3>
-<ul>
-<li><em>Direction upper</em>: TRUE</li>
-<li><em>Theta H0</em>: 0</li>
-<li><em>Equal variances</em>: TRUE</li>
-</ul>
-</section>
-<section id="stage-results-3" class="level3">
-<h3 class="anchored" data-anchor-id="stage-results-3">Stage results</h3>
-<ul>
-<li><em>Cumulative effect sizes</em>: 3.000, 2.379</li>
-<li><em>Cumulative (pooled) standard deviations</em>: 10, 10</li>
-<li><em>Stage-wise test statistics</em>: 1.500, 1.274</li>
-<li><em>Stage-wise p-values</em>: 0.06681, 0.10133</li>
-<li><em>Overall test statistics</em>: 1.500, 1.933</li>
-<li><em>Overall p-values</em>: 0.06681, 0.02665</li>
-</ul>
-</section>
-<section id="analysis-results-3" class="level3">
-<h3 class="anchored" data-anchor-id="analysis-results-3">Analysis results</h3>
-<ul>
-<li><em>Assumed standard deviation</em>: 10</li>
-<li><em>Actions</em>: continue, accept</li>
-<li><em>Conditional rejection probability</em>: 0.1030, NA</li>
-<li><em>Conditional power</em>: NA, NA</li>
-<li><em>Repeated confidence intervals (lower)</em>: -4.43803, -0.02731</li>
-<li><em>Repeated confidence intervals (upper)</em>: 10.438, 4.785</li>
-<li><em>Repeated p-values</em>: NA, NA</li>
-<li><em>Final stage</em>: 2</li>
-<li><em>Final p-value</em>: NA, 0.0263</li>
-<li><em>Final CIs (lower)</em>: NA, -0.0269</li>
-<li><em>Final CIs (upper)</em>: NA, 4.816</li>
-<li><em>Median unbiased estimate</em>: NA, 2.39</li>
-</ul>
-</section>
-</section>
-</div>
 </div>
 <p>Note that the definition of dat3 with the “cumulative” commands is necessary because otherwise always a “global” variance (accounting for the mean difference in the stages) is calculated.</p>
 <p>Here we ignore the adaptive nature of the trial: we lump all data together (ignoring the sample size adaptation), and we test at the nominal level <span class="math inline">\(\alpha =0.025\)</span> (ignoring the possibility of early stopping). The second stage of the trial, showing less of a treatment effect, carries greater weight in this “naive” (that is, incorrect) version of the test. Note that it can go both ways: in other examples, the adaptive (correct) version of the test may be the one that fails to reject the null hypothesis. In less borderline situations, both tests will lead to the same conclusion. Proposals have been made in the literature for dealing with borderline situations.</p>
@@ -1667,10 +1283,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">getSampleSizeRates</span>(dGS, <span class="at">pi1 =</span> <span class="fl">0.4</span>, <span class="at">pi2 =</span> <span class="fl">0.6</span>)</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(r)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<section id="sample-size-calculation-for-a-binary-endpoint" class="level2" data-number="0.15">
-<h2 data-number="0.15" class="anchored" data-anchor-id="sample-size-calculation-for-a-binary-endpoint"><span class="header-section-number">0.15</span> Sample size calculation for a binary endpoint</h2>
-<p>Sequential analysis with a maximum of 3 looks (group sequential design), overall significance level 2.5% (one-sided). The sample size was calculated for a two-sample test for rates (normal approximation), H0: pi(1) - pi(2) = 0, H1: treatment rate pi(1) = 0.4, control rate pi(2) = 0.6, power 90%.</p>
+<section id="sample-size-calculation-for-a-binary-endpoint" class="level2 cell-output-display" data-number="0.9">
+<h2 data-number="0.9" class="anchored" data-anchor-id="sample-size-calculation-for-a-binary-endpoint"><span class="header-section-number">0.9</span> Sample size calculation for a binary endpoint</h2>
+<p>Sequential analysis with a maximum of 3 looks (group sequential design), overall significance level 2.5% (one-sided). The results were calculated for a two-sample test for rates (normal approximation), H0: pi(1) - pi(2) = 0, H1: treatment rate pi(1) = 0.4, control rate pi(2) = 0.6, power 90%.</p>
 <table class="table table-sm table-striped small">
 <thead>
 <tr class="header">
@@ -1706,16 +1321,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>0.9000</td>
 </tr>
 <tr class="odd">
-<td>Expected number of subjects</td>
-<td>198.3</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
 <td>Number of subjects</td>
 <td>133.1</td>
 <td>199.7</td>
 <td>266.3</td>
+</tr>
+<tr class="even">
+<td>Expected number of subjects under H1</td>
+<td>198.3</td>
+<td></td>
+<td></td>
 </tr>
 <tr class="odd">
 <td>Cumulative alpha spent</td>
@@ -1783,78 +1398,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><em>(t)</em>: treatment effect scale</li>
 </ul>
-<hr>
 </section>
-<section id="design-plan-parameters-and-output-for-rates" class="level2" data-number="0.16">
-<h2 data-number="0.16" class="anchored" data-anchor-id="design-plan-parameters-and-output-for-rates"><span class="header-section-number">0.16</span> Design plan parameters and output for rates</h2>
-<section id="design-parameters-6" class="level3">
-<h3 class="anchored" data-anchor-id="design-parameters-6">Design parameters</h3>
-<ul>
-<li><em>Information rates</em>: 0.500, 0.750, 1.000</li>
-<li><em>Critical values</em>: 2.863, 2.337, 2.024</li>
-<li><em>Futility bounds (non-binding)</em>: 0.000, 0.500</li>
-<li><em>Cumulative alpha spending</em>: 0.002101, 0.010451, 0.025000</li>
-<li><em>Local one-sided significance levels</em>: 0.002101, 0.009711, 0.021475</li>
-<li><em>Significance level</em>: 0.0250</li>
-<li><em>Type II error rate</em>: 0.1000</li>
-<li><em>Test</em>: one-sided</li>
-</ul>
-</section>
-<section id="user-defined-parameters-8" class="level3">
-<h3 class="anchored" data-anchor-id="user-defined-parameters-8">User defined parameters</h3>
-<ul>
-<li><em>Assumed treatment rate</em>: 0.400</li>
-<li><em>Assumed control rate</em>: 0.600</li>
-</ul>
-</section>
-<section id="default-parameters-8" class="level3">
-<h3 class="anchored" data-anchor-id="default-parameters-8">Default parameters</h3>
-<ul>
-<li><em>Risk ratio</em>: FALSE</li>
-<li><em>Theta H0</em>: 0</li>
-<li><em>Normal approximation</em>: TRUE</li>
-<li><em>Treatment groups</em>: 2</li>
-<li><em>Planned allocation ratio</em>: 1</li>
-</ul>
-</section>
-<section id="sample-size-and-output-2" class="level3">
-<h3 class="anchored" data-anchor-id="sample-size-and-output-2">Sample size and output</h3>
-<ul>
-<li><em>Direction upper</em>: FALSE</li>
-<li><em>Reject per stage [1]</em>: 0.2958</li>
-<li><em>Reject per stage [2]</em>: 0.4040</li>
-<li><em>Reject per stage [3]</em>: 0.2002</li>
-<li><em>Overall futility stop</em>: 0.01556</li>
-<li><em>Futility stop per stage [1]</em>: 0.010003</li>
-<li><em>Futility stop per stage [2]</em>: 0.005556</li>
-<li><em>Early stop</em>: 0.7154</li>
-<li><em>Maximum number of subjects</em>: 266.3</li>
-<li><em>Maximum number of subjects (1)</em>: 133.1</li>
-<li><em>Maximum number of subjects (2)</em>: 133.1</li>
-<li><em>Number of subjects [1]</em>: 133.1</li>
-<li><em>Number of subjects [2]</em>: 199.7</li>
-<li><em>Number of subjects [3]</em>: 266.3</li>
-<li><em>Expected number of subjects under H0</em>: 184.3</li>
-<li><em>Expected number of subjects under H0/H1</em>: 228.8</li>
-<li><em>Expected number of subjects under H1</em>: 198.3</li>
-<li><em>Critical values (treatment effect scale) [1]</em>: -0.248</li>
-<li><em>Critical values (treatment effect scale) [2]</em>: -0.165</li>
-<li><em>Critical values (treatment effect scale) [3]</em>: -0.124</li>
-<li><em>Futility bounds (treatment effect scale) [1]</em>: 0.0000</li>
-<li><em>Futility bounds (treatment effect scale) [2]</em>: -0.0349</li>
-<li><em>Futility bounds (one-sided p-value scale) [1]</em>: 0.5000</li>
-<li><em>Futility bounds (one-sided p-value scale) [2]</em>: 0.3085</li>
-</ul>
-</section>
-<section id="legend-3" class="level3">
-<h3 class="anchored" data-anchor-id="legend-3">Legend</h3>
-<ul>
-<li><em>(i)</em>: values of treatment arm i</li>
-<li><em>[k]</em>: values at stage k</li>
-</ul>
-</section>
-</section>
-</div>
 </div>
 <p>The optimum allocation ratio is 1 in this case but calculated numerically, therefore slightly unequal 1:</p>
 <div class="cell">
@@ -1876,15 +1420,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(r, <span class="at">type =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="BBSadaptiveCourse03Sep2023_solutions_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="BBSadaptiveCourse03Sep2023_solutions_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(r, <span class="at">type =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="BBSadaptiveCourse03Sep2023_solutions_files/figure-html/unnamed-chunk-13-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="BBSadaptiveCourse03Sep2023_solutions_files/figure-html/unnamed-chunk-13-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(r, <span class="at">type =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="BBSadaptiveCourse03Sep2023_solutions_files/figure-html/unnamed-chunk-13-3.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="BBSadaptiveCourse03Sep2023_solutions_files/figure-html/unnamed-chunk-13-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -1914,7 +1470,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(power, <span class="at">type =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="BBSadaptiveCourse03Sep2023_solutions_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="BBSadaptiveCourse03Sep2023_solutions_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <hr>
@@ -1983,7 +1543,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="BBSadaptiveCourse03Sep2023_solutions_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="BBSadaptiveCourse03Sep2023_solutions_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: for saving the plot, you could e.g. use the commented code below</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ggplot2::ggsave(filename = "C:/yourdirectory/comparison.png",</span></span>
@@ -2028,7 +1592,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>overallSampleSizes <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span>maxiter, <span class="cf">function</span>(i) <span class="fu">sum</span>(simPart[simPart<span class="sc">$</span>iterationNumber<span class="sc">==</span>i,]<span class="sc">$</span>numberOfSubjects))</span>
 <span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">toc</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.31 sec elapsed</code></pre>
+<pre><code>0.092 sec elapsed</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tic()</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># overallSampleSizes &lt;- numeric(maxiter)</span></span>
@@ -2037,7 +1601,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(overallSampleSizes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="BBSadaptiveCourse03Sep2023_solutions_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="BBSadaptiveCourse03Sep2023_solutions_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>How often the maximum sample size is reached can be obtained as follows:</p>
@@ -2134,9 +1702,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb41-27"><a href="#cb41-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">nPlanned =</span> <span class="fu">c</span>(<span class="dv">40</span>, <span class="dv">40</span>))</span>
 <span id="cb41-28"><a href="#cb41-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-29"><a href="#cb41-29" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(stageResults)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<section id="multi-arm-analysis-results-for-a-continuous-endpoint-3-active-arms-vs.-control" class="level2" data-number="0.17">
-<h2 data-number="0.17" class="anchored" data-anchor-id="multi-arm-analysis-results-for-a-continuous-endpoint-3-active-arms-vs.-control"><span class="header-section-number">0.17</span> Multi-arm analysis results for a continuous endpoint (3 active arms vs.&nbsp;control)</h2>
+<section id="multi-arm-analysis-results-for-a-continuous-endpoint-3-active-arms-vs.-control" class="level2 cell-output-display" data-number="0.10">
+<h2 data-number="0.10" class="anchored" data-anchor-id="multi-arm-analysis-results-for-a-continuous-endpoint-3-active-arms-vs.-control"><span class="header-section-number">0.10</span> Multi-arm analysis results for a continuous endpoint (3 active arms vs.&nbsp;control)</h2>
 <p>Sequential analysis with 3 looks (inverse normal combination test design). The results were calculated using a multi-arm t-test (one-sided, alpha = 0.025), Dunnett intersection test, overall pooled variances option. H0: mu(i) - mu(control) = 0 against H1: mu(i) - mu(control) &gt; 0. The conditional power calculation with planned sample size is based on overall effect: thetaH1(1) = 0.09, thetaH1(2) = 0.85, thetaH1(3) = 1.1 and overall standard deviation: sd(1) = 1.74, sd(2) = 1.49, sd(3) = 1.68.</p>
 <table class="table table-sm table-striped small">
 <colgroup>
@@ -2384,19 +1951,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>95% repeated confidence interval (1)</td>
-<td>[-1.896; 2.076]</td>
+<td>[-1.897; ]</td>
 <td></td>
 <td></td>
 </tr>
 <tr class="even">
 <td>95% repeated confidence interval (2)</td>
-<td>[-1.064; 2.764]</td>
+<td>[-1.065; 2.765]</td>
 <td></td>
 <td></td>
 </tr>
 <tr class="odd">
 <td>95% repeated confidence interval (3)</td>
-<td>[-0.793; 2.993]</td>
+<td>[-0.794; ]</td>
 <td></td>
 <td></td>
 </tr>
@@ -2425,116 +1992,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><em>(i)</em>: results of treatment arm i vs.&nbsp;control arm</li>
 <li><em>(i, j, …)</em>: comparison of treatment arms ‘i, j, …’ vs.&nbsp;control arm</li>
 </ul>
-<hr>
 </section>
-<section id="multi-arm-analysis-results-means-of-4-groups-inverse-normal-combination-test-design" class="level2" data-number="0.18">
-<h2 data-number="0.18" class="anchored" data-anchor-id="multi-arm-analysis-results-means-of-4-groups-inverse-normal-combination-test-design"><span class="header-section-number">0.18</span> Multi-arm analysis results (means of 4 groups, inverse normal combination test design)</h2>
-<section id="design-parameters-7" class="level3">
-<h3 class="anchored" data-anchor-id="design-parameters-7">Design parameters</h3>
-<ul>
-<li><em>Fixed weights</em>: 0.577, 0.577, 0.577</li>
-<li><em>Critical values</em>: 3.471, 2.454, 2.004</li>
-<li><em>Futility bounds (non-binding)</em>: -Inf, -Inf</li>
-<li><em>Cumulative alpha spending</em>: 0.0002592, 0.0071601, 0.0250000</li>
-<li><em>Local one-sided significance levels</em>: 0.0002592, 0.0070554, 0.0225331</li>
-<li><em>Significance level</em>: 0.0250</li>
-<li><em>Test</em>: one-sided</li>
-</ul>
-</section>
-<section id="user-defined-parameters-9" class="level3">
-<h3 class="anchored" data-anchor-id="user-defined-parameters-9">User defined parameters</h3>
-<ul>
-<li><em>Planned sample size</em>: NA, 40, 40</li>
-</ul>
-</section>
-<section id="default-parameters-9" class="level3">
-<h3 class="anchored" data-anchor-id="default-parameters-9">Default parameters</h3>
-<ul>
-<li><em>Normal approximation</em>: FALSE</li>
-<li><em>Direction upper</em>: TRUE</li>
-<li><em>Theta H0</em>: 0</li>
-<li><em>Planned allocation ratio</em>: 1</li>
-<li><em>Intersection test</em>: Dunnett</li>
-<li><em>Variance option</em>: overallPooled</li>
-</ul>
-</section>
-<section id="stage-results-4" class="level3">
-<h3 class="anchored" data-anchor-id="stage-results-4">Stage results</h3>
-<ul>
-<li><em>Cumulative effect sizes (1)</em>: 0.09, NA, NA</li>
-<li><em>Cumulative effect sizes (2)</em>: 0.85, NA, NA</li>
-<li><em>Cumulative effect sizes (3)</em>: 1.10, NA, NA</li>
-<li><em>Cumulative (pooled) standard deviations (1)</em>: 1.744, NA, NA</li>
-<li><em>Cumulative (pooled) standard deviations (2)</em>: 1.489, NA, NA</li>
-<li><em>Cumulative (pooled) standard deviations (3)</em>: 1.679, NA, NA</li>
-<li><em>Stage-wise test statistics (1)</em>: 0.178, NA, NA</li>
-<li><em>Stage-wise test statistics (2)</em>: 1.745, NA, NA</li>
-<li><em>Stage-wise test statistics (3)</em>: 2.283, NA, NA</li>
-<li><em>Separate p-values (1)</em>: 0.42957, NA, NA</li>
-<li><em>Separate p-values (2)</em>: 0.04239, NA, NA</li>
-<li><em>Separate p-values (3)</em>: 0.01254, NA, NA</li>
-</ul>
-</section>
-<section id="adjusted-stage-wise-p-values" class="level3">
-<h3 class="anchored" data-anchor-id="adjusted-stage-wise-p-values">Adjusted stage-wise p-values</h3>
-<ul>
-<li><em>Treatments 1, 2, 3 vs.&nbsp;control</em>: 0.03254, NA, NA</li>
-<li><em>Treatments 1, 2 vs.&nbsp;control</em>: 0.07506, NA, NA</li>
-<li><em>Treatments 1, 3 vs.&nbsp;control</em>: 0.02322, NA, NA</li>
-<li><em>Treatments 2, 3 vs.&nbsp;control</em>: 0.02309, NA, NA</li>
-<li><em>Treatment 1 vs.&nbsp;control</em>: 0.42957, NA, NA</li>
-<li><em>Treatment 2 vs.&nbsp;control</em>: 0.04239, NA, NA</li>
-<li><em>Treatment 3 vs.&nbsp;control</em>: 0.01254, NA, NA</li>
-</ul>
-</section>
-<section id="overall-adjusted-test-statistics" class="level3">
-<h3 class="anchored" data-anchor-id="overall-adjusted-test-statistics">Overall adjusted test statistics</h3>
-<ul>
-<li><em>Treatments 1, 2, 3 vs.&nbsp;control</em>: 1.8447, NA, NA</li>
-<li><em>Treatments 1, 2 vs.&nbsp;control</em>: 1.4391, NA, NA</li>
-<li><em>Treatments 1, 3 vs.&nbsp;control</em>: 1.9914, NA, NA</li>
-<li><em>Treatments 2, 3 vs.&nbsp;control</em>: 1.9937, NA, NA</li>
-<li><em>Treatment 1 vs.&nbsp;control</em>: 0.1775, NA, NA</li>
-<li><em>Treatment 2 vs.&nbsp;control</em>: 1.7236, NA, NA</li>
-<li><em>Treatment 3 vs.&nbsp;control</em>: 2.2402, NA, NA</li>
-</ul>
-</section>
-<section id="test-actions" class="level3">
-<h3 class="anchored" data-anchor-id="test-actions">Test actions</h3>
-<ul>
-<li><em>Rejected (1)</em>: FALSE, NA, NA</li>
-<li><em>Rejected (2)</em>: FALSE, NA, NA</li>
-<li><em>Rejected (3)</em>: FALSE, NA, NA</li>
-</ul>
-</section>
-<section id="further-analysis-results" class="level3">
-<h3 class="anchored" data-anchor-id="further-analysis-results">Further analysis results</h3>
-<ul>
-<li><em>Conditional rejection probability (1)</em>: 0.01013, NA, NA</li>
-<li><em>Conditional rejection probability (2)</em>: 0.08308, NA, NA</li>
-<li><em>Conditional rejection probability (3)</em>: 0.14322, NA, NA</li>
-<li><em>Conditional power (1)</em>: NA, 0.0009, 0.0182</li>
-<li><em>Conditional power (2)</em>: NA, 0.4102, 0.8723</li>
-<li><em>Conditional power (3)</em>: NA, 0.6722, 0.9652</li>
-<li><em>Repeated confidence intervals (lower) (1)</em>: -1.8963, NA, NA</li>
-<li><em>Repeated confidence intervals (lower) (2)</em>: -1.0639, NA, NA</li>
-<li><em>Repeated confidence intervals (lower) (3)</em>: -0.7935, NA, NA</li>
-<li><em>Repeated confidence intervals (upper) (1)</em>: 2.076, NA, NA</li>
-<li><em>Repeated confidence intervals (upper) (2)</em>: 2.764, NA, NA</li>
-<li><em>Repeated confidence intervals (upper) (3)</em>: 2.993, NA, NA</li>
-<li><em>Repeated p-values (1)</em>: &gt;0.5, NA, NA</li>
-<li><em>Repeated p-values (2)</em>: 0.2633, NA, NA</li>
-<li><em>Repeated p-values (3)</em>: 0.1794, NA, NA</li>
-</ul>
-</section>
-<section id="legend-4" class="level3">
-<h3 class="anchored" data-anchor-id="legend-4">Legend</h3>
-<ul>
-<li><em>(i)</em>: results of treatment arm i vs.&nbsp;control group 4</li>
-</ul>
-</section>
-</section>
-</div>
 </div>
 </section>
 <section id="exercise-5b-second-stage" class="level2 unnumbered">
@@ -2594,9 +2052,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">intersectionTest =</span> intersectionTest, <span class="at">varianceOption =</span> varianceOption)</span>
 <span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(stageResults)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<section id="multi-arm-analysis-results-for-a-continuous-endpoint-3-active-arms-vs.-control-1" class="level2" data-number="0.19">
-<h2 data-number="0.19" class="anchored" data-anchor-id="multi-arm-analysis-results-for-a-continuous-endpoint-3-active-arms-vs.-control-1"><span class="header-section-number">0.19</span> Multi-arm analysis results for a continuous endpoint (3 active arms vs.&nbsp;control)</h2>
+<section id="multi-arm-analysis-results-for-a-continuous-endpoint-3-active-arms-vs.-control-1" class="level2 cell-output-display" data-number="0.11">
+<h2 data-number="0.11" class="anchored" data-anchor-id="multi-arm-analysis-results-for-a-continuous-endpoint-3-active-arms-vs.-control-1"><span class="header-section-number">0.11</span> Multi-arm analysis results for a continuous endpoint (3 active arms vs.&nbsp;control)</h2>
 <p>Sequential analysis with 3 looks (inverse normal combination test design). The results were calculated using a multi-arm t-test (one-sided, alpha = 0.025), Dunnett intersection test, overall pooled variances option. H0: mu(i) - mu(control) = 0 against H1: mu(i) - mu(control) &gt; 0.</p>
 <table class="table table-sm table-striped small">
 <colgroup>
@@ -2820,19 +2277,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>95% repeated confidence interval (1)</td>
-<td>[-1.896; 2.076]</td>
+<td>[-1.897; ]</td>
 <td></td>
 <td></td>
 </tr>
 <tr class="even">
 <td>95% repeated confidence interval (2)</td>
-<td>[-1.064; 2.764]</td>
+<td>[-1.065; 2.765]</td>
 <td>[-0.203; 1.716]</td>
 <td></td>
 </tr>
 <tr class="odd">
 <td>95% repeated confidence interval (3)</td>
-<td>[-0.793; 2.993]</td>
+<td>[-0.794; ]</td>
 <td>[0.066 ; 2.022]</td>
 <td></td>
 </tr>
@@ -2861,109 +2318,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><em>(i)</em>: results of treatment arm i vs.&nbsp;control arm</li>
 <li><em>(i, j, …)</em>: comparison of treatment arms ‘i, j, …’ vs.&nbsp;control arm</li>
 </ul>
-<hr>
 </section>
-<section id="multi-arm-analysis-results-means-of-4-groups-inverse-normal-combination-test-design-1" class="level2" data-number="0.20">
-<h2 data-number="0.20" class="anchored" data-anchor-id="multi-arm-analysis-results-means-of-4-groups-inverse-normal-combination-test-design-1"><span class="header-section-number">0.20</span> Multi-arm analysis results (means of 4 groups, inverse normal combination test design)</h2>
-<section id="design-parameters-8" class="level3">
-<h3 class="anchored" data-anchor-id="design-parameters-8">Design parameters</h3>
-<ul>
-<li><em>Fixed weights</em>: 0.577, 0.577, 0.577</li>
-<li><em>Critical values</em>: 3.471, 2.454, 2.004</li>
-<li><em>Futility bounds (non-binding)</em>: -Inf, -Inf</li>
-<li><em>Cumulative alpha spending</em>: 0.0002592, 0.0071601, 0.0250000</li>
-<li><em>Local one-sided significance levels</em>: 0.0002592, 0.0070554, 0.0225331</li>
-<li><em>Significance level</em>: 0.0250</li>
-<li><em>Test</em>: one-sided</li>
-</ul>
-</section>
-<section id="default-parameters-10" class="level3">
-<h3 class="anchored" data-anchor-id="default-parameters-10">Default parameters</h3>
-<ul>
-<li><em>Normal approximation</em>: FALSE</li>
-<li><em>Direction upper</em>: TRUE</li>
-<li><em>Theta H0</em>: 0</li>
-<li><em>Intersection test</em>: Dunnett</li>
-<li><em>Variance option</em>: overallPooled</li>
-</ul>
-</section>
-<section id="stage-results-5" class="level3">
-<h3 class="anchored" data-anchor-id="stage-results-5">Stage results</h3>
-<ul>
-<li><em>Cumulative effect sizes (1)</em>: 0.090, NA, NA</li>
-<li><em>Cumulative effect sizes (2)</em>: 0.850, 0.758, NA</li>
-<li><em>Cumulative effect sizes (3)</em>: 1.100, 1.052, NA</li>
-<li><em>Cumulative (pooled) standard deviations (1)</em>: 1.744, NA, NA</li>
-<li><em>Cumulative (pooled) standard deviations (2)</em>: 1.489, 1.479, NA</li>
-<li><em>Cumulative (pooled) standard deviations (3)</em>: 1.679, 1.607, NA</li>
-<li><em>Stage-wise test statistics (1)</em>: 0.178, NA, NA</li>
-<li><em>Stage-wise test statistics (2)</em>: 1.745, 1.582, NA</li>
-<li><em>Stage-wise test statistics (3)</em>: 2.283, 2.226, NA</li>
-<li><em>Separate p-values (1)</em>: 0.42957, NA, NA</li>
-<li><em>Separate p-values (2)</em>: 0.04239, 0.05940, NA</li>
-<li><em>Separate p-values (3)</em>: 0.01254, 0.01486, NA</li>
-</ul>
-</section>
-<section id="adjusted-stage-wise-p-values-1" class="level3">
-<h3 class="anchored" data-anchor-id="adjusted-stage-wise-p-values-1">Adjusted stage-wise p-values</h3>
-<ul>
-<li><em>Treatments 1, 2, 3 vs.&nbsp;control</em>: 0.03254, 0.02744, NA</li>
-<li><em>Treatments 1, 2 vs.&nbsp;control</em>: 0.07506, 0.05940, NA</li>
-<li><em>Treatments 1, 3 vs.&nbsp;control</em>: 0.02322, 0.01486, NA</li>
-<li><em>Treatments 2, 3 vs.&nbsp;control</em>: 0.02309, 0.02744, NA</li>
-<li><em>Treatment 1 vs.&nbsp;control</em>: 0.42957, NA, NA</li>
-<li><em>Treatment 2 vs.&nbsp;control</em>: 0.04239, 0.05940, NA</li>
-<li><em>Treatment 3 vs.&nbsp;control</em>: 0.01254, 0.01486, NA</li>
-</ul>
-</section>
-<section id="overall-adjusted-test-statistics-1" class="level3">
-<h3 class="anchored" data-anchor-id="overall-adjusted-test-statistics-1">Overall adjusted test statistics</h3>
-<ul>
-<li><em>Treatments 1, 2, 3 vs.&nbsp;control</em>: 1.8447, 2.6620, NA</li>
-<li><em>Treatments 1, 2 vs.&nbsp;control</em>: 1.4391, 2.1205, NA</li>
-<li><em>Treatments 1, 3 vs.&nbsp;control</em>: 1.9914, 2.9452, NA</li>
-<li><em>Treatments 2, 3 vs.&nbsp;control</em>: 1.9937, 2.7673, NA</li>
-<li><em>Treatment 1 vs.&nbsp;control</em>: 0.1775, NA, NA</li>
-<li><em>Treatment 2 vs.&nbsp;control</em>: 1.7236, 2.3217, NA</li>
-<li><em>Treatment 3 vs.&nbsp;control</em>: 2.2402, 3.1211, NA</li>
-</ul>
-</section>
-<section id="test-actions-1" class="level3">
-<h3 class="anchored" data-anchor-id="test-actions-1">Test actions</h3>
-<ul>
-<li><em>Rejected (1)</em>: FALSE, FALSE, NA</li>
-<li><em>Rejected (2)</em>: FALSE, FALSE, NA</li>
-<li><em>Rejected (3)</em>: FALSE, TRUE, NA</li>
-</ul>
-</section>
-<section id="further-analysis-results-1" class="level3">
-<h3 class="anchored" data-anchor-id="further-analysis-results-1">Further analysis results</h3>
-<ul>
-<li><em>Conditional rejection probability (1)</em>: 0.01013, NA, NA</li>
-<li><em>Conditional rejection probability (2)</em>: 0.08308, 0.31840, NA</li>
-<li><em>Conditional rejection probability (3)</em>: 0.14322, 0.61544, NA</li>
-<li><em>Conditional power (1)</em>: NA, NA, NA</li>
-<li><em>Conditional power (2)</em>: NA, NA, NA</li>
-<li><em>Conditional power (3)</em>: NA, NA, NA</li>
-<li><em>Repeated confidence intervals (lower) (1)</em>: -1.89632, NA, NA</li>
-<li><em>Repeated confidence intervals (lower) (2)</em>: -1.06390, -0.20269, NA</li>
-<li><em>Repeated confidence intervals (lower) (3)</em>: -0.79347, 0.06617, NA</li>
-<li><em>Repeated confidence intervals (upper) (1)</em>: 2.076, NA, NA</li>
-<li><em>Repeated confidence intervals (upper) (2)</em>: 2.764, 1.716, NA</li>
-<li><em>Repeated confidence intervals (upper) (3)</em>: 2.993, 2.022, NA</li>
-<li><em>Repeated p-values (1)</em>: &gt;0.5, NA, NA</li>
-<li><em>Repeated p-values (2)</em>: 0.26330, 0.04761, NA</li>
-<li><em>Repeated p-values (3)</em>: 0.17945, 0.01624, NA</li>
-</ul>
-</section>
-<section id="legend-5" class="level3">
-<h3 class="anchored" data-anchor-id="legend-5">Legend</h3>
-<ul>
-<li><em>(i)</em>: results of treatment arm i vs.&nbsp;control group 4</li>
-</ul>
-</section>
-</section>
-</div>
 </div>
 </section>
 <section id="exercise-5c-intersection-tests" class="level2 unnumbered">
@@ -2976,9 +2331,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">directionUpper =</span> <span class="cn">TRUE</span>, <span class="at">normalApproximation =</span> normalApproximation,</span>
 <span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">intersectionTest =</span> <span class="st">"Bonferroni"</span>, <span class="at">varianceOption =</span> varianceOption)</span>
 <span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(stageResults)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<section id="multi-arm-analysis-results-for-a-continuous-endpoint-3-active-arms-vs.-control-2" class="level2" data-number="0.21">
-<h2 data-number="0.21" class="anchored" data-anchor-id="multi-arm-analysis-results-for-a-continuous-endpoint-3-active-arms-vs.-control-2"><span class="header-section-number">0.21</span> Multi-arm analysis results for a continuous endpoint (3 active arms vs.&nbsp;control)</h2>
+<section id="multi-arm-analysis-results-for-a-continuous-endpoint-3-active-arms-vs.-control-2" class="level2 cell-output-display" data-number="0.12">
+<h2 data-number="0.12" class="anchored" data-anchor-id="multi-arm-analysis-results-for-a-continuous-endpoint-3-active-arms-vs.-control-2"><span class="header-section-number">0.12</span> Multi-arm analysis results for a continuous endpoint (3 active arms vs.&nbsp;control)</h2>
 <p>Sequential analysis with 3 looks (inverse normal combination test design). The results were calculated using a multi-arm t-test (one-sided, alpha = 0.025), Bonferroni intersection test, overall pooled variances option. H0: mu(i) - mu(control) = 0 against H1: mu(i) - mu(control) &gt; 0.</p>
 <table class="table table-sm table-striped small">
 <colgroup>
@@ -3243,122 +2597,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><em>(i)</em>: results of treatment arm i vs.&nbsp;control arm</li>
 <li><em>(i, j, …)</em>: comparison of treatment arms ‘i, j, …’ vs.&nbsp;control arm</li>
 </ul>
-<hr>
 </section>
-<section id="multi-arm-analysis-results-means-of-4-groups-inverse-normal-combination-test-design-2" class="level2" data-number="0.22">
-<h2 data-number="0.22" class="anchored" data-anchor-id="multi-arm-analysis-results-means-of-4-groups-inverse-normal-combination-test-design-2"><span class="header-section-number">0.22</span> Multi-arm analysis results (means of 4 groups, inverse normal combination test design)</h2>
-<section id="design-parameters-9" class="level3">
-<h3 class="anchored" data-anchor-id="design-parameters-9">Design parameters</h3>
-<ul>
-<li><em>Fixed weights</em>: 0.577, 0.577, 0.577</li>
-<li><em>Critical values</em>: 3.471, 2.454, 2.004</li>
-<li><em>Futility bounds (non-binding)</em>: -Inf, -Inf</li>
-<li><em>Cumulative alpha spending</em>: 0.0002592, 0.0071601, 0.0250000</li>
-<li><em>Local one-sided significance levels</em>: 0.0002592, 0.0070554, 0.0225331</li>
-<li><em>Significance level</em>: 0.0250</li>
-<li><em>Test</em>: one-sided</li>
-</ul>
-</section>
-<section id="user-defined-parameters-10" class="level3">
-<h3 class="anchored" data-anchor-id="user-defined-parameters-10">User defined parameters</h3>
-<ul>
-<li><em>Intersection test</em>: Bonferroni</li>
-</ul>
-</section>
-<section id="default-parameters-11" class="level3">
-<h3 class="anchored" data-anchor-id="default-parameters-11">Default parameters</h3>
-<ul>
-<li><em>Normal approximation</em>: FALSE</li>
-<li><em>Direction upper</em>: TRUE</li>
-<li><em>Theta H0</em>: 0</li>
-<li><em>Variance option</em>: overallPooled</li>
-</ul>
-</section>
-<section id="stage-results-6" class="level3">
-<h3 class="anchored" data-anchor-id="stage-results-6">Stage results</h3>
-<ul>
-<li><em>Cumulative effect sizes (1)</em>: 0.090, NA, NA</li>
-<li><em>Cumulative effect sizes (2)</em>: 0.850, 0.758, NA</li>
-<li><em>Cumulative effect sizes (3)</em>: 1.100, 1.052, NA</li>
-<li><em>Cumulative (pooled) standard deviations (1)</em>: 1.744, NA, NA</li>
-<li><em>Cumulative (pooled) standard deviations (2)</em>: 1.489, 1.479, NA</li>
-<li><em>Cumulative (pooled) standard deviations (3)</em>: 1.679, 1.607, NA</li>
-<li><em>Stage-wise test statistics (1)</em>: 0.178, NA, NA</li>
-<li><em>Stage-wise test statistics (2)</em>: 1.745, 1.582, NA</li>
-<li><em>Stage-wise test statistics (3)</em>: 2.283, 2.226, NA</li>
-<li><em>Separate p-values (1)</em>: 0.42957, NA, NA</li>
-<li><em>Separate p-values (2)</em>: 0.04239, 0.05940, NA</li>
-<li><em>Separate p-values (3)</em>: 0.01254, 0.01486, NA</li>
-</ul>
-</section>
-<section id="adjusted-stage-wise-p-values-2" class="level3">
-<h3 class="anchored" data-anchor-id="adjusted-stage-wise-p-values-2">Adjusted stage-wise p-values</h3>
-<ul>
-<li><em>Treatments 1, 2, 3 vs.&nbsp;control</em>: 0.03762, 0.02973, NA</li>
-<li><em>Treatments 1, 2 vs.&nbsp;control</em>: 0.08478, 0.05940, NA</li>
-<li><em>Treatments 1, 3 vs.&nbsp;control</em>: 0.02508, 0.01486, NA</li>
-<li><em>Treatments 2, 3 vs.&nbsp;control</em>: 0.02508, 0.02973, NA</li>
-<li><em>Treatment 1 vs.&nbsp;control</em>: 0.42957, NA, NA</li>
-<li><em>Treatment 2 vs.&nbsp;control</em>: 0.04239, 0.05940, NA</li>
-<li><em>Treatment 3 vs.&nbsp;control</em>: 0.01254, 0.01486, NA</li>
-</ul>
-</section>
-<section id="overall-adjusted-test-statistics-2" class="level3">
-<h3 class="anchored" data-anchor-id="overall-adjusted-test-statistics-2">Overall adjusted test statistics</h3>
-<ul>
-<li><em>Treatments 1, 2, 3 vs.&nbsp;control</em>: 1.7790, 2.5907, NA</li>
-<li><em>Treatments 1, 2 vs.&nbsp;control</em>: 1.3736, 2.0742, NA</li>
-<li><em>Treatments 1, 3 vs.&nbsp;control</em>: 1.9586, 2.9220, NA</li>
-<li><em>Treatments 2, 3 vs.&nbsp;control</em>: 1.9586, 2.7177, NA</li>
-<li><em>Treatment 1 vs.&nbsp;control</em>: 0.1775, NA, NA</li>
-<li><em>Treatment 2 vs.&nbsp;control</em>: 1.7236, 2.3217, NA</li>
-<li><em>Treatment 3 vs.&nbsp;control</em>: 2.2402, 3.1211, NA</li>
-</ul>
-</section>
-<section id="test-actions-2" class="level3">
-<h3 class="anchored" data-anchor-id="test-actions-2">Test actions</h3>
-<ul>
-<li><em>Rejected (1)</em>: FALSE, FALSE, NA</li>
-<li><em>Rejected (2)</em>: FALSE, FALSE, NA</li>
-<li><em>Rejected (3)</em>: FALSE, TRUE, NA</li>
-</ul>
-</section>
-<section id="further-analysis-results-2" class="level3">
-<h3 class="anchored" data-anchor-id="further-analysis-results-2">Further analysis results</h3>
-<ul>
-<li><em>Conditional rejection probability (1)</em>: 0.01013, NA, NA</li>
-<li><em>Conditional rejection probability (2)</em>: 0.07562, 0.29539, NA</li>
-<li><em>Conditional rejection probability (3)</em>: 0.13171, 0.57643, NA</li>
-<li><em>Conditional power (1)</em>: NA, NA, NA</li>
-<li><em>Conditional power (2)</em>: NA, NA, NA</li>
-<li><em>Conditional power (3)</em>: NA, NA, NA</li>
-<li><em>Repeated confidence intervals (lower) (1)</em>: -1.9011, NA, NA</li>
-<li><em>Repeated confidence intervals (lower) (2)</em>: -1.0685, -0.2274, NA</li>
-<li><em>Repeated confidence intervals (lower) (3)</em>: -0.7980, 0.0408, NA</li>
-<li><em>Repeated confidence intervals (upper) (1)</em>: 2.081, NA, NA</li>
-<li><em>Repeated confidence intervals (upper) (2)</em>: 2.768, 1.747, NA</li>
-<li><em>Repeated confidence intervals (upper) (3)</em>: 2.998, 2.051, NA</li>
-<li><em>Repeated p-values (1)</em>: &gt;0.5, NA, NA</li>
-<li><em>Repeated p-values (2)</em>: 0.27893, 0.05182, NA</li>
-<li><em>Repeated p-values (3)</em>: 0.19153, 0.01888, NA</li>
-</ul>
-</section>
-<section id="legend-6" class="level3">
-<h3 class="anchored" data-anchor-id="legend-6">Legend</h3>
-<ul>
-<li><em>(i)</em>: results of treatment arm i vs.&nbsp;control group 4</li>
-</ul>
-</section>
-</section>
-</div>
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>stageResults <span class="ot">&lt;-</span> <span class="fu">getAnalysisResults</span>(<span class="at">design =</span> design,</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">dataInput =</span> dataExample, <span class="at">thetaH0 =</span> <span class="dv">0</span>, <span class="at">stage =</span> <span class="dv">2</span>,</span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">directionUpper =</span> <span class="cn">TRUE</span>, <span class="at">normalApproximation =</span> normalApproximation,</span>
 <span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">intersectionTest =</span> <span class="st">"Simes"</span>, <span class="at">varianceOption =</span> varianceOption)</span>
 <span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(stageResults)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<section id="multi-arm-analysis-results-for-a-continuous-endpoint-3-active-arms-vs.-control-3" class="level2" data-number="0.23">
-<h2 data-number="0.23" class="anchored" data-anchor-id="multi-arm-analysis-results-for-a-continuous-endpoint-3-active-arms-vs.-control-3"><span class="header-section-number">0.23</span> Multi-arm analysis results for a continuous endpoint (3 active arms vs.&nbsp;control)</h2>
+<section id="multi-arm-analysis-results-for-a-continuous-endpoint-3-active-arms-vs.-control-3" class="level2 cell-output-display" data-number="0.13">
+<h2 data-number="0.13" class="anchored" data-anchor-id="multi-arm-analysis-results-for-a-continuous-endpoint-3-active-arms-vs.-control-3"><span class="header-section-number">0.13</span> Multi-arm analysis results for a continuous endpoint (3 active arms vs.&nbsp;control)</h2>
 <p>Sequential analysis with 3 looks (inverse normal combination test design). The results were calculated using a multi-arm t-test (one-sided, alpha = 0.025), Simes intersection test, overall pooled variances option. H0: mu(i) - mu(control) = 0 against H1: mu(i) - mu(control) &gt; 0.</p>
 <table class="table table-sm table-striped small">
 <colgroup>
@@ -3623,114 +2869,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><em>(i)</em>: results of treatment arm i vs.&nbsp;control arm</li>
 <li><em>(i, j, …)</em>: comparison of treatment arms ‘i, j, …’ vs.&nbsp;control arm</li>
 </ul>
-<hr>
 </section>
-<section id="multi-arm-analysis-results-means-of-4-groups-inverse-normal-combination-test-design-3" class="level2" data-number="0.24">
-<h2 data-number="0.24" class="anchored" data-anchor-id="multi-arm-analysis-results-means-of-4-groups-inverse-normal-combination-test-design-3"><span class="header-section-number">0.24</span> Multi-arm analysis results (means of 4 groups, inverse normal combination test design)</h2>
-<section id="design-parameters-10" class="level3">
-<h3 class="anchored" data-anchor-id="design-parameters-10">Design parameters</h3>
-<ul>
-<li><em>Fixed weights</em>: 0.577, 0.577, 0.577</li>
-<li><em>Critical values</em>: 3.471, 2.454, 2.004</li>
-<li><em>Futility bounds (non-binding)</em>: -Inf, -Inf</li>
-<li><em>Cumulative alpha spending</em>: 0.0002592, 0.0071601, 0.0250000</li>
-<li><em>Local one-sided significance levels</em>: 0.0002592, 0.0070554, 0.0225331</li>
-<li><em>Significance level</em>: 0.0250</li>
-<li><em>Test</em>: one-sided</li>
-</ul>
-</section>
-<section id="user-defined-parameters-11" class="level3">
-<h3 class="anchored" data-anchor-id="user-defined-parameters-11">User defined parameters</h3>
-<ul>
-<li><em>Intersection test</em>: Simes</li>
-</ul>
-</section>
-<section id="default-parameters-12" class="level3">
-<h3 class="anchored" data-anchor-id="default-parameters-12">Default parameters</h3>
-<ul>
-<li><em>Normal approximation</em>: FALSE</li>
-<li><em>Direction upper</em>: TRUE</li>
-<li><em>Theta H0</em>: 0</li>
-<li><em>Variance option</em>: overallPooled</li>
-</ul>
-</section>
-<section id="stage-results-7" class="level3">
-<h3 class="anchored" data-anchor-id="stage-results-7">Stage results</h3>
-<ul>
-<li><em>Cumulative effect sizes (1)</em>: 0.090, NA, NA</li>
-<li><em>Cumulative effect sizes (2)</em>: 0.850, 0.758, NA</li>
-<li><em>Cumulative effect sizes (3)</em>: 1.100, 1.052, NA</li>
-<li><em>Cumulative (pooled) standard deviations (1)</em>: 1.744, NA, NA</li>
-<li><em>Cumulative (pooled) standard deviations (2)</em>: 1.489, 1.479, NA</li>
-<li><em>Cumulative (pooled) standard deviations (3)</em>: 1.679, 1.607, NA</li>
-<li><em>Stage-wise test statistics (1)</em>: 0.178, NA, NA</li>
-<li><em>Stage-wise test statistics (2)</em>: 1.745, 1.582, NA</li>
-<li><em>Stage-wise test statistics (3)</em>: 2.283, 2.226, NA</li>
-<li><em>Separate p-values (1)</em>: 0.42957, NA, NA</li>
-<li><em>Separate p-values (2)</em>: 0.04239, 0.05940, NA</li>
-<li><em>Separate p-values (3)</em>: 0.01254, 0.01486, NA</li>
-</ul>
-</section>
-<section id="adjusted-stage-wise-p-values-3" class="level3">
-<h3 class="anchored" data-anchor-id="adjusted-stage-wise-p-values-3">Adjusted stage-wise p-values</h3>
-<ul>
-<li><em>Treatments 1, 2, 3 vs.&nbsp;control</em>: 0.03762, 0.02973, NA</li>
-<li><em>Treatments 1, 2 vs.&nbsp;control</em>: 0.08478, 0.05940, NA</li>
-<li><em>Treatments 1, 3 vs.&nbsp;control</em>: 0.02508, 0.01486, NA</li>
-<li><em>Treatments 2, 3 vs.&nbsp;control</em>: 0.02508, 0.02973, NA</li>
-<li><em>Treatment 1 vs.&nbsp;control</em>: 0.42957, NA, NA</li>
-<li><em>Treatment 2 vs.&nbsp;control</em>: 0.04239, 0.05940, NA</li>
-<li><em>Treatment 3 vs.&nbsp;control</em>: 0.01254, 0.01486, NA</li>
-</ul>
-</section>
-<section id="overall-adjusted-test-statistics-3" class="level3">
-<h3 class="anchored" data-anchor-id="overall-adjusted-test-statistics-3">Overall adjusted test statistics</h3>
-<ul>
-<li><em>Treatments 1, 2, 3 vs.&nbsp;control</em>: 1.7790, 2.5907, NA</li>
-<li><em>Treatments 1, 2 vs.&nbsp;control</em>: 1.3736, 2.0742, NA</li>
-<li><em>Treatments 1, 3 vs.&nbsp;control</em>: 1.9586, 2.9220, NA</li>
-<li><em>Treatments 2, 3 vs.&nbsp;control</em>: 1.9586, 2.7177, NA</li>
-<li><em>Treatment 1 vs.&nbsp;control</em>: 0.1775, NA, NA</li>
-<li><em>Treatment 2 vs.&nbsp;control</em>: 1.7236, 2.3217, NA</li>
-<li><em>Treatment 3 vs.&nbsp;control</em>: 2.2402, 3.1211, NA</li>
-</ul>
-</section>
-<section id="test-actions-3" class="level3">
-<h3 class="anchored" data-anchor-id="test-actions-3">Test actions</h3>
-<ul>
-<li><em>Rejected (1)</em>: FALSE, FALSE, NA</li>
-<li><em>Rejected (2)</em>: FALSE, FALSE, NA</li>
-<li><em>Rejected (3)</em>: FALSE, TRUE, NA</li>
-</ul>
-</section>
-<section id="further-analysis-results-3" class="level3">
-<h3 class="anchored" data-anchor-id="further-analysis-results-3">Further analysis results</h3>
-<ul>
-<li><em>Conditional rejection probability (1)</em>: 0.01013, NA, NA</li>
-<li><em>Conditional rejection probability (2)</em>: 0.07562, 0.29539, NA</li>
-<li><em>Conditional rejection probability (3)</em>: 0.13171, 0.57643, NA</li>
-<li><em>Conditional power (1)</em>: NA, NA, NA</li>
-<li><em>Conditional power (2)</em>: NA, NA, NA</li>
-<li><em>Conditional power (3)</em>: NA, NA, NA</li>
-<li><em>Repeated confidence intervals (lower) (1)</em>: -1.9011, NA, NA</li>
-<li><em>Repeated confidence intervals (lower) (2)</em>: -1.0685, -0.2274, NA</li>
-<li><em>Repeated confidence intervals (lower) (3)</em>: -0.7980, 0.0408, NA</li>
-<li><em>Repeated confidence intervals (upper) (1)</em>: 2.081, NA, NA</li>
-<li><em>Repeated confidence intervals (upper) (2)</em>: 2.768, 1.747, NA</li>
-<li><em>Repeated confidence intervals (upper) (3)</em>: 2.998, 2.051, NA</li>
-<li><em>Repeated p-values (1)</em>: &gt;0.5, NA, NA</li>
-<li><em>Repeated p-values (2)</em>: 0.27893, 0.05182, NA</li>
-<li><em>Repeated p-values (3)</em>: 0.19153, 0.01888, NA</li>
-</ul>
-</section>
-<section id="legend-7" class="level3">
-<h3 class="anchored" data-anchor-id="legend-7">Legend</h3>
-<ul>
-<li><em>(i)</em>: results of treatment arm i vs.&nbsp;control group 4</li>
-</ul>
-</section>
-</section>
-</div>
 </div>
 <hr>
 </section>
@@ -3751,10 +2890,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">accrualTime =</span> <span class="dv">12</span>, <span class="at">followUpTime =</span> <span class="dv">12</span>)</span>
 <span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(x1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<section id="sample-size-calculation-for-a-survival-endpoint-2" class="level2" data-number="0.25">
-<h2 data-number="0.25" class="anchored" data-anchor-id="sample-size-calculation-for-a-survival-endpoint-2"><span class="header-section-number">0.25</span> Sample size calculation for a survival endpoint</h2>
-<p>Sequential analysis with a maximum of 2 looks (group sequential design), overall significance level 2.5% (one-sided). The sample size was calculated for a two-sample logrank test, H0: hazard ratio = 1, H1: treatment lambda(1) = 0.039, control lambda(2) = 0.058, accrual time = 12, accrual intensity = 38.9, dropout rate(1) = 0.05, dropout rate(2) = 0.05, dropout time = 12, power 90%.</p>
+<section id="sample-size-calculation-for-a-survival-endpoint-2" class="level2 cell-output-display" data-number="0.14">
+<h2 data-number="0.14" class="anchored" data-anchor-id="sample-size-calculation-for-a-survival-endpoint-2"><span class="header-section-number">0.14</span> Sample size calculation for a survival endpoint</h2>
+<p>Sequential analysis with a maximum of 2 looks (group sequential design), overall significance level 2.5% (one-sided). The results were calculated for a two-sample logrank test, H0: hazard ratio = 1, H1: treatment lambda(1) = 0.039, control lambda(2) = 0.058, accrual time = 12, accrual intensity = 38.9, follow-up time = 12, dropout rate(1) = 0.05, dropout rate(2) = 0.05, dropout time = 12, power 90%.</p>
 <table class="table table-sm table-striped small">
 <thead>
 <tr class="header">
@@ -3780,14 +2918,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>0.9000</td>
 </tr>
 <tr class="even">
-<td>Expected number of subjects</td>
-<td>467.3</td>
-<td></td>
-</tr>
-<tr class="odd">
 <td>Number of subjects</td>
 <td>467.3</td>
 <td>467.3</td>
+</tr>
+<tr class="odd">
+<td>Expected number of subjects under H1</td>
+<td>467.3</td>
+<td></td>
 </tr>
 <tr class="even">
 <td>Cumulative number of events</td>
@@ -3796,8 +2934,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>Analysis time</td>
-<td>13.1</td>
-<td>24.0</td>
+<td>13.141</td>
+<td>24.000</td>
 </tr>
 <tr class="even">
 <td>Expected study duration</td>
@@ -3835,85 +2973,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><em>(t)</em>: treatment effect scale</li>
 </ul>
-<hr>
 </section>
-<section id="design-plan-parameters-and-output-for-survival-data-2" class="level2" data-number="0.26">
-<h2 data-number="0.26" class="anchored" data-anchor-id="design-plan-parameters-and-output-for-survival-data-2"><span class="header-section-number">0.26</span> Design plan parameters and output for survival data</h2>
-<section id="design-parameters-11" class="level3">
-<h3 class="anchored" data-anchor-id="design-parameters-11">Design parameters</h3>
-<ul>
-<li><em>Information rates</em>: 0.500, 1.000</li>
-<li><em>Critical values</em>: 2.963, 1.969</li>
-<li><em>Futility bounds (non-binding)</em>: -Inf</li>
-<li><em>Cumulative alpha spending</em>: 0.001525, 0.025000</li>
-<li><em>Local one-sided significance levels</em>: 0.001525, 0.024500</li>
-<li><em>Significance level</em>: 0.0250</li>
-<li><em>Type II error rate</em>: 0.1000</li>
-<li><em>Test</em>: one-sided</li>
-</ul>
-</section>
-<section id="user-defined-parameters-12" class="level3">
-<h3 class="anchored" data-anchor-id="user-defined-parameters-12">User defined parameters</h3>
-<ul>
-<li><em>lambda(1)</em>: 0.0385</li>
-<li><em>lambda(2)</em>: 0.0578</li>
-<li><em>Accrual time</em>: 12.00</li>
-<li><em>Follow up time</em>: 12.00</li>
-<li><em>Drop-out rate (1)</em>: 0.050</li>
-<li><em>Drop-out rate (2)</em>: 0.050</li>
-</ul>
-</section>
-<section id="default-parameters-13" class="level3">
-<h3 class="anchored" data-anchor-id="default-parameters-13">Default parameters</h3>
-<ul>
-<li><em>Theta H0</em>: 1</li>
-<li><em>Type of computation</em>: Schoenfeld</li>
-<li><em>Planned allocation ratio</em>: 1</li>
-<li><em>kappa</em>: 1</li>
-<li><em>Piecewise survival times</em>: 0.00</li>
-<li><em>Drop-out time</em>: 12.00</li>
-</ul>
-</section>
-<section id="sample-size-and-output-3" class="level3">
-<h3 class="anchored" data-anchor-id="sample-size-and-output-3">Sample size and output</h3>
-<ul>
-<li><em>Direction upper</em>: FALSE</li>
-<li><em>median(1)</em>: 18.0</li>
-<li><em>median(2)</em>: 12.0</li>
-<li><em>Hazard ratio</em>: 0.667</li>
-<li><em>Maximum number of subjects</em>: 467.3</li>
-<li><em>Maximum number of subjects (1)</em>: 233.6</li>
-<li><em>Maximum number of subjects (2)</em>: 233.6</li>
-<li><em>Maximum number of events</em>: 256.5</li>
-<li><em>Accrual intensity</em>: 38.9</li>
-<li><em>Reject per stage [1]</em>: 0.2525</li>
-<li><em>Reject per stage [2]</em>: 0.6475</li>
-<li><em>Early stop</em>: 0.2525</li>
-<li><em>Analysis times [1]</em>: 13.14</li>
-<li><em>Analysis times [2]</em>: 24.00</li>
-<li><em>Expected study duration</em>: 21.26</li>
-<li><em>Maximal study duration</em>: 24.00</li>
-<li><em>Number of events per stage [1]</em>: 128.3</li>
-<li><em>Number of events per stage [2]</em>: 256.5</li>
-<li><em>Expected number of events under H0</em>: 256.3</li>
-<li><em>Expected number of events under H0/H1</em>: 252.1</li>
-<li><em>Expected number of events under H1</em>: 224.1</li>
-<li><em>Number of subjects [1]</em>: 467.3</li>
-<li><em>Number of subjects [2]</em>: 467.3</li>
-<li><em>Expected number of subjects under H1</em>: 467.3</li>
-<li><em>Critical values (treatment effect scale) [1]</em>: 0.593</li>
-<li><em>Critical values (treatment effect scale) [2]</em>: 0.782</li>
-</ul>
-</section>
-<section id="legend-8" class="level3">
-<h3 class="anchored" data-anchor-id="legend-8">Legend</h3>
-<ul>
-<li><em>(i)</em>: values of treatment arm i</li>
-<li><em>[k]</em>: values at stage k</li>
-</ul>
-</section>
-</section>
-</div>
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ceiling</span>(x1<span class="sc">$</span>maxNumberOfEvents)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 257</code></pre>
@@ -4141,7 +3201,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <hr>
-<p>System: rpact 3.4.0, R version 4.2.3 (2023-03-15 ucrt), platform: x86_64-w64-mingw32</p>
+<p>System: rpact 3.5.1, R version 4.3.3 (2024-02-29), platform: aarch64-apple-darwin20</p>
 <p>print(citation(“rpact”), bibtex = FALSE)</p>
 
 
@@ -4228,10 +3288,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -4241,8 +3300,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -4255,6 +3323,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -4298,6 +3485,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -4323,6 +3511,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -4383,6 +3597,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

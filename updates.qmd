@@ -10,6 +10,7 @@ output:
     toc_float: yes
 ---
 
+* 2024/04/16: Uploaded slides and recordings for [BBS Seminar: Reproducibility in Biomedical Research](events_past.html#reproducibility-in-biomedical-research).
 * 2024/03/22: Uploaded first announcement and agenda for hybrid event [Essentials of Medical Data Sharing and Privacy - Maximize the use of data](events_upcoming.html).
 * 2024/02/20: Uploaded first announcement for [Next Generation event on visualization](events_upcoming.html).
 * 2024/02/07: Uploaded first announcement for [Reproducibility in biomedical research](events_upcoming.html).

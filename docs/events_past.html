@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.1.189">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,7 +17,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
 </style>
@@ -45,13 +45,7 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
+  "limit": 20,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -60,10 +54,8 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-submit-button-title": "Submit"
   }
 }</script>
 
@@ -75,23 +67,20 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
+      <div class="navbar-brand-container">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Basel Biometrics Society</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about-bbs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">About BBS</span>
-    </a>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about-bbs" role="button" data-bs-toggle="dropdown" aria-expanded="false">About BBS</a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-about-bbs">    
         <li>
     <a class="dropdown-item" href="./purpose.html">
@@ -104,9 +93,7 @@ ul.task-list li input[type="checkbox"] {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-upcoming-events" role="button" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Upcoming events</span>
-    </a>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-upcoming-events" role="button" data-bs-toggle="dropdown" aria-expanded="false">Upcoming events</a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-upcoming-events">    
         <li>
     <a class="dropdown-item" href="./events_upcoming.html">
@@ -115,9 +102,7 @@ ul.task-list li input[type="checkbox"] {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-past-seminars" role="button" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Past seminars</span>
-    </a>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-past-seminars" role="button" data-bs-toggle="dropdown" aria-expanded="false">Past seminars</a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-past-seminars">    
         <li>
     <a class="dropdown-item" href="./events_past.html">
@@ -126,9 +111,7 @@ ul.task-list li input[type="checkbox"] {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-past-trainings" role="button" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Past trainings</span>
-    </a>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-past-trainings" role="button" data-bs-toggle="dropdown" aria-expanded="false">Past trainings</a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-past-trainings">    
         <li>
     <a class="dropdown-item" href="./trainings_past.html">
@@ -137,17 +120,14 @@ ul.task-list li input[type="checkbox"] {
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./additional_docs.html"> 
-<span class="menu-text">Additional documents</span></a>
+    <a class="nav-link" href="./additional_docs.html">Additional documents</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./updates.html"> 
-<span class="menu-text">Updates on this page</span></a>
+    <a class="nav-link" href="./updates.html">Updates on this page</a>
   </li>  
 </ul>
+              <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
-</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -160,7 +140,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#reproducibility-in-biomedical-research" id="toc-reproducibility-in-biomedical-research" class="nav-link active" data-scroll-target="#reproducibility-in-biomedical-research">12.04.2024: Reproducibility in biomedical research</a></li>
+  <li><a href="#next-generation-event-on-visualization" id="toc-next-generation-event-on-visualization" class="nav-link active" data-scroll-target="#next-generation-event-on-visualization">17.04.2024: Next Generation event on visualization</a></li>
+  <li><a href="#reproducibility-in-biomedical-research" id="toc-reproducibility-in-biomedical-research" class="nav-link" data-scroll-target="#reproducibility-in-biomedical-research">12.04.2024: Reproducibility in biomedical research</a></li>
   <li><a href="#federated-learning-and-new-data-modalities" id="toc-federated-learning-and-new-data-modalities" class="nav-link" data-scroll-target="#federated-learning-and-new-data-modalities">06.11.2023: Federated learning and new data modalities</a></li>
   <li><a href="#estimands-in-early-development-ed-across-therapeutic-areas" id="toc-estimands-in-early-development-ed-across-therapeutic-areas" class="nav-link" data-scroll-target="#estimands-in-early-development-ed-across-therapeutic-areas">16.10.2023: Estimands in Early Development (ED) Across Therapeutic Areas</a></li>
   <li><a href="#pre-approval-and-post-approval-challenges-in-the-clinical-development-and-reimbursement-of-car-t-cell-therapies" id="toc-pre-approval-and-post-approval-challenges-in-the-clinical-development-and-reimbursement-of-car-t-cell-therapies" class="nav-link" data-scroll-target="#pre-approval-and-post-approval-challenges-in-the-clinical-development-and-reimbursement-of-car-t-cell-therapies">04.10.2023: Pre-approval and Post-approval Challenges in the Clinical Development and Reimbursement of CAR-T Cell Therapies</a></li>
@@ -253,15 +234,24 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-title-meta">
 
     
-  
     
   </div>
   
 
-
 </header>
 
+<div class="cell">
 
+</div>
+<section id="next-generation-event-on-visualization" class="level1 unnumbered">
+<h1 class="unnumbered">17.04.2024: Next Generation event on visualization</h1>
+<p><a href="talks/20240417/agenda.pdf">Agenda</a></p>
+<p>No recording available</p>
+<p>No slides available</p>
+<div class="cell">
+
+</div>
+</section>
 <section id="reproducibility-in-biomedical-research" class="level1 unnumbered">
 <h1 class="unnumbered">12.04.2024: Reproducibility in biomedical research</h1>
 <p><a href="talks/20240412/agenda.pdf">Agenda</a></p>
@@ -320,6 +310,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="federated-learning-and-new-data-modalities" class="level1 unnumbered">
 <h1 class="unnumbered">06.11.2023: Federated learning and new data modalities</h1>
@@ -386,6 +379,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="estimands-in-early-development-ed-across-therapeutic-areas" class="level1 unnumbered">
 <h1 class="unnumbered">16.10.2023: Estimands in Early Development (ED) Across Therapeutic Areas</h1>
@@ -445,6 +441,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="pre-approval-and-post-approval-challenges-in-the-clinical-development-and-reimbursement-of-car-t-cell-therapies" class="level1 unnumbered">
 <h1 class="unnumbered">04.10.2023: Pre-approval and Post-approval Challenges in the Clinical Development and Reimbursement of CAR-T Cell Therapies</h1>
@@ -498,6 +497,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="cen2023-conference-from-data-to-knowledge.-advancing-life-sciences." class="level1 unnumbered">
 <h1 class="unnumbered">03.09.2023: CEN2023 Conference: From Data to Knowledge. Advancing Life Sciences.</h1>
@@ -505,6 +507,9 @@ ul.task-list li input[type="checkbox"] {
 <p>No agenda available</p>
 <p>No recording available</p>
 <p>No slides available</p>
+<div class="cell">
+
+</div>
 </section>
 <section id="next-generation-event-on-soft-skills-professional-development-and-networking" class="level1 unnumbered">
 <h1 class="unnumbered">21.06.2023: Next Generation event on soft-skills, professional development, and networking</h1>
@@ -558,12 +563,18 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="adaptive-designs-and-multiple-testing-procedures-3-day-workshop" class="level1 unnumbered">
 <h1 class="unnumbered">19.04.2023: Adaptive Designs and Multiple Testing Procedures 3-day Workshop</h1>
 <p><a href="talks/20230419/agenda.pdf">Agenda</a></p>
 <p>No recording available</p>
 <p>No slides available</p>
+<div class="cell">
+
+</div>
 </section>
 <section id="quantification-of-risk-ask-the-right-questions-or-time-to-apply-the-estimand-framework-to-safety" class="level1 unnumbered">
 <h1 class="unnumbered">12.04.2023: Quantification of risk: ask the right questions or time to apply the estimand framework to safety!</h1>
@@ -606,6 +617,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="joint-besbbs-webinar-real-world-data-quality" class="level1 unnumbered">
 <h1 class="unnumbered">15.03.2023: Joint BES/BBS webinar: Real-World Data Quality</h1>
@@ -665,6 +679,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="joint-efspi-bbs-virtual-event---addressing-intercurrent-events-treatment-policy-and-hypothetical-strategies-day-2" class="level1 unnumbered">
 <h1 class="unnumbered">15.12.2022: Joint EFSPI &amp; BBS virtual event - Addressing intercurrent events: Treatment policy and hypothetical strategies (day 2)</h1>
@@ -725,6 +742,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="joint-efspi-bbs-virtual-event---addressing-intercurrent-events-treatment-policy-and-hypothetical-strategies-day-1" class="level1 unnumbered">
 <h1 class="unnumbered">08.12.2022: Joint EFSPI &amp; BBS virtual event - Addressing intercurrent events: Treatment policy and hypothetical strategies (day 1)</h1>
@@ -745,7 +765,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">David Wright</td>
 <td style="text-align: left;">AstraZeneca</td>
 <td style="text-align: left;">Reflections on the estimands addendum with a focus on the treatment policy strategy</td>
-<td style="text-align: left;"><a href="talks/20221208/1_David Wright Estimands 8th December 2022.pdf">link</a></td>
+<td style="text-align: left;"><a href="talks/20221208/1_David%20Wright%20Estimands%208th%20December%202022.pdf">link</a></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Thomas Drury</td>
@@ -769,16 +789,19 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">James Roger</td>
 <td style="text-align: left;">LSHTM</td>
 <td style="text-align: left;">Other statistical software for continuous longitudinal endpoints: SAS macros for multiple imputation</td>
-<td style="text-align: left;"><a href="talks/20221208/5_JamesRoger 20121118.pdf">link</a></td>
+<td style="text-align: left;"><a href="talks/20221208/5_JamesRoger%2020121118.pdf">link</a></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Suzie Cro</td>
 <td style="text-align: left;">Imperial College London</td>
 <td style="text-align: left;">Discussion on treatment policy strategy</td>
-<td style="text-align: left;"><a href="talks/20221208/6_Suzie Cro - discussant slides.pdf">link</a></td>
+<td style="text-align: left;"><a href="talks/20221208/6_Suzie%20Cro%20-%20discussant%20slides.pdf">link</a></td>
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="next-generation-networking-seminar" class="level1 unnumbered">
 <h1 class="unnumbered">30.11.2022: Next Generation Networking Seminar</h1>
@@ -832,6 +855,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="on-market-approval-and-market-access-breaking-the-linear-thinking-or-how-to-innovate-in-a-crowded-space" class="level1 unnumbered">
 <h1 class="unnumbered">15.07.2022: On market approval and market access: Breaking the linear thinking or how to innovate in a crowded space?</h1>
@@ -885,6 +911,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-efspi-seminar-registry-studies-and-hta" class="level1 unnumbered">
 <h1 class="unnumbered">23.06.2022: BBS / EFSPI Seminar Registry studies and HTA</h1>
@@ -950,6 +979,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-spring-seminar-transforming-drug-development-and-assembly" class="level1 unnumbered">
 <h1 class="unnumbered">24.05.2022: BBS Spring Seminar Transforming drug development and Assembly</h1>
@@ -980,6 +1012,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="graphical-approaches-to-multiple-test-problems" class="level1 unnumbered">
 <h1 class="unnumbered">29.03.2022: Graphical approaches to multiple test problems</h1>
@@ -1010,6 +1045,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="machine-learning-in-clinical-drug-development" class="level1 unnumbered">
 <h1 class="unnumbered">21.02.2022: Machine Learning in clinical drug development</h1>
@@ -1051,6 +1089,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="joint-bbsbes-webinar-covid-19-pandemic-and-how-we-deal-with-data" class="level1 unnumbered">
 <h1 class="unnumbered">27.07.2021: Joint BBS/BES Webinar COVID-19 pandemic and how we deal with data</h1>
@@ -1098,6 +1139,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="joint-efspibbs-meeting-precision-innovative-medicine-and-health-technology-assessment" class="level1 unnumbered">
 <h1 class="unnumbered">28.06.2021: Joint EFSPI/BBS Meeting Precision &amp; Innovative Medicine and Health Technology Assessment</h1>
@@ -1163,6 +1207,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-webinar-impact-of-the-covid-19-pandemic-on-clinical-trials" class="level1 unnumbered">
 <h1 class="unnumbered">16.06.2021: BBS Webinar Impact of the COVID-19 Pandemic on Clinical Trials</h1>
@@ -1204,6 +1251,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-webinar-statistical-challenges-in-the-clinical-development-of-car-t-cell-therapies" class="level1 unnumbered">
 <h1 class="unnumbered">22.03.2021: BBS Webinar Statistical challenges in the clinical development of CAR T-cell therapies</h1>
@@ -1281,6 +1331,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="graphics-for-decision-making-in-biomedical-research-and-drug-development" class="level1 unnumbered">
 <h1 class="unnumbered">08.03.2021: Graphics for decision-making in biomedical research and drug development</h1>
@@ -1340,6 +1393,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="joint-efspi-bbs-webinar-the-application-of-estimands-from-a-neuroscience-perspective" class="level1 unnumbered">
 <h1 class="unnumbered">03.11.2020: Joint EFSPI / BBS Webinar: The application of estimands from a Neuroscience perspective</h1>
@@ -1405,6 +1461,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-webinar-rcts-meeting-causal-inference-principal-stratum-strategy-and-beyond" class="level1 unnumbered">
 <h1 class="unnumbered">07.09.2020: BBS Webinar RCTs meeting causal inference: principal stratum strategy and beyond</h1>
@@ -1482,6 +1541,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbsefspi-webinar-on-hta" class="level1 unnumbered">
 <h1 class="unnumbered">30.06.2020: BBS/EFSPI Webinar on HTA</h1>
@@ -1529,6 +1591,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="joint-efspi-bbs-webinar-estimands-addendum-is-final-anything-new-for-oncology" class="level1 unnumbered">
 <h1 class="unnumbered">29.06.2020: Joint EFSPI / BBS Webinar: Estimands addendum is final: Anything new for oncology?</h1>
@@ -1588,6 +1653,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-webinar-aspects-of-covid-19-pandemic" class="level1 unnumbered">
 <h1 class="unnumbered">03.06.2020: BBS Webinar: Aspects of COVID-19 pandemic</h1>
@@ -1629,6 +1697,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-virtual-seminar-impact-of-covid-19-on-clinical-trials" class="level1 unnumbered">
 <h1 class="unnumbered">06.05.2020: BBS Virtual Seminar: Impact of COVID-19 on clinical trials</h1>
@@ -1682,6 +1753,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-seminar-network-meta-analysis-methods-and-applications" class="level1 unnumbered">
 <h1 class="unnumbered">04.02.2020: BBS Seminar: Network meta-analysis: methods and applications</h1>
@@ -1735,6 +1809,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-seminar-predictive-modelling-machine-learning-and-causality" class="level1 unnumbered">
 <h1 class="unnumbered">01.11.2019: BBS Seminar: Predictive modelling, machine learning and causality</h1>
@@ -1807,6 +1884,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbsbes-seminar-causal-inference-in-drug-development-why-when-how" class="level1 unnumbered">
 <h1 class="unnumbered">21.08.2019: BBS/BES Seminar: Causal inference in drug development: why, when, how?</h1>
@@ -1866,6 +1946,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbsefspi-seminar-precision-medicine-in-drug-development" class="level1 unnumbered">
 <h1 class="unnumbered">04.06.2019: BBS/EFSPI Seminar: Precision medicine in drug development</h1>
@@ -1931,6 +2014,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-spring-seminar-synthetic-controls---what-do-we-need-and-how-far-can-we-go" class="level1 unnumbered">
 <h1 class="unnumbered">10.05.2019: BBS Spring Seminar: Synthetic controls - what do we need and how far can we go?</h1>
@@ -2020,6 +2106,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbsefspi-seminar-small-populations-and-level-of-evidence" class="level1 unnumbered">
 <h1 class="unnumbered">27.06.2018: BBS/EFSPI Seminar: Small populations and level of evidence</h1>
@@ -2091,6 +2180,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-seminar-rcts-personalized-medicine-and-surrogacy" class="level1 unnumbered">
 <h1 class="unnumbered">26.06.2018: BBS Seminar: RCTs, personalized medicine, and surrogacy</h1>
@@ -2126,6 +2218,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-spring-seminar-new-developments-in-hta-adaptive-designs-and-multiplicity-in-remembrance-of-willi-maurer" class="level1 unnumbered">
 <h1 class="unnumbered">17.04.2018: BBS Spring Seminar: New developments in HTA, adaptive designs and multiplicity – in remembrance of Willi Maurer</h1>
@@ -2173,6 +2268,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-seminar-competing-risks-and-multi-state-models" class="level1 unnumbered">
 <h1 class="unnumbered">20.03.2018: BBS Seminar: Competing Risks and Multi-State Models</h1>
@@ -2208,6 +2306,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-seminar-future-of-biomedical-research-are-we-ready" class="level1 unnumbered">
 <h1 class="unnumbered">14.11.2017: BBS Seminar: Future of Biomedical Research: Are we ready?</h1>
@@ -2249,6 +2350,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-seminar-emerging-topics-for-statistical-methodology-in-drug-development-estimands-and-advanced-analytics" class="level1 unnumbered">
 <h1 class="unnumbered">11.09.2017: BBS Seminar Emerging topics for statistical methodology in drug development: Estimands and advanced analytics</h1>
@@ -2320,6 +2424,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-seminar-innovative-model-based-dose-escalation-designs-what-next" class="level1 unnumbered">
 <h1 class="unnumbered">26.06.2017: BBS Seminar Innovative model-based dose escalation designs: what next?</h1>
@@ -2355,6 +2462,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-psi-1-day-scientific-meeting-empower-the-immune-system-to-fight-cancer" class="level1 unnumbered">
 <h1 class="unnumbered">15.06.2017: BBS / PSI 1-Day Scientific Meeting: Empower the immune system to fight cancer</h1>
@@ -2426,6 +2536,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-spring-seminar-the-use-of-external-data-for-decision-making" class="level1 unnumbered">
 <h1 class="unnumbered">05.05.2017: BBS Spring Seminar The use of external data for decision making</h1>
@@ -2479,6 +2592,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-seminar-biomarker-analyses" class="level1 unnumbered">
 <h1 class="unnumbered">13.03.2017: BBS Seminar: Biomarker analyses</h1>
@@ -2508,6 +2624,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-seminar-safety-monitoring-during-the-life-cycle-of-a-drug" class="level1 unnumbered">
 <h1 class="unnumbered">29.11.2016: BBS Seminar: Safety monitoring during the life cycle of a drug</h1>
@@ -2555,6 +2674,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-seminar-synthesis-of-evidence-observational-studies-and-meta-analysis" class="level1 unnumbered">
 <h1 class="unnumbered">14.11.2016: BBS Seminar: Synthesis of Evidence: Observational studies and Meta-analysis</h1>
@@ -2602,6 +2724,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-seminar-missing-data-and-graphical-models" class="level1 unnumbered">
 <h1 class="unnumbered">17.10.2016: BBS Seminar: Missing Data and Graphical Models</h1>
@@ -2643,6 +2768,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="psibbs-one-day-meeting-time-to-event-and-recurrent-event-endpoints" class="level1 unnumbered">
 <h1 class="unnumbered">14.09.2016: PSI/BBS One Day Meeting: Time-to-Event and Recurrent Event Endpoints</h1>
@@ -2702,6 +2830,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-seminar-adaptive-designs" class="level1 unnumbered">
 <h1 class="unnumbered">04.05.2016: BBS Seminar: Adaptive Designs</h1>
@@ -2743,6 +2874,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-spring-seminar" class="level1 unnumbered">
 <h1 class="unnumbered">28.04.2016: BBS Spring Seminar</h1>
@@ -2820,6 +2954,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-seminar-disease-and-product-registries" class="level1 unnumbered">
 <h1 class="unnumbered">13.01.2016: BBS Seminar: Disease and Product Registries</h1>
@@ -2873,6 +3010,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-seminar-prediction" class="level1 unnumbered">
 <h1 class="unnumbered">27.10.2015: BBS Seminar: Prediction</h1>
@@ -2902,6 +3042,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="joint-bbsefspi-seminar-health-technology-assessment" class="level1 unnumbered">
 <h1 class="unnumbered">23.06.2015: Joint BBS/EFSPI Seminar: Health Technology Assessment</h1>
@@ -2991,6 +3134,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-seminar-bayesian-methods-in-adaptive-dose-finding-trials" class="level1 unnumbered">
 <h1 class="unnumbered">13.04.2015: BBS Seminar: Bayesian Methods in Adaptive Dose-Finding Trials</h1>
@@ -3026,6 +3172,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="joint-bbs-efspi-seminar-data-sharing-in-clinical-development" class="level1 unnumbered">
 <h1 class="unnumbered">13.11.2014: Joint BBS-EFSPI Seminar: Data Sharing in Clinical Development</h1>
@@ -3091,6 +3240,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-seminar-meta-analysis-of-clinical-safety-data" class="level1 unnumbered">
 <h1 class="unnumbered">02.10.2014: BBS Seminar: Meta-Analysis of Clinical Safety Data</h1>
@@ -3150,6 +3302,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-seminar-applications-for-statisticians-working-with-real-world-data" class="level1 unnumbered">
 <h1 class="unnumbered">07.05.2014: BBS Seminar: Applications for statisticians working with “Real-World Data”</h1>
@@ -3185,12 +3340,18 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-seminar-adaptive-flexible-designs-in-early-development" class="level1 unnumbered">
 <h1 class="unnumbered">04.02.2014: BBS seminar: Adaptive / Flexible Designs in early development</h1>
 <p>No agenda available</p>
 <p>No recording available</p>
 <p>No slides available</p>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-seminar-ipd-meta-analysis-of-treatment-covariate-interaction-with-a-continuous-predictor" class="level1 unnumbered">
 <h1 class="unnumbered">18.06.2013: BBS Seminar: IPD meta-analysis of treatment-covariate interaction with a continuous predictor</h1>
@@ -3226,6 +3387,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="joint-bbsefspi-seminar-health-technology-assessment-1" class="level1 unnumbered">
 <h1 class="unnumbered">04.06.2013: Joint BBS/EFSPI Seminar: Health Technology Assessment</h1>
@@ -3327,6 +3491,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-seminar-optimal-design-for-non-linear-models" class="level1 unnumbered">
 <h1 class="unnumbered">28.11.2012: BBS Seminar: Optimal Design for Non-linear Models</h1>
@@ -3368,6 +3535,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-seminar-benefit-risk-comparative-effectiveness" class="level1 unnumbered">
 <h1 class="unnumbered">25.09.2012: BBS Seminar: Benefit-Risk &amp; Comparative Effectiveness</h1>
@@ -3415,6 +3585,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-seminar-emerging-topics-in-pharmaceutical-statistics" class="level1 unnumbered">
 <h1 class="unnumbered">09.07.2012: BBS Seminar: Emerging Topics in Pharmaceutical Statistics</h1>
@@ -3456,12 +3629,18 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-seminar-experiences-in-the-development-and-implementation-of-flexible-designs" class="level1 unnumbered">
 <h1 class="unnumbered">22.05.2012: BBS Seminar: Experiences in the Development and Implementation of Flexible Designs</h1>
 <p>No agenda available</p>
 <p>No recording available</p>
 <p>No slides available</p>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-seminar" class="level1 unnumbered">
 <h1 class="unnumbered">29.11.2011: BBS Seminar</h1>
@@ -3497,6 +3676,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-fall-conference-current-topics-in-pharmaceutical-statistics-dose-finding-and-multiregional-trials" class="level1 unnumbered">
 <h1 class="unnumbered">16.09.2011: BBS Fall Conference: Current Topics in Pharmaceutical Statistics: Dose Finding and Multiregional Trials</h1>
@@ -3562,6 +3744,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-seminar-quantitative-benefit-risk-what-matters-to-whom-and-how-getting-the-values-and-weights" class="level1 unnumbered">
 <h1 class="unnumbered">21.07.2011: BBS Seminar Quantitative Benefit-Risk: What Matters to Whom and How? – Getting the Values and Weights</h1>
@@ -3603,6 +3788,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-spring-conference-comparative-quantitative-assessments-benefit-risk-effectiveness" class="level1 unnumbered">
 <h1 class="unnumbered">10.05.2011: BBS Spring Conference: Comparative Quantitative Assessments: Benefit-Risk &amp; Effectiveness</h1>
@@ -3674,6 +3862,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-spring-seminar-multiplicity-in-clinical-trials" class="level1 unnumbered">
 <h1 class="unnumbered">07.05.2011: BBS Spring Seminar: Multiplicity in Clinical Trials</h1>
@@ -3721,6 +3912,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-seminar-statistical-challenges-in-biomedical-research" class="level1 unnumbered">
 <h1 class="unnumbered">13.01.2011: BBS Seminar: Statistical Challenges in Biomedical Research</h1>
@@ -3750,6 +3944,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-seminar-1" class="level1 unnumbered">
 <h1 class="unnumbered">30.11.2010: BBS Seminar</h1>
@@ -3785,6 +3982,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-fall-conference" class="level1 unnumbered">
 <h1 class="unnumbered">04.10.2010: BBS Fall Conference</h1>
@@ -3868,6 +4068,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbsefspi-european-statistical-meeting-on-oncology" class="level1 unnumbered">
 <h1 class="unnumbered">24.06.2010: BBS/EFSPI European Statistical Meeting on Oncology</h1>
@@ -3933,6 +4136,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-seminar-epidemiology" class="level1 unnumbered">
 <h1 class="unnumbered">28.04.2010: BBS Seminar Epidemiology</h1>
@@ -3962,6 +4168,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-seminar-2" class="level1 unnumbered">
 <h1 class="unnumbered">12.03.2010: BBS Seminar</h1>
@@ -4021,6 +4230,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-seminar-enhanced-statistical-methodology" class="level1 unnumbered">
 <h1 class="unnumbered">12.01.2010: BBS Seminar: Enhanced Statistical Methodology</h1>
@@ -4056,6 +4268,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-seminar-challenges-and-evaluation-of-biomarkers" class="level1 unnumbered">
 <h1 class="unnumbered">07.12.2009: BBS Seminar: Challenges and Evaluation of Biomarkers</h1>
@@ -4091,6 +4306,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<div class="cell">
+
+</div>
 </section>
 <section id="bbs-seminar-operational-and-implementation-considerations-in-adaptive-designs" class="level1 unnumbered">
 <h1 class="unnumbered">26.10.2009: BBS Seminar: Operational and Implementation Considerations in Adaptive Designs</h1>
@@ -4158,23 +4376,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
+    target: function(trigger) {
+      return trigger.previousElementSibling;
     }
   });
   clipboard.on('success', function(e) {
@@ -4186,33 +4390,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
     setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+  function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
+      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -4222,17 +4410,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start',
+      placement: 'bottom-start'
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -4247,279 +4426,28 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
       });
-    }
+      return popup.innerHTML;
+    });
   }
 });
 </script>
 </div> <!-- /content -->
-
 
 
 

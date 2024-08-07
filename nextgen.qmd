@@ -1,5 +1,5 @@
 ---
-title: "BBS Next Generation committee"
+title: "BBS NextGen committee"
 output: 
   rmarkdown::html_document:
     highlight: pygments
@@ -10,15 +10,15 @@ output:
     toc_float: yes
 ---
 
-# Committee
+# Activities
 
-The BBS Next Generation committee
+The BBS NextGen committee
 
 * coordinates BBS next generation events (typically two each year, see the [upcoming](events_upcoming.html) and [past](events_past.html) events),
 * maintains the [BBS next generation mailing list](index.html#additional-e-mailing-list-of-the-bbs-next-generation-committee) and [LinkedIn page](https://www.linkedin.com/company/bbs-next-generation), as well as
 * organizes monthly community / networking lunches (see the [LinkedIn posts](https://www.linkedin.com/company/bbs-next-generation/posts) for upcoming ones).
 
-# Members
+# Committee members
 
 ```{r setup, include = FALSE, echo = FALSE}
 ## load packages

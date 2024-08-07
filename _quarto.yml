@@ -24,9 +24,9 @@ website:
       menu:
         - text: "Purpose"
           href: purpose.html
-        - text: "BBS board"
+        - text: "BBS Council members"
           href: board.html
-        - text: "BBS Next Generation committee"
+        - text: "BBS NextGen committee"
           href: nextgen.html
     - text: "Upcoming events"
       menu:

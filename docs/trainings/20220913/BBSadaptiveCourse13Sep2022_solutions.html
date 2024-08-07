@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Kaspar Rufibach (Roche), Marc Vandemeulebroecke (Novartis), Gernot Wassmer (rpact), Marcel Wolbers (Roche)">
-<meta name="dcterms.date" content="2024-08-06">
+<meta name="dcterms.date" content="2024-08-07">
 
 <title>Basel Biometrics Society - Solutions to the exercises for the BBS course ‘Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact’ on 13Sep2022</title>
 <style>
@@ -164,11 +164,11 @@ window.Quarto = {
   </li>  
         <li>
     <a class="dropdown-item" href="../../board.html">
- <span class="dropdown-text">BBS board</span></a>
+ <span class="dropdown-text">BBS Council members</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../../nextgen.html">
- <span class="dropdown-text">BBS Next Generation committee</span></a>
+ <span class="dropdown-text">BBS NextGen committee</span></a>
   </li>  
     </ul>
   </li>
@@ -303,7 +303,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 6, 2024</p>
+      <p class="date">August 7, 2024</p>
     </div>
   </div>
   
@@ -1567,7 +1567,7 @@ window.Quarto = {
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>overallSampleSizes <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span>maxiter, <span class="cf">function</span>(i) <span class="fu">sum</span>(simPart[simPart<span class="sc">$</span>iterationNumber<span class="sc">==</span>i,]<span class="sc">$</span>numberOfSubjects))</span>
 <span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">toc</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.105 sec elapsed</code></pre>
+<pre><code>0.092 sec elapsed</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tic()</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># overallSampleSizes &lt;- numeric(maxiter)</span></span>

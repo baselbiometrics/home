@@ -10,6 +10,7 @@ output:
     toc_float: yes
 ---
 
+* 2024/08/07: Uploaded first announcement for [Patient-Focused Drug Development: The Role of Patient Preference Studies](events_upcoming.html).
 * 2024/08/05: Uploaded first announcement for [AI in Clinical Research and Drug Development and BBS General Assembly](events_upcoming.html).
 * 2024/07/15: Uploaded first announcement for Next Generation event [Thriving Careers: Navigating Bias, Reinventing Yourself, and Essential Skills for Employability](events_upcoming.html).
 * 2024/05/23: Uploaded slides for [Essentials of Medical Data Sharing and Privacy - Maximize the use of data](events_past.html#essentials-of-medical-data-sharing-and-privacy-maximize-the-use-of-data).

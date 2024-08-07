@@ -7,6 +7,7 @@ project:
     - events_past.qmd
     - events_upcoming.qmd
     - index.qmd
+    - nextgen.qmd
     - purpose.qmd
     - trainings_past.qmd
     - updates.qmd
@@ -23,8 +24,10 @@ website:
       menu:
         - text: "Purpose"
           href: purpose.html
-        - text: "BBS board"
+        - text: "BBS Council members"
           href: board.html
+        - text: "BBS NextGen committee"
+          href: nextgen.html
     - text: "Upcoming events"
       menu:
         - text: "Announcements of upcoming events"

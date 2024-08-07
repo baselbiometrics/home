@@ -1,0 +1,47 @@
+---
+title: "BBS NextGen committee"
+output: 
+  rmarkdown::html_document:
+    highlight: pygments
+    number_sections: yes
+    self_contained: yes
+    toc: yes
+    toc_depth: 2
+    toc_float: yes
+---
+
+# Activities
+
+The BBS NextGen committee
+
+* coordinates BBS next generation events (typically two each year, see the [upcoming](events_upcoming.html) and [past](events_past.html) events),
+* maintains the [BBS next generation mailing list](index.html#additional-e-mailing-list-of-the-bbs-next-generation-committee) and [LinkedIn page](https://www.linkedin.com/company/bbs-next-generation), as well as
+* organizes monthly community / networking lunches (see the [LinkedIn posts](https://www.linkedin.com/company/bbs-next-generation/posts) for upcoming ones).
+
+# Committee members
+
+```{r setup, include = FALSE, echo = FALSE}
+## load packages
+packs.html <- c("knitr", "pander", "dplyr", "readxl")
+for (i in 1:length(packs.html)){library(packs.html[i], character.only = TRUE)}
+
+# knitr::opts_chunk$set(echo = TRUE)
+
+## roster   
+path <- getwd()
+roster <- read_excel("data/roster_nextgen.xlsx", na = character())
+roster$Name <- paste(roster$First, roster$Last, sep = " ")
+roster <- roster |>
+  filter(Committee == 1) |>
+  arrange(Company, Last, First) |>
+  select(Name, Company) 
+
+# roster[is.na(roster)] <- ""
+```
+
+```{r, include=TRUE, echo=FALSE}
+kable(roster)
+```
+
+
+

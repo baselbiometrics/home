@@ -1,5 +1,7 @@
 ---
 title: "Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact"
+execute:   
+  freeze: auto  # re-render only when source changes
 format:
   html:
     toc: true

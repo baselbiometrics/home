@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2023-09-03">
 
-<title>Basel Biometrics Society - Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact</title>
+<title>Basel Biometrics Society - BBS NextGen committee</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,59 +20,25 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,14 +71,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="floating nav-fixed">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Basel Biometrics Society</span>
     </a>
   </div>
@@ -129,15 +94,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-about-bbs">    
         <li>
-    <a class="dropdown-item" href="../../purpose.html">
+    <a class="dropdown-item" href="./purpose.html">
  <span class="dropdown-text">Purpose</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../board.html">
+    <a class="dropdown-item" href="./board.html">
  <span class="dropdown-text">BBS Council members</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../nextgen.html">
+    <a class="dropdown-item" href="./nextgen.html">
  <span class="dropdown-text">BBS NextGen committee</span></a>
   </li>  
     </ul>
@@ -148,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-upcoming-events">    
         <li>
-    <a class="dropdown-item" href="../../events_upcoming.html">
+    <a class="dropdown-item" href="./events_upcoming.html">
  <span class="dropdown-text">Announcements of upcoming events</span></a>
   </li>  
     </ul>
@@ -159,7 +124,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-past-seminars">    
         <li>
-    <a class="dropdown-item" href="../../events_past.html">
+    <a class="dropdown-item" href="./events_past.html">
  <span class="dropdown-text">Agendas, slidedecks, and recordings of past BBS seminars</span></a>
   </li>  
     </ul>
@@ -170,17 +135,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-past-trainings">    
         <li>
-    <a class="dropdown-item" href="../../trainings_past.html">
+    <a class="dropdown-item" href="./trainings_past.html">
  <span class="dropdown-text">Agendas, slidedecks, and recordings of past BBS training events</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="../../additional_docs.html"> 
+    <a class="nav-link" href="./additional_docs.html"> 
 <span class="menu-text">Additional documents</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../updates.html"> 
+    <a class="nav-link" href="./updates.html"> 
 <span class="menu-text">Updates on this page</span></a>
   </li>  
 </ul>
@@ -193,28 +158,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Contents</h2>
-   
-  <ul class="collapse">
-  <li><a href="#purpose-of-this-document" id="toc-purpose-of-this-document" class="nav-link active" data-scroll-target="#purpose-of-this-document"><span class="header-section-number">1</span> Purpose of this document</a></li>
-  <li><a href="#agenda-of-the-event" id="toc-agenda-of-the-event" class="nav-link" data-scroll-target="#agenda-of-the-event"><span class="header-section-number">2</span> Agenda of the event</a></li>
-  <li><a href="#preparation-prior-to-the-event" id="toc-preparation-prior-to-the-event" class="nav-link" data-scroll-target="#preparation-prior-to-the-event"><span class="header-section-number">3</span> Preparation prior to the event</a></li>
-  <li><a href="#documents" id="toc-documents" class="nav-link" data-scroll-target="#documents"><span class="header-section-number">4</span> Documents</a></li>
-  </ul>
-</nav>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#activities" id="toc-activities" class="nav-link active" data-scroll-target="#activities">Activities</a></li>
+  <li><a href="#committee-members" id="toc-committee-members" class="nav-link" data-scroll-target="#committee-members">Committee members</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact</h1>
+<h1 class="title">BBS NextGen committee</h1>
 </div>
 
 
@@ -222,19 +182,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-title-meta">
 
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">September 3, 2023</p>
-    </div>
-  </div>
   
-    <div>
-    <div class="quarto-title-meta-heading">Modified</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date-modified">August 6, 2024</p>
-    </div>
-  </div>
     
   </div>
   
@@ -243,89 +191,67 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="purpose-of-this-document" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Purpose of this document</h1>
-<p>Materials for the <a href="https://cen2023.github.io/home/index.html">CEN 2023</a> pre-conference course <a href="https://cen2023.github.io/home/courses.html#Advanced_group-sequential_and_adaptive_confirmatory_clinical_trial_designs,_with_R_practicals_using_rpact">Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact</a>, held in Basel on 3rd September 2023 by <a href="mailto:kaspar.rufibach@roche.com">Kaspar Rufibach</a>, <a href="mailto:marc.vandemeulebroecke@novartis.com">Marc Vandemeulebroecke</a>, <a href="mailto:gernot.wassmer@rpact.com">Gernot Wassmer</a>, and <a href="mailto:marcel.wolbers@roche.com">Marcel Wolbers</a>.</p>
-</section>
-<section id="agenda-of-the-event" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Agenda of the event</h1>
-<div class="line-block">09:00-09:10: Welcome<br>
-09:10-09:50: Theory: Efficient use of interim analyses (Kaspar)<br>
-09:50-10:30: Introduction to rpact, part 1 (Gernot), exercises (Kaspar &amp; all, ex 1)<br>
-10:30-11:00: Coffee break<br>
-11:00-11:40: Theory: Introduction adaptive trials &amp; sample size re-calculation (Marc)<br>
-11:40-12:30: Introduction rpact, part 2 (Gernot), exercises (Marc &amp; all, ex 2)<br>
-12:30-14:00: Lunch<br>
-14:00-15:30: Theory: Multi-arm multi-stage designs (Marcel &amp; Kaspar)<br>
-15:30-16:00: Coffee break<br>
-16:00-17:00: Introduction rpact, part 3 (Gernot), exercises (Gernot &amp; all, ex 3-5)<br>
-17:00-17:15: Teaser: What can we expect from ICH E20? (Uli &amp; Frank)<br>
-17:15-17:30: Final Q&amp;A</div>
-</section>
-<section id="preparation-prior-to-the-event" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Preparation prior to the event</h1>
+<section id="activities" class="level1">
+<h1>Activities</h1>
+<p>The BBS NextGen committee</p>
 <ul>
-<li>Please download all the documents from this webpage: <a href="BBS_adaptive.zip">link to zip file</a>.</li>
-<li>Install the <a href="https://cran.r-project.org/package=rpact">latest version of rpact</a> locally on your computer:</li>
+<li>coordinates BBS next generation events (typically two each year, see the <a href="events_upcoming.html">upcoming</a> and <a href="events_past.html">past</a> events),</li>
+<li>maintains the <a href="index.html#additional-e-mailing-list-of-the-bbs-next-generation-committee">BBS next generation mailing list</a> and <a href="https://www.linkedin.com/company/bbs-next-generation">LinkedIn page</a>, as well as</li>
+<li>organizes monthly community / networking lunches (see the <a href="https://www.linkedin.com/company/bbs-next-generation/posts">LinkedIn posts</a> for upcoming ones).</li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"rpact"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">"rpact"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
-<section id="documents" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Documents</h1>
+<section id="committee-members" class="level1">
+<h1>Committee members</h1>
 <div class="cell">
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th style="text-align: left;">Presenter</th>
-<th style="text-align: left;">Title</th>
-<th style="text-align: center;">Slides</th>
-<th style="text-align: center;">Markdown accompanying slides</th>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Company</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Kaspar Rufibach</td>
-<td style="text-align: left;">Efficient use of futility and efficacy interim analyses in group-sequential designs</td>
-<td style="text-align: center;"><a href="RufibachWolbers_efficient_interims_handout.pdf">X</a></td>
-<td style="text-align: center;"><a href="RufibachWolbers_efficient_interims.html">X</a></td>
+<td style="text-align: left;">Antonella Mazzei</td>
+<td style="text-align: left;">BMS</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Marc Vandemeulebroecke</td>
-<td style="text-align: left;">Introduction adaptive trials &amp; sample size re-calculation</td>
-<td style="text-align: center;"><a href="Vandemeulebroecke_intro_adaptive.pdf">X</a></td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">Muriel Buri</td>
+<td style="text-align: left;">F. Hoffmann-La Roche Ltd</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Gernot Wassmer</td>
-<td style="text-align: left;">Introduction to rpact</td>
-<td style="text-align: center;"><a href="Wassmer_intro_rpact.pdf">X</a></td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">Youyou Hu</td>
+<td style="text-align: left;">F. Hoffmann-La Roche Ltd</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Marcel Wolbers &amp; Kaspar Rufibach</td>
-<td style="text-align: left;">Multi-arm multi-stage designs (MAMS)</td>
-<td style="text-align: center;"><a href="CEN2023_MAMSsection_Wolbers_Rufibach_handout.pdf">X</a></td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">Kristina Weber</td>
+<td style="text-align: left;">F. Hoffmann-La Roche Ltd</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Frank Bretz and Uli Burger</td>
-<td style="text-align: left;">Adaptive trials: Some general considerations</td>
-<td style="text-align: center;"><a href="Bretz_Burger CEN.pdf">X</a></td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">Joana Marques Barros</td>
+<td style="text-align: left;">Idorsia Pharmaceuticals Ltd</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Olympia Papachristofi</td>
+<td style="text-align: left;">Novartis Pharma AG</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lukas A. Widmer</td>
+<td style="text-align: left;">Novartis Pharma AG</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Manuela Zimmermann</td>
+<td style="text-align: left;">Novartis Pharma AG</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ottavia Prunas</td>
+<td style="text-align: left;">Swiss Tropical and Public Health Institute</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<ul>
-<li>Exercises: <a href="BBSadaptiveCourse03Sep2023_exercises.zip">exercise markdown as zip file</a> | <a href="BBSadaptiveCourse03Sep2023_exercises.html">html</a>.</li>
-<li>Solutions: <a href="BBSadaptiveCourse03Sep2023_solutions.zip">solution markdown as zip file</a> | <a href="BBSadaptiveCourse03Sep2023_solutions.html">html</a>.</li>
-<li>Download all files as <a href="BBS_adaptive.zip">.zip file</a>.</li>
-</ul>
 
 
 </section>

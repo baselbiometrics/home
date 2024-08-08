@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.4.555">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Kaspar Rufibach (Roche), Marc Vandemeulebroecke (Novartis), Gernot Wassmer (rpact), Marcel Wolbers (Roche)">
-<meta name="dcterms.date" content="2024-04-27">
+<meta name="dcterms.date" content="2024-08-07">
 
 <title>Basel Biometrics Society - Solutions to the exercises for the BBS course ‘Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact’ on 13Sep2022</title>
 <style>
@@ -24,7 +24,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -81,7 +81,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -90,6 +96,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -99,6 +106,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -106,9 +140,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Basel Biometrics Society</span>
     </a>
@@ -120,72 +154,76 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about-bbs" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about-bbs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">About BBS</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-about-bbs">    
         <li>
-    <a class="dropdown-item" href="../../purpose.html" rel="" target="">
+    <a class="dropdown-item" href="../../purpose.html">
  <span class="dropdown-text">Purpose</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../board.html" rel="" target="">
- <span class="dropdown-text">BBS board</span></a>
+    <a class="dropdown-item" href="../../board.html">
+ <span class="dropdown-text">BBS Council members</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../nextgen.html">
+ <span class="dropdown-text">BBS NextGen committee</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-upcoming-events" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-upcoming-events" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Upcoming events</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-upcoming-events">    
         <li>
-    <a class="dropdown-item" href="../../events_upcoming.html" rel="" target="">
+    <a class="dropdown-item" href="../../events_upcoming.html">
  <span class="dropdown-text">Announcements of upcoming events</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-past-seminars" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-past-seminars" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Past seminars</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-past-seminars">    
         <li>
-    <a class="dropdown-item" href="../../events_past.html" rel="" target="">
+    <a class="dropdown-item" href="../../events_past.html">
  <span class="dropdown-text">Agendas, slidedecks, and recordings of past BBS seminars</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-past-trainings" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-past-trainings" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Past trainings</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-past-trainings">    
         <li>
-    <a class="dropdown-item" href="../../trainings_past.html" rel="" target="">
+    <a class="dropdown-item" href="../../trainings_past.html">
  <span class="dropdown-text">Agendas, slidedecks, and recordings of past BBS training events</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="../../additional_docs.html" rel="" target="">
- <span class="menu-text">Additional documents</span></a>
+    <a class="nav-link" href="../../additional_docs.html"> 
+<span class="menu-text">Additional documents</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../updates.html" rel="" target="">
- <span class="menu-text">Updates on this page</span></a>
+    <a class="nav-link" href="../../updates.html"> 
+<span class="menu-text">Updates on this page</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools ms-auto">
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Contents</h2>
    
@@ -239,7 +277,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul>
 </nav>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
     </div>
@@ -265,7 +303,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 27, 2024</p>
+      <p class="date">August 7, 2024</p>
     </div>
   </div>
   
@@ -273,7 +311,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <section id="purpose-of-this-document" class="level1 unnumbered">
 <h1 class="unnumbered">Purpose of this document</h1>
@@ -287,7 +327,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rpact)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">"rpact"</span>) <span class="co"># version should be version 3.0 or higher</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] '3.5.0'</code></pre>
+<pre><code>[1] '4.0.0'</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setLogLevel</span>(<span class="st">"DISABLED"</span>) <span class="co"># disable progress messages from e.g. getAnalysisResults </span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -342,10 +382,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="co"># rpact summary</span></span>
 <span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sampleSizeOS1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="sample-size-calculation-for-a-survival-endpoint" class="level2 cell-output-display" data-number="0.1">
-<h2 data-number="0.1" class="anchored" data-anchor-id="sample-size-calculation-for-a-survival-endpoint"><span class="header-section-number">0.1</span> Sample size calculation for a survival endpoint</h2>
+<div class="cell-output-display">
+<p><em>Sample size calculation for a survival endpoint</em></p>
 <p>Sequential analysis with a maximum of 2 looks (group sequential design), overall significance level 2.5% (one-sided). The results were calculated for a two-sample logrank test, H0: hazard ratio = 1, H1: treatment median(1) = 16.9, control median(2) = 12, planned allocation ratio = 2, accrual time = 10, accrual intensity = 48, dropout rate(1) = 0.05, dropout rate(2) = 0.05, dropout time = 12, power 80%.</p>
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th>Stage</th>
@@ -355,7 +395,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>Information rate</td>
+<td>Planned information rate</td>
 <td>60%</td>
 <td>100%</td>
 </tr>
@@ -365,7 +405,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>1.981</td>
 </tr>
 <tr class="odd">
-<td>Overall power</td>
+<td>Cumulative power</td>
 <td>0.3123</td>
 <td>0.8000</td>
 </tr>
@@ -386,12 +426,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>Analysis time</td>
-<td>15.815</td>
-<td>28.666</td>
+<td>15.82</td>
+<td>28.67</td>
 </tr>
 <tr class="even">
 <td>Expected study duration</td>
-<td>24.7</td>
+<td>24.65</td>
 <td></td>
 </tr>
 <tr class="odd">
@@ -425,7 +465,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><em>(t)</em>: treatment effect scale</li>
 </ul>
-</section>
+</div>
 </div>
 </section>
 <section id="exercise-1b-addition-of-a-futility-interim-analysis" class="level2 unnumbered">
@@ -452,10 +492,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co"># rpact summary</span></span>
 <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sampleSizeOS2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="sample-size-calculation-for-a-survival-endpoint-1" class="level2 cell-output-display" data-number="0.2">
-<h2 data-number="0.2" class="anchored" data-anchor-id="sample-size-calculation-for-a-survival-endpoint-1"><span class="header-section-number">0.2</span> Sample size calculation for a survival endpoint</h2>
+<div class="cell-output-display">
+<p><em>Sample size calculation for a survival endpoint</em></p>
 <p>Sequential analysis with a maximum of 3 looks (group sequential design), overall significance level 2.5% (one-sided). The results were calculated for a two-sample logrank test, H0: hazard ratio = 1, H1: treatment median(1) = 16.9, control median(2) = 12, planned allocation ratio = 2, accrual time = 10, accrual intensity = 48, dropout rate(1) = 0.05, dropout rate(2) = 0.05, dropout time = 12, power 80%.</p>
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th>Stage</th>
@@ -466,7 +506,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>Information rate</td>
+<td>Planned information rate</td>
 <td>30%</td>
 <td>60%</td>
 <td>100%</td>
@@ -484,7 +524,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td></td>
 </tr>
 <tr class="even">
-<td>Overall power</td>
+<td>Cumulative power</td>
 <td>0</td>
 <td>0.3361</td>
 <td>0.8000</td>
@@ -509,13 +549,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>Analysis time</td>
-<td>10.124</td>
-<td>16.721</td>
-<td>31.736</td>
+<td>10.12</td>
+<td>16.72</td>
+<td>31.74</td>
 </tr>
 <tr class="odd">
 <td>Expected study duration</td>
-<td>25.5</td>
+<td>25.48</td>
 <td></td>
 <td></td>
 </tr>
@@ -585,7 +625,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><em>(t)</em>: treatment effect scale</li>
 </ul>
-</section>
+</div>
 </div>
 <p>We see that by adding the futility interim we increase the maximal number of events from 303.827705 to 322.8702626.</p>
 </section>
@@ -624,10 +664,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">dropoutRate1 =</span> do, <span class="at">dropoutRate2 =</span> do, <span class="at">dropoutTime =</span> doTime,</span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">accrualTime =</span> accrualTime, <span class="at">accrualIntensity =</span> accrualIntensity)</span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>probOS</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="event-probabilities-at-given-time" class="level2 cell-output-display" data-number="0.3">
-<h2 data-number="0.3" class="anchored" data-anchor-id="event-probabilities-at-given-time"><span class="header-section-number">0.3</span> Event probabilities at given time</h2>
-<section id="user-defined-parameters" class="level3">
-<h3 class="anchored" data-anchor-id="user-defined-parameters">User defined parameters</h3>
+<div class="cell-output-display">
+<p><em>Event probabilities at given time</em></p>
+<p><em>User defined parameters</em></p>
 <ul>
 <li><em>Time</em>: 16.00, 24.00</li>
 <li><em>Accrual time</em>: 10.00</li>
@@ -638,16 +677,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><em>Drop-out rate (1)</em>: 0.050</li>
 <li><em>Drop-out rate (2)</em>: 0.050</li>
 </ul>
-</section>
-<section id="default-parameters" class="level3">
-<h3 class="anchored" data-anchor-id="default-parameters">Default parameters</h3>
+<p><em>Default parameters</em></p>
 <ul>
 <li><em>kappa</em>: 1</li>
 <li><em>Drop-out time</em>: 12.00</li>
 </ul>
-</section>
-<section id="time-and-output" class="level3">
-<h3 class="anchored" data-anchor-id="time-and-output">Time and output</h3>
+<p><em>Time and output</em></p>
 <ul>
 <li><em>Hazard ratio</em>: 0.710</li>
 <li><em>Maximum number of subjects</em>: 480</li>
@@ -655,14 +690,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><em>Event probabilities (1)</em>: 0.3506, 0.5193</li>
 <li><em>Event probabilities (2)</em>: 0.4529, 0.6400</li>
 </ul>
-</section>
-<section id="legend" class="level3">
-<h3 class="anchored" data-anchor-id="legend">Legend</h3>
+<p><em>Legend</em></p>
 <ul>
 <li><em>(i)</em>: values of treatment arm i</li>
 </ul>
-</section>
-</section>
+</div>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Expected number of OS events </span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>maxn <span class="sc">*</span> probOS<span class="sc">$</span>overallEventProbabilities</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -691,27 +723,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">getDesignInverseNormal</span>(<span class="at">typeOfDesign =</span> <span class="st">"asUser"</span>, <span class="at">userAlphaSpending =</span> <span class="fu">c</span>(<span class="fl">0.0001</span>,<span class="fl">0.025</span>), </span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">futilityBounds =</span> <span class="dv">0</span>, <span class="at">bindingFutility =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="design-parameters-and-output-of-inverse-normal-combination-test-design" class="level2 cell-output-display" data-number="0.4">
-<h2 data-number="0.4" class="anchored" data-anchor-id="design-parameters-and-output-of-inverse-normal-combination-test-design"><span class="header-section-number">0.4</span> Design parameters and output of inverse normal combination test design</h2>
-<section id="user-defined-parameters-1" class="level3">
-<h3 class="anchored" data-anchor-id="user-defined-parameters-1">User defined parameters</h3>
+<div class="cell-output-display">
+<p><em>Design parameters and output of inverse normal combination test design</em></p>
+<p><em>User defined parameters</em></p>
 <ul>
 <li><em>Type of design</em>: User defined alpha spending</li>
 <li><em>Futility bounds (binding)</em>: 0.000</li>
 <li><em>Binding futility</em>: TRUE</li>
 <li><em>User defined alpha spending</em>: 0.0001, 0.0250</li>
 </ul>
-</section>
-<section id="derived-from-user-defined-parameters" class="level3">
-<h3 class="anchored" data-anchor-id="derived-from-user-defined-parameters">Derived from user defined parameters</h3>
+<p><em>Derived from user defined parameters</em></p>
 <ul>
 <li><em>Maximum number of stages</em>: 2</li>
 <li><em>Stages</em>: 1, 2</li>
 <li><em>Information rates</em>: 0.500, 1.000</li>
 </ul>
-</section>
-<section id="default-parameters-1" class="level3">
-<h3 class="anchored" data-anchor-id="default-parameters-1">Default parameters</h3>
+<p><em>Default parameters</em></p>
 <ul>
 <li><em>Significance level</em>: 0.0250</li>
 <li><em>Type II error rate</em>: 0.2000</li>
@@ -720,16 +747,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><em>Tolerance</em>: 1e-08</li>
 <li><em>Type of beta spending</em>: none</li>
 </ul>
-</section>
-<section id="output" class="level3">
-<h3 class="anchored" data-anchor-id="output">Output</h3>
+<p><em>Output</em></p>
 <ul>
 <li><em>Cumulative alpha spending</em>: 0.0001, 0.0250</li>
 <li><em>Critical values</em>: 3.719, 1.955</li>
 <li><em>Stage levels (one-sided)</em>: 0.00010, 0.02531</li>
 </ul>
-</section>
-</section>
+</div>
 </div>
 <p>This yields <span class="math inline">\(\alpha_2\)</span> = d$stageLevels[2] = 0.0253.</p>
 <p><strong>What regulatory issues could this raise?</strong></p>
@@ -751,10 +775,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>result1 <span class="ot">&lt;-</span> <span class="fu">getAnalysisResults</span>(<span class="at">design =</span> d, <span class="at">dataInput =</span> dat, <span class="at">nPlanned =</span> <span class="dv">100</span>,<span class="at">normalApproximation =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(result1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="analysis-results-for-a-continuous-endpoint" class="level2 cell-output-display" data-number="0.5">
-<h2 data-number="0.5" class="anchored" data-anchor-id="analysis-results-for-a-continuous-endpoint"><span class="header-section-number">0.5</span> Analysis results for a continuous endpoint</h2>
+<div class="cell-output-display">
+<p><em>Analysis results for a continuous endpoint</em></p>
 <p>Sequential analysis with 2 looks (inverse normal combination test design). The results were calculated using a two-sample t-test (one-sided, alpha = 0.025), normal approximation test, equal variances option. H0: mu(1) - mu(2) = 0 against H1: mu(1) - mu(2) &gt; 0. The conditional power calculation with planned sample size is based on overall effect = 3 and overall standard deviation = 10.</p>
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 33%">
 <col style="width: 33%">
@@ -850,7 +874,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-</section>
+</div>
 </div>
 <p><span class="math inline">\(\rightarrow\)</span> <span class="math inline">\(p_1=0.0668\)</span>, and <span class="math inline">\(\alpha_1=0.0001&lt;0.0668&lt;0.5=\alpha_0\)</span>.</p>
 <ol start="2" type="1">
@@ -869,10 +893,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">assumedStDev =</span> <span class="dv">10</span>, <span class="at">normalApproximation =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(result2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="analysis-results-for-a-continuous-endpoint-1" class="level2 cell-output-display" data-number="0.6">
-<h2 data-number="0.6" class="anchored" data-anchor-id="analysis-results-for-a-continuous-endpoint-1"><span class="header-section-number">0.6</span> Analysis results for a continuous endpoint</h2>
+<div class="cell-output-display">
+<p><em>Analysis results for a continuous endpoint</em></p>
 <p>Sequential analysis with 2 looks (inverse normal combination test design). The results were calculated using a two-sample t-test (one-sided, alpha = 0.025), normal approximation test, equal variances option. H0: mu(1) - mu(2) = 0 against H1: mu(1) - mu(2) &gt; 0. The conditional power calculation with planned sample size is based on assumed effect = 4 and assumed standard deviation = 10.</p>
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 33%">
 <col style="width: 33%">
@@ -968,7 +992,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-</section>
+</div>
 </div>
 <p><span class="math inline">\(\rightarrow\)</span> <span class="math inline">\(n_2=82\)</span> per treatment group</p>
 </section>
@@ -986,10 +1010,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">n1 =</span> <span class="fu">c</span>(<span class="dv">50</span>,<span class="dv">82</span>), <span class="at">n2 =</span> <span class="fu">c</span>(<span class="dv">50</span>,<span class="dv">82</span>))</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">getAnalysisResults</span>(<span class="at">design =</span> d, <span class="at">dataInput =</span> dat2, <span class="at">normalApproximation =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="analysis-results-for-a-continuous-endpoint-2" class="level2 cell-output-display" data-number="0.7">
-<h2 data-number="0.7" class="anchored" data-anchor-id="analysis-results-for-a-continuous-endpoint-2"><span class="header-section-number">0.7</span> Analysis results for a continuous endpoint</h2>
+<div class="cell-output-display">
+<p><em>Analysis results for a continuous endpoint</em></p>
 <p>Sequential analysis with 2 looks (inverse normal combination test design). The results were calculated using a two-sample t-test (one-sided, alpha = 0.025), normal approximation test, equal variances option. H0: mu(1) - mu(2) = 0 against H1: mu(1) - mu(2) &gt; 0.</p>
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 33%">
 <col style="width: 33%">
@@ -1090,7 +1114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-</section>
+</div>
 </div>
 <ol start="2" type="1">
 <li>Compute the overall (“exact”) p-value and confidence interval for the adaptive trial.</li>
@@ -1113,10 +1137,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">cumulativeN1 =</span> <span class="fu">c</span>(<span class="dv">50</span>,<span class="dv">132</span>), <span class="at">cumulativeN2 =</span> <span class="fu">c</span>(<span class="dv">50</span>,<span class="dv">132</span>))</span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">getAnalysisResults</span>(<span class="at">design =</span> dGS, <span class="at">dataInput =</span> dat3, <span class="at">normalApproximation =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="analysis-results-for-a-continuous-endpoint-3" class="level2 cell-output-display" data-number="0.8">
-<h2 data-number="0.8" class="anchored" data-anchor-id="analysis-results-for-a-continuous-endpoint-3"><span class="header-section-number">0.8</span> Analysis results for a continuous endpoint</h2>
+<div class="cell-output-display">
+<p><em>Analysis results for a continuous endpoint</em></p>
 <p>Sequential analysis with 2 looks (group sequential design). The results were calculated using a two-sample t-test (one-sided, alpha = 0.025), normal approximation test, equal variances option. H0: mu(1) - mu(2) = 0 against H1: mu(1) - mu(2) &gt; 0.</p>
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 33%">
 <col style="width: 33%">
@@ -1131,9 +1155,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>Fixed weight</td>
-<td>0.5</td>
-<td>1</td>
+<td>Planned information rate</td>
+<td>50%</td>
+<td>100%</td>
 </tr>
 <tr class="even">
 <td>Efficacy boundary (z-value scale)</td>
@@ -1212,7 +1236,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-</section>
+</div>
 </div>
 <p>Note that the definition of dat3 with the “cumulative” commands is necessary because otherwise always a “global” variance (accounting for the mean difference in the stages) is calculated.</p>
 <p>Here we ignore the adaptive nature of the trial: we lump all data together (ignoring the sample size adaptation), and we test at the nominal level <span class="math inline">\(\alpha =0.025\)</span> (ignoring the possibility of early stopping). The second stage of the trial, showing less of a treatment effect, carries greater weight in this “naive” (that is, incorrect) version of the test. Note that it can go both ways: in other examples, the adaptive (correct) version of the test may be the one that fails to reject the null hypothesis. In less borderline situations, both tests will lead to the same conclusion. Proposals have been made in the literature for dealing with borderline situations.</p>
@@ -1234,10 +1258,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">getSampleSizeRates</span>(dGS, <span class="at">pi1 =</span> <span class="fl">0.4</span>, <span class="at">pi2 =</span> <span class="fl">0.6</span>)</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(r)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="sample-size-calculation-for-a-binary-endpoint" class="level2 cell-output-display" data-number="0.9">
-<h2 data-number="0.9" class="anchored" data-anchor-id="sample-size-calculation-for-a-binary-endpoint"><span class="header-section-number">0.9</span> Sample size calculation for a binary endpoint</h2>
+<div class="cell-output-display">
+<p><em>Sample size calculation for a binary endpoint</em></p>
 <p>Sequential analysis with a maximum of 3 looks (group sequential design), overall significance level 2.5% (one-sided). The results were calculated for a two-sample test for rates (normal approximation), H0: pi(1) - pi(2) = 0, H1: treatment rate pi(1) = 0.4, control rate pi(2) = 0.6, power 90%.</p>
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th>Stage</th>
@@ -1248,7 +1272,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>Information rate</td>
+<td>Planned information rate</td>
 <td>50%</td>
 <td>75%</td>
 <td>100%</td>
@@ -1266,7 +1290,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td></td>
 </tr>
 <tr class="even">
-<td>Overall power</td>
+<td>Cumulative power</td>
 <td>0.2958</td>
 <td>0.6998</td>
 <td>0.9000</td>
@@ -1349,7 +1373,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><em>(t)</em>: treatment effect scale</li>
 </ul>
-</section>
+</div>
 </div>
 <p>The optimum allocation ratio is 1 in this case but calculated numerically, therefore slightly unequal 1:</p>
 <div class="cell">
@@ -1371,15 +1395,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(r, <span class="at">type =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="BBSadaptiveCourse13Sep2022_solutions_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="BBSadaptiveCourse13Sep2022_solutions_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(r, <span class="at">type =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="BBSadaptiveCourse13Sep2022_solutions_files/figure-html/unnamed-chunk-13-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="BBSadaptiveCourse13Sep2022_solutions_files/figure-html/unnamed-chunk-13-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(r, <span class="at">type =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="BBSadaptiveCourse13Sep2022_solutions_files/figure-html/unnamed-chunk-13-3.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="BBSadaptiveCourse13Sep2022_solutions_files/figure-html/unnamed-chunk-13-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -1409,7 +1445,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(power, <span class="at">type =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="BBSadaptiveCourse13Sep2022_solutions_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="BBSadaptiveCourse13Sep2022_solutions_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <hr>
@@ -1478,7 +1518,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="BBSadaptiveCourse13Sep2022_solutions_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="BBSadaptiveCourse13Sep2022_solutions_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: for saving the plot, you could e.g. use the commented code below</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ggplot2::ggsave(filename = "C:/yourdirectory/comparison.png",</span></span>
@@ -1523,7 +1567,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>overallSampleSizes <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span>maxiter, <span class="cf">function</span>(i) <span class="fu">sum</span>(simPart[simPart<span class="sc">$</span>iterationNumber<span class="sc">==</span>i,]<span class="sc">$</span>numberOfSubjects))</span>
 <span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">toc</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.34 sec elapsed</code></pre>
+<pre><code>0.088 sec elapsed</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tic()</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># overallSampleSizes &lt;- numeric(maxiter)</span></span>
@@ -1532,7 +1576,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(overallSampleSizes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="BBSadaptiveCourse13Sep2022_solutions_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="BBSadaptiveCourse13Sep2022_solutions_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>How often the maximum sample size is reached can be obtained as follows:</p>
@@ -1561,7 +1609,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="exercise-5a-first-stage-and-conditional-power" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="exercise-5a-first-stage-and-conditional-power">Exercise 5a (First stage and conditional power)</h2>
 <p>Suppose, at the first stage, the following results were obtained:</p>
-<table class="table">
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th>arm</th>
@@ -1629,10 +1677,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb41-27"><a href="#cb41-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">nPlanned =</span> <span class="fu">c</span>(<span class="dv">40</span>, <span class="dv">40</span>))</span>
 <span id="cb41-28"><a href="#cb41-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-29"><a href="#cb41-29" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(stageResults)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="multi-arm-analysis-results-for-a-continuous-endpoint-3-active-arms-vs.-control" class="level2 cell-output-display" data-number="0.10">
-<h2 data-number="0.10" class="anchored" data-anchor-id="multi-arm-analysis-results-for-a-continuous-endpoint-3-active-arms-vs.-control"><span class="header-section-number">0.10</span> Multi-arm analysis results for a continuous endpoint (3 active arms vs.&nbsp;control)</h2>
+<div class="cell-output-display">
+<p><em>Multi-arm analysis results for a continuous endpoint (3 active arms vs.&nbsp;control)</em></p>
 <p>Sequential analysis with 3 looks (inverse normal combination test design). The results were calculated using a multi-arm t-test (one-sided, alpha = 0.025), Dunnett intersection test, overall pooled variances option. H0: mu(i) - mu(control) = 0 against H1: mu(i) - mu(control) &gt; 0. The conditional power calculation with planned sample size is based on overall effect: thetaH1(1) = 0.09, thetaH1(2) = 0.85, thetaH1(3) = 1.1 and overall standard deviation: sd(1) = 1.74, sd(2) = 1.49, sd(3) = 1.68.</p>
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 25%">
 <col style="width: 25%">
@@ -1919,13 +1967,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><em>(i)</em>: results of treatment arm i vs.&nbsp;control arm</li>
 <li><em>(i, j, …)</em>: comparison of treatment arms ‘i, j, …’ vs.&nbsp;control arm</li>
 </ul>
-</section>
+</div>
 </div>
 </section>
 <section id="exercise-5b-second-stage" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="exercise-5b-second-stage">Exercise 5b (Second stage)</h2>
 <p>Suppose it was decided to drop treatment arm 1 for stage 2 and leave the sample size for the remaining arms unchanged. For the second stage, the following results were obtained:</p>
-<table class="table">
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th>arm</th>
@@ -1979,10 +2027,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">intersectionTest =</span> intersectionTest, <span class="at">varianceOption =</span> varianceOption)</span>
 <span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(stageResults)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="multi-arm-analysis-results-for-a-continuous-endpoint-3-active-arms-vs.-control-1" class="level2 cell-output-display" data-number="0.11">
-<h2 data-number="0.11" class="anchored" data-anchor-id="multi-arm-analysis-results-for-a-continuous-endpoint-3-active-arms-vs.-control-1"><span class="header-section-number">0.11</span> Multi-arm analysis results for a continuous endpoint (3 active arms vs.&nbsp;control)</h2>
+<div class="cell-output-display">
+<p><em>Multi-arm analysis results for a continuous endpoint (3 active arms vs.&nbsp;control)</em></p>
 <p>Sequential analysis with 3 looks (inverse normal combination test design). The results were calculated using a multi-arm t-test (one-sided, alpha = 0.025), Dunnett intersection test, overall pooled variances option. H0: mu(i) - mu(control) = 0 against H1: mu(i) - mu(control) &gt; 0.</p>
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 25%">
 <col style="width: 25%">
@@ -2245,7 +2293,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><em>(i)</em>: results of treatment arm i vs.&nbsp;control arm</li>
 <li><em>(i, j, …)</em>: comparison of treatment arms ‘i, j, …’ vs.&nbsp;control arm</li>
 </ul>
-</section>
+</div>
 </div>
 </section>
 <section id="exercise-5c-intersection-tests" class="level2 unnumbered">
@@ -2258,10 +2306,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">directionUpper =</span> <span class="cn">TRUE</span>, <span class="at">normalApproximation =</span> normalApproximation,</span>
 <span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">intersectionTest =</span> <span class="st">"Bonferroni"</span>, <span class="at">varianceOption =</span> varianceOption)</span>
 <span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(stageResults)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="multi-arm-analysis-results-for-a-continuous-endpoint-3-active-arms-vs.-control-2" class="level2 cell-output-display" data-number="0.12">
-<h2 data-number="0.12" class="anchored" data-anchor-id="multi-arm-analysis-results-for-a-continuous-endpoint-3-active-arms-vs.-control-2"><span class="header-section-number">0.12</span> Multi-arm analysis results for a continuous endpoint (3 active arms vs.&nbsp;control)</h2>
+<div class="cell-output-display">
+<p><em>Multi-arm analysis results for a continuous endpoint (3 active arms vs.&nbsp;control)</em></p>
 <p>Sequential analysis with 3 looks (inverse normal combination test design). The results were calculated using a multi-arm t-test (one-sided, alpha = 0.025), Bonferroni intersection test, overall pooled variances option. H0: mu(i) - mu(control) = 0 against H1: mu(i) - mu(control) &gt; 0.</p>
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 25%">
 <col style="width: 25%">
@@ -2524,16 +2572,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><em>(i)</em>: results of treatment arm i vs.&nbsp;control arm</li>
 <li><em>(i, j, …)</em>: comparison of treatment arms ‘i, j, …’ vs.&nbsp;control arm</li>
 </ul>
-</section>
+</div>
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>stageResults <span class="ot">&lt;-</span> <span class="fu">getAnalysisResults</span>(<span class="at">design =</span> design,</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">dataInput =</span> dataExample, <span class="at">thetaH0 =</span> <span class="dv">0</span>, <span class="at">stage =</span> <span class="dv">2</span>,</span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">directionUpper =</span> <span class="cn">TRUE</span>, <span class="at">normalApproximation =</span> normalApproximation,</span>
 <span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">intersectionTest =</span> <span class="st">"Simes"</span>, <span class="at">varianceOption =</span> varianceOption)</span>
 <span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(stageResults)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="multi-arm-analysis-results-for-a-continuous-endpoint-3-active-arms-vs.-control-3" class="level2 cell-output-display" data-number="0.13">
-<h2 data-number="0.13" class="anchored" data-anchor-id="multi-arm-analysis-results-for-a-continuous-endpoint-3-active-arms-vs.-control-3"><span class="header-section-number">0.13</span> Multi-arm analysis results for a continuous endpoint (3 active arms vs.&nbsp;control)</h2>
+<div class="cell-output-display">
+<p><em>Multi-arm analysis results for a continuous endpoint (3 active arms vs.&nbsp;control)</em></p>
 <p>Sequential analysis with 3 looks (inverse normal combination test design). The results were calculated using a multi-arm t-test (one-sided, alpha = 0.025), Simes intersection test, overall pooled variances option. H0: mu(i) - mu(control) = 0 against H1: mu(i) - mu(control) &gt; 0.</p>
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 25%">
 <col style="width: 25%">
@@ -2796,7 +2844,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><em>(i)</em>: results of treatment arm i vs.&nbsp;control arm</li>
 <li><em>(i, j, …)</em>: comparison of treatment arms ‘i, j, …’ vs.&nbsp;control arm</li>
 </ul>
-</section>
+</div>
 </div>
 <hr>
 </section>
@@ -2817,10 +2865,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">accrualTime =</span> <span class="dv">12</span>, <span class="at">followUpTime =</span> <span class="dv">12</span>)</span>
 <span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(x1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="sample-size-calculation-for-a-survival-endpoint-2" class="level2 cell-output-display" data-number="0.14">
-<h2 data-number="0.14" class="anchored" data-anchor-id="sample-size-calculation-for-a-survival-endpoint-2"><span class="header-section-number">0.14</span> Sample size calculation for a survival endpoint</h2>
+<div class="cell-output-display">
+<p><em>Sample size calculation for a survival endpoint</em></p>
 <p>Sequential analysis with a maximum of 2 looks (group sequential design), overall significance level 2.5% (one-sided). The results were calculated for a two-sample logrank test, H0: hazard ratio = 1, H1: treatment lambda(1) = 0.039, control lambda(2) = 0.058, accrual time = 12, accrual intensity = 38.9, follow-up time = 12, dropout rate(1) = 0.05, dropout rate(2) = 0.05, dropout time = 12, power 90%.</p>
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th>Stage</th>
@@ -2830,7 +2878,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>Information rate</td>
+<td>Planned information rate</td>
 <td>50%</td>
 <td>100%</td>
 </tr>
@@ -2840,7 +2888,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>1.969</td>
 </tr>
 <tr class="odd">
-<td>Overall power</td>
+<td>Cumulative power</td>
 <td>0.2525</td>
 <td>0.9000</td>
 </tr>
@@ -2861,12 +2909,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>Analysis time</td>
-<td>13.141</td>
-<td>24.000</td>
+<td>13.14</td>
+<td>24.00</td>
 </tr>
 <tr class="even">
 <td>Expected study duration</td>
-<td>21.3</td>
+<td>21.26</td>
 <td></td>
 </tr>
 <tr class="odd">
@@ -2900,7 +2948,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><em>(t)</em>: treatment effect scale</li>
 </ul>
-</section>
+</div>
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ceiling</span>(x1<span class="sc">$</span>maxNumberOfEvents)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 257</code></pre>
@@ -3128,7 +3176,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <hr>
-<p>System: rpact 3.5.0, R version 4.2.3 (2023-03-15 ucrt), platform: x86_64-w64-mingw32</p>
+<p>System: rpact 4.0.0, R version 4.4.1 (2024-06-14), platform: aarch64-apple-darwin20</p>
 <p>print(citation(“rpact”), bibtex = FALSE)</p>
 
 
@@ -3215,10 +3263,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -3228,8 +3293,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -3241,7 +3315,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -3285,6 +3482,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -3310,6 +3508,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -3370,6 +3594,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

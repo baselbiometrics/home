@@ -10,6 +10,7 @@ output:
     toc_float: yes
 ---
 
+* 2024/09/02: Uploaded slides for [Controlling the chances of false discoveries in exploratory analysis of clinical trials](events_past.html#controlling-the-chances-of-false-discoveries-in-exploratory-analysis-of-clinical-trials).
 * 2024/08/23: Uploaded final announcement for [Thriving Careers: Navigating Bias, Reinventing Yourself, and Essential Skills for Employability](events_upcoming.html).
 * 2024/08/07: Uploaded first announcement for [Patient-Focused Drug Development: The Role of Patient Preference Studies](events_upcoming.html).
 * 2024/08/06: Added [BBS Next Generation committee page](nextgen.html)

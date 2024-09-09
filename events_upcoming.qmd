@@ -11,7 +11,7 @@ output:
 ---
 
 # Upcoming events
-
+  
 ```{r setup, include = FALSE, echo = FALSE}
 ## load packages
 packs.html <- c("knitr", "pander", "dplyr", "readxl")

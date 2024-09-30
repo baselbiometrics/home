@@ -10,6 +10,7 @@ output:
     toc_float: yes
 ---
 
+* 2024/09/30: Added recordings for [AI in Clinical Research and Drug Development](events_past.html#ai-in-clinical-research-and-drug-development-and-bbs-general-assembly).
 * 2024/09/26: Uploaded slides for [AI in Clinical Research and Drug Development](events_past.html#ai-in-clinical-research-and-drug-development-and-bbs-general-assembly).
 * 2024/09/09: Uploaded final announcement for [AI in Clinical Research and Drug Development and BBS General Assembly](events_upcoming.html).
 * 2024/09/02: Uploaded slides for [Controlling the chances of false discoveries in exploratory analysis of clinical trials](events_past.html#controlling-the-chances-of-false-discoveries-in-exploratory-analysis-of-clinical-trials).

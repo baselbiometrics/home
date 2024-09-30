@@ -25,7 +25,7 @@ knitr::opts_chunk$set(echo = TRUE)
 path <- getwd()
 roster <- as.data.frame(read_excel(paste(path, "/data/roster.xlsx", sep = ""), col_types = NULL))
 roster$Name <- paste(roster$First, roster$Last, sep = " ")
-roster <- (roster %>% filter(board == 1) %>% select(Name, Function, Company) %>% arrange(Company))
+roster <- (roster %>% filter(board == 1) %>% arrange(Last) %>% select(Name, Function, Company))
 
 
 roster[is.na(roster)] <- ""

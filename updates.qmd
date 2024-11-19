@@ -10,6 +10,7 @@ output:
     toc_float: yes
 ---
 
+* 2024/11/19: Uploaded first announcement for training course [Do you speak statistics? - How do you work as a statistician in a cross-functional team?](events_upcoming.html)
 * 2024/10/23: Added recordings and slidedecks for webinar [Patient-Focused Drug Development: The Role of Patient Preference Studies](events_past.html#patient-focused-drug-development-the-role-of-patient-preference-studies).
 * 2024/09/30: Added recordings for [AI in Clinical Research and Drug Development](events_past.html#ai-in-clinical-research-and-drug-development-and-bbs-general-assembly).
 * 2024/09/26: Uploaded slides for [AI in Clinical Research and Drug Development](events_past.html#ai-in-clinical-research-and-drug-development-and-bbs-general-assembly).

@@ -1,8 +1,2 @@
-.Rproj.user
-.Rhistory
-.RData
-.Ruserdata
-
 /.quarto/
-.DS_Store
-/_freeze/
+.Rproj.user

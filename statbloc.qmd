@@ -12,7 +12,7 @@ output:
 
 # Statutes
 
-[Statues of STAT BLOC](data/StatBloc_statutes.pdf)
+[Statues of STAT BLOC](data/StatBloc_statuts.pdf)
 
 # Protocols of assemblies
 

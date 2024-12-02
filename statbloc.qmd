@@ -1,0 +1,21 @@
+---
+title: "Statistical Conferences Basel Local Organizing Committee (STAT BLOC): key documents"
+output: 
+  rmarkdown::html_document:
+    highlight: pygments
+    number_sections: yes
+    self_contained: yes
+    toc: yes
+    toc_depth: 2
+    toc_float: yes
+---
+
+# Statutes
+
+[Statues of STAT BLOC](data/StatBloc_statuts.pdf)
+
+# Protocols of assemblies
+
+[Protocol of initial assembly of 14th June 2024](data/20240614_StatBloc_Protokoll_Sitzung1.pdf).
+
+

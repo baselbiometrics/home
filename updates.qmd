@@ -10,6 +10,7 @@ output:
     toc_float: yes
 ---
 
+* 2025/01/11: Uploaded announcement for next [BBS Next Generation Lunch](events_upcoming.html)
 * 2024/11/29: Uploaded first announcement for the [BBS Next Generation Mentoring Program](events_upcoming.html)
 * 2024/11/19: Uploaded first announcement for training course [Do you speak statistics? - How do you work as a statistician in a cross-functional team?](events_upcoming.html)
 * 2024/10/23: Added recordings and slidedecks for webinar [Patient-Focused Drug Development: The Role of Patient Preference Studies](events_past.html#patient-focused-drug-development-the-role-of-patient-preference-studies).

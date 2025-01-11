@@ -10,10 +10,6 @@ output:
     toc_float: yes
 ---
 
-
-file.exists('my_data.csv')
-
-
 # Upcoming events
   
 ```{r setup, include = FALSE, echo = FALSE}

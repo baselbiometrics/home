@@ -10,6 +10,10 @@ output:
     toc_float: yes
 ---
 
+
+file.exists('my_data.csv')
+
+
 # Upcoming events
   
 ```{r setup, include = FALSE, echo = FALSE}
@@ -34,7 +38,8 @@ if (nrow(upcoming) > 0){
 
   upcoming$Registration <- ifelse(is.na(select(upcoming, registration)[, 1]), "", 
                                   paste("[Registration](", select(upcoming, registration)[, 1], ")", sep = ""))
-  upcoming$Agenda <- paste("[Agenda](upcoming/", rdate, "/agenda.pdf)", sep = "")
+  ag <- file.exists(paste("upcoming/", rdate, "/agenda.pdf", sep = ""))
+  upcoming$Agenda <- ifelse(ag, paste("[Agenda](upcoming/", rdate, "/agenda.pdf)", sep = ""), "")
   upcoming[upcoming$date == "20.02.2025", "Registration"] <- "[Registration for mentors](https://docs.google.com/forms/d/e/1FAIpQLSeNESs9AJKrUXmLBv_wiiHKjWJHWEJ2nq89ZiS3SPLfy4JMfw/viewform)<br><br>Registration for mentees to follow"
 
   upcoming[is.na(upcoming)] <- ""

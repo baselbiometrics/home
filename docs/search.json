@@ -459,14 +459,14 @@
     "href": "events_upcoming.html",
     "title": "Basel Biometric Society (BBS): Upcoming events",
     "section": "",
-    "text": "Date\nEvent\nType of event\nAgenda\nRegistration\nComment\n\n\n\n\n17.12.2024\nDo you speak statistics? - How do you work as a statistician in a cross-functional team?\nTraining\nAgenda\nRegistration\nPlease note that there are two time slots available for the training course: one in the morning and one in the afternoon. Each session is limited to 24 attendees and requires a fee for in-person attendance.\n\n\n20.02.2025\nBBS Next Generation Mentoring Program: What is mentoring, how is it different from coaching, and is it for me?\nSeminar\nAgenda\nRegistration for mentorsRegistration for mentees to follow\n\n\n\n31.01.2025\nNet Gen lunch, 12-13 CET at KLARA (Clarastrasse 13, 4058 Basel)\nNetworking\nAgenda\nRegistration\n\n\n\n\n\n\n\n\nThe 46th annual conference of the International Society for Clinical Biostatistics (ISCB) is jointly organized with the Basel Biometric Society (BBS) and takes place from August 24th to 28th, 2025. For more information, please consult the conference webpage."
+    "text": "file.exists(‘my_data.csv’)"
   },
   {
     "objectID": "events_upcoming.html#th-annual-conference-of-the-iscb-2025",
     "href": "events_upcoming.html#th-annual-conference-of-the-iscb-2025",
     "title": "Basel Biometric Society (BBS): Upcoming events",
-    "section": "",
-    "text": "The 46th annual conference of the International Society for Clinical Biostatistics (ISCB) is jointly organized with the Basel Biometric Society (BBS) and takes place from August 24th to 28th, 2025. For more information, please consult the conference webpage."
+    "section": "46th annual conference of the ISCB, 2025",
+    "text": "46th annual conference of the ISCB, 2025\nThe 46th annual conference of the International Society for Clinical Biostatistics (ISCB) is jointly organized with the Basel Biometric Society (BBS) and takes place from August 24th to 28th, 2025. For more information, please consult the conference webpage."
   },
   {
     "objectID": "nextgen.html",

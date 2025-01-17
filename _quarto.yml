@@ -45,6 +45,9 @@ website:
       href: additional_docs.html
     - text: "Updates on this page"
       href: updates.html
+    right:
+    - icon: github
+      href: https://github.com/baselbiometrics/home
 
 format:
   html:

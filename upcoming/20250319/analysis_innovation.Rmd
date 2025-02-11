@@ -19,7 +19,7 @@ for (i in 1:length(packs.html)){library(packs.html[i], character.only = TRUE)}
 
 knitr::opts_chunk$set(echo = TRUE)
 
-source(paste("C:/rufibach/70_Service/BBS/events/20250319_innovation/p00_initialize.r", sep = ""))
+source(paste("C:/rufibach/70_Service/BBS/events/20250319_innovation/analysis/p00_initialize.r", sep = ""))
 
 # categories with frequencies below cut will be lumped together
 cut <- 3

@@ -77,7 +77,15 @@ text(x = xx, y = t2, label = paste(t2, " (", round(100 * t2 / sum(t2)), "%)", se
 # Registrations of HTA colleagues
 
 ```{r, echo = FALSE, eval = TRUE, fig.cap = "", fig.align = "center", fig.width = 7, fig.height = 6}
-#dat <- with(filter(reg2, type %in% c("HTA", "Regulator")[1]), table(inst2, mode))
+dat <- filter(reg2, type %in% c("HTA", "Regulator")[1])
+
+t2 <- with(dat, table(inst2))
+t2 <- prepTable(t2 = t2, cut = cut)
+
+par(las = 2, mar = c(21, 4.5, 3, 1))
+ylim <- c(0, 1.4 * max(t2))
+xx <- barplot(t2, ylab = "number of registrations", main = paste("Total number of registrations: ", dim(reg2)[1], "\n institution", sep = ""), col = 4, ylim = ylim)
+text(x = xx, y = t2, label = paste(t2, " (", round(100 * t2 / sum(t2)), "%)", sep = ""), pos = 3, offset = 2, cex = 0.8, col = 1, srt = 90)
 ```
 
 # Registrations by countries

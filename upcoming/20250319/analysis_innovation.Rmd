@@ -14,12 +14,28 @@ output:
 
 ```{r setup, include = FALSE, echo = FALSE}
 ## load packages
-packs.html <- c("knitr", "pander", "reporttools", "dplyr", "readxl", "countrycode")
+packs.html <- c("knitr", "pander", "reporttools", "dplyr", "readxl", "countrycode", 
+                "rnaturalearth", "rnaturalearthdata", "RColorBrewer", "ggplot2")
 for (i in 1:length(packs.html)){library(packs.html[i], character.only = TRUE)}
 
 knitr::opts_chunk$set(echo = TRUE)
 
-source(paste("C:/rufibach/70_Service/BBS/events/20250319_innovation/analysis/p00_initialize.r", sep = ""))
+# read in data
+qs <- as.data.frame(read_excel("qs.xlsx"), col_types = rep("text", 3))
+reg2 <- as.data.frame(read_excel("reg3.xlsx"), col_types = rep("text", 4))
+
+# function
+prepTable <- function(t2, cut = 10, ord = TRUE){
+  if (ord){t2 <- t(as.matrix(t2[rev(order(t2, rev(names(t2))))]))}
+  
+  if (min(t2) < cut){
+    i0 <- min(which(t2 <= cut))
+    t2[1, i0] <- sum(t2[t2 <= cut])
+    t2 <- t2[1, 1:i0]
+    names(t2)[i0] <- "other"
+  }
+  return(t2)
+}
 
 # categories with frequencies below cut will be lumped together
 cut <- 3
@@ -40,7 +56,7 @@ t2 <- prepTable(t2 = t2, cut = cut)
 
 par(las = 1, mar = c(4.5, 4.5, 3, 1))
 ylim <- c(0, 1.1 * max(t2))
-xx <- barplot(t2, ylab = "number of registrations", main = paste("Total number of registrations: ", dim(reg)[1], "\n type of institution", sep = ""), col = 2, ylim = ylim)
+xx <- barplot(t2, ylab = "number of registrations", main = paste("Total number of registrations: ", dim(reg2)[1], "\n type of institution", sep = ""), col = 2, ylim = ylim)
 text(x = xx, y = t2, label = paste(t2, " (", round(100 * t2 / sum(t2)), "%)", sep = ""), pos = 3, cex = 0.8, col = 1)
 ```
 
@@ -52,7 +68,7 @@ t2 <- prepTable(t2 = t2, cut = cut)
 
 par(las = 1, mar = c(4.5, 4.5, 3, 1))
 ylim <- c(0, 1.1 * max(t2))
-xx <- barplot(t2, ylab = "number of registrations", main = paste("Total number of registrations: ", dim(reg)[1], "\n background", sep = ""), col = 2, ylim = ylim)
+xx <- barplot(t2, ylab = "number of registrations", main = paste("Total number of registrations: ", dim(reg2)[1], "\n background", sep = ""), col = 2, ylim = ylim)
 text(x = xx, y = t2, label = paste(t2, " (", round(100 * t2 / sum(t2)), "%)", sep = ""), pos = 3, cex = 0.8, col = 1)
 ```
 
@@ -143,11 +159,11 @@ xx <- barplot(t2, ylab = "number of registrations", main = paste(dim(reg2)[1], "
 #par(srt = 90)
 text(x = xx + 0.2, y = t2 + 2.5, label = paste(t2, " (", round(100 * t2 / sum(t2)), "%)", sep = ""), pos = 3, offset = 2, cex = 0.8, col = 1, srt = 90)
 ```
+
 # Questions to the panel
 
 ```{r, echo = FALSE, results = 'asis', message = FALSE}
-t1 <- select(filter(reg2, is.na(question) == FALSE), first, last, question)
-kable(t1)
+kable(qs)
 ```
 
 

@@ -6,9 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2023-09-03">
+<meta name="author" content="Kaspar Rufibach">
+<meta name="dcterms.date" content="2025-02-19">
 
-<title>Basel Biometrics Society - Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact</title>
+<title>Basel Biometrics Society - BBS seminar 19th March 2025: analysis of questions</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +21,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -99,7 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="floating nav-fixed">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -193,137 +160,163 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Contents</h2>
-   
-  <ul class="collapse">
-  <li><a href="#purpose-of-this-document" id="toc-purpose-of-this-document" class="nav-link active" data-scroll-target="#purpose-of-this-document"><span class="header-section-number">1</span> Purpose of this document</a></li>
-  <li><a href="#agenda-of-the-event" id="toc-agenda-of-the-event" class="nav-link" data-scroll-target="#agenda-of-the-event"><span class="header-section-number">2</span> Agenda of the event</a></li>
-  <li><a href="#preparation-prior-to-the-event" id="toc-preparation-prior-to-the-event" class="nav-link" data-scroll-target="#preparation-prior-to-the-event"><span class="header-section-number">3</span> Preparation prior to the event</a></li>
-  <li><a href="#documents" id="toc-documents" class="nav-link" data-scroll-target="#documents"><span class="header-section-number">4</span> Documents</a></li>
-  </ul>
-</nav>
-</nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#data-status" id="toc-data-status" class="nav-link active" data-scroll-target="#data-status">Data status</a></li>
+  <li><a href="#analysis-of-registrations" id="toc-analysis-of-registrations" class="nav-link" data-scroll-target="#analysis-of-registrations">Analysis of registrations</a></li>
+  <li><a href="#questions-to-the-panel" id="toc-questions-to-the-panel" class="nav-link" data-scroll-target="#questions-to-the-panel">Questions to the panel</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact</h1>
+<h1 class="title">BBS seminar 19th March 2025: analysis of questions</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Kaspar Rufibach </p>
+          </div>
+  </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 3, 2023</p>
+      <p class="date">February 19, 2025</p>
     </div>
   </div>
   
-    <div>
-    <div class="quarto-title-meta-heading">Modified</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date-modified">February 19, 2025</p>
-    </div>
-  </div>
     
   </div>
   
 
 </header>
 
-<section id="purpose-of-this-document" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Purpose of this document</h1>
-<p>Materials for the <a href="https://cen2023.github.io/home/index.html">CEN 2023</a> pre-conference course <a href="https://cen2023.github.io/home/courses.html#Advanced_group-sequential_and_adaptive_confirmatory_clinical_trial_designs,_with_R_practicals_using_rpact">Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact</a>, held in Basel on 3rd September 2023 by <a href="mailto:kaspar.rufibach@roche.com">Kaspar Rufibach</a>, <a href="mailto:marc.vandemeulebroecke@novartis.com">Marc Vandemeulebroecke</a>, <a href="mailto:gernot.wassmer@rpact.com">Gernot Wassmer</a>, and <a href="mailto:marcel.wolbers@roche.com">Marcel Wolbers</a>.</p>
+<section id="data-status" class="level1">
+<h1>Data status</h1>
+<p>Data as of 2025-02-19 at 15:44:13.</p>
 </section>
-<section id="agenda-of-the-event" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Agenda of the event</h1>
-<p>09:00-09:10: Welcome<br>
-09:10-09:50: Theory: Efficient use of interim analyses (Kaspar)<br>
-09:50-10:30: Introduction to rpact, part 1 (Gernot), exercises (Kaspar &amp; all, ex 1)<br>
-10:30-11:00: Coffee break<br>
-11:00-11:40: Theory: Introduction adaptive trials &amp; sample size re-calculation (Marc)<br>
-11:40-12:30: Introduction rpact, part 2 (Gernot), exercises (Marc &amp; all, ex 2)<br>
-12:30-14:00: Lunch<br>
-14:00-15:30: Theory: Multi-arm multi-stage designs (Marcel &amp; Kaspar)<br>
-15:30-16:00: Coffee break<br>
-16:00-17:00: Introduction rpact, part 3 (Gernot), exercises (Gernot &amp; all, ex 3-5)<br>
-17:00-17:15: Teaser: What can we expect from ICH E20? (Uli &amp; Frank)<br>
-17:15-17:30: Final Q&amp;A</p>
+<section id="analysis-of-registrations" class="level1">
+<h1>Analysis of registrations</h1>
+<p>See <a href="analysis_innovation.html">here</a>.</p>
 </section>
-<section id="preparation-prior-to-the-event" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Preparation prior to the event</h1>
-<ul>
-<li>Please download all the documents from this webpage: <a href="BBS_adaptive.zip">link to zip file</a>.</li>
-<li>Install the <a href="https://cran.r-project.org/package=rpact">latest version of rpact</a> locally on your computer:</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"rpact"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">"rpact"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="documents" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Documents</h1>
-<div class="cell">
+<section id="questions-to-the-panel" class="level1">
+<h1>Questions to the panel</h1>
 <div class="cell-output-display">
-<table class="table table-sm table-striped small">
+<table class="table">
+<colgroup>
+<col style="width: 2%">
+<col style="width: 3%">
+<col style="width: 94%">
+</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Presenter</th>
-<th style="text-align: left;">Title</th>
-<th style="text-align: center;">Slides</th>
-<th style="text-align: center;">Markdown accompanying slides</th>
+<th style="text-align: left;">first</th>
+<th style="text-align: left;">last</th>
+<th style="text-align: left;">question</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Kaspar Rufibach</td>
-<td style="text-align: left;">Efficient use of futility and efficacy interim analyses in group-sequential designs</td>
-<td style="text-align: center;"><a href="RufibachWolbers_efficient_interims_handout.pdf">X</a></td>
-<td style="text-align: center;"><a href="RufibachWolbers_efficient_interims.html">X</a></td>
+<td style="text-align: left;">Jenny</td>
+<td style="text-align: left;">Devenport</td>
+<td style="text-align: left;">The agenda looks very good and emphasizes getting clinicians / nonstatisticians excited. While indeed a formidable challenge in the route to change, we also experience headwinds from our own function–who perhaps struggle to separate seizing opportunities with debating enhancements. In other words, how can we do a better job as statisticians to show up as a united front so that our clinicians don’t see methods as simply a matter of opinion?</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Marc Vandemeulebroecke</td>
-<td style="text-align: left;">Introduction adaptive trials &amp; sample size re-calculation</td>
-<td style="text-align: center;"><a href="Vandemeulebroecke_intro_adaptive.pdf">X</a></td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">Juergen</td>
+<td style="text-align: left;">Scheuenpflug</td>
+<td style="text-align: left;">In which phase of drug development do you see the greatest need to innovate (e.g.&nbsp;FiH to PoC or PoC - MAA/ LCM? What are the most important barriers which prevent successful innovation and how to mitigate these?</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Gernot Wassmer</td>
-<td style="text-align: left;">Introduction to rpact</td>
-<td style="text-align: center;"><a href="Wassmer_intro_rpact.pdf">X</a></td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">Stefan</td>
+<td style="text-align: left;">Englert</td>
+<td style="text-align: left;">What measures do you take to quantify and measure impact? Which metrics are used?</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Marcel Wolbers &amp; Kaspar Rufibach</td>
-<td style="text-align: left;">Multi-arm multi-stage designs (MAMS)</td>
-<td style="text-align: center;"><a href="CEN2023_MAMSsection_Wolbers_Rufibach_handout.pdf">X</a></td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">Emmanuel</td>
+<td style="text-align: left;">Zuber</td>
+<td style="text-align: left;">How to avoid the double trap of 1) falling in love with your innovation and 2) losing the passion for the adequate solution to the real problem ?</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Frank Bretz and Uli Burger</td>
-<td style="text-align: left;">Adaptive trials: Some general considerations</td>
-<td style="text-align: center;"><a href="Bretz_Burger CEN.pdf">X</a></td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">Linard</td>
+<td style="text-align: left;">Hoessly</td>
+<td style="text-align: left;">How do you deal with the subjectivity on methodological questions in many statistical areas?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Anne-Laure</td>
+<td style="text-align: left;">Boulesteix</td>
+<td style="text-align: left;">What could be the role of a phases classification system for methodological research as described in Heinze et al.&nbsp;(2024)? https://onlinelibrary.wiley.com/doi/full/10.1002/bimj.202200222</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Jacob</td>
+<td style="text-align: left;">Stærk-Østergaard</td>
+<td style="text-align: left;">Can we improve collaboration across industry and academia to push novel statistical methods into acceptance from both regulators and clinicians, and if so how?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Annesh</td>
+<td style="text-align: left;">Pal</td>
+<td style="text-align: left;">Coming from core academia, how can one apply Bayesian statistics in oncological studies? What path one can follow to create statistical innovations for detection or diagnosis of cancer? What are the interesting milestones already achieved in this direction and what are the possible directions of work for the future?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Susan</td>
+<td style="text-align: left;">Edwards</td>
+<td style="text-align: left;">How do you know when a new innovation’s benefit is great enough to make up for its (likely) added complexity or at least the hurdle of its unfamiliarity?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Divya</td>
+<td style="text-align: left;">Gunasekar</td>
+<td style="text-align: left;">At times when there is so much competition, how can we reduce the time to get a novel product to market sooner?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Tu</td>
+<td style="text-align: left;">Xu</td>
+<td style="text-align: left;">The biologic innovation is of no doubt to be a must in industry environment. However, statistical innovation is often considered an optional or ‘nice-to-have’ as long as regulatory requirements are met. How could we raise the importance of statistical innovation to the business and make it as a necessary part of clinical development process?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Xiaowei</td>
+<td style="text-align: left;">Ren</td>
+<td style="text-align: left;">Is there any application of Bayesian sample size augment in the single arm trial</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Pernille</td>
+<td style="text-align: left;">Juul Jørgensen</td>
+<td style="text-align: left;">Q1.1: How to balance adoptations of new statistical methods with the need for fast developed clinical programmes? Q1.2: Are there sometimes you would advise to go with an “old” method instead of trying something “new” out? Q2: How much extra time do you estimate that it takes to implement a new method for a study design? Q3: Is there a regulatory risk (e.g.&nbsp;longer interactions or pushback?) when using a new statistical method?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Jonas</td>
+<td style="text-align: left;">Lindeløv</td>
+<td style="text-align: left;">(1) Do you have examples of important innovations that did not reach impact? Can we draw learnings from those examples? (2) What is the effect size of following all the recommendations from this session? For example, is it an increase from 10% probability of success to 25%?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Federico</td>
+<td style="text-align: left;">Mattiello</td>
+<td style="text-align: left;">What are the catalysts that help bringing innovation to fruition?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Lada</td>
+<td style="text-align: left;">Mitchell</td>
+<td style="text-align: left;">1. Good statistical thinking, AI and maschine learning-what is a magical formula and long term vision? 2. How to inluence faster, eg bring new meaningful stats methodoly to applicatons and use?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Xiaoling</td>
+<td style="text-align: left;">Wu</td>
+<td style="text-align: left;">what is the one task statistician can do better than AI?</td>
 </tr>
 </tbody>
 </table>
 </div>
-</div>
-<ul>
-<li>Exercises: <a href="BBSadaptiveCourse03Sep2023_exercises.zip">exercise markdown as zip file</a> | <a href="BBSadaptiveCourse03Sep2023_exercises.html">html</a>.</li>
-<li>Solutions: <a href="BBSadaptiveCourse03Sep2023_solutions.zip">solution markdown as zip file</a> | <a href="BBSadaptiveCourse03Sep2023_solutions.html">html</a>.</li>
-<li>Download all files as <a href="BBS_adaptive.zip">.zip file</a>.</li>
-</ul>
 
 
 </section>

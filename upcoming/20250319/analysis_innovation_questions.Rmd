@@ -1,0 +1,51 @@
+---
+title: "BBS seminar 19th March 2025: analysis of questions"
+author: "Kaspar Rufibach"
+date: "Last change: `r format(Sys.time(), '%d %B, %Y')`"
+output: 
+  rmarkdown::html_document:
+    highlight: pygments
+    number_sections: yes
+    self_contained: yes
+    toc: yes
+    toc_depth: 2
+    toc_float: yes
+---
+
+```{r setup, include = FALSE, echo = FALSE}
+## load packages
+packs.html <- c("knitr", "pander", "reporttools", "dplyr", "readxl", "countrycode", 
+                "rnaturalearth", "rnaturalearthdata", "RColorBrewer", "ggplot2")
+for (i in 1:length(packs.html)){library(packs.html[i], character.only = TRUE)}
+
+knitr::opts_chunk$set(echo = TRUE)
+
+# read in data
+qs <- as.data.frame(read_excel("qs.xlsx"), col_types = rep("text", 3))
+now <- as.POSIXlt(Sys.time())
+now <- paste(substr(now, 1, 10), " at ", substr(now, 12, 19), sep = "")
+```
+
+# Data status
+
+Data as of `r now`.
+
+# Analysis of registrations
+
+See [here](analysis_innovation.html).
+
+# Questions to the panel
+
+```{r, echo = FALSE, results = 'asis', message = FALSE}
+kable(qs)
+```
+
+
+
+
+
+
+
+
+
+

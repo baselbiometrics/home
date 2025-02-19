@@ -10,6 +10,7 @@ output:
     toc_float: yes
 ---
 
+* 2025/02/19: Uploaded final announcement for [BBS Meeting on Covariate adjustment in clinical trials](events_upcoming.html)
 * 2025/02/11: Uploaded announcement for [BBS Webinar "From Statistical Innovations to Common Practice: How to innovate with impact?"](events_upcoming.html)
 * 2025/02/06: Uploaded first announcement for [BBS Meeting on Covariate adjustment in clinical trials](events_upcoming.html)
 * 2025/01/11: Uploaded announcement for next [BBS Next Generation Lunch](events_upcoming.html)

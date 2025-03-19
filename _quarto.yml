@@ -14,7 +14,7 @@ project:
     - trainings/20220913
     - trainings/20230903
     - talks/20191101
-    - upcoming/20250319
+    - talks/20250319
     - statbloc.qmd
 
 website:

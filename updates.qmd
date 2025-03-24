@@ -10,8 +10,9 @@ output:
     toc_float: yes
 ---
 
+* 2025/03/24: Added recording for [BBS Webinar "From Statistical Innovations to Common Practice: How to innovate with impact?"](events_past.html#bbs-webinar-on-from-statistical-innovations-to-common-practice-how-to-innovate-with-impact).
 * 2025/02/19: Uploaded final announcement for [BBS Meeting on Covariate adjustment in clinical trials](events_upcoming.html)
-* 2025/02/11: Uploaded announcement for [BBS Webinar "From Statistical Innovations to Common Practice: How to innovate with impact?"](events_upcoming.html)
+* 2025/02/11: Uploaded announcement for [BBS Webinar "From Statistical Innovations to Common Practice: How to innovate with impact?"](events_past.html#bbs-webinar-on-from-statistical-innovations-to-common-practice-how-to-innovate-with-impact).
 * 2025/02/06: Uploaded first announcement for [BBS Meeting on Covariate adjustment in clinical trials](events_upcoming.html)
 * 2025/01/11: Uploaded announcement for next [BBS Next Generation Lunch](events_upcoming.html)
 * 2024/11/29: Uploaded first announcement for the [BBS Next Generation Mentoring Program](events_upcoming.html)

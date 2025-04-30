@@ -37,7 +37,7 @@ prepTable <- function(t2, cut = 10, ord = TRUE){
 }
 
 # categories with frequencies below cut will be lumped together
-cut <- 2
+cut <- 5
 
 now <- as.POSIXlt(Sys.time())
 now <- paste(substr(now, 1, 10), " at ", substr(now, 12, 19), sep = "")

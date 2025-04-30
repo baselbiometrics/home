@@ -1,0 +1,127 @@
+---
+title: "ISCB46 in Basel: analysis of registrations"
+author: "Kaspar Rufibach"
+date: "Last change: `r format(Sys.time(), '%d %B, %Y')`"
+output: 
+  rmarkdown::html_document:
+    highlight: pygments
+    number_sections: yes
+    self_contained: yes
+    toc: yes
+    toc_depth: 2
+    toc_float: yes
+---
+
+```{r setup, include = FALSE, echo = FALSE}
+## load packages
+packs.html <- c("knitr", "pander", "reporttools", "dplyr", "readxl", "countrycode", 
+                "rnaturalearth", "rnaturalearthdata", "RColorBrewer", "ggplot2")
+for (i in 1:length(packs.html)){library(packs.html[i], character.only = TRUE)}
+
+knitr::opts_chunk$set(echo = TRUE)
+
+# read in data
+reg2 <- as.data.frame(read_excel("reg3.xlsx"), col_types = rep("text", 4))
+
+# function
+prepTable <- function(t2, cut = 10, ord = TRUE){
+  if (ord){t2 <- t(as.matrix(t2[rev(order(t2, rev(names(t2))))]))}
+  
+  if (min(t2) < cut){
+    i0 <- min(which(t2 <= cut))
+    t2[1, i0] <- sum(t2[t2 <= cut])
+    t2 <- t2[1, 1:i0]
+    names(t2)[i0] <- "other"
+  }
+  return(t2)
+}
+
+# categories with frequencies below cut will be lumped together
+cut <- 2
+
+now <- as.POSIXlt(Sys.time())
+now <- paste(substr(now, 1, 10), " at ", substr(now, 12, 19), sep = "")
+```
+
+# Data status
+
+Data as of `r now`.
+
+# Registrations by institution
+
+```{r, echo = FALSE, fig.cap = "", fig.align = "center", fig.width = 7, fig.height = 10}
+t2 <- with(reg2, table(inst2))
+t2 <- prepTable(t2 = t2, cut = cut)
+
+par(las = 2, mar = c(21, 4.5, 3, 1))
+ylim <- c(0, 1.4 * max(t2))
+xx <- barplot(t2, ylab = "number of registrations", main = paste("Total number of registrations: ", dim(reg2)[1], "\n institution", sep = ""), col = 4, ylim = ylim)
+text(x = xx, y = t2, label = paste(t2, " (", round(100 * t2 / sum(t2)), "%)", sep = ""), pos = 3, offset = 2, cex = 0.8, col = 1, srt = 90)
+```
+ 
+# Registrations by countries
+
+```{r, echo = FALSE, fig.cap = "", fig.align = "center", fig.width = 7, fig.height = 10}
+t2 <- with(reg2, table(country2))
+t2 <- prepTable(t2 = t2, cut = cut)
+
+par(las = 2, mar = c(17, 4.5, 3, 1))
+ylim <- c(0, 1.4 * max(t2))
+xx <- barplot(t2, ylab = "number of registrations", main = paste(dim(reg2)[1], " registrations from ", with(reg2, length(unique(country2))), " countries", sep = ""), col = 4, ylim = ylim)
+#par(srt = 90)
+text(x = xx + 0.2, y = t2 + 2.5, label = paste(t2, " (", round(100 * t2 / sum(t2)), "%)", sep = ""), pos = 3, offset = 2, cex = 0.8, col = 1, srt = 90)
+```
+
+# Registrations by countries - map
+
+```{r, echo = FALSE, fig.cap = "", fig.align = "center", fig.width = 15, fig.height = 10}
+world <- ne_countries(scale = "medium", returnclass = "sf")
+
+uc <- unique(reg2$country2)
+uc <- uc[is.na(uc) == FALSE]
+world$fill <- (world$sovereignt %in% uc) == FALSE
+
+palette = colorRampPalette(brewer.pal(n=5, name='Oranges'))(5)
+palette = c("white", palette)
+
+worldpopmap <- ggplot() +
+  geom_sf(data = world, aes(fill = fill)) +
+  theme(panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        legend.position = "none") +
+  ggtitle("Broad representation") + 
+  theme(plot.title = element_text(hjust = 0.5)) + 
+  theme(plot.title=element_text(size=30,face="bold"))
+
+# display map
+worldpopmap
+```
+
+# Registrations by geographic region
+
+```{r, echo = FALSE, fig.cap = "", fig.align = "center", fig.width = 7, fig.height = 10}
+df <- data.frame(country = reg2$country2)
+df$continent <- countrycode(sourcevar = df[, "country"],
+                            origin = "country.name",
+                            destination = "continent")
+
+t2 <- with(df, table(continent))
+t2 <- prepTable(t2 = t2, cut = 0)
+
+par(las = 2, mar = c(17, 4.5, 3, 1))
+ylim <- c(0, 1.4 * max(t2))
+xx <- barplot(t2, ylab = "number of registrations", main = paste(dim(reg2)[1], " registrations from ", with(df, length(unique(continent))), " regions", sep = ""), col = 4, ylim = ylim)
+#par(srt = 90)
+text(x = xx + 0.2, y = t2 + 2.5, label = paste(t2, " (", round(100 * t2 / sum(t2)), "%)", sep = ""), pos = 3, offset = 2, cex = 0.8, col = 1, srt = 90)
+```
+
+
+
+
+
+
+
+
+
+
+

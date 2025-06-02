@@ -10,6 +10,7 @@ output:
     toc_float: yes
 ---
 
+* 2025/06/02: Uploaded first announcement for [Colloquium in Honor of Hans Ulrich Burger on the Occasion of His Retirement from Roche](events_upcoming.html).
 * 2025/04/30: Uploaded save-the-date for [BBS NextGen Seminar "Building Bridges: Communication Across Academia, Industry, and Regulators"](events_upcoming.html).
 * 2025/03/25: Added slides for [BBS Face-to-Face Meeting on Covariate Adjustment in Clinical Trials](events_past.html#bbs-face-to-face-meeting-on-covariate-adjustment-in-clinical-trials)
 * 2025/03/24: Added recording for [BBS Webinar "From Statistical Innovations to Common Practice: How to innovate with impact?"](events_past.html#bbs-webinar-on-from-statistical-innovations-to-common-practice-how-to-innovate-with-impact).

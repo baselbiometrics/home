@@ -10,6 +10,7 @@ output:
     toc_float: yes
 ---
 
+* 2025/09/05: Uploaded first announcement for [BBS – Suisse Romandie Webinar: Patient Preference Studies: What Do We Know Now?](events_upcoming.html).
 * 2025/09/03: Uploaded first announcement for [BBS Training: A critical introduction to causal mediation analysis for biostatistics](events_upcoming.html).
 * 2025/07/16: Uploaded first announcement for [BBS Seminar: Causal mediation analysis in clinical research](events_upcoming.html).
 * 2025/06/25: Opened registration for [BBS NextGen Seminar: Building Bridges: Communication Across Academia, Industry, and Regulators](events_upcoming.html).

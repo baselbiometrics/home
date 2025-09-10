@@ -10,6 +10,8 @@ output:
     toc_float: yes
 ---
 
+* 2024/09/11: Added [BBS Suisse Romande committee page](suisseromande.html)
+* 2025/09/11: Added first announcement for [BBS – Suisse Romande Workshop: Do you speak statistics?](events_upcoming.html).
 * 2025/09/08: Uploaded first announcement for [BBS Training: Data Monitoring Committees (DMCs)](events_upcoming.html).
 * 2025/09/05: Uploaded final announcement for the [Colloquium in Honor of Hans Ulrich Burger on the Occasion of His Retirement from Roche](events_upcoming.html).
 * 2025/09/05: Uploaded first announcement for [BBS – Suisse Romandie Webinar: Patient Preference Studies: What Do We Know Now?](events_upcoming.html).

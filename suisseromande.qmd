@@ -1,0 +1,57 @@
+---
+title: "BBS Suisse Romande"
+output: 
+  rmarkdown::html_document:
+    highlight: pygments
+    number_sections: yes
+    self_contained: yes
+    toc: yes
+    toc_depth: 2
+    toc_float: yes
+---
+```{r setup, include = FALSE, echo = FALSE}
+## load packages
+library("knitr")
+library("pander")
+library("dplyr")
+library("readxl")
+
+knitr::opts_chunk$set(echo = TRUE)
+
+## upcoming   
+path <- getwd()
+upcoming <- as.data.frame(read_excel(paste(path, "/data/upcoming.xlsx", sep = ""), col_types = NULL))
+
+```
+# Activities
+
+The BBS Suisse Romande committee
+
+* coordinates BBS Suisse Romande events (typically one each quarter, see the [upcoming](events_upcoming.html)),
+* maintains the [BBS Suisse Romande mailing list](https://forms.gle/QZ9FWEJy53GGw2fg7) and [LinkedIn page](https://www.linkedin.com/company/bbs-suisse-romandie),
+* organizes monthly community / networking lunches (see the [LinkedIn posts](https://www.linkedin.com/company/bbs-suisse-romandie/posts) for upcoming ones).  
+
+
+
+# Committee members
+
+
+```{r romandie_board, include = FALSE, echo = FALSE}
+## roster   
+path <- getwd()
+roster_sr <- read_excel("data/roster_romandie.xlsx", na = character())
+roster_sr$Name <- paste(roster_sr$First, roster_sr$Last, sep = " ")
+roster_sr <- roster_sr |>
+  filter(Committee == 1) |>
+  arrange(Company, Last, First) |>
+  select(Name, Company) 
+
+# roster[is.na(roster)] <- ""
+```
+
+```{r, include=TRUE, echo=FALSE}
+kable(roster_sr)
+```
+
+
+

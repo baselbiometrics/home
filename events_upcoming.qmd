@@ -49,7 +49,4 @@ if (nrow(upcoming) > 0){
 if (nrow(upcoming) > 0){kable(upcoming)} else {kable("No upcoming events announced yet. Check back later!", col.names = "")}
 ```
 
-## 46th annual conference of the ISCB, 2025
-The 46th annual conference of the <a href="https://iscb.international">International Society for Clinical Biostatistics (ISCB)</a> is jointly organized with the Basel Biometric Society (BBS) and takes place from August 24<sup>th</sup> to 28<sup>th</sup>, 2025. For more information, please consult [the conference webpage](https://iscb2025.info).
 
-<center><a href="https://iscb2025.info">![](bbs_logo.gif){height=300px}</a>&nbsp;<a href="https://iscb2025.info">![](iscb2025-logo-compressed.jpg){height=300px}</a></center>

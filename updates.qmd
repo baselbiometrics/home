@@ -10,6 +10,7 @@ output:
     toc_float: yes
 ---
 
+* 2024/10/22: Added all slidedecks for [Colloquium in Honor of Hans Ulrich Burger on the Occasion of His Retirement from Roche](events_past.html#colloquium-in-honor-of-hans-ulrich-burger-on-the-occasion-of-his-retirement-from-roche).
 * 2024/10/16: Updated announcement for [BBS – Suisse Romande Workshop: Do you speak statistics?](events_upcoming.html).
 * 2024/10/14: Uploaded first announcement for [BBS Workshop on the False Discovery Rate](events_upcoming.html).
 * 2024/10/02: Cancelled DMC course, added October BBS NextGen Lunch

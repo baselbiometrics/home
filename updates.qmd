@@ -10,6 +10,7 @@ output:
     toc_float: yes
 ---
 
+* 2025/11/10: Added final agenda and slidedecks for [Causal mediation analysis in clinical research](events_past.html#causal-mediation-analysis-in-clinical-research).
 * 2025/11/05: Uploaded new announcement for [BBS Training: A critical introduction to causal mediation analysis for biostatistics](events_upcoming.html).
 * 2025/10/22: Added all slidedecks for [Colloquium in Honor of Hans Ulrich Burger on the Occasion of His Retirement from Roche](events_past.html#colloquium-in-honor-of-hans-ulrich-burger-on-the-occasion-of-his-retirement-from-roche).
 * 2025/10/16: Updated announcement for [BBS – Suisse Romande Workshop: Do you speak statistics?](events_upcoming.html).

@@ -69,6 +69,12 @@ Data as of `r now`.
 t2 <- with(reg4, table(country2))
 t2 <- prepTable(t2 = t2, cut = cut)
 
+t2[names(t2) == "Switzerland"] <- 179
+t2[names(t2) == "United Kingdom"] <- 133
+t2[names(t2) == "Germany"] <- 101
+t2[names(t2) == "Netherlands"] <- 49
+t2[names(t2) == "other"] <- 34
+
 par(las = 2, mar = c(17, 4.5, 3, 1))
 ylim <- c(0, 1.4 * max(t2))
 xx <- barplot(t2, ylab = "number of registrations", main = paste(dim(reg4)[1], " registrations from ", with(reg4, length(unique(country2))), " countries", sep = ""), col = 4, ylim = ylim)

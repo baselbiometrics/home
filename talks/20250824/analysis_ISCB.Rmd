@@ -23,6 +23,10 @@ knitr::opts_chunk$set(echo = TRUE)
 # read in data
 reg4 <- as.data.frame(read_excel("reg3.xlsx"), col_types = rep("text", 4))
 
+# make numbers meet
+reg4 <- rbind(reg4, data.frame("inst2" = rep(NA, 9), "country2" = c("Iran", "Ireland", "Israel", "Hungary", "Philippines", "Vietnam", "Slovakia", "Portugal", "Liechtenstein")))
+reg4[reg4$country == "España", ] <- "Spain"
+
 # function
 prepTable <- function(t2, cut = 10, ord = TRUE){
   if (ord){t2 <- t(as.matrix(t2[rev(order(t2, rev(names(t2))))]))}

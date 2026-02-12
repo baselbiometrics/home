@@ -10,6 +10,7 @@ output:
     toc_float: yes
 ---
 
+* 2026/02/12: Uploaded first announcement for [BBS Webinar: Optimizing Multiple Comparisons in Sequential and Non-Sequential Clinical Trials](events_upcoming.html).
 * 2026/01/21: Uploaded the first save-the-date announcement for the [BBS Training: Does This Treatment Cause That Outcome? A Practical Guide to Estimand Thinking](events_upcoming.html).
 * 2025/11/10: Added final agenda and slidedecks for [Causal mediation analysis in clinical research](events_past.html#causal-mediation-analysis-in-clinical-research).
 * 2025/11/05: Uploaded new announcement for [BBS Training: A critical introduction to causal mediation analysis for biostatistics](events_upcoming.html).

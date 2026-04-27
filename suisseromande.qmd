@@ -28,7 +28,7 @@ upcoming <- as.data.frame(read_excel(paste(path, "/data/upcoming.xlsx", sep = ""
 The BBS Suisse Romande committee
 
 * coordinates BBS Suisse Romande events (typically one each quarter, see the [upcoming](events_upcoming.html)),
-* maintains the [BBS Suisse Romande mailing list](https://forms.gle/QZ9FWEJy53GGw2fg7) and [LinkedIn page](https://www.linkedin.com/company/bbs-suisse-romandie),
+* maintains the [BBS Suisse Romande mailing list](https://forms.gle/H3JNJ1DmigXkwHnZ7) and [LinkedIn page](https://www.linkedin.com/company/bbs-suisse-romandie),
 * organizes monthly community / networking lunches (see the [LinkedIn posts](https://www.linkedin.com/company/bbs-suisse-romandie/posts) for upcoming ones).  
 
 

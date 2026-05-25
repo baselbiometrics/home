@@ -56,6 +56,11 @@ roster <- roster |>
   arrange(Company, Last, First) |>
   select(Name, Company) 
 
+alumni_roster <- read_excel("data/roster_nextgen_alumni.xlsx", na = character())
+alumni_roster$Name <- paste(alumni_roster$First, alumni_roster$Last, sep = " ")
+alumni_roster <- alumni_roster |>
+  arrange(desc(To), From, Last, First) |>
+  select(Name, Company, From, To) 
 # roster[is.na(roster)] <- ""
 ```
 
@@ -63,5 +68,9 @@ roster <- roster |>
 kable(roster)
 ```
 
+# Alumni
 
+```{r, include=TRUE, echo=FALSE}
+kable(alumni_roster)
+```
 

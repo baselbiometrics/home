@@ -2,18 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Kaspar Rufibach (Roche), Marc Vandemeulebroecke (Novartis), Gernot Wassmer (rpact), Marcel Wolbers (Roche)">
-<meta name="dcterms.date" content="2025-07-04">
+<meta name="dcterms.date" content="2026-08-10">
 
 <title>Exercises for the BBS course ‘Advanced group-sequential and adaptive confirmatory clinical trial designs, with R practicals using rpact’ on 13Sep2022 – Basel Biometrics Society</title>
 <style>
-/* Default styles provided by pandoc.
-** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -72,14 +69,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-6f0d911f17a40a475f05dce00321bdbf.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-89d2e01a7dd95fe96bf9048e4ce53d05.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -109,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -148,6 +146,8 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Basel Biometrics Society</span>
     </a>
@@ -320,7 +320,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 4, 2025</p>
+      <p class="date">August 10, 2026</p>
     </div>
   </div>
   
@@ -353,14 +353,14 @@ window.Quarto = {
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load rpact</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rpact)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Installation qualification for rpact 4.2.0 has not yet been performed.</code></pre>
+<pre><code>Installation qualification for rpact 4.4.0 has not yet been performed.</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Please run testPackage() before using the package in GxP relevant environments.</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">"rpact"</span>) <span class="co"># version should be version 3.0 or higher</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] '4.2.0'</code></pre>
+<pre><code>[1] '4.4.0'</code></pre>
 </div>
 </div>
 </section>
@@ -756,9 +756,10 @@ window.Quarto = {
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type solution here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <hr>
-<p>System: rpact 4.2.0, R version 4.5.1 (2025-06-13), platform: aarch64-apple-darwin20</p>
+<p>System: rpact 4.4.0, R version 4.4.3 (2025-02-28 ucrt), platform: x86_64-w64-mingw32</p>
 <p>To cite package ‘rpact’ in publications use:</p>
-<p>Wassmer G, Pahlke F (2025). <em>rpact: Confirmatory Adaptive Clinical Trial Design and Analysis</em>. doi:10.32614/CRAN.package.rpact <a href="https://doi.org/10.32614/CRAN.package.rpact" class="uri">https://doi.org/10.32614/CRAN.package.rpact</a>, R package version 4.2.0, <a href="https://cran.r-project.org/package=rpact" class="uri">https://cran.r-project.org/package=rpact</a>.</p>
+<p>Wassmer G, Pahlke F (2026). rpact: Confirmatory Adaptive Clinical Trial Design and Analysis. R package version 4.4.0. doi:10.32614/CRAN.package.rpact</p>
+<p>Wassmer G, Brannath W (2025). <em>Group Sequential and Confirmatory Adaptive Designs in Clinical Trials</em>, 2nd edition. Springer, Cham, Switzerland. ISBN 978-3-031-89668-2, doi:10.1007/978-3-031-89669-9 <a href="https://doi.org/10.1007/978-3-031-89669-9" class="uri">https://doi.org/10.1007/978-3-031-89669-9</a>.</p>
 
 
 </section>

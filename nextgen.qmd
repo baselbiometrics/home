@@ -25,7 +25,7 @@ upcoming <- as.data.frame(read_excel(paste(path, "/data/upcoming.xlsx", sep = ""
 lunch <- upcoming |> filter(tolower(type) == "bbs nextgen lunch")
 has_lunch <- nrow(lunch) > 0
 
-afterwork <- upcoming |> filter(tolower(type) == "bbs nextgen afterwork")
+afterwork <- upcoming |> filter(tolower(type) %in% c("bbs nextgen afterwork", "bbs nextgen dinner"))
 has_afterwork <- nrow(afterwork) > 0
 ```
 

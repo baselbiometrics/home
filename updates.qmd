@@ -10,6 +10,9 @@ output:
     toc_float: yes
 ---
 
+* 2026/11/06: Added slides for [BBS Training: Data Monitoring Committees](trainings_past.html#data-monitoring-committees).
+* 2026/11/04: Uploaded first annnouncement for [BBS SR Webinar: Getting the Size Right: finite-sample corrections for univariate & multivariate bioequivalence testing](events_upcoming.html).
+* 2026/11/04: Added slides and recording for [BBS SR Hybrid Seminar: Optimal decision rules and subgroup effects with appropriate statistical guarantees](events_past.html#optimal-decision-rules-and-subgroup-effects-with-appropriate-statistical-guarantees).
 * 2026/10/11: Uploaded first annnouncement for [BBS Next Gen Seminar: Non-Linear Career Paths, and After-Work](events_upcoming.html).
 * 2026/09/29: Uploaded first annnouncement for [BBS Annual Meeting 2026: Quantitative drug development in the age of AI](events_upcoming.html).
 * 2026/09/29: Uploaded first annnouncement for [BBS Hybrid Seminar: Exploratory Subgroup Analyses in Clinical Trials](events_upcoming.html).

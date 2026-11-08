@@ -1,0 +1,66 @@
+# Deploys only the rendered site (docs/) to GitHub Pages, keeping the
+# existing URL layout https://<owner>.github.io/<repo>/docs/...
+# The Quarto sources (talks/, trainings/, data/, ...) are not uploaded,
+# which keeps the Pages artifact well below the 1 GB limit.
+#
+# Requires: Settings -> Pages -> Build and deployment -> Source: "GitHub Actions"
+
+name: Deploy Pages
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out rendered site only
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: docs
+          sparse-checkout-cone-mode: true
+
+      - name: Stage site under /docs
+        run: |
+          mkdir _site
+          mv docs _site/docs
+          cat > _site/index.html <<'EOF'
+          <!doctype html>
+          <html lang="en">
+          <head>
+            <meta charset="utf-8">
+            <title>Basel Biometrics Society</title>
+            <meta http-equiv="refresh" content="0; url=docs/">
+            <link rel="canonical" href="docs/">
+          </head>
+          <body><p>Redirecting to <a href="docs/">the BBS website</a>…</p></body>
+          </html>
+          EOF
+          du -sh _site
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}docs/
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
